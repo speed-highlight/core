@@ -39,7 +39,7 @@ const shg_lang = {
 			type: 'comment'
 		},
 		{
-			match: /((["']).*[^\\]\2)/g,
+			match: /((["']).*[^\\\n]\2)/g,
 			type: 'str'
 		},
 		{
@@ -47,7 +47,7 @@ const shg_lang = {
 			type: 'bool'
 		},
 		{
-			match: /\b(=>|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|var|set|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
+			match: /(?<=[\s{}();,])(=>|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|var|set|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)(?=[\s{}();,])/g,
 			type: 'keyword'
 		},
 		{
@@ -57,15 +57,23 @@ const shg_lang = {
 		{
 			match: /([/*+:?&|%^~=!,<>.-]+)/g,
 			type: 'operator'
-			//highlight: 'python'
 		},
 		{
 			match: /([\w$][\w0-9$]*)(?=\s*(\?\.)?\s*\()/g,
 			type: 'func'
+		},
+		{
+			match: /((?<=\.\s*)\w+|\bthis)\b/g,
+			type: 'var'
+		},
+		{
+			match: /(?<=class\s+)(\w+)/g,
+			type: 'class'
 		}
+		//highlight: 'python'
+		//template literall
 		//regex
 		//jsdoc
-		//var
 	]
 }
 
@@ -76,11 +84,10 @@ const shg = (_ => {
 				res = '',
 				index,
 				match,
-				firstPartIndex,
+				firstPart,
 				firstIndex,
 				firstMatch,
 				i = 0,
-				j,
 				part;
 			const add = (str, type) => res += type ? `<span class='syn-${type}'>${sanitize(str)}</span>` : sanitize(str);
 
@@ -88,15 +95,14 @@ const shg = (_ => {
 				j = -1;
 				firstIndex = null;
 				for (part of shg_lang.js) {
-					j++;
 					part.match.lastIndex = i;
 					match = part.match.exec(src);
 					if (match !== null) {
 						index = match.index;
 						match = match[1];
-						if (match !== undefined && index < firstIndex || firstIndex === null)
+						if (match !== undefined && (index < firstIndex || firstIndex === null))
 						{
-							firstPartIndex = j;
+							firstPart = part;
 							firstIndex = index;
 							firstMatch = match;
 						}
@@ -104,11 +110,11 @@ const shg = (_ => {
 							break;
 					}
 				}
-				if (firstIndex == null)
+				if (firstIndex === null)
 					break;
 				add(src.slice(i, firstIndex));
-				add(firstMatch, shg_lang.js[firstPartIndex].type);
-				i = shg_lang.js[firstPartIndex].match.lastIndex;
+				add(firstMatch, firstPart.type);
+				i = firstPart.match.lastIndex;
 			}
 			//add last part
 			add(src.slice(i, src.length));

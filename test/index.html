@@ -17,6 +17,11 @@
 	<script src="highlight/languages/javascript.min.js"></script>
 	<script>
 		const tests = [
+			`e => conole.log(e);
+'str'
+str
+"st\\r"
+"str\\"`,
 			`#!/path-to-v8/v8-shell
 const heart = new Image(),
 	love = document.querySelector('#love');
@@ -44,6 +49,9 @@ test 	?. 	()
 cconst ;
 Nan;
 NaN;
+NaN_;
+NaN1;
+_NaN;
 true ;
 undefined ;
 'hel
@@ -134,14 +142,15 @@ console.log('helloworld');`
 			let parent = document.createElement('div');
 			document.body.appendChild(parent);
 
-			//mine
-			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
 
 			//prism.js
 			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
 
 			//highlight.js
 			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
+
+			//mine
+			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
 		})
 		//document.querySelectorAll('pre:not(.language-js, .language-javascript) > code').forEach(elm => shg.highlightElement(elm));
 		//document.querySelectorAll('pre.language-js.prism').forEach(elm => Prism.highlightElement(elm));

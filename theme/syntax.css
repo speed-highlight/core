@@ -9,7 +9,8 @@ pre {
 .syn-keyword {
 	color: hsl(285deg, 80%, 70%);
 }
-.syn-num {
+.syn-num,
+.syn-class {
 	color: hsl(25deg, 90%, 70%);
 }
 .syn-comment {
