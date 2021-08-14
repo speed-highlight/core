@@ -34,35 +34,35 @@ const shg_lang = {
 	//regex: [
 	//],
 	js: [
-		// {
-		// 	match: /(\/\/.*\n?|\/\*[^]*\*\/)/g,
-		// 	type: 'comment'
-		// },
-		// {
-		// 	match: /((["']).*[^\\]\2)/g,
-		// 	type: 'str'
-		// },
+		{
+			match: /(\/\/.*\n?|\/\*[^]*\*\/)/g,
+			type: 'comment'
+		},
+		{
+			match: /((["']).*[^\\]\2)/g,
+			type: 'str'
+		},
 		{
 			match: /\b(true|false)\b/g,
 			type: 'bool'
 		},
-		// {
-		// 	match: /\b(=>|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|var|set|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
-		// 	type: 'keyword'
-		// },
-		// {
-		// 	match: /\b(([0-9])+(e[0-9]+)?(\.[0-9]+)?|NaN|null|undefined)\b/g,
-		// 	type: 'num'
-		// },
-		// {
-		// 	match: /([/*+:?&|%^~=!,<>.-]+)/g,
-		// 	type: 'operator'
-		// 	//highlight: 'python'
-		// },
-		// {
-		// 	match: /([\w$][\w0-9$]*)(?=\s*(\?\.)?\s*\()/g,
-		// 	type: 'func'
-		// }
+		{
+			match: /\b(=>|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|var|set|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
+			type: 'keyword'
+		},
+		{
+			match: /\b(([0-9])+(e[0-9]+)?(\.[0-9]+)?|NaN|null|undefined)\b/g,
+			type: 'num'
+		},
+		{
+			match: /([/*+:?&|%^~=!,<>.-]+)/g,
+			type: 'operator'
+			//highlight: 'python'
+		},
+		{
+			match: /([\w$][\w0-9$]*)(?=\s*(\?\.)?\s*\()/g,
+			type: 'func'
+		}
 		//regex
 		//jsdoc
 		//var
@@ -72,7 +72,6 @@ const shg_lang = {
 const shg = (_ => {
 	const sanitize = str => str.replaceAll('<', '&lt;').replaceAll('>', '&gt;'),
 		highlightElement = elm => {
-			console.log('highlight');
 			let src = elm.innerText,
 				res = '',
 				index,
@@ -80,21 +79,22 @@ const shg = (_ => {
 				firstPartIndex,
 				firstIndex,
 				firstMatch,
-				i = 0;
+				i = 0,
+				j,
+				part;
 			const add = (str, type) => res += type ? `<span class='syn-${type}'>${sanitize(str)}</span>` : sanitize(str);
-			//add as element faster ? and more secure
 
 			while (i < src.length) {
-				let j = -1;
+				j = -1;
 				firstIndex = null;
-				for (let part of shg_lang.js) {
+				for (part of shg_lang.js) {
 					j++;
 					part.match.lastIndex = i;
 					match = part.match.exec(src);
 					if (match !== null) {
 						index = match.index;
 						match = match[1];
-						if (index < firstIndex || firstIndex === null)
+						if (match !== undefined && index < firstIndex || firstIndex === null)
 						{
 							firstPartIndex = j;
 							firstIndex = index;
@@ -104,17 +104,14 @@ const shg = (_ => {
 							break;
 					}
 				}
-				if (firstMatch === undefined)
+				if (firstIndex == null)
 					break;
 				add(src.slice(i, firstIndex));
 				add(firstMatch, shg_lang.js[firstPartIndex].type);
 				i = shg_lang.js[firstPartIndex].match.lastIndex;
-				//console.log(i);
-				//console.log('-----------------');
 			}
 			//add last part
 			add(src.slice(i, src.length));
-			console.log('highlight end');
 		 	elm.innerHTML = res;
 			//add end
 
