@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../theme/syntax.css">
+	<link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css">
+	<link rel="stylesheet" href="prism.css">
+	<head>
+<body>
+	<script src="../syntax.js"></script>
+	<script src="prism.js"></script>
+	<script src="highlight/highlight.js"></script>
+	<script src="highlight/languages/javascript.min.js"></script>
+	<script>
+		const tests = [
+			`#!/path-to-v8/v8-shell
+const heart = new Image(),
+	love = document.querySelector('#love');
+let confetti;
+
+heart.onload = () => {
+	confetti = new Confetti();
+	confetti.canvas.style.zIndex = -1;
+	confetti.count = 25;
+	confetti.setImage(heart, 20, 20);
+}
+
+heart.src = 'heart.png';
+love.addEventListener('click', e => {
+	if (love.classList.toggle('love'))
+		confetti?.startAt?.(e.clientX, e.clientY);
+});`,
+			`//create a instance of the class
+const confetti = new Confetti('demo');
+hello
+/*
+setting properties
+*/
+test 	?. 	()
+cconst ;
+Nan;
+NaN;
+true ;
+undefined ;
+'hel
+lo';
+"h\\nello";
+\`he\nel
+o\\\${js}\`;
+\`heel
+o\${let i = 5; error()}\`;
+�class
+js.if ;
+9e5;
+9e5.8e9;
+9.8e5.8e9;
+9.e5.8e9;
+e9.e5.8e9;
+e9.e5.8e9e;
+e9.e5.8e9.;
+vall ==== col
+function helloworld()
+{
+	console.log('hellow world');
+	return (false);
+}
+class Renderer
+{
+	constructor(v, h)
+	{
+		super();
+		console.log(hello);
+		this.v = v;
+	}
+	error()
+	{
+		console.log(error)
+	}
+}
+/regex/g
+/(str|e)(\\/\\2)*.+$/
+9.5;
+let func = () => ();
+func 	();
+js.catch() ;
+elm.5;
+elm[5];
+elm['5'];
+elm[5]();
+window;
+document;
+Array;
+confetti.count
+=
+75;
+confetti.size = 1;
+confetti.power = 25;
+confetti.removeFunc = elm => {
+	elm.style.visibility = 'hidden';
+	elm.style.opacity = 0;
+	setTimeout(e => {
+		elm.style.visibility = null;
+		elm.style.opacity = 1
+	}, 5000);
+};`,
+`}
+somecode();
+console.log('helloworld');`
+		]
+
+		function mesureCallTime(func, name, ...params)
+		{
+			console.time(`highlight time for : ${name}`)
+			func(...params);
+			console.timeEnd(`highlight time for : ${name}`)
+		}
+
+		function createCodeElm(str, className, parent)
+		{
+			let pre = document.createElement('pre'),
+				code = document.createElement('code');
+			pre.className = className;
+			code.innerHTML = str;
+			pre.appendChild(code);
+			parent.appendChild(pre);
+			return { pre, code };
+		}
+
+		tests.forEach(code => {
+			let parent = document.createElement('div');
+			document.body.appendChild(parent);
+
+			//mine
+			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
+
+			//prism.js
+			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
+
+			//highlight.js
+			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
+		})
+		//document.querySelectorAll('pre:not(.language-js, .language-javascript) > code').forEach(elm => shg.highlightElement(elm));
+		//document.querySelectorAll('pre.language-js.prism').forEach(elm => Prism.highlightElement(elm));
+		//document.querySelectorAll('pre.language-javascript.highlight > code').forEach(elm => hljs.highlightElement(elm));
+	</script>
+</body>
+</html>
