@@ -127,7 +127,6 @@ confetti.removeFunc = elm => {
 `}
 somecode();
 console.log('helloworld');`,
-			//new Promise((resolve, reject) => fetch('benchmark_file.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 		]
 

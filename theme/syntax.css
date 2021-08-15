@@ -6,14 +6,14 @@ pre {
 	font-family: monospace;
 }
 
-.syn-keyword {
+.syn-key {
 	color: hsl(285deg, 80%, 70%);
 }
 .syn-num,
 .syn-class {
 	color: hsl(25deg, 90%, 70%);
 }
-.syn-comment {
+.syn-cmt {
 	color: hsla(0deg, 0%, 80%);
 	font-style: italic;
 }
@@ -23,7 +23,7 @@ pre {
 .syn-bool {
 	color: hsl(199, 88%, 60%);
 }
-.syn-operator {
+.syn-oper {
 	color: rgb(85, 160, 246);
 }
 .syn-func {
