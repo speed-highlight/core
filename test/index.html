@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="prism.css">
 	<head>
 <body>
+	<div></div>
 	<script src="../syntax.js"></script>
 	<script src="prism.js"></script>
 	<script src="highlight/highlight.js"></script>
@@ -21,7 +22,12 @@
 'str'
 str
 "st\\r"
-"str\\"`,
+str
+"st\\" str "str\\" str
+str
+"str\\"
+str/*
+str`,
 			`#!/path-to-v8/v8-shell
 const heart = new Image(),
 	love = document.querySelector('#love');
@@ -46,6 +52,9 @@ hello
 setting properties
 */
 test 	?. 	()
+/* test */*
+test 	?. 	()
+'test' + hello + 'test';
 cconst ;
 Nan;
 NaN;
@@ -117,7 +126,9 @@ confetti.removeFunc = elm => {
 };`,
 `}
 somecode();
-console.log('helloworld');`
+console.log('helloworld');`,
+			//new Promise((resolve, reject) => fetch('benchmark_file.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
+			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 		]
 
 		function mesureCallTime(func, name, ...params)
@@ -132,16 +143,18 @@ console.log('helloworld');`
 			let pre = document.createElement('pre'),
 				code = document.createElement('code');
 			pre.className = className;
-			code.innerHTML = str;
+			code.innerHTML = str.replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 			pre.appendChild(code);
 			parent.appendChild(pre);
 			return { pre, code };
 		}
 
-		tests.forEach(code => {
+		Promise.all(tests).then(values => values.forEach(code => {
 			let parent = document.createElement('div');
-			document.body.appendChild(parent);
+			document.querySelector('body > div').appendChild(parent);
 
+			//mine
+			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
 
 			//prism.js
 			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
@@ -149,12 +162,17 @@ console.log('helloworld');`
 			//highlight.js
 			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
 
+
+			//highlight.js
+			//mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
+
+			//prism.js
+			//mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
+
 			//mine
-			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
-		})
-		//document.querySelectorAll('pre:not(.language-js, .language-javascript) > code').forEach(elm => shg.highlightElement(elm));
-		//document.querySelectorAll('pre.language-js.prism').forEach(elm => Prism.highlightElement(elm));
-		//document.querySelectorAll('pre.language-javascript.highlight > code').forEach(elm => hljs.highlightElement(elm));
+			//mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
+		}))
+		.catch(err => console.log(err));
 	</script>
 </body>
 </html>

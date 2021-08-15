@@ -10,6 +10,6 @@ body {
 	background: white;
 	font-family: 'Noto Sans JP', sans-serif;
 }
-body > div {
+body > div > div {
 	display: flex;
 }
