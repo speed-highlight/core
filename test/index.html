@@ -19,21 +19,21 @@
 	<script src="highlight/languages/javascript.min.js"></script>
 	<script>
 		const tests = [
-// 			`\`\${e => {{{{{{{{{{{{{}}}}}}}}}}}}}}test\`
-// const HTML = 'html'
-// e => console.log(e);
-// 'str'
-// str
-// "st\\r"
-// str
-// Math.random();
-// \`\${e => {}}test\`
-// \`\${}test\`
-// "st\\" str "str\\" str
-// str
-// "str\\"
-// str/*
-// str`,
+			`\`\${e => {{{{{{{{{{{{{}}}}}}}}}}}}}}test\`
+const HTML = 'html'
+e => console.log(e);
+'str'
+str
+"st\\r"
+str
+Math.random();
+\`\${e => {}}test\`
+\`\${}test\`
+"st\\" str "str\\" str
+str
+"str\\"
+str/*
+str`,
 `const listener = Deno.listen({ port: 8000 });
 console.log("http://localhost:8000/");
 for await (const conn of listener) {
@@ -44,31 +44,31 @@ for await (const conn of listener) {
     }
   })();
 }`,
-// `"use strict'test
-// "test' test
-// test`,
-// 	`#jsx
-// function test() {
-// 	return <div class="\${css}"></div>
-// }`,
-// 			`#!/path-to-v8/v8-shell
-// const heart = new Image(),
-// 	love = document.querySelector('#love');
-// let confetti;
+`"use strict'test
+"test' test
+test`,
+	`#jsx
+function test() {
+	return <div class="\${css}"></div>
+}`,
+			`#!/path-to-v8/v8-shell
+const heart = new Image(),
+	love = document.querySelector('#love');
+let confetti;
 
-// heart.onload = () => {
-// 	confetti = new Confetti();
-// 	confetti.canvas.style.zIndex = -1;
-// 	confetti.count = 25;
-// 	confetti.setImage(heart, 20, 20);
-// }
+heart.onload = () => {
+	confetti = new Confetti();
+	confetti.canvas.style.zIndex = -1;
+	confetti.count = 25;
+	confetti.setImage(heart, 20, 20);
+}
 
-// heart.src = 'heart.png';
-// love.addEventListener('click', e => {
-// 	if (love.classList.toggle('love'))
-// 		confetti?.startAt?.(e.clientX, e.clientY);
-// });`,
-// 			`//this is a giant comment that take more than an entire line / page so that mean that is rogthoi zeoifzeoinbfozei foez foiezfoi zeoif zeoif oez foizenfoi nzeoi foizefizefonzeoif zeofinzeoifnzoie fzef oizefoizenfion zefi ezoinf oieznfoinezfoin ez f`,
+heart.src = 'heart.png';
+love.addEventListener('click', e => {
+	if (love.classList.toggle('love'))
+		confetti?.startAt?.(e.clientX, e.clientY);
+});`,
+			`//this is a giant comment that take more than an entire line / page so that mean that is rogthoi zeoifzeoinbfozei foez foiezfoi zeoif zeoif oez foizenfoi nzeoi foizefizefonzeoif zeofinzeoifnzoie fzef oizefoizenfion zefi ezoinf oieznfoinezfoin ez f`,
 			`//create a instance of the class
 const confetti = new Confetti('demo');
 hello
@@ -94,7 +94,7 @@ lo';
 \${str}
 o\\\${js}heel
 o\${let i = 5; error()}\`;
-//�class
+�class
 js.if ;
 9e5;
 9e5.8e9;
@@ -151,10 +151,10 @@ confetti.removeFunc = elm => {
 		elm.style.opacity = 1;
 	}, 5000);
 };`,
-// `}
-// somecode();
-// console.log('helloworld');`,
-// 			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
+`}
+somecode();
+console.log('helloworld');`,
+			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 		]
 
 		function mesureCallTime(func, name, ...params)
@@ -189,14 +189,14 @@ confetti.removeFunc = elm => {
 			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript highlight', parent).code);
 
 
-			//highlight.js
-			//mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
+			// //highlight.js
+			// mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
 
-			//prism.js
-			//mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
+			// //mine
+			// mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'lang-js', parent).code);
 
-			//mine
-			//mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
+			// //prism.js
+			// mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
 		}))
 		.catch(err => console.log(err));
 	</script>

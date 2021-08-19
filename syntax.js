@@ -61,6 +61,7 @@ const shg_lang = {//str \stuff
 					return res;
 				}
 			},
+			//before after can be regex
 			type: 'var',
 			before: '${',
 			lang: 'js',
@@ -113,7 +114,7 @@ const shg_lang = {//str \stuff
 		},
 		{
 			match: /(\w+\s*:)/g,
-			//match: /((?<=\.\s*)\w+\b|\bthis\b|\w+\s*:)/g,
+			//match: /((?<=\.\s*)\w+\b|\w+\s*:)/g,
 			type: 'var'
 		}
 	]
@@ -181,13 +182,9 @@ const shg = (_ => {
 			return res;
 		},
 		highlightElement = elm => {
-			let lang = (elm.className + ' ' + elm.parentNode.className).match(/lang-([\w-]+)/)?.[1],
-				div = document.createElement('div');
-			div.className = 'syn-header';
-			div.appendChild(document.createTextNode(lang));
-			elm.parentNode.insertBefore(div, elm)
-			elm.parentNode.classList.add('syn');
-			elm.innerHTML = highlightText(elm.innerText, lang);
+			let lang = (elm.className + ' ' + elm.parentNode.className).match(/lang-([\w-]+)/)?.[1];
+			elm.parentNode.dataset.lang = lang;
+			elm.innerHTML = highlightText(elm.textContent, lang);
 		};
 
 	return { highlightText, highlightElement };
