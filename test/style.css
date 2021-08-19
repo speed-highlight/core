@@ -5,11 +5,14 @@ html, body {
 	margin: 0;
 }
 body {
-	display: grid;
-	place-items: center;
 	background: white;
 	font-family: 'Noto Sans JP', sans-serif;
 }
+/*body > div,
 body > div > div {
 	display: flex;
+	gap: 10px;
 }
+body > div {
+	flex-direction: column;
+}*/

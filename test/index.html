@@ -6,7 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="../theme/syntax.css">
+	<link rel="stylesheet" href="../theme/default.css">
+	<!--<link rel="stylesheet" href="../theme/dark.css">-->
 	<link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css">
 	<link rel="stylesheet" href="prism.css">
 	<head>
@@ -18,33 +19,56 @@
 	<script src="highlight/languages/javascript.min.js"></script>
 	<script>
 		const tests = [
-			`e => conole.log(e);
-'str'
-str
-"st\\r"
-str
-"st\\" str "str\\" str
-str
-"str\\"
-str/*
-str`,
-			`#!/path-to-v8/v8-shell
-const heart = new Image(),
-	love = document.querySelector('#love');
-let confetti;
+// 			`\`\${e => {{{{{{{{{{{{{}}}}}}}}}}}}}}test\`
+// const HTML = 'html'
+// e => console.log(e);
+// 'str'
+// str
+// "st\\r"
+// str
+// Math.random();
+// \`\${e => {}}test\`
+// \`\${}test\`
+// "st\\" str "str\\" str
+// str
+// "str\\"
+// str/*
+// str`,
+`const listener = Deno.listen({ port: 8000 });
+console.log("http://localhost:8000/");
+for await (const conn of listener) {
+  (async () => {
+    const requests = Deno.serveHttp(conn);
+    for await (const { respondWith } of requests) {
+      respondWith(new Response("Hello world"));
+    }
+  })();
+}`,
+// `"use strict'test
+// "test' test
+// test`,
+// 	`#jsx
+// function test() {
+// 	return <div class="\${css}"></div>
+// }`,
+// 			`#!/path-to-v8/v8-shell
+// const heart = new Image(),
+// 	love = document.querySelector('#love');
+// let confetti;
 
-heart.onload = () => {
-	confetti = new Confetti();
-	confetti.canvas.style.zIndex = -1;
-	confetti.count = 25;
-	confetti.setImage(heart, 20, 20);
-}
+// heart.onload = () => {
+// 	confetti = new Confetti();
+// 	confetti.canvas.style.zIndex = -1;
+// 	confetti.count = 25;
+// 	confetti.setImage(heart, 20, 20);
+// }
 
-heart.src = 'heart.png';
-love.addEventListener('click', e => {
-	if (love.classList.toggle('love'))
-		confetti?.startAt?.(e.clientX, e.clientY);
-});`,
+// heart.src = 'heart.png';
+// love.addEventListener('click', e => {
+// 	if (love.classList.toggle('love'))
+// 		confetti?.startAt?.(e.clientX, e.clientY);
+// });`,
+// 			`//this is a giant comment that take more than an entire line / page so that mean that is rogthoi zeoifzeoinbfozei foez foiezfoi zeoif zeoif oez foizenfoi nzeoi foizefizefonzeoif zeofinzeoifnzoie fzef oizefoizenfion zefi ezoinf oieznfoinezfoin ez f`,
 			`//create a instance of the class
 const confetti = new Confetti('demo');
 hello
@@ -67,10 +91,10 @@ undefined ;
 lo';
 "h\\nello";
 \`he\nel
-o\\\${js}\`;
-\`heel
+\${str}
+o\\\${js}heel
 o\${let i = 5; error()}\`;
-�class
+//�class
 js.if ;
 9e5;
 9e5.8e9;
@@ -79,6 +103,8 @@ js.if ;
 e9.e5.8e9;
 e9.e5.8e9e;
 e9.e5.8e9.;
+test?v1:v2;
+\`str\`
 vall ==== col
 function helloworld()
 {
@@ -93,15 +119,16 @@ class Renderer
 		console.log(hello);
 		this.v = v;
 	}
-	error()
+	get error()
 	{
 		console.log(error)
 	}
 }
 /regex/g
-/(str|e)(\\/\\2)*.+$/
+/([abc]str|e)(\\/{1,5}|\\2)*.+$/
 9.5;
 let func = () => ();
+let func = function(){};
 func 	();
 js.catch() ;
 elm.5;
@@ -121,13 +148,13 @@ confetti.removeFunc = elm => {
 	elm.style.opacity = 0;
 	setTimeout(e => {
 		elm.style.visibility = null;
-		elm.style.opacity = 1
+		elm.style.opacity = 1;
 	}, 5000);
 };`,
-`}
-somecode();
-console.log('helloworld');`,
-			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
+// `}
+// somecode();
+// console.log('helloworld');`,
+// 			new Promise((resolve, reject) => fetch('prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 		]
 
 		function mesureCallTime(func, name, ...params)
@@ -149,17 +176,17 @@ console.log('helloworld');`,
 		}
 
 		Promise.all(tests).then(values => values.forEach(code => {
-			let parent = document.createElement('div');
-			document.querySelector('body > div').appendChild(parent);
+			let parent = //document.createElement('div');
+			document.querySelector('body > div');//.appendChild(parent);
 
 			//mine
-			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'language-js', parent).code);
+			mesureCallTime(shg.highlightElement, 'speed highlight js', createCodeElm(code, 'lang-js', parent).code);
 
 			//prism.js
-			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js', parent).code);
+			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js prism', parent).code);
 
 			//highlight.js
-			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript', parent).code);
+			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript highlight', parent).code);
 
 
 			//highlight.js

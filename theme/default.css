@@ -1,0 +1,70 @@
+pre[class*="lang-"].syn {
+	margin: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	background: white;
+	color: #191e2e;
+	box-shadow: 0 0 5px #0001;
+	text-shadow: none;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 19px;
+	font-family: Consolas, "Courier New", Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  box-sizing: border-box;
+	max-width: min(100%, 100vw)
+}
+pre[class*="lang-"].syn > code {
+	display: block;
+	padding: 10px;
+	overflow: auto;
+  scrollbar-color: #eee;
+  scrollbar-width: thin
+}
+pre[class*="lang-"].syn > code::-webkit-scrollbar {
+	width: 5px;
+  height: 8px
+}
+pre[class*="lang-"].syn > code::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+  background: #eee
+}
+pre[class*="lang-"].syn .syn-header {
+	color: #558bf6;
+	background: #558bf63d;
+	display: block;
+	border-radius: 5px;
+	padding: 8px 20px
+}
+pre[class*="lang-"].syn ::selection {
+	text-shadow: none;
+	background: #b3d4fc
+}
+.syn-key {
+	color: #e3116c
+}
+.syn-num,
+.syn-class {
+	color: #e36209
+}
+.syn-cmt {
+	color: #999;
+	font-style: italic
+}
+.syn-str {
+	color: #79d288
+}
+.syn-escape {
+	color: #5fffdc
+}
+.syn-bool {
+	color: #3fbaf3
+}
+.syn-oper {
+	color: #55a0f6
+}
+.syn-func {
+	color: #6f42c1
+}
+.syn-var {
+	color: #f65555
+}
