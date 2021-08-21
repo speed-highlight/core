@@ -5,7 +5,18 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<link rel="stylesheet" href="style.css">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Noto Sans JP:wght@900&display=swap');
+
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		body {
+			background: white;
+			font-family: 'Noto Sans JP', sans-serif;
+		}
+	</style>
 	<link rel="stylesheet" href="../theme/default.css">
 	<!--<link rel="stylesheet" href="../theme/dark.css">-->
 	<link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css">
@@ -18,7 +29,6 @@
 	<script src="highlight/languages/javascript.min.js"></script>
 	<script type="module">
 		import * as SHG from '../syntax.js';
-		console.log(SHG);
 
 		const tests = [
 			`\`\${e => {{{{{{{{{{{{{{}}}}}}}}}}}}}}test test bre\` str
@@ -183,6 +193,7 @@ console.log('helloworld');`,
 		Promise.all(tests).then(values => values.forEach(code => {
 			let parent = document.querySelector('body > div');
 
+			//TODO mesure time for async
 			//mine
 			mesureCallTime(SHG.highlightElement, 'speed highlight js', createCodeElm(code, 'lang-js', parent).code);
 
