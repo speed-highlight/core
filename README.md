@@ -29,10 +29,10 @@ highlightAll();
 
 ## Languages supported
 
-| Name      | Class name | Support                                       |
-| --------  | ---------- | -------                                       |
-| javascipt | lang-js    | basic syntax, regex, jsdoc, template literals |
-| regex     | lang-regex |                                               |
+| Name      | Class name | Support                                             |
+| --------  | ---------- | -------                                             |
+| javascipt | lang-js    | basic syntax, regex, jsdoc, json, template literals |
+| regex     | lang-regex |                                                     |
 
 ## Create new languages
 
