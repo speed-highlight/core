@@ -11,11 +11,6 @@ Up to **15x** times faster then highlight.js and **4x** times faster than prism.
 
 ## No setup needed
 
-In your javascript file
-```js
-import { highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
-highlightAll();
-```
 In your html file
 ```html
 <!-- css theme file -->
@@ -26,6 +21,12 @@ In your html file
 		<!-- code to be highlighted -->
 	</code>
 </pre>
+```
+
+In your javascript file
+```js
+import { highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
+highlightAll();
 ```
 
 ## Languages supported
