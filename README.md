@@ -18,6 +18,8 @@ highlightAll();
 ```
 In your html file
 ```html
+<link rel="stylesheet" href="https://unpkg.com/speed-highlight.js/themes/default.css">
+
 <pre class='lang-[code-language]'>
 	<code>
 		<!-- code to be highlighted -->
