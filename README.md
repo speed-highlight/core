@@ -18,6 +18,7 @@ highlightAll();
 ```
 In your html file
 ```html
+<!-- css theme file -->
 <link rel="stylesheet" href="https://unpkg.com/speed-highlight.js/themes/default.css">
 
 <pre class='lang-[code-language]'>
