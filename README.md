@@ -27,9 +27,9 @@ In your html file
 
 ## Languages supported
 
-| Name     | Class name  |
-| -------- | ---------- |
-| javascipt| lang-js    |
+| Name      | Class name | Support |
+| --------  | ---------- | ------- |
+| javascipt | lang-js    | basic syntax, regex, jsdoc, template literals |
 
 ## Create new languages
 
