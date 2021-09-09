@@ -32,7 +32,9 @@ highlightAll();
 | Name      | Class name | Support                                             |
 | --------  | ---------- | -------                                             |
 | javascipt | lang-js    | basic syntax, regex, jsdoc, json, template literals |
-| regex     | lang-regex |                                                     |
+| regex     | lang-regex | count, set, ...                                     |
+| sql       | lang-sql   | number, string, function, ...                       |
+| csv       | lang-csv   | punctuation, ...                                    |
 
 ## Create new languages
 
