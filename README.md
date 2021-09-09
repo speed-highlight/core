@@ -13,7 +13,6 @@ Up to **15x** times faster then highlight.js and **4x** times faster than prism.
 
 In your html file
 ```html
-<!-- css theme file -->
 <pre class='lang-[code-language]'>
 	<code>
 		<!-- code to be highlighted -->
