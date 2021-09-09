@@ -1,0 +1,30 @@
+# speed-highlight.js
+
+## Light
+
+  * Base script 2.7kB + languages rules from 150B to 1.2kB (not minified)
+  * Language rules needed automatically loaded on the fly
+
+## Fast
+
+Up to **15x** times faster then highlight.js and **4x** times faster than prism.js
+
+## Super simple to set up
+
+In your javascript file
+```js
+import { highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
+highlightAll();
+```
+In your html file
+```html
+<pre class='lang-[code-language]'>
+	<code>
+		<!-- code to be highlighted -->
+	</code>
+</pre>
+```
+
+## Create new languages
+
+## Create new styles
