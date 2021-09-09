@@ -14,8 +14,6 @@ Up to **15x** times faster then highlight.js and **4x** times faster than prism.
 In your html file
 ```html
 <!-- css theme file -->
-<link rel="stylesheet" href="https://unpkg.com/speed-highlight.js/themes/default.css">
-
 <pre class='lang-[code-language]'>
 	<code>
 		<!-- code to be highlighted -->
@@ -25,7 +23,8 @@ In your html file
 
 In your javascript file
 ```js
-import { highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
+import { setTheme, highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
+setTheme('https://unpkg.com/speed-highlight.js/themes/default.css');
 highlightAll();
 ```
 
