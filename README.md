@@ -2,7 +2,7 @@
 
 ## Light
 
-  * Base script 2.7kB + languages rules from 150B to 1.2kB (not minified)
+  * Base script 2.7kB + languages rules from 0.15kB to 1.2kB (not minified)
   * Language rules needed automatically loaded on the fly
 
 ## Fast
