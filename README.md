@@ -25,6 +25,12 @@ In your html file
 </pre>
 ```
 
+## Languages supported
+
+| Name     | Class name  |
+| -------- | ---------- |
+| javascipt| lang-js    |
+
 ## Create new languages
 
 ## Create new styles
