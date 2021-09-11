@@ -4,7 +4,7 @@ export default [
 		type: 'num'
 	},
 	{
-		match: /\||\^|\$|\\.|\w+$/g,
+		match: /\||\^|\$|\\.|\w+($|\r|\n)/g,
 		type: 'key'
 	},
 	{

@@ -11,7 +11,7 @@ export default [
 							else if (str[i] == '}')
 								return;
 					};
-				for (; ++i < str.length;)
+				for (; i < str.length; i++)
 					if (str[i - 1] != '\\' && str[i] == '$' && str[i + 1] == '{') {
 						j = i++;
 						f(i);

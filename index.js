@@ -1,5 +1,17 @@
 const langs = {},
-sanitize = str => str?.replaceAll?.('<', '&lt;')?.replaceAll?.('>', '&gt;');
+	sanitize = str => str?.replaceAll?.('<', '&lt;')?.replaceAll?.('>', '&gt;');
+
+/**
+ * @function setTheme Load a theme file (css)
+ * @param {String} theme the url of the css file
+ */
+export var setTheme = theme => {
+	let link = document.createElement('link');
+	link.rel = 'stylesheet'; 
+	link.type = 'text/css';
+	link.href = theme; 
+	document.head.appendChild(link);
+}
 
 /**
  * @async
@@ -57,7 +69,7 @@ export async function highlightText(src, langname) {
 		add(src.slice(i, firstIndex));
 		i = lastIndex;
 		if (firstPart.lang)
-			addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type);
+			addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' lang-' + firstPart.lang);
 		else
 			add(firstMatch, firstPart.type);
 	}
@@ -69,15 +81,16 @@ export async function highlightText(src, langname) {
  * @async
  * @function highlightElement highlight a element code with a 'pre' parent
  * @param {HTMLElement} elm the code elm
+ * @param {String} [lang=] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
  */
-export async function highlightElement(elm) {
-	let lang = (elm.className + ' ' + elm.parentNode.className).match(/lang-([\w-]+)/)?.[1];
+export async function highlightElement(elm, lang = (elm.className + ' ' + elm.parentNode.className).match(/lang-([\w-]+)/)?.[1]) {
 	elm.parentNode.dataset.lang = lang;
+	elm.parentNode.classList.add('lang-' + lang);
 	elm.innerHTML = await highlightText(elm.textContent, lang);
 }
 
 /**
- * highlight all element that follow this shema
+ * highlight all element that follow this schema
  * ```html
  * <pre class="lang-*">
  * 	<code>
@@ -85,7 +98,6 @@ export async function highlightElement(elm) {
  * </pre>
  * ```
  */
-//TODO test it
 export async function highlightAll() {
-	document.querySelectorAll('pre[class*="lang-"] > code').forEach(elm => highlightElement(elm));
+	document.querySelectorAll('pre[class*="lang-"] > code').forEach(elm => !elm.parentNode.dataset.lang && highlightElement(elm));
 }

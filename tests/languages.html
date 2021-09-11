@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+	<meta charset=UTF-8>
+	<title></title>
+</head>
+<body>
+
+	<script type=module>
+		import { setTheme, highlightElement } from '../index.js'
+		setTheme('../themes/default.css');
+
+		class Dropdown {
+			constructor(options, parent) {
+				this.listElm = document.createElement('div');
+				this.list = [];
+				for (let option of options)
+				{
+					let label = document.createElement('label'),
+						elm = document.createElement('input');
+					elm.type = 'radio';
+					elm.name = 'dropdown';
+					label.textContent = option;
+					label.appendChild(elm);
+					label.addEventListener('click', e => this.callback?.(this.selected))
+					this.listElm.appendChild(label);
+					this.list.push([option, elm]);
+				}
+				parent.appendChild(this.listElm);
+			}
+			get selected() {
+				for (let [name, elm] of this.list)
+					if (elm.checked)
+						return name;
+				return null;
+			}
+			onchange(callback) {
+				this.callback = callback;
+			}
+		}
+
+		const languages = ['js', 'regex', 'sql', 'csv'],
+			dropdown = new Dropdown(languages, document.body),
+			pre = document.createElement('pre'),
+			code = document.createElement('code');
+		dropdown.onchange(update);
+		pre.appendChild(code);
+		document.body.appendChild(pre);
+		function	update(language = 'js') {
+			fetch(`./languages/${language}.test`)
+				.then(res => res.text()
+					.then(txt => {
+						code.textContent = txt;
+						highlightElement(code, language);
+					})
+					.catch(err => console.log(err))
+				).catch(err => console.log(err));
+		}
+	</script>
+</body>
+</html>

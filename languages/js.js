@@ -9,7 +9,7 @@ export default [
 		type: 'cmt'
 	},
 	{
-		match: /(["'])((?!\1)[^\r\n\\]|\\.)*\1?/g,
+		match: /(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,
 		type: 'str'
 	},
 	{
@@ -27,21 +27,23 @@ export default [
 		lang: 'regex'
 	},
 	{
-		match: /[/*+:?&|%^~=!,<>.^-]+|\b(true|false)\b/g,
-		type: 'oper'
+		match: /\.?\d[\d.oxa-fA-F-]*|\b(NaN|null|undefined|[A-Z_]+)\b/g,
+		type: 'num'
 	},
 	{
-		match: /\b(\d+(e\d+)?(\.\d+)?|NaN|null|undefined|[A-Z_]+)\b/g,
-		type: 'num'
+		match: /[/*+:?&|%^~=!,<>.^-]+|\b(true|false)\b/g,
+		type: 'oper'
 	},
 	{
 		match: /\b[A-Z]\w*\b/g,
 		type: 'class'
 	},
-	{//bad regex for arrow function
+	{
+	//TODO fix bad regex for arrow function
 		match: /[\w$][\w\d$]*(?=\s*((\?\.)?\s*\(|=\s*([(\w,[\])]+\)? =>|function\b)))/g,
 		type: 'func'
-	},//bad
+	},
+	//TODO fix bad
 	{
 		match: /\w+\s*:/g,
 		type: 'var'

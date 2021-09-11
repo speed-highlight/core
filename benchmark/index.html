@@ -17,7 +17,6 @@
 			font-family: 'Noto Sans JP', sans-serif;
 		}
 	</style>
-	<link rel="stylesheet" href="../theme/default.css">
 	<!--<link rel="stylesheet" href="../theme/dark.css">-->
 	<link rel="stylesheet" href="highlight/styles/atom-one-dark.min.css">
 	<link rel="stylesheet" href="prism/prism.css">
@@ -28,12 +27,13 @@
 	<script src="highlight/highlight.js"></script>
 	<script src="highlight/languages/javascript.min.js"></script>
 	<script type="module">
-		import * as SHG from '../syntax.js';
+		import * as SHG from '../index.js';
+		SHG.setTheme('../themes/default.css');
 
 		const tests = [
 			`\`\${e => {{{{{{{{{{{{{{}}}}}}}}}}}}}}test test bre\` str
 \`\${e => {{{{{{{{{{{{{{}}}}}}}}}}}}}}test test bre}\` str`,
-			`\`\${e => {{{{{{{{{{{{{}}}}}}}}}}}}}test}\${test}test\`
+			`\`\${e => {{{{{{{{{{{{{let i = 5}}}}}}}}}}}}}test}\${test}test\`
 const HTML = 'html'
 e => console.log(e);
 'str'
@@ -171,11 +171,11 @@ console.log('helloworld');`,
 			new Promise((resolve, reject) => fetch('prism/prism.js').then(res => res.text().then(txt => resolve(txt)).catch(err => reject(err))).catch(err => reject(err)))
 		]
 
-		function mesureCallTime(func, name, ...params)
+		async function mesureCallTime(func, ...params)
 		{
-			console.time(`highlight time for : ${name}`)
-			func(...params);
-			console.timeEnd(`highlight time for : ${name}`)
+			let before = performance.now();
+			await func(...params);
+			return performance.now() - before;
 		}
 
 		function createCodeElm(str, className, parent, data)
@@ -190,20 +190,25 @@ console.log('helloworld');`,
 			return { pre, code };
 		}
 
-		Promise.all(tests).then(values => values.forEach(code => {
-			let parent = document.querySelector('body > div');
+		const parent = document.querySelector('body > div');
+		Promise.all(tests).then(async codes => 
+		{
+			for (let i in codes) {
+				const code = codes[i];
 
-			//TODO mesure time for async
-			//mine
-			mesureCallTime(SHG.highlightElement, 'speed highlight js', createCodeElm(code, 'lang-js', parent).code);
+				const shgTime = await mesureCallTime(SHG.highlightElement, createCodeElm(code, 'lang-js', parent).code);
+				const prismTime = await mesureCallTime(Prism.highlightElement, createCodeElm(code, 'language-js prism', parent).code);
+				const highlightTime = await mesureCallTime(hljs.highlightElement, createCodeElm(code, 'language-javascript highlight', parent).code);
 
-			//prism.js
-			mesureCallTime(Prism.highlightElement, 'prism', createCodeElm(code, 'language-js prism', parent).code);
+				const data = [[shgTime, 'shg (our)'], [prismTime, 'prism'], [highlightTime, 'highlight.js']];
+				const sorted = data.sort((a, b) => a[0] - b[0]);
 
-			//highlight.js
-			mesureCallTime(hljs.highlightElement, 'highlight', createCodeElm(code, 'language-javascript highlight', parent).code);
-		}))
-		.catch(err => console.log(err));
+				console.groupCollapsed(`best: ${sorted[0][1]} ${sorted[0][0]}ms (${sorted.at(-1)[0] / sorted[0][0]}x better then the worst, ${shgTime / sorted[0][0]}x better than us)`);
+				for (let hlt of data)
+					console.log(`${hlt[1]} ${hlt[0]}ms`);
+				console.groupEnd();
+			}
+		}).catch(err => console.log(err));
 	</script>
 </body>
 </html>
