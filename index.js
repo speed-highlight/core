@@ -1,3 +1,5 @@
+import expandData from './helper.js';
+
 const langs = {},
 	sanitize = str => str?.replaceAll?.('<', '&lt;')?.replaceAll?.('>', '&gt;');
 
@@ -5,7 +7,7 @@ const langs = {},
  * @function setTheme Load a theme file (css)
  * @param {String} theme the url of the css file
  */
-export var setTheme = theme => {
+export let setTheme = theme => {
 	let link = document.createElement('link');
 	link.rel = 'stylesheet'; 
 	link.type = 'text/css';
@@ -44,7 +46,7 @@ export async function highlightText(src, langname) {
 	while (i < src.length) {
 		firstIndex = null;
 		for (let a = lang.length; --a >= 0;) {
-			let part = lang[a];
+			let part = expandData[lang[a].expand] ?? lang[a];
 			if (cachedMatch[a] == undefined || cachedMatch[a].match.index < i) {
 				part.match.lastIndex = i;
 				match = part.match.exec(src);

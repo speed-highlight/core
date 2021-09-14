@@ -2,48 +2,78 @@
 <html lang=en>
 <head>
 	<meta charset=UTF-8>
-	<title></title>
+	<title>Languages | speed highlight js</title>
+	<style>
+		.radio-list {
+			display: flex;
+			gap: 5px
+		}
+		input {
+			position: absolute;
+			visibility: hidden
+		}
+		label {
+			cursor: pointer;
+			transition: .2s;
+			background: #c5c5e022;
+			border-radius: 5px;
+			padding: 10px
+		}
+		label:hover {background: #c5c5e033}
+		input:checked + label {
+			color: #58f;
+			background: #58f3
+		}
+	</style>
 </head>
 <body>
-
 	<script type=module>
 		import { setTheme, highlightElement } from '../index.js'
 		setTheme('../themes/default.css');
 
-		class Dropdown {
+		class Radio {
 			constructor(options, parent) {
 				this.listElm = document.createElement('div');
+				this.listElm.className = 'radio-list';
 				this.list = [];
 				for (let option of options)
 				{
 					let label = document.createElement('label'),
-						elm = document.createElement('input');
-					elm.type = 'radio';
-					elm.name = 'dropdown';
-					label.textContent = option;
-					label.appendChild(elm);
-					label.addEventListener('click', e => this.callback?.(this.selected))
+						input = document.createElement('input');
+					input.type = 'radio';
+					input.name = 'dropdown';
+					input.id = label.htmlFor = label.textContent = option;
+					input.addEventListener('change', e => this.callback?.())
+					this.listElm.appendChild(input);
 					this.listElm.appendChild(label);
-					this.list.push([option, elm]);
+					this.list.push([option, input]);
 				}
 				parent.appendChild(this.listElm);
 			}
+			set selected(id) {
+				if (this.list[id])
+				{
+					this.list[id][1].checked = true;
+					this.callback?.();
+				}
+			}
 			get selected() {
-				for (let [name, elm] of this.list)
-					if (elm.checked)
+				for (let [name, input] of this.list)
+					if (input.checked)
 						return name;
 				return null;
 			}
 			onchange(callback) {
-				this.callback = callback;
+				this.callback = _ => callback(this.selected);
 			}
 		}
 
-		const languages = ['js', 'regex', 'sql', 'csv'],
-			dropdown = new Dropdown(languages, document.body),
+		const languages = ['js', 'regex', 'sql', 'csv', 'git'],
+			radio = new Radio(languages, document.body),
 			pre = document.createElement('pre'),
 			code = document.createElement('code');
-		dropdown.onchange(update);
+		radio.onchange(update);
+		radio.selected = 0;
 		pre.appendChild(code);
 		document.body.appendChild(pre);
 		function	update(language = 'js') {

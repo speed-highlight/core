@@ -1,0 +1,10 @@
+git diff
+commit 526
+--- before
++++ after
+@@ -1 +1,2 @@
+#comment
+-hello
++test
+'string'
+"string"

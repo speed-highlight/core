@@ -1,7 +1,6 @@
 export default [
 	{
-		match: /"((?!")[^\\]|\\[^])*"?/g,
-		type: 'str'
+		expand: 'strDouble'
 	},
 	{
 		match: /,/g,

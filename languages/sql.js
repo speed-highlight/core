@@ -5,8 +5,7 @@ export default [
 		type: 'cmt'
 	},
 	{
-		match: /(["'])((?!\1)[^\r\n\\]|\\.[^])*\1?/g,
-		type: 'str'
+		expand: 'str'
 	},
 	{
 		match: /\b(AVG|COUNT|FIRST|FORMAT|LAST|LCASE|LEN|MAX|MID|MIN|MOD|NOW|ROUND|SUM|UCASE)(?=\s*\()/g,

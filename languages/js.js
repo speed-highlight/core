@@ -9,8 +9,7 @@ export default [
 		type: 'cmt'
 	},
 	{
-		match: /(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,
-		type: 'str'
+		expand: 'str'
 	},
 	{
 		match: /`((?!`)[^]|\\[^])*`?/g,
