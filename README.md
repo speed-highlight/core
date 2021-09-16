@@ -1,8 +1,8 @@
-# speed-highlight.js
+# Speed Highlight JS
 
 ## Light
 
-  * Base script 2.7kB + languages rules from 0.15kB to 1.2kB (not minified)
+  * Base script **2.7kB** + languages rules from **0.15kB** to **1.2kB** (not minified)
   * Language rules needed automatically loaded on the fly
 
 ## Fast
@@ -22,8 +22,8 @@ In your html file
 
 In your javascript file
 ```js
-import { setTheme, highlightAll } from 'https://unpkg.com/speed-highlight.js/index.js'
-setTheme('https://unpkg.com/speed-highlight.js/themes/default.css');
+import { setTheme, highlightAll } from '/path/index.js'
+setTheme('/path/themes/default.css');
 highlightAll();
 ```
 
