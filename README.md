@@ -22,8 +22,8 @@ In your html file
 
 In your javascript file
 ```js
-import { setTheme, highlightAll } from './index.js'
-setTheme('./themes/default.css');
+import { setTheme, highlightAll } from '/path/index.js'
+setTheme('/path/themes/default.css');
 highlightAll();
 ```
 
