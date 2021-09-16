@@ -9,7 +9,7 @@
 
 Up to **15x** times faster then highlight.js and **4x** times faster than prism.js
 
-## No setup needed
+## Simple setup
 
 In your html file
 ```html
