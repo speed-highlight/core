@@ -53,6 +53,7 @@ pre[class*="lang-"]::selection {
 .syn-str {color: #7d8}
 .syn-insert {color: #5b7}
 .syn-bool {color: #3bf}
+.syn-type,
 .syn-oper {color: #5af}
 .syn-section,
 .syn-func {color: #84f}

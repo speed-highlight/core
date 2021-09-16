@@ -33,7 +33,11 @@ export default [
 		type: 'num'
 	},
 	{
-		match: /[/*+:?&|%^~=!,<>.^-]+|\b(true|false)\b/g,
+		match: /\b(true|false)\b/g,
+		type: 'bool'
+	},
+	{
+		match: /[/*+:?&|%^~=!,<>.^-]+/g,
 		type: 'oper'
 	},
 	{

@@ -11,7 +11,7 @@ export default [
 		expand: 'str'
 	},
 	{
-		match: /^\[\w+\]$/gm,
+		match: /^\[.+\]$/gm,
 		type: 'section'
 	},
 	{
@@ -22,11 +22,15 @@ export default [
 		expand: 'num'
 	},
 	{
-		match: /[+,.=-]+|\b(true|false)\b/g,
+		match: /\b(true|false)\b/g,
+		type: 'bool'
+	},
+	{
+		match: /[+,.=-]/g,
 		type: 'oper'
 	},
 	{
-		match: /[a-zA-Z]\w*(?= \=)/g,
+		match: /\w+(?= \=)/g,
 		type: 'var'
 	}
 ]

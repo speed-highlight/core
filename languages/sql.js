@@ -20,7 +20,11 @@ export default [
 		type: 'num'
 	},
 	{
-		match: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|IN|ILIKE|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR|TRUE|FALSE)\b/g,
+		match: /\b(TRUE|FALSE)\b/g,
+		type: 'bool'
+	},
+	{
+		match: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|IN|ILIKE|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/g,
 		type: 'oper'
 	},
 ]
