@@ -39,6 +39,7 @@ highlightAll();
 | plain     | lang-plain |                                                     |
 | toml      | lang-toml  | comment, table, string, bool, variable              |
 | yaml      | lang-yaml  | comment, numbers, variable, string, bool            |
+| http      | lang-http  | kwywork, string, punctuation, variable, version     |
 
 ## Create new languages
 
