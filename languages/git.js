@@ -13,7 +13,7 @@ export default [
 	},
 	{
 		match: /^@@.*@@$/gm,
-		type: 'func'
+		type: 'section'
 	},
 	{
 		match: /^(\$ )?git(\s.*)?$/gm,

@@ -26,7 +26,10 @@ export default [
 		lang: 'regex'
 	},
 	{
-		match: /\.?\d[\d.oxa-fA-F-]*|\b(NaN|null|undefined|[A-Z_]+)\b/g,
+		expand: 'num'
+	},
+	{
+		match: /\b(NaN|null|undefined|[A-Z_]+)\b/g,
 		type: 'num'
 	},
 	{
@@ -39,7 +42,7 @@ export default [
 	},
 	{
 	//TODO fix bad regex for arrow function
-		match: /[\w$][\w\d$]*(?=\s*((\?\.)?\s*\(|=\s*([(\w,[\])]+\)? =>|function\b)))/g,
+		match: /[a-zA-Z$][\w$]*(?=\s*((\?\.)?\s*\(|=\s*([(\w,[\])]+\)? =>|function\b)))/g,
 		type: 'func'
 	},
 	//TODO fix bad
