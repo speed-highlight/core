@@ -9,7 +9,7 @@
 
 Up to **15x** times faster then highlight.js and up to **3x** times faster than prism.js
 
-## No setup needed
+## Simple setup
 
 In your html file
 ```html
@@ -35,6 +35,7 @@ highlightAll();
 | plain     | sh-lang-plain |                                                     |
 | toml      | sh-lang-toml  | comment, table, string, bool, variable              |
 | yaml      | sh-lang-yaml  | comment, numbers, variable, string, bool            |
+| http      | sh-lang-http  | kwywork, string, punctuation, variable, version     |
 
 ## Create new languages
 
