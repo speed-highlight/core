@@ -35,6 +35,10 @@ highlightAll();
 | regex     | lang-regex | count, set, ...                                     |
 | sql       | lang-sql   | number, string, function, ...                       |
 | csv       | lang-csv   | punctuation, ...                                    |
+| git       | lang-git   | comment, insert, deleted, string, ...               |
+| plain     | lang-plain |                                                     |
+| toml      | lang-toml  | comment, table, string, bool, variable              |
+| yaml      | lang-yaml  | comment, numbers, variable, string, bool            |
 
 ## Create new languages
 
