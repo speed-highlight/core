@@ -1,0 +1,32 @@
+127.0.0.1 user-identifier frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326
+
+#Version: 1.0
+#Date: 12-Jan-1996 00:00:00
+#Fields: time cs-method cs-uri
+00:34:23 GET /foo/bar.html
+12:21:16 GET /foo/bar.html
+12:45:52 GET /foo/bar.html
+12:57:34 GET /foo/bar.html
+
+[2021-12-10][21:42:22][WARN][discord_dispatch::application_manager:1034] Failed to read install path. path=AbsolutePath { path_buf: "C:\\Users\\micha\\AppData\\Local\\DiscordGames" } error=Os { code: 3, kind: NotFound, message: "Das System kann den angegebenen Pfad nicht finden." }
+[2021-12-11][13:05:13][DEBUG][discord_dispatch::application_manager:195] App started. version="1.10.5"
+
+2021-01-12T13:38:16Z containerd time="2021-01-12T13:38:16.338835400Z" level=info msg="skip loading plugin \"io.containerd.snapshotter.v1.btrfs\"..." error="path /var/lib/desktop-containerd/daemon/io.containerd.snapshotter.v1.btrfs (ext4) must be a btrfs filesystem to be used with the btrfs snapshotter: skip plugin" type=io.containerd.snapshotter.v1
+2021-03-05T17:58:29Z kmsg (977696) - 2021-03-05T17:58:28.2836488Z: init: (141) ERROR: StartHostListener:356: write failed 32
+time="2021-01-12T14:38:11+01:00" level=info msg="🍀 socket server listening : \\\\.\\pipe\\dockerGuiToDriver"
+
+Exception in thread "main" java.lang.NullPointerException: Fictitious NullPointerException
+at ClassName.methodName1(ClassName.java:lineNumber)
+at ClassName.methodName2(ClassName.java:lineNumber)
+at ClassName.methodName3(ClassName.java:lineNumber)
+at ClassName.main(ClassName.java:lineNumber)
+
+47.29.201.179 - - [28/Feb/2021:13:17:10 +0000] "GET /?p=1 HTTP/2.0" 200 5316 "https://domain1.com/?p=1" "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36" "2.75"
+Mar 19 22:10:24 xxxxxxx journal: xxxxxxxx.mylabserver.com nginx: photos.example.com 127.0.0.1 - - [19/Mar/2018:22:10:24 +0000] "GET / HTTP/1.1" 200 53324 "-" "curl/7.29.0" "-"
+TLSv1.2 AES128-SHA 1.1.1.1 "Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
+
+4/1/2021 14:15:27 - PFRO Error: \??\C:\Windows\system32\spool\DRIVERS\x64\3\New\FXSAPI.DLL, \??\C:\Windows\system32\spool\DRIVERS\x64\3\FXSAPI.DLL, 0xc000003a
+AudMig: Device Ids match - {5}.\?hdaudio#func_03&ven_40de&dev_0083&subsys_50de130f&rev_4003#1&13efefe3&0&0004#{6993ad03-95ef-33d0-a2cc-00a0c9322596}    opo04/00040002 {2}.\?hdaudio#func_01&ven_40de&dev_0084&subsys_10de310f&rev_1004#2&22efefe2&0&0004#{6994ad04-94ef-32d0-a1cc-00a0c9181396}        opo04/00030001
+AudMig: Migrated {a31c434e-df4c-1efd-8010-67d416a840e0},2 property at 3
+
+[07:28:21] [Server thread/INFO] [FML]: Invalid recipe found with multiple oredict ingredients in the same ingred

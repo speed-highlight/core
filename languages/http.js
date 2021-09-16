@@ -1,11 +1,11 @@
 export default [
 	{
 		match: /^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/gm,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		match: /\bHTTP\/[\d.]+\b/g,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		expand: 'str'

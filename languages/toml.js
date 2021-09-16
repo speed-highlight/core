@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmt'
+		type: 'cmnt'
 	},
 	{
 		match: /("""|''')((?!\1)[^]|\\[^])*\1?/g,

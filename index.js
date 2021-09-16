@@ -1,25 +1,27 @@
-import expandData from './helper.js';
+import expandData from './common.js';
 
 const langs = {},
-	sanitize = str => str?.replaceAll?.('<', '&lt;')?.replaceAll?.('>', '&gt;');
+	sanitize = (str = '') =>
+		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;');
 
+let theme;
 /**
  * @function setTheme Load a theme file (css)
  * @param {String} theme the url of the css file
  */
-export let setTheme = theme => {
-	let link = document.createElement('link');
-	link.rel = 'stylesheet'; 
-	link.type = 'text/css';
-	link.href = theme; 
-	document.head.appendChild(link);
+export let setTheme = url => {
+	theme ??= document.createElement('link');
+	theme.rel = 'stylesheet';
+	theme.type = 'text/css';
+	theme.href = url;
+	document.head.appendChild(theme);
 }
 
 /**
  * @async
  * @function highlightText A function that highlight a string text and return it
  * @example
- * elm.innerHTML = highlightText(code, 'js');
+ * elm.innerHTML = await highlightText(code, 'js');
  * @param {String} src the text content to be highlighted
  * @param {String} lang the lang name ex: 'js'
  * @returns {String} the highlighted as String text
@@ -28,7 +30,9 @@ export async function highlightText(src, langname) {
 	if (!src)
 		return src;
 
-	let res = '',
+	let a,
+		part,
+		res = '',
 		cachedMatch = [],
 		index,
 		match,
@@ -40,13 +44,13 @@ export async function highlightText(src, langname) {
 		//make a fast shallow copy to bee able to splice lang without change the original one
 		lang = [...(await (langs[langname] ??= import(`./languages/${langname}.js`))).default];
 
-	const addUnsafe = (str = '', type) => res += type ? `<span class='syn-${type}'>${str}</span>` : str,
+	const addUnsafe = (str = '', type) => res += type ? `<span class='sh-syn-${type}'>${str}</span>` : str,
 		add = (str = '', type) => addUnsafe(sanitize(str), type);
 
 	while (i < src.length) {
 		firstIndex = null;
-		for (let a = lang.length; --a >= 0;) {
-			let part = expandData[lang[a].expand] ?? lang[a];
+		for (a = lang.length; --a >= 0;) {
+			part = lang[a].expand ? expandData[lang[a].expand] : lang[a];
 			if (cachedMatch[a] == undefined || cachedMatch[a].match.index < i) {
 				part.match.lastIndex = i;
 				match = part.match.exec(src);
@@ -71,7 +75,7 @@ export async function highlightText(src, langname) {
 		add(src.slice(i, firstIndex));
 		i = lastIndex;
 		if (firstPart.lang)
-			addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' lang-' + firstPart.lang);
+			addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' sh-lang-' + firstPart.lang);
 		else
 			add(firstMatch, firstPart.type);
 	}
@@ -85,21 +89,21 @@ export async function highlightText(src, langname) {
  * @param {HTMLElement} elm the code elm
  * @param {String} [lang=] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
  */
-export async function highlightElement(elm, lang = (elm.className + ' ' + elm.parentNode.className).match(/lang-([\w-]+)/)?.[1]) {
+export async function highlightElement(elm, lang = (elm.className + ' ' + elm.parentNode.className).match(/sh-lang-([\w-]+)/)?.[1]) {
 	elm.parentNode.dataset.lang = lang;
-	elm.parentNode.classList.add('lang-' + lang);
+	elm.parentNode.classList.add('sh-lang-' + lang);
 	elm.innerHTML = await highlightText(elm.textContent, lang);
 }
 
 /**
  * highlight all element that follow this schema
  * ```html
- * <pre class="lang-*">
+ * <pre class="sh-lang-*">
  * 	<code>
  * 	</code>
  * </pre>
  * ```
  */
 export async function highlightAll() {
-	document.querySelectorAll('pre[class*="lang-"] > code').forEach(elm => !elm.parentNode.dataset.lang && highlightElement(elm));
+	document.querySelectorAll('pre[class*="sh-lang-"] > code').forEach(elm => !elm.parentNode.dataset.lang && highlightElement(elm));
 }

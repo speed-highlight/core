@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /^#.*/gm,
-		type: 'cmt'
+		type: 'cmnt'
 	},
 	{
 		match: /^[-–].*/gm,
@@ -21,7 +21,7 @@ export default [
 	},
 	{
 		match: /^commit \w+$/gm,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		expand: 'str'

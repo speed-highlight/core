@@ -13,6 +13,7 @@
 			visibility: hidden
 		}
 		label {
+			font: 15px Arial;
 			cursor: pointer;
 			transition: .2s;
 			background: #c5c5e022;
@@ -29,10 +30,9 @@
 <body>
 	<script type=module>
 		import { setTheme, highlightElement } from '../index.js'
-		setTheme('../themes/default.css');
 
 		class Radio {
-			constructor(options, parent) {
+			constructor(name, options, parent) {
 				this.listElm = document.createElement('div');
 				this.listElm.className = 'radio-list';
 				this.list = [];
@@ -41,7 +41,7 @@
 					let label = document.createElement('label'),
 						input = document.createElement('input');
 					input.type = 'radio';
-					input.name = 'dropdown';
+					input.name = name;
 					input.id = label.htmlFor = label.textContent = option;
 					input.addEventListener('change', e => this.callback?.())
 					this.listElm.appendChild(input);
@@ -68,16 +68,19 @@
 			}
 		}
 
-		const languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http'],
-			radio = new Radio(languages, document.body),
+		const themes = ['default', 'github-dark', 'github-light', 'github-dim'],
+			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log'],
+			radio_theme = new Radio('theme', themes, document.body),
+			radio_languages = new Radio('language', languages, document.body),
 			pre = document.createElement('pre'),
 			code = document.createElement('code');
-		radio.onchange(update);
-		radio.selected = 0;
+		radio_theme.onchange(theme => setTheme(`../themes/${theme}.css`));
+		radio_languages.onchange(update);
+		radio_theme.selected = radio_languages.selected = 0;
 		pre.appendChild(code);
 		document.body.appendChild(pre);
 		function	update(language = 'js') {
-			fetch(`./languages/${language}.test`)
+			fetch(`./languages/test.${language}`)
 				.then(res => res.text()
 					.then(txt => {
 						code.textContent = txt;

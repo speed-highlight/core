@@ -17,7 +17,9 @@
 		import * as SHG from '../index.js';
 		SHG.setTheme('../themes/default.css');
 
-		const tests = [
+		const tests =
+ 			[
+				'test, `test`, /**test*/',
 			`\`\${e => {{{{{{{{{{{{{{}}}}}}}}}}}}}}test test bre\` str
 \`\${e => {{{{{{{{{{{{{{}}}}}}}}}}}}}}test test bre}\` str`,
 			`\`\${e => {{{{{{{{{{{{{let i = 5}}}}}}}}}}}}}test}\${test}test\`
@@ -178,12 +180,12 @@ console.log('helloworld');`,
 		}
 
 		const parent = document.querySelector('body > div');
-		Promise.all(tests).then(async codes => 
+		Promise.all(tests).then(async codes =>
 		{
 			for (let i in codes) {
 				const code = codes[i];
 
-				const shgTime = await mesureCallTime(SHG.highlightElement, createCodeElm(code, 'lang-js', parent).code);
+				const shgTime = await mesureCallTime(SHG.highlightElement, createCodeElm(code, 'sh-lang-js', parent).code);
 				const prismTime = await mesureCallTime(Prism.highlightElement, createCodeElm(code, 'language-js prism', parent).code);
 				const highlightTime = await mesureCallTime(hljs.highlightElement, createCodeElm(code, 'language-javascript highlight', parent).code);
 

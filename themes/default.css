@@ -1,4 +1,4 @@
-pre[class*="lang-"] {
+pre[class*="sh-lang-"] {
 	margin: 10px 0;
 	border-radius: 10px;
 	padding: 10px;
@@ -13,22 +13,22 @@ pre[class*="lang-"] {
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
-pre[class*="lang-"] > code {
+pre[class*="sh-lang-"] > code {
 	display: block;
 	padding: 10px;
 	overflow: auto;
 	scrollbar-color: #eee;
 	scrollbar-width: thin
 }
-pre[class*="lang-"] > code::-webkit-scrollbar {
+pre[class*="sh-lang-"] > code::-webkit-scrollbar {
 	width: 5px;
 	height: 8px
 }
-pre[class*="lang-"] > code::-webkit-scrollbar-thumb {
+pre[class*="sh-lang-"] > code::-webkit-scrollbar-thumb {
 	border-radius: 4px;
 	background: #eee
 }
-pre[class*="lang-"]:before {
+pre[class*="sh-lang-"]:before {
 	content: attr(data-lang);
 	color: #58f;
 	background: #58f3;
@@ -39,23 +39,23 @@ pre[class*="lang-"]:before {
 	overflow: hidden;
 	line-height: 32px
 }
-pre[class*="lang-"]::selection {
+pre[class*="sh-lang-"] ::selection {
 	text-shadow: none;
-	background: #bdf
+	background: #bdf5
 }
-.syn-key {color: #e16}
-.syn-num,
-.syn-class {color: #f60}
-.syn-cmt {
+.sh-syn-kwd {color: #e16}
+.sh-syn-num,
+.sh-syn-class {color: #f60}
+.sh-syn-cmnt {
 	color: #999;
 	font-style: italic
 }
-.syn-str {color: #7d8}
-.syn-insert {color: #5b7}
-.syn-bool {color: #3bf}
-.syn-type,
-.syn-oper {color: #5af}
-.syn-section,
-.syn-func {color: #84f}
-.syn-deleted,
-.syn-var {color: #f44}
+.sh-syn-str {color: #7d8}
+.sh-syn-insert {color: #5b7}
+.sh-syn-bool {color: #3bf}
+.sh-syn-type,
+.sh-syn-oper {color: #5af}
+.sh-syn-section,
+.sh-syn-func {color: #84f}
+.sh-syn-deleted,
+.sh-syn-var {color: #f44}

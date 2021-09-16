@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /@\w+/g,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		match: /{[\w\s|<>,.@\[\]]+}/g,

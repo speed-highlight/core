@@ -1,0 +1,3 @@
+@import 'github-dark.css';
+
+pre[class*="sh-lang-"] {background: #22272e}

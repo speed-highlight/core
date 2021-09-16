@@ -1,12 +1,12 @@
 export default [
 	{
 		match: /\/\*\*((?!\*\/)[^])*(\*\/)?/g,
-		type: 'cmt',
+		type: 'cmnt',
 		lang: 'jsdoc'
 	},
 	{
 		match: /\/\/.*\n?|\/\*((?!\*\/)[^])*(\*\/)?/g,
-		type: 'cmt'
+		type: 'cmnt'
 	},
 	{
 		expand: 'str'
@@ -18,7 +18,7 @@ export default [
 	},
 	{
 		match: /=>|\b(this|set|get|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|if|implements|import|in|instanceof|interface|let|var|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		match: /\/((?!\/)[^\r\n\\]|\\.)+\/[dgimsuy]*/g,

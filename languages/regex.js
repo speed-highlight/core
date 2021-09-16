@@ -5,7 +5,7 @@ export default [
 	},
 	{
 		match: /\||\^|\$|\\.|\w+($|\r|\n)/g,
-		type: 'key'
+		type: 'kwd'
 	},
 	{
 		match: /\*|\+|\{\d+,\d+\}/g,

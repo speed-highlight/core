@@ -2,22 +2,18 @@
 
 ## Light
 
-  * Base script **2.7kB** + languages rules from **0.15kB** to **1.2kB** (not minified)
+  * Base script **3kB** + languages rules from **0.15kB** to **1.2kB** (not minified)
   * Language rules needed automatically loaded on the fly
 
 ## Fast
 
-Up to **15x** times faster then highlight.js and **4x** times faster than prism.js
+Up to **15x** times faster then highlight.js and up to **3x** times faster than prism.js
 
 ## No setup needed
 
 In your html file
 ```html
-<pre class='lang-[code-language]'>
-	<code>
-		<!-- code to be highlighted -->
-	</code>
-</pre>
+<pre class='sh-lang-[code-language]'><code><!-- code to be highlighted --></code></pre>
 ```
 
 In your javascript file
@@ -29,16 +25,16 @@ highlightAll();
 
 ## Languages supported
 
-| Name      | Class name | Support                                             |
-| --------  | ---------- | -------                                             |
-| javascipt | lang-js    | basic syntax, regex, jsdoc, json, template literals |
-| regex     | lang-regex | count, set, ...                                     |
-| sql       | lang-sql   | number, string, function, ...                       |
-| csv       | lang-csv   | punctuation, ...                                    |
-| git       | lang-git   | comment, insert, deleted, string, ...               |
-| plain     | lang-plain |                                                     |
-| toml      | lang-toml  | comment, table, string, bool, variable              |
-| yaml      | lang-yaml  | comment, numbers, variable, string, bool            |
+| Name      | Class name    | Support                                             |
+| --------  | ------------- | -------                                             |
+| javascipt | sh-lang-js    | basic syntax, regex, jsdoc, json, template literals |
+| regex     | sh-lang-regex | count, set, ...                                     |
+| sql       | sh-lang-sql   | number, string, function, ...                       |
+| csv       | sh-lang-csv   | punctuation, ...                                    |
+| git       | sh-lang-git   | comment, insert, deleted, string, ...               |
+| plain     | sh-lang-plain |                                                     |
+| toml      | sh-lang-toml  | comment, table, string, bool, variable              |
+| yaml      | sh-lang-yaml  | comment, numbers, variable, string, bool            |
 
 ## Create new languages
 

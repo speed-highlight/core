@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmt'
+		type: 'cmnt'
 	},
 	{
 		expand: 'str'
