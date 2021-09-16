@@ -1,4 +1,4 @@
-# speed-highlight.js
+# Speed Highlight JS
 
 ## Light
 
