@@ -35,7 +35,18 @@ highlightAll();
 | plain     | sh-lang-plain |                                                     |
 | toml      | sh-lang-toml  | comment, table, string, bool, variable              |
 | yaml      | sh-lang-yaml  | comment, numbers, variable, string, bool            |
-| http      | sh-lang-http  | kwywork, string, punctuation, variable, version     |
+| http      | sh-lang-http  | keywork, string, punctuation, variable, version     |
+| log       | sh-lang-log   | number, string, comment, errors                     |
+| json      | sh-lang-json  | string, number, bool, ...                           |
+
+## Themes
+
+| Name           |
+| -------------- |
+| default        |
+| github-dark    |
+| github-light   |
+| github-dim     |
 
 ## Create new languages
 
