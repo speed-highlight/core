@@ -1,0 +1,20 @@
+@import "my-styles.css";
+
+p > a,
+.class,
+#id {
+	color: blue;
+	text-decoration: underline;
+}
+/*comment*/
+
+@page :left {
+	color: #2222;
+	margin-left: 4cm;
+	margin-right: 3cm;
+	background: url(test.jpg);
+	color: rgb(5, 5, 5);
+}
+@media print {
+	body { font-size: 10pt }
+}
