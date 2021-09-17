@@ -47,6 +47,7 @@ highlightAll();
 | github-dark    |
 | github-light   |
 | github-dim     |
+| atom-dark      |
 
 ## Create new languages
 
