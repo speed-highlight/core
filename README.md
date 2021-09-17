@@ -38,6 +38,8 @@ highlightAll();
 | http      | sh-lang-http  | keywork, string, punctuation, variable, version     |
 | log       | sh-lang-log   | number, string, comment, errors                     |
 | json      | sh-lang-json  | string, number, bool, ...                           |
+| css       | sh-lang-css   | comment, str, selector, units, function, ...        |
+| brainfuck | sh-lang-bf    | increment, operator, print, comment                 |
 
 ## Themes
 
