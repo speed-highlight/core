@@ -6,6 +6,7 @@
 	<style>
 		.radio-list {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 5px
 		}
 		input {
@@ -68,8 +69,8 @@
 			}
 		}
 
-		const themes = ['default', 'github-dark', 'github-light', 'github-dim'],
-			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log'],
+		const themes = ['default', 'github-dark', 'github-light', 'github-dim', 'atom-dark', 'visual-studio-dark'],
+			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log', 'json'],
 			radio_theme = new Radio('theme', themes, document.body),
 			radio_languages = new Radio('language', languages, document.body),
 			pre = document.createElement('pre'),
