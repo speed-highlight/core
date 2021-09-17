@@ -25,19 +25,20 @@ highlightAll();
 
 ## Languages supported
 
-| Name      | Class name    | Support                                             |
-| --------  | ------------- | -------                                             |
-| javascipt | sh-lang-js    | basic syntax, regex, jsdoc, json, template literals |
-| regex     | sh-lang-regex | count, set, ...                                     |
-| sql       | sh-lang-sql   | number, string, function, ...                       |
-| csv       | sh-lang-csv   | punctuation, ...                                    |
-| git       | sh-lang-git   | comment, insert, deleted, string, ...               |
-| plain     | sh-lang-plain |                                                     |
-| toml      | sh-lang-toml  | comment, table, string, bool, variable              |
-| yaml      | sh-lang-yaml  | comment, numbers, variable, string, bool            |
-| http      | sh-lang-http  | keywork, string, punctuation, variable, version     |
-| log       | sh-lang-log   | number, string, comment, errors                     |
-| json      | sh-lang-json  | string, number, bool, ...                           |
+| Name       | Class name    | Support                                             |
+| ---------- | ------------- | -------                                             |
+| javascipt  | sh-lang-js    | basic syntax, regex, jsdoc, json, template literals |
+| regex      | sh-lang-regex | count, set, ...                                     |
+| sql        | sh-lang-sql   | number, string, function, ...                       |
+| csv        | sh-lang-csv   | punctuation, ...                                    |
+| git        | sh-lang-git   | comment, insert, deleted, string, ...               |
+| plain      | sh-lang-plain |                                                     |
+| toml       | sh-lang-toml  | comment, table, string, bool, variable              |
+| yaml       | sh-lang-yaml  | comment, numbers, variable, string, bool            |
+| http       | sh-lang-http  | keywork, string, punctuation, variable, version     |
+| log        | sh-lang-log   | number, string, comment, errors                     |
+| json       | sh-lang-json  | string, number, bool, ...                           |
+| typescript | sh-lang-ts    | js syntax, ts keyword, types                        |
 
 ## Themes
 

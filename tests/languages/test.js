@@ -19,3 +19,9 @@ for await (const conn of listener) {
 		}
 	})();
 }
+export {
+	jsonData: false,
+	match: /test/g,
+	type: 'test',
+	"Hello world": true
+}

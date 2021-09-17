@@ -45,13 +45,7 @@ export default [
 		type: 'class'
 	},
 	{
-	//TODO fix bad regex for arrow function
-		match: /[a-zA-Z$][\w$]*(?=\s*((\?\.)?\s*\(|=\s*([(\w,[\])]+\)? =>|function\b)))/g,
+		match: /[a-zA-Z$][\w$]*(?=\s*((\?\.)?\s*\(|=\s*(\(?[\w,{}\[\])]+\)? =>|function\b)))/g,
 		type: 'func'
-	},
-	//TODO fix bad
-	{
-		match: /\w+\s*:/g,
-		type: 'var'
 	}
 ]
