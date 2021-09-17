@@ -41,13 +41,14 @@ highlightAll();
 
 ## Themes
 
-| Name           |
-| -------------- |
-| default        |
-| github-dark    |
-| github-light   |
-| github-dim     |
-| atom-dark      |
+| Name                |
+| ------------------- |
+| default             |
+| github-dark         |
+| github-light        |
+| github-dim          |
+| atom-dark           |
+| visual-studio-dark  |
 
 ## Create new languages
 
