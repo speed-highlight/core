@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+	<meta charset=UTF-8>
+	<title>Languages | speed highlight js</title>
+	<style>
+		.radio-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px
+		}
+		input {
+			position: absolute;
+			visibility: hidden
+		}
+		label {
+			font: 15px Arial;
+			cursor: pointer;
+			transition: .2s;
+			background: #c5c5e022;
+			border-radius: 5px;
+			padding: 10px
+		}
+		label:hover {background: #c5c5e033}
+		input:checked + label {
+			color: #58f;
+			background: #58f3
+		}
+	</style>
+</head>
+<body>
+	<script type=module>
+		import { setTheme, highlightElement } from '../index.js'
+
+		class Radio {
+			constructor(name, options, parent) {
+				this.listElm = document.createElement('div');
+				this.listElm.className = 'radio-list';
+				this.list = [];
+				for (let option of options)
+				{
+					let label = document.createElement('label'),
+						input = document.createElement('input');
+					input.type = 'radio';
+					input.name = name;
+					input.id = label.htmlFor = label.textContent = option;
+					input.addEventListener('change', e => this.callback?.())
+					this.listElm.appendChild(input);
+					this.listElm.appendChild(label);
+					this.list.push([option, input]);
+				}
+				parent.appendChild(this.listElm);
+			}
+			set selected(id) {
+				if (this.list[id])
+				{
+					this.list[id][1].checked = true;
+					this.callback?.();
+				}
+			}
+			get selected() {
+				for (let [name, input] of this.list)
+					if (input.checked)
+						return name;
+				return null;
+			}
+			onchange(callback) {
+				this.callback = _ => callback(this.selected);
+			}
+		}
+
+		const themes = ['default', 'github-dark', 'github-light', 'github-dim', 'atom-dark', 'visual-studio-dark'],
+			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log', 'json', 'css', 'bf', 'ts'],
+			radio_theme = new Radio('theme', themes, document.body),
+			radio_languages = new Radio('language', languages, document.body),
+			pre = document.createElement('pre'),
+			code = document.createElement('code');
+		radio_theme.onchange(theme => setTheme(`../themes/${theme}.css`));
+		radio_languages.onchange(update);
+		radio_theme.selected = radio_languages.selected = 0;
+		pre.appendChild(code);
+		document.body.appendChild(pre);
+		function	update(language = 'js') {
+			fetch(`./languages/test.${language}`)
+				.then(res => res.text()
+					.then(txt => {
+						code.textContent = txt;
+						highlightElement(code, language);
+					})
+					.catch(err => console.log(err))
+				).catch(err => console.log(err));
+		}
+	</script>
+</body>
+</html>
