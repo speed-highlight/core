@@ -6,8 +6,8 @@ pre[class*="sh-lang-"] {
 }
 pre[class*="sh-lang-"]:before {color: #6f9aff}
 
-.sh-syn-var,
-.sh-syn-deleted {color: #e06c75}
+.sh-syn-err,
+.sh-syn-var {color: #e06c75}
 .sh-syn-section,
 .sh-syn-oper,
 .sh-syn-kwd {color: #c678dd}
@@ -17,5 +17,4 @@ pre[class*="sh-lang-"]:before {color: #6f9aff}
 .sh-syn-num,
 .sh-syn-bool {color: #d19a66}
 .sh-syn-str,
-.sh-syn-insert {color: #98c379}
 .sh-syn-func {color: #61afef}

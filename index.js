@@ -44,7 +44,7 @@ export async function highlightText(src, langname) {
 		//make a fast shallow copy to bee able to splice lang without change the original one
 		lang = [...(await (langs[langname] ??= import(`./languages/${langname}.js`))).default];
 
-	const addUnsafe = (str = '', type) => res += type ? `<span class='sh-syn-${type}'>${str}</span>` : str,
+	const addUnsafe = (str = '', type) => res += type ? `<span class="sh-syn-${type}">${str}</span>` : str,
 		add = (str = '', type) => addUnsafe(sanitize(str), type);
 
 	while (i < src.length) {
@@ -75,7 +75,8 @@ export async function highlightText(src, langname) {
 		add(src.slice(i, firstIndex));
 		i = lastIndex;
 		if (firstPart.lang)
-			addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' sh-lang-' + firstPart.lang);
+		//	addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' sh-lang-' + firstPart.lang);
+			res += await highlightText(firstMatch, firstPart.lang);
 		else
 			add(firstMatch, firstPart.type);
 	}

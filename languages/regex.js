@@ -1,5 +1,9 @@
 export default [
 	{
+		match: /^(?!\/).*/gm,
+		type: 'cmnt'
+	},
+	{
 		match: /\[((?!\])[^\\]|\\.)*\]/g,
 		type: 'num'
 	},

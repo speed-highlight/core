@@ -43,6 +43,8 @@ pre[class*="sh-lang-"] ::selection {
 	text-shadow: none;
 	background: #bdf5
 }
+
+.sh-syn-err,
 .sh-syn-kwd {color: #e16}
 .sh-syn-num,
 .sh-syn-class {color: #f60}
@@ -51,11 +53,11 @@ pre[class*="sh-lang-"] ::selection {
 	font-style: italic
 }
 .sh-syn-str {color: #7d8}
-.sh-syn-insert {color: #5b7}
 .sh-syn-bool {color: #3bf}
 .sh-syn-type,
 .sh-syn-oper {color: #5af}
 .sh-syn-section,
 .sh-syn-func {color: #84f}
-.sh-syn-deleted,
 .sh-syn-var {color: #f44}
+.sh-syn-insert {background:#6aff6a55}
+.sh-syn-deleted {background: #ff747455}

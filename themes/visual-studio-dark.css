@@ -6,13 +6,12 @@ pre[class*="sh-lang-"] {
 }
 pre[class*="sh-lang-"]:before {color: #6f9aff}
 
+.sh-syn-err {}
 .sh-syn-var {color: #9cdcfe}
-.sh-syn-deleted {color: #d16969}
 .sh-syn-oper {color: #d4d4d4}
 .sh-syn-num,
 .sh-syn-kwd {color: #569cd6}
 .sh-syn-section,
-.sh-syn-insert,
 .sh-syn-type,
 .sh-syn-class {color: #4fc1ff}
 .sh-syn-cmnt {color: #6a9955}

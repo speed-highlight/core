@@ -5,7 +5,7 @@ pre[class*="sh-lang-"] {
 	background: #fff
 }
 
-.sh-syn-deleted,
+.sh-syn-err,
 .sh-syn-kwd {color: #cf222e}
 .sh-syn-class {color: #953800}
 .sh-syn-cmnt {color: #6e7781}
@@ -16,5 +16,4 @@ pre[class*="sh-lang-"] {
 .sh-syn-var,
 .sh-syn-bool {color: #0550ae}
 .sh-syn-str {color: #0a3069}
-.sh-syn-insert {color: #116329}
 .sh-syn-func {color: #8250df}
