@@ -15,4 +15,5 @@ export default [
 		match: /\*|\+|\{\d+,\d+\}/g,
 		type: 'var'
 	}
-]
+];
+export let type = "oper";

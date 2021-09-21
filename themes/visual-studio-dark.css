@@ -1,12 +1,12 @@
 @import 'default.css';
 
-pre[class*="sh-lang-"] {
+[class*="sh-lang-"] {
 	color: #d4d4d4;
 	background: #1e1e1e
 }
-pre[class*="sh-lang-"]:before {color: #6f9aff}
+[class*="sh-lang-"]:before {color: #6f9aff}
 
-.sh-syn-err {}
+.sh-syn-insert {color: #98c379}
 .sh-syn-var {color: #9cdcfe}
 .sh-syn-oper {color: #d4d4d4}
 .sh-syn-num,
@@ -14,7 +14,10 @@ pre[class*="sh-lang-"]:before {color: #6f9aff}
 .sh-syn-section,
 .sh-syn-type,
 .sh-syn-class {color: #4fc1ff}
+.sh-numbers,
 .sh-syn-cmnt {color: #6a9955}
 .sh-syn-bool {color: #b5cea8}
+.sh-syn-deleted,
+.sh-syn-err,
 .sh-syn-str {color: #ce9178}
 .sh-syn-func {color: #dcdcaa}

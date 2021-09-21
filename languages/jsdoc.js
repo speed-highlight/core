@@ -12,3 +12,4 @@ export default [
 		type: 'var'
 	}
 ]
+export let type = 'cmnt';

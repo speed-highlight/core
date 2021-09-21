@@ -1,4 +1,5 @@
-/* comment */
+/* Multiline
+	Comment */
 /**
 * js doc
 * @param {String} param
@@ -13,15 +14,21 @@ for await (const conn of listener) {
 		break;
 	(async () => {
 		const requests = Deno.serveHttp(conn);
-		for await (const { respondWith } of requests) {
+		for await (const { respondWith } of this.requests.new) {
 			respondWith(new Response("Hello\
 			 world"));
 		}
 	})();
 }
-export {
+function test(test) {
+	let test = () => { console.log(test) };
+	return test;
+}
+export default {
 	jsonData: false,
 	match: /test/g,
-	type: 'test',
+	type: `test
+	${'test'}hello
+	${test + 2.5}hello`,
 	"Hello world": true
 }

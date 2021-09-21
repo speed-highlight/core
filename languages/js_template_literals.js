@@ -21,7 +21,7 @@ export default [
 				return null;
 			}
 		},
-		type: 'var',
 		lang: 'js',
 	}
-]
+];
+export let type = 'str';

@@ -1,0 +1,24 @@
+@import 'default.css';
+
+[class*="sh-lang-"] {
+	color: #f8f8f2;
+/*	background: #1c1d24*/
+	background: #141414
+}
+[class*="sh-lang-"]:before {color: #6f9aff}
+
+.sh-syn-deleted,
+.sh-syn-err,
+.sh-syn-var {color: #ff5261}
+.sh-syn-section,
+.sh-syn-kwd {color: #ff7cc6}
+.sh-syn-class {color: #ffa657}
+.sh-numbers,
+.sh-syn-cmnt {color: #7d828b}
+.sh-syn-insert {color: #8df345}
+.sh-syn-type,
+.sh-syn-func,
+.sh-syn-bool {color: #79e995}
+.sh-syn-num {color: #b581fd}
+.sh-syn-oper {color: #80c6ff}
+.sh-syn-str {color: #4dacfa}

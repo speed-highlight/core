@@ -2,21 +2,14 @@ import expandData from './common.js';
 
 const langs = {},
 	sanitize = (str = '') =>
-		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;');
-
-let theme;
+		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 /**
- * @function setTheme Load a theme file (css)
- * @param {String} theme the url of the css file
+ * A function that turn text in HTML to apply a class to it
+ * @param {String} str need to be sanitize to be safe
+ * @param {String} [cssClass] if defined the text will be wrapped up in a span element with a class atribute
+ * @returns A string with HTML semantics
  */
-export let setTheme = url => {
-	theme ??= document.createElement('link');
-	theme.rel = 'stylesheet';
-	theme.type = 'text/css';
-	theme.href = url;
-	document.head.appendChild(theme);
-}
-
+	toSpan = (str, cssClass) => cssClass ? `<span class="sh-syn-${cssClass}">${str}</span>` : str;
 /**
  * @async
  * @function highlightText A function that highlight a string text and return it
@@ -24,15 +17,13 @@ export let setTheme = url => {
  * elm.innerHTML = await highlightText(code, 'js');
  * @param {String} src the text content to be highlighted
  * @param {String} lang the lang name ex: 'js'
+ * @param {Boolean} [multiline=true] inline mode
  * @returns {String} the highlighted as String text
  */
-export async function highlightText(src, langname) {
-	if (!src)
-		return src;
-
+export async function highlightText(src, langname, multiline = true) {
 	let a,
 		part,
-		res = '',
+		res = multiline ? `<div><div class="sh-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '',
 		cachedMatch = [],
 		index,
 		match,
@@ -42,10 +33,11 @@ export async function highlightText(src, langname) {
 		firstMatch,
 		i = 0,
 		//make a fast shallow copy to bee able to splice lang without change the original one
-		lang = [...(await (langs[langname] ??= import(`./languages/${langname}.js`))).default];
+		langData = (await (langs[langname] ??= import(`./languages/${langname}.js`))),
+		lang = [...langData.default];
 
-	const addUnsafe = (str = '', type) => res += type ? `<span class="sh-syn-${type}">${str}</span>` : str,
-		add = (str = '', type) => addUnsafe(sanitize(str), type);
+	const addUnsafe = (str, type) => res += toSpan(str, type),
+		add = (str, type) => addUnsafe(sanitize(str), type);
 
 	while (i < src.length) {
 		firstIndex = null;
@@ -72,15 +64,16 @@ export async function highlightText(src, langname) {
 		}
 		if (firstIndex === null)
 			break;
-		add(src.slice(i, firstIndex));
+		add(src.slice(i, firstIndex), langData.type);
 		i = lastIndex;
 		if (firstPart.lang)
-		//	addUnsafe(await highlightText(firstMatch, firstPart.lang), firstPart.type + ' sh-lang-' + firstPart.lang);
-			res += await highlightText(firstMatch, firstPart.lang);
+			res += await highlightText(firstMatch, firstPart.lang, false);
 		else
 			add(firstMatch, firstPart.type);
 	}
-	add(src.slice(i, src.length));
+	add(src.slice(i, src.length), langData.type);
+	if (multiline)
+		res += '</div></div>';
 	return res;
 }
 
@@ -88,23 +81,30 @@ export async function highlightText(src, langname) {
  * @async
  * @function highlightElement highlight a element code with a 'pre' parent
  * @param {HTMLElement} elm the code elm
- * @param {String} [lang=] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
+ * @param {String} [lang] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
+ * @param {Boolean} [multiline] inline mode by default if not code element
  */
-export async function highlightElement(elm, lang = (elm.className + ' ' + elm.parentNode.className).match(/sh-lang-([\w-]+)/)?.[1]) {
-	elm.parentNode.dataset.lang = lang;
-	elm.parentNode.classList.add('sh-lang-' + lang);
-	elm.innerHTML = await highlightText(elm.textContent, lang);
+export async function highlightElement(
+  elm,
+  lang = elm.className.match(/sh-lang-([\w-]+)/)?.[1],
+  multiline = elm.tagName != 'CODE'
+) {
+  elm.dataset.lang = lang;
+  elm.classList.add("sh-lang-" + lang);
+  elm.innerHTML = await highlightText(elm.textContent, lang, multiline);
 }
 
 /**
- * highlight all element that follow this schema
+ * for all element that have a class name starting with "sh-lang-"
+ * this function will call highlightElement with the html element as argument
+ * The function will select those scheme for example:
  * ```html
- * <pre class="sh-lang-*">
- * 	<code>
- * 	</code>
- * </pre>
+ * <div class='sh-lang-[code-language]'>[code]</div>
+ * or
+ * <code class='sh-lang-[code-language]'>[inline code]</code>
  * ```
  */
-export async function highlightAll() {
-	document.querySelectorAll('pre[class*="sh-lang-"] > code').forEach(elm => !elm.parentNode.dataset.lang && highlightElement(elm));
-}
+export let highlightAll = async () =>
+  document
+    .querySelectorAll('[class*="sh-lang-"]')
+    .forEach((elm) => highlightElement(elm));

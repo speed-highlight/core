@@ -1,14 +1,17 @@
 @import 'default.css';
 
-pre[class*="sh-lang-"] {
+[class*="sh-lang-"] {
 	color: #c9d1d9;
 	background: #161b22
 }
-pre[class*="sh-lang-"]:before {color: #6f9aff}
+[class*="sh-lang-"]:before {color: #6f9aff}
 
+.sh-syn-insert {color: #98c379}
+.sh-syn-deleted,
 .sh-syn-err,
 .sh-syn-kwd {color: #ff7b72}
 .sh-syn-class {color: #ffa657}
+.sh-numbers,
 .sh-syn-cmnt {color: #8b949e}
 .sh-syn-type,
 .sh-syn-oper,

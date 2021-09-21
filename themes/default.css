@@ -1,4 +1,4 @@
-pre[class*="sh-lang-"] {
+[class*="sh-lang-"] {
 	margin: 10px 0;
 	border-radius: 10px;
 	padding: 10px;
@@ -13,51 +13,54 @@ pre[class*="sh-lang-"] {
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
-pre[class*="sh-lang-"] > code {
-	display: block;
-	padding: 10px;
-	overflow: auto;
-	scrollbar-color: #eee;
-	scrollbar-width: thin
+code[class*="sh-lang-"] {
+	border-radius: 5px;
+	display: inline-block;
+	margin: 0;
+	padding: 2px 5px
 }
-pre[class*="sh-lang-"] > code::-webkit-scrollbar {
-	width: 5px;
-	height: 8px
-}
-pre[class*="sh-lang-"] > code::-webkit-scrollbar-thumb {
-	border-radius: 4px;
-	background: #eee
-}
-pre[class*="sh-lang-"]:before {
+[class*="sh-lang-"]:not(code):before {
 	content: attr(data-lang);
 	color: #58f;
 	background: #58f3;
 	display: block;
 	border-radius: 5px;
-	padding: 8px 20px;
+	padding: 2px 12px;
+	margin-bottom: 10px;
 	height: 32px;
 	overflow: hidden;
 	line-height: 32px
 }
-pre[class*="sh-lang-"] ::selection {
-	text-shadow: none;
-	background: #bdf5
+[class*="sh-lang-"] ::selection {background: #bdf5}
+[class*="sh-lang-"] > div {
+	display: flex;
+	overflow: auto
 }
+[class*="sh-lang-"] > div :last-child {white-space: pre}
+.sh-numbers {counter-reset: line}
+.sh-numbers div::before {
+	display: block;
+	content: counter(line);
+	counter-increment: line;
+	text-align: right;
+	margin-right: 5px;
+	opacity: .5;
+	color: #999
+}
+.sh-syn-cmnt {font-style: italic}
 
 .sh-syn-err,
 .sh-syn-kwd {color: #e16}
 .sh-syn-num,
 .sh-syn-class {color: #f60}
-.sh-syn-cmnt {
-	color: #999;
-	font-style: italic
-}
+.sh-numbers,
+.sh-syn-cmnt {color: #999}
+.sh-syn-insert,
 .sh-syn-str {color: #7d8}
 .sh-syn-bool {color: #3bf}
 .sh-syn-type,
 .sh-syn-oper {color: #5af}
 .sh-syn-section,
 .sh-syn-func {color: #84f}
+.sh-syn-deleted,
 .sh-syn-var {color: #f44}
-.sh-syn-insert {background:#6aff6a55}
-.sh-syn-deleted {background: #ff747455}

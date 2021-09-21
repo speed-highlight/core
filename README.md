@@ -7,19 +7,24 @@
 
 ## Fast
 
-Up to **15x** times faster then highlight.js and up to **3x** times faster than prism.js
 
 ## Simple setup
 
-In your html file
+In the header of your html file
 ```html
-<pre class='sh-lang-[code-language]'><code><!-- code to be highlighted --></code></pre>
+<link rel="stylesheet" href="/path/themes/default.css">
+```
+
+In the body of your html file
+```html
+<div class='sh-lang-[code-language]'>[code]</div>
+or
+<code class='sh-lang-[code-language]'>[inline code]</code>
 ```
 
 In your javascript file
 ```js
 import { setTheme, highlightAll } from '/path/index.js'
-setTheme('/path/themes/default.css');
 highlightAll();
 ```
 ## Languages supported

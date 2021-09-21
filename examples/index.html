@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../themes/default.css">
+	<title>Highlight All test</title>
+</head>
+<body>
+	<div class="sh-lang-js">import { setTheme, highlightAll } from '/path/index.js'
+setTheme('/path/themes/default.css');
+highlightAll();</div>
+
+	<div class="sh-lang-csv">test,test,test</div>
+
+	<p>Hello world <code class="sh-lang-js">highlightAll()</code> Hello world <code class="sh-lang-regex">/([A-Z])\w+\d{0,9}/gi</code> Hello world <code class="sh-lang-js">reallyLongInlineCode?.()</code></p>
+
+	<script type=module>
+		import { highlightAll } from '../index.js';
+		highlightAll();
+	</script>
+</body>
+</html>
