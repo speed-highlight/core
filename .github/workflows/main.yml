@@ -39,4 +39,4 @@ jobs:
           # Descend at most levels (a non-negative integer) levels of directories below the starting-points.
           # maxdepth: # optional, default is 
           # Specifies which of the supported packages minifies JS files.
-          # js_engine: # optional, default is babel
+          js_engine: uglify-js # optional, default is babel
