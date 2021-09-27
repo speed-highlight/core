@@ -29,9 +29,11 @@ jobs:
         uses: nizarmah/auto-minify@v2.1.1
         with:
           # Directory that contains the files you want to minify. Defaults to current directory (.)
-          directory: /index.js /common.js /languages /themes
+          directory: /src
           # Directory that contains the minified files. Defaults to same directory
           output: /dist
+          # Overwrites the existing files with the minified version.
+          overwrite: true
           # Specifies which of the supported packages minifies JS files.
           js_engine: uglify-js
 

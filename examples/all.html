@@ -53,7 +53,7 @@
 </head>
 <body>
 	<script type=module>
-		import { highlightElement } from '../index.js'
+		import { highlightElement } from '../src/index.js'
 
 		class Radio {
 			constructor(name, options, parent) {
@@ -104,7 +104,7 @@
 		themeElm.rel = 'stylesheet';
 		themeElm.type = 'text/css';
 		document.head.appendChild(themeElm);
-		radio_theme.onchange(theme => themeElm.href = `../themes/${theme}.css`);
+		radio_theme.onchange(theme => themeElm.href = `../src/themes/${theme}.css`);
 		radio_languages.onchange(update);
 		radio_theme.selected = radio_languages.selected = 0;
 		rehighlight.className = 'button';
@@ -116,6 +116,7 @@
 		actions.className = 'actions';
 		document.body.appendChild(actions);
 		document.body.appendChild(code);
+
 		function updateTextContent(elm, content) {
 			elm.textContent = content;
 			elm.animate(
@@ -126,6 +127,7 @@
 				{ duration: 150 }
 			);
 		}
+
 		function	update(language = 'js') {
 			fetch(`./languages/test.${language}`)
 				.then(res => res.text()

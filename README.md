@@ -14,7 +14,7 @@
 
 In the header of your html file:
 ```html
-<link rel="stylesheet" href="/path/themes/default.css">
+<link rel="stylesheet" href="/path/dist/themes/default.css">
 ```
 
 In the body of your html file:
@@ -26,7 +26,7 @@ or
 
 In your javascript:
 ```js
-import { highlightAll } from '/path/index.js'
+import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
 ## Languages supported
