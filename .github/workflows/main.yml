@@ -26,17 +26,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Auto Minify
-        # You may pin to the exact commit or the version.
-        # uses: nizarmah/auto-minify@7028a7a4b79ccdc7e00f351baed61c59d07690ee
         uses: nizarmah/auto-minify@v2.1.1
         with:
           # Directory that contains the files you want to minify. Defaults to current directory (.)
-          # directory: # optional, default is .
+          directory: /themes /languages /index.js /common.js
           # Directory that contains the minified files. Defaults to same directory
-          output: ./dist # optional, default is 
-          # Overwrites the existing files with the minified version. Defaults to false.
-          # overwrite: # optional, default is false
-          # Descend at most levels (a non-negative integer) levels of directories below the starting-points.
-          # maxdepth: # optional, default is 
+          output: /dist
           # Specifies which of the supported packages minifies JS files.
-          js_engine: uglify-js # optional, default is babel
+          js_engine: uglify-js
