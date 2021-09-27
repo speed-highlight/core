@@ -1,6 +1,6 @@
 export default {
 	num: {
-		match: /\.?\d[\d.oxa-fA-F_-]*/g,
+		match: /(\.e?)?\d[\d.oxa-fA-F_-]*/g,
 		type: 'num'
 	},
 	str: {

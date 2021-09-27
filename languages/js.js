@@ -2,7 +2,7 @@ export default [
   {
     match: /\/\*\*((?!\*\/)[^])*(\*\/)?/g,
     type: "cmnt",
-    lang: "jsdoc",
+    sub: "jsdoc",
   },
   {
     match: /\/\/.*\n?|\/\*((?!\*\/)[^])*(\*\/)?/g,
@@ -13,17 +13,15 @@ export default [
   },
   {
     match: /`((?!`)[^]|\\[^])*`?/g,
-    type: "str",
-    lang: "js_template_literals",
+    sub: "js_template_literals",
   },
   {
-    match:
-      /=>|\b(this|set|get|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|if|implements|import|in|instanceof|interface|let|var|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
+    match: /=>|\b(this|set|get|as|async|await|break|case|catch|class|const|constructor|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|if|implements|import|in|instanceof|interface|let|var|of|new|package|private|protected|public|return|static|super|switch|throw|throws|try|typeof|void|while|with|yield)\b/g,
     type: "kwd",
   },
   {
     match: /\/((?!\/)[^\r\n\\]|\\.)+\/[dgimsuy]*/g,
-    lang: "regex",
+    sub: "regex",
   },
   {
     expand: "num",

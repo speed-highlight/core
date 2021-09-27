@@ -20,7 +20,7 @@ const langs = {},
  * @param {Boolean} [multiline=true] inline mode
  * @returns {String} the highlighted as String text
  */
-export async function highlightText(src, langname, multiline = true) {
+export async function highlightText(src, lang, multiline = true) {
 	let a,
 		part,
 		res = multiline ? `<div><div class="sh-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '',
@@ -32,8 +32,9 @@ export async function highlightText(src, langname, multiline = true) {
 		lastIndex,
 		firstMatch,
 		i = 0,
+		langData = typeof lang === 'string' ? (await (langs[lang] ??= import(`./languages/${lang}.js`))) : {};
 		//make a fast shallow copy to bee able to splice lang without change the original one
-		langData = (await (langs[langname] ??= import(`./languages/${langname}.js`))),
+	if (typeof lang === 'string')
 		lang = [...langData.default];
 
 	const addUnsafe = (str, type) => res += toSpan(str, type),
@@ -43,7 +44,7 @@ export async function highlightText(src, langname, multiline = true) {
 		firstIndex = null;
 		for (a = lang.length; --a >= 0;) {
 			part = lang[a].expand ? expandData[lang[a].expand] : lang[a];
-			if (cachedMatch[a] == undefined || cachedMatch[a].match.index < i) {
+			if (cachedMatch[a] === undefined || cachedMatch[a].match.index < i) {
 				part.match.lastIndex = i;
 				match = part.match.exec(src);
 				if (match === null) {
@@ -66,8 +67,8 @@ export async function highlightText(src, langname, multiline = true) {
 			break;
 		add(src.slice(i, firstIndex), langData.type);
 		i = lastIndex;
-		if (firstPart.lang)
-			res += await highlightText(firstMatch, firstPart.lang, false);
+		if (firstPart.sub)
+			res += await highlightText(firstMatch, firstPart.sub, false);
 		else
 			add(firstMatch, firstPart.type);
 	}

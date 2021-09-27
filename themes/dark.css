@@ -2,8 +2,7 @@
 
 [class*="sh-lang-"] {
 	color: #f8f8f2;
-/*	background: #1c1d24*/
-	background: #141414
+	background: #1a1a1c
 }
 [class*="sh-lang-"]:before {color: #6f9aff}
 
