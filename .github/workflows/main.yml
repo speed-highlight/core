@@ -27,12 +27,16 @@ jobs:
 
       - name: Auto Minify
         uses: nizarmah/auto-minify@v2.1.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           # Directory that contains the files you want to minify. Defaults to current directory (.)
-          directory: /themes /languages /index.js /common.js
+          directory: /index.js /common.js /languages /themes
           # Directory that contains the minified files. Defaults to same directory
           output: /dist
           # Specifies which of the supported packages minifies JS files.
           js_engine: uglify-js
+
+      - name: Auto committing minified files
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Github Action: Auto Minified JS and CSS files"
+          branch: ${{ github.ref }}
