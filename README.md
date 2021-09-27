@@ -4,7 +4,7 @@
 
  * The core is about **2kB** (gzipped & not minified)
  * Languages rules are from **a few bytes** to **2kB**
- * Themes are about **1kb**
+ * Themes are about **1kB**
  * Language rules needed are automatically loaded
 
 ## Fast
