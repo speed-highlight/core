@@ -27,6 +27,8 @@ jobs:
 
       - name: Auto Minify
         uses: nizarmah/auto-minify@v2.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
         with:
           # Directory that contains the files you want to minify. Defaults to current directory (.)
           directory: /themes /languages /index.js /common.js
