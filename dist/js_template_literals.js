@@ -1,1 +1,0 @@
-export default[{match:new class{exec(t){let l=this.lastIndex,e,s=e=>{for(;++l<t.length-2;)if("{"==t[l])s();else if("}"==t[l])return};for(;l<t.length;l++)if("\\"!=t[l-1]&&"$"==t[l]&&"{"==t[l+1])return e=l++,s(l),this.lastIndex=l+1,{index:e,0:t.slice(e,l+1)};return null}},sub:[{match:/^\${|}$/g,type:"kwd"},{match:/(?!^\$|{)[^]+(?=}$)/g,sub:"js"}]}];let type="str";export{type};
