@@ -112,6 +112,7 @@
 		function	update(language = 'js') {
 			fetch(`./languages/test.${language}`)
 				.then(res => res.text()
+					.then(async txt => {
 						code.textContent = txt;
 						let before = performance.now();
 						await highlightElement(code, language);
