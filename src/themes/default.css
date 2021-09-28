@@ -39,6 +39,7 @@ code[class*="sh-lang-"] {
 }
 [class*="sh-lang-"] > div :last-child {white-space: pre}
 .sh-numbers {counter-reset: line}
+.sh-numbers div {padding-right: 5px}
 .sh-numbers div::before {
 	display: block;
 	content: counter(line);
