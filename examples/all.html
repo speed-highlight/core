@@ -92,6 +92,36 @@
 			}
 		}
 
+		/**
+		 * Update the textContent of an element with an effect
+		*/
+		function updateTextContent(elm, content) {
+			elm.textContent = content;
+			elm.animate(
+				[
+					{ background: '#25f3' },
+					{ background: 'unset' }
+				],
+				{ duration: 150 }
+			);
+		}
+
+		/**
+		 * Load and highlight the testing file
+		*/
+		function	update(language = 'js') {
+			fetch(`./languages/test.${language}`)
+				.then(res => res.text()
+					.then(async txt => {
+						code.textContent = txt;
+						let before = performance.now();
+						await highlightElement(code, language);
+						updateTextContent(chrono, `${(performance.now() - before).toFixed(3)}ms`);
+					})
+					.catch(err => console.log(err))
+				).catch(err => console.log(err));
+		}
+
 		const themes = ['default', 'dark', 'atom-dark', 'github-dark', 'github-dim', 'visual-studio-dark', 'github-light'],
 			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log', 'json', 'css', 'bf', 'ts'],
 			radio_theme = new Radio('theme', themes, document.body),
@@ -101,6 +131,7 @@
 			chrono = document.createElement('span'),
 			code = document.createElement('div'),
 			themeElm = document.createElement('link');
+
 		themeElm.rel = 'stylesheet';
 		themeElm.type = 'text/css';
 		document.head.appendChild(themeElm);
@@ -116,30 +147,6 @@
 		actions.className = 'actions';
 		document.body.appendChild(actions);
 		document.body.appendChild(code);
-
-		function updateTextContent(elm, content) {
-			elm.textContent = content;
-			elm.animate(
-				[
-					{ background: '#25f3' },
-					{ background: 'unset' }
-				],
-				{ duration: 150 }
-			);
-		}
-
-		function	update(language = 'js') {
-			fetch(`./languages/test.${language}`)
-				.then(res => res.text()
-					.then(async txt => {
-						code.textContent = txt;
-						let before = performance.now();
-						await highlightElement(code, language);
-						updateTextContent(chrono, `${(performance.now() - before).toFixed(3)}ms`);
-					})
-					.catch(err => console.log(err))
-				).catch(err => console.log(err));
-		}
 	</script>
 </body>
 </html>
