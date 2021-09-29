@@ -1,4 +1,4 @@
-[class*="sh-lang-"] {
+[class*="shj-lang-"] {
 	margin: 10px 0;
 	border-radius: 10px;
 	padding: 10px;
@@ -13,13 +13,13 @@
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
-code[class*="sh-lang-"] {
+code[class*="shj-lang-"] {
 	border-radius: 5px;
 	display: inline-block;
 	margin: 0;
 	padding: 2px 5px
 }
-[class*="sh-lang-"]:not(code):before {
+[class*="shj-lang-"]:not(code):before {
 	content: attr(data-lang);
 	color: #58f;
 	background: #58f3;
@@ -31,16 +31,16 @@ code[class*="sh-lang-"] {
 	overflow: hidden;
 	line-height: 32px
 }
-[class*="sh-lang-"]::selection,
-[class*="sh-lang-"] ::selection {background: #bdf5}
-[class*="sh-lang-"] > div {
+[class*="shj-lang-"]::selection,
+[class*="shj-lang-"] ::selection {background: #bdf5}
+[class*="shj-lang-"] > div {
 	display: flex;
 	overflow: auto
 }
-[class*="sh-lang-"] > div :last-child {white-space: pre}
-.sh-numbers {counter-reset: line}
-.sh-numbers div {padding-right: 5px}
-.sh-numbers div::before {
+[class*="shj-lang-"] > div :last-child {white-space: pre}
+.shj-numbers {counter-reset: line}
+.shj-numbers div {padding-right: 5px}
+.shj-numbers div::before {
 	display: block;
 	content: counter(line);
 	counter-increment: line;
@@ -49,20 +49,20 @@ code[class*="sh-lang-"] {
 	opacity: .5;
 	color: #999
 }
-.sh-syn-cmnt {font-style: italic}
+.shj-syn-cmnt {font-style: italic}
 
-.sh-syn-err,
-.sh-syn-kwd {color: #e16}
-.sh-syn-num,
-.sh-syn-class {color: #f60}
-.sh-numbers,
-.sh-syn-cmnt {color: #999}
-.sh-syn-insert,
-.sh-syn-str {color: #7d8}
-.sh-syn-bool {color: #3bf}
-.sh-syn-type,
-.sh-syn-oper {color: #5af}
-.sh-syn-section,
-.sh-syn-func {color: #84f}
-.sh-syn-deleted,
-.sh-syn-var {color: #f44}
+.shj-syn-err,
+.shj-syn-kwd {color: #e16}
+.shj-syn-num,
+.shj-syn-class {color: #f60}
+.shj-numbers,
+.shj-syn-cmnt {color: #999}
+.shj-syn-insert,
+.shj-syn-str {color: #7d8}
+.shj-syn-bool {color: #3bf}
+.shj-syn-type,
+.shj-syn-oper {color: #5af}
+.shj-syn-section,
+.shj-syn-func {color: #84f}
+.shj-syn-deleted,
+.shj-syn-var {color: #f44}

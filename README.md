@@ -19,9 +19,9 @@ In the header of your html file:
 
 In the body of your html file:
 ```html
-<div class='sh-lang-[code-language]'>[code]</div>
+<div class='shj-lang-[code-language]'>[code]</div>
 or
-<code class='sh-lang-[code-language]'>[inline code]</code>
+<code class='shj-lang-[code-language]'>[inline code]</code>
 ```
 
 In your javascript:
@@ -33,20 +33,20 @@ highlightAll();
 
 | Name       | Class name    | Support                                             |
 | ---------- | ------------- | -------                                             |
-| javascipt  | sh-lang-js    | basic syntax, regex, jsdoc, json, template literals |
-| regex      | sh-lang-regex | count, set, ...                                     |
-| sql        | sh-lang-sql   | number, string, function, ...                       |
-| csv        | sh-lang-csv   | punctuation, ...                                    |
-| git        | sh-lang-git   | comment, insert, deleted, string, ...               |
-| plain      | sh-lang-plain |                                                     |
-| toml       | sh-lang-toml  | comment, table, string, bool, variable              |
-| yaml       | sh-lang-yaml  | comment, numbers, variable, string, bool            |
-| http       | sh-lang-http  | keywork, string, punctuation, variable, version     |
-| log        | sh-lang-log   | number, string, comment, errors                     |
-| json       | sh-lang-json  | string, number, bool, ...                           |
-| css        | sh-lang-css   | comment, str, selector, units, function, ...        |
-| brainfuck  | sh-lang-bf    | increment, operator, print, comment                 |
-| typescript | sh-lang-ts    | js syntax, ts keyword, types                        |
+| javascipt  | shj-lang-js    | basic syntax, regex, jsdoc, json, template literals |
+| regex      | shj-lang-regex | count, set, ...                                     |
+| sql        | shj-lang-sql   | number, string, function, ...                       |
+| csv        | shj-lang-csv   | punctuation, ...                                    |
+| git        | shj-lang-git   | comment, insert, deleted, string, ...               |
+| plain      | shj-lang-plain |                                                     |
+| toml       | shj-lang-toml  | comment, table, string, bool, variable              |
+| yaml       | shj-lang-yaml  | comment, numbers, variable, string, bool            |
+| http       | shj-lang-http  | keywork, string, punctuation, variable, version     |
+| log        | shj-lang-log   | number, string, comment, errors                     |
+| json       | shj-lang-json  | string, number, bool, ...                           |
+| css        | shj-lang-css   | comment, str, selector, units, function, ...        |
+| brainfuck  | shj-lang-bf    | increment, operator, print, comment                 |
+| typescript | shj-lang-ts    | js syntax, ts keyword, types                        |
 
 ## Themes
 
@@ -67,17 +67,17 @@ In your css file you can import the default styling,
 then useful things to change can be:
 ```css
 /* token style */
-.sh-syn-[token-name] {color...}
+.shj-syn-[token-name] {color...}
 /* line numbering style */
-.sh-numbers {color...}
+.shj-numbers {color...}
 /* inline mode style */
-code[class*="sh-lang-"] {...}
+code[class*="shj-lang-"] {...}
 /* multiline mode style */
-[class*="sh-lang-"]:not(code) {...}
+[class*="shj-lang-"]:not(code) {...}
 /* both */
-[class*="sh-lang-"] {default color, background...}
+[class*="shj-lang-"] {default color, background...}
 /* header with language name */
-[class*="sh-lang-"]:not(code):before {...}
+[class*="shj-lang-"]:not(code):before {...}
 ```
 
 ## Tokens

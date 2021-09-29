@@ -1,23 +1,23 @@
 @import 'default.css';
 
-[class*="sh-lang-"] {
+[class*="shj-lang-"] {
 	color: #c9d1d9;
 	background: #161b22
 }
-[class*="sh-lang-"]:before {color: #6f9aff}
+[class*="shj-lang-"]:before {color: #6f9aff}
 
-.sh-syn-insert {color: #98c379}
-.sh-syn-deleted,
-.sh-syn-err,
-.sh-syn-kwd {color: #ff7b72}
-.sh-syn-class {color: #ffa657}
-.sh-numbers,
-.sh-syn-cmnt {color: #8b949e}
-.sh-syn-type,
-.sh-syn-oper,
-.sh-syn-num,
-.sh-syn-section,
-.sh-syn-var,
-.sh-syn-bool {color: #79c0ff}
-.sh-syn-str {color: #a5d6ff}
-.sh-syn-func {color: #d2a8ff}
+.shj-syn-insert {color: #98c379}
+.shj-syn-deleted,
+.shj-syn-err,
+.shj-syn-kwd {color: #ff7b72}
+.shj-syn-class {color: #ffa657}
+.shj-numbers,
+.shj-syn-cmnt {color: #8b949e}
+.shj-syn-type,
+.shj-syn-oper,
+.shj-syn-num,
+.shj-syn-section,
+.shj-syn-var,
+.shj-syn-bool {color: #79c0ff}
+.shj-syn-str {color: #a5d6ff}
+.shj-syn-func {color: #d2a8ff}

@@ -9,7 +9,7 @@ const langs = {},
  * @param {String} [cssClass] if defined the text will be wrapped up in a span element with a class atribute
  * @returns A string with HTML semantics
  */
-	toSpan = (str, cssClass) => cssClass ? `<span class="sh-syn-${cssClass}">${str}</span>` : str;
+	toSpan = (str, cssClass) => cssClass ? `<span class="shj-syn-${cssClass}">${str}</span>` : str;
 /**
  * @async
  * @function highlightText A function that highlight a string text and return it
@@ -23,7 +23,7 @@ const langs = {},
 export async function highlightText(src, lang, multiline = true) {
 	let a,
 		part,
-		res = multiline ? `<div><div class="sh-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '',
+		res = multiline ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '',
 		cachedMatch = [],
 		index,
 		match,
@@ -87,25 +87,25 @@ export async function highlightText(src, lang, multiline = true) {
  */
 export async function highlightElement(
   elm,
-  lang = elm.className.match(/sh-lang-([\w-]+)/)?.[1],
+  lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1],
   multiline = elm.tagName != 'CODE'
 ) {
   elm.dataset.lang = lang;
-  elm.classList.add("sh-lang-" + lang);
+  elm.classList.add("shj-lang-" + lang);
   elm.innerHTML = await highlightText(elm.textContent, lang, multiline);
 }
 
 /**
- * for all element that have a class name starting with "sh-lang-"
+ * for all element that have a class name starting with "shj-lang-"
  * this function will call highlightElement with the html element as argument
  * The function will select those scheme for example:
  * ```html
- * <div class='sh-lang-[code-language]'>[code]</div>
+ * <div class='shj-lang-[code-language]'>[code]</div>
  * or
- * <code class='sh-lang-[code-language]'>[inline code]</code>
+ * <code class='shj-lang-[code-language]'>[inline code]</code>
  * ```
  */
 export let highlightAll = async () =>
   document
-    .querySelectorAll('[class*="sh-lang-"]')
+    .querySelectorAll('[class*="shj-lang-"]')
     .forEach((elm) => highlightElement(elm));
