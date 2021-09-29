@@ -110,12 +110,13 @@
 		 * Load and highlight the testing file
 		*/
 		function	update(language = 'js') {
-			fetch(`./languages/test.${language}`)
+			let path = language.split('.').length === 1 ? `test.${language}` : language;
+			fetch(`./languages/${path}`)
 				.then(res => res.text()
 					.then(async txt => {
 						code.textContent = txt;
 						let before = performance.now();
-						await highlightElement(code, language);
+						await highlightElement(code, language.split('.').at(-1));
 						updateTextContent(chrono, `${(performance.now() - before).toFixed(3)}ms`);
 					})
 					.catch(err => console.log(err))
@@ -123,7 +124,7 @@
 		}
 
 		const themes = ['default', 'dark', 'atom-dark', 'github-dark', 'github-dim', 'visual-studio-dark', 'github-light'],
-			languages = ['js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log', 'json', 'css', 'bf', 'ts'],
+			languages = ['js', 'screenshot.js', 'regex', 'sql', 'csv', 'git', 'toml', 'yaml', 'plain', 'http', 'log', 'json', 'css', 'bf', 'ts'],
 			radio_theme = new Radio('theme', themes, document.body),
 			radio_languages = new Radio('language', languages, document.body),
 			actions = document.createElement('div'),
