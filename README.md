@@ -1,18 +1,22 @@
 # Speed Highlight JS
 
-## Light
+Light, fast, and easy to use syntax highlighter
+
+![](https://github.com/matubu/shj/blob/main/assets/screenshot.png)
+
+## Light :feather:
 
  * The core is about **2kB** (gzipped & not minified)
- * Languages rules are from **a few bytes** to **2kB**
+ * Languages definition are from **a few bytes** to **2kB**
  * Themes are about **1kB**
  * Language rules needed are automatically loaded
 
-## Fast
+## Fast :zap:
 
 
-## Simple setup
+## Simple setup :rocket:
 
-In the header of your html file:
+Style/theme, in the header of your html file:
 ```html
 <link rel="stylesheet" href="/path/dist/themes/default.css">
 ```
@@ -24,12 +28,12 @@ or
 <code class='shj-lang-[code-language]'>[inline code]</code>
 ```
 
-In your javascript:
+Highlight, in your javascript:
 ```js
 import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
-## Languages supported
+## Languages supported :globe_with_meridians:
 
 | Name       | Class name    | Support                                             |
 | ---------- | ------------- | -------                                             |
@@ -48,39 +52,7 @@ highlightAll();
 | brainfuck  | shj-lang-bf    | increment, operator, print, comment                 |
 | typescript | shj-lang-ts    | js syntax, ts keyword, types                        |
 
-## Themes
-
-A modern theme by default
-
-| Name                |
-| ------------------- |
-| default             |
-| github-dark         |
-| github-light        |
-| github-dim          |
-| atom-dark           |
-| visual-studio-dark  |
-
-## Create new theme/styles
-
-In your css file you can import the default styling,
-then useful things to change can be:
-```css
-/* token style */
-.shj-syn-[token-name] {color...}
-/* line numbering style */
-.shj-numbers {color...}
-/* inline mode style */
-code[class*="shj-lang-"] {...}
-/* multiline mode style */
-[class*="shj-lang-"]:not(code) {...}
-/* both */
-[class*="shj-lang-"] {default color, background...}
-/* header with language name */
-[class*="shj-lang-"]:not(code):before {...}
-```
-
-## Tokens
+### Tokens
 
 | Name       | Description/Usage            |
 | ---------- | ---------------------------- |
@@ -99,7 +71,7 @@ code[class*="shj-lang-"] {...}
 | oper       | Operators                    |
 | str        | String                       |
 
-## Create new languages
+### Create new languages
 
 To create a new language rules:
 
@@ -138,3 +110,39 @@ export default [
 //default color
 export let type = "oper";
 ```
+
+## Themes :sparkles:
+
+A modern theme by default
+
+| Name                |
+| ------------------- |
+| default             |
+| github-dark         |
+| github-light        |
+| github-dim          |
+| atom-dark           |
+| visual-studio-dark  |
+
+### Create new theme/styles
+
+In your css file you can import the default styling,
+then useful things to change can be:
+```css
+/* token style */
+.shj-syn-[token-name] {color...}
+/* line numbering style */
+.shj-numbers {color...}
+/* inline mode style */
+code[class*="shj-lang-"] {...}
+/* multiline mode style */
+[class*="shj-lang-"]:not(code) {...}
+/* both */
+[class*="shj-lang-"] {default color, background...}
+/* header with language name */
+[class*="shj-lang-"]:not(code):before {...}
+```
+
+## License :page_with_curl:
+
+Shj is released under the Creative Commons License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
