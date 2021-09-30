@@ -4,17 +4,17 @@ Light, fast, and easy to use syntax highlighter
 
 ![](https://github.com/matubu/shj/blob/main/assets/screenshot.png)
 
-## Light :feather:
+## Light 🪶
 
  * The core is about **2kB** (gzipped & not minified)
  * Languages definition are from **a few bytes** to **2kB**
  * Themes are about **1kB**
  * Language rules needed are automatically loaded
 
-## Fast :zap:
+## Fast ⚡
 
 
-## Simple setup :rocket:
+## Simple setup 🚀
 
 Style/theme, in the header of your html file:
 ```html
@@ -33,7 +33,7 @@ Highlight, in your javascript:
 import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
-## Languages supported :globe_with_meridians:
+## Languages supported 🌐
 
 | Name       | Class name    | Support                                             |
 | ---------- | ------------- | -------                                             |
@@ -111,7 +111,7 @@ export default [
 export let type = "oper";
 ```
 
-## Themes :sparkles:
+## Themes ✨
 
 A modern theme by default
 
@@ -143,6 +143,6 @@ code[class*="shj-lang-"] {...}
 [class*="shj-lang-"]:not(code):before {...}
 ```
 
-## License :page_with_curl:
+## License 📃
 
 Shj is released under the Creative Commons License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
