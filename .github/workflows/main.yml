@@ -31,9 +31,9 @@ jobs:
 
       - name: Auto Minify
         run: |
-          chmod +x "${GITHUB_WORKSPACE}/.github/workflow/minify.sh"
+          chmod +x "${GITHUB_WORKSPACE}/.github/workflows/minify.sh"
 
-          "${GITHUB_WORKSPACE}/.github/workflow/minify.sh"
+          "${GITHUB_WORKSPACE}/.github/workflows/minify.sh"
 
       - name: Auto committing minified files
         uses: stefanzweifel/git-auto-commit-action@v4
