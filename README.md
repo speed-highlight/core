@@ -16,7 +16,9 @@ Light, fast, and easy to use syntax highlighter
 
 ## Simple setup 🚀
 
-Style/theme, in the header of your html file:
+### Web
+
+Style/theme (in the header of your html file):
 ```html
 <link rel="stylesheet" href="/path/dist/themes/default.css">
 ```
@@ -28,11 +30,19 @@ or
 <code class='shj-lang-[code-language]'>[inline code]</code>
 ```
 
-Highlight, in your javascript:
+Highlight the code (in your javascript):
 ```js
 import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
+
+### Deno
+
+import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/deno.js';
+
+await setTheme('default');
+printHighlight('code', 'js', false);
+
 ## Languages supported 🌐
 
 | Name       | Class name    | Support                                             |
