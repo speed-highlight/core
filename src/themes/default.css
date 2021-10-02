@@ -6,23 +6,23 @@
 	color: #112;
 	box-shadow: 0 0 5px #0001;
 	text-shadow: none;
-	font-weight: normal;
 	font-size: 14px;
+	font-weight: normal;
 	line-height: 19px;
 	font-family: Consolas, "Courier New", Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
 code[class*="shj-lang-"] {
-	border-radius: 5px;
-	display: inline-block;
 	margin: 0;
-	padding: 2px 5px
+	padding: 2px 5px;
+	display: inline-block;
+	border-radius: 5px
 }
 [class*="shj-lang-"]:not(code):before {
 	content: attr(data-lang);
 	color: #58f;
-	background: #58f3;
+	height: 32px;
 	display: block;
 	border-radius: 5px;
 	padding: 2px 12px;
@@ -37,18 +37,37 @@ code[class*="shj-lang-"] {
 	display: flex;
 	overflow: auto
 }
-[class*="shj-lang-"] > div :last-child {white-space: pre}
+[class*="shj-lang-"] > div :last-child {
+	flex: 1;
+	outline: none;
+	white-space: pre
+}
 .shj-numbers {counter-reset: line}
 .shj-numbers div {padding-right: 5px}
 .shj-numbers div::before {
+	color: #999;
 	display: block;
 	content: counter(line);
-	counter-increment: line;
+	opacity: .5;
 	text-align: right;
 	margin-right: 5px;
-	opacity: .5;
-	color: #999
+	counter-increment: line
 }
+
+.shj-minimap-word {
+	width: calc(var(--char) * 8px);
+	height: 10px;
+	opacity: .6;
+	display: inline-block;
+	background: currentColor;
+	border-radius: 1px
+}
+.shj-minimap-space {
+	width: 8px;
+	height: 10px;
+	display: inline-block
+}
+
 .shj-syn-cmnt {font-style: italic}
 
 .shj-syn-err,

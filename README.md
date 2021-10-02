@@ -4,7 +4,7 @@ Light, fast, and easy to use syntax highlighter
 
 ![](https://github.com/matubu/shj/blob/main/assets/screenshot.png)
 
-## Light 🪶
+## Light 📦
 
  * The core is about **2kB** (gzipped & not minified)
  * Languages definition are from **a few bytes** to **2kB**
@@ -145,4 +145,4 @@ code[class*="shj-lang-"] {...}
 
 ## License 📃
 
-Shj is released under the Creative Commons License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
+Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.

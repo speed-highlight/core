@@ -27,7 +27,7 @@ export default [
     expand: "num",
   },
   {
-    match: /\b(NaN|null|undefined|[A-Z_]+)\b/g,
+    match: /\b(NaN|null|undefined|[A-Z][A-Z_]*)\b/g,
     type: "num",
   },
   {
