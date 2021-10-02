@@ -1,0 +1,1 @@
+import{tokenize}from"./index.js";let theme={};const highlightText=async(t,e)=>{let i="";return await tokenize(t,e,(t,e)=>i+=e?`${theme[e]??""}${t}\x1b[0m`:t),i},printHighlight=async(...t)=>console.log(await highlightText(...t)),setTheme=async t=>theme=(await import(`./themes/${t}.js`)).default;export{highlightText,printHighlight,setTheme};
