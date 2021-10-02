@@ -22,6 +22,9 @@ exec_minify_cmd () {
 	file=$1
 	out=$2
 
+	# create output directories if they don't exist
+	mkdir -p $(dirname $out)
+
 	if [[ $file == *.js ]]; then
 		npx uglifyjs $file --compress --mangle --output $out
 	elif [[ $file == *.css ]]; then
@@ -47,9 +50,6 @@ minify_file () {
 }
 
 cd /github/workspace
-
-# create output directories if they don't exist
-mkdir -p $out_dir
 
 file_set=$(find_files)
 
