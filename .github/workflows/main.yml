@@ -31,6 +31,8 @@ jobs:
 
       - name: Auto Minify
         run: |
+          npm install --only=dev
+
           chmod +x "${GITHUB_WORKSPACE}/.github/workflows/minify.sh"
 
           "${GITHUB_WORKSPACE}/.github/workflows/minify.sh"

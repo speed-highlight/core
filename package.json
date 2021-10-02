@@ -1,0 +1,36 @@
+{
+  "name": "shj",
+  "version": "1.0.0",
+  "description": "🌈 Light, fast, and easy to use syntax highlighter",
+  "main": "src/index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matubu/speed-highlight-js.git"
+  },
+  "keywords": [
+    "javascript",
+    "syntax-highlighting",
+    "fast",
+    "js",
+    "simple",
+    "regex",
+    "highlighting",
+    "small"
+  ],
+  "author": "matubu",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/matubu/speed-highlight-js/issues"
+  },
+  "homepage": "https://github.com/matubu/speed-highlight-js#readme",
+  "devDependencies": {
+    "clean-css-cli": "^5.4.1",
+    "uglify-js": "^3.14.2"
+  }
+}

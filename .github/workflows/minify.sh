@@ -5,10 +5,6 @@ INPUT_DIRECTORY=src
 INPUT_OUTPUT=dist
 INPUT_OVERWRITE=true
 
-
-npm install uglify-js
-npm install clean-css-cli
-
 find_files () {
 	: '
 	find all js and css files in_dir

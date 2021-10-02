@@ -145,4 +145,4 @@ code[class*="shj-lang-"] {...}
 
 ## License 📃
 
-Shj is released under the Creative Commons License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
+Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
