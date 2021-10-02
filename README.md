@@ -38,10 +38,12 @@ highlightAll();
 
 ### Deno
 
+```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/deno.js';
 
 await setTheme('default');
 printHighlight('code', 'js', false);
+```
 
 ## Languages supported 🌐
 
