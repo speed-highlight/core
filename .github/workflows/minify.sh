@@ -1,8 +1,8 @@
 #!/bin/bash
 # Original code from https://github.com/nizarmah/auto-minify/blob/master/entrypoint.sh
 
-in_dir=src
-out_dir=dist
+in_dir=./src
+out_dir=./dist
 
 find_files () {
 	# find all js and css files in_dir
