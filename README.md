@@ -6,8 +6,8 @@ Light, fast, and easy to use syntax highlighter
 
 ## Light 📦
 
- * The core is about **2kB** (gzipped & not minified)
- * Languages definition are from **a few bytes** to **2kB**
+ * The core is about **1kB** (gzipped & minified)
+ * Languages definition are from **a few bytes** to **1kB**
  * Themes are about **1kB**
  * Language rules needed are automatically loaded
 
