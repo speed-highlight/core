@@ -1,1 +1,1 @@
-const black_="[30m",red_="[31m",green_="[32m",gray_="[90m",yellow_="[33m",blue_="[34m",magenta_="[35m",cyan_="[36m",white_="[37m";export default{deleted:red_,var:red_,err:red_,kwd:red_,num:yellow_,class:yellow_,cmnt:gray_,insert:green_,str:green_,str:green_,bool:cyan_,type:blue_,oper:blue_,section:magenta_,func:magenta_};
+const m="[30m",e="[31m",t="[32m",r="[90m",s="[33m",n="[34m",o="[35m",c="[36m",d="[37m";export default{deleted:e,var:e,err:e,kwd:e,num:s,class:s,cmnt:r,insert:t,str:t,str:t,bool:c,type:n,oper:n,section:o,func:o};
