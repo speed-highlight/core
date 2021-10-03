@@ -1,1 +1,1 @@
-export default{t:{match:/(\.e?)?\d(e-|[\d.oxa-fA-F_])*/g,type:"num"},m:{match:/(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,type:"str"},p:{match:/"((?!")[^\r\n\\]|\\[^])*"?/g,type:"str"}};
+export default{num:{match:/(\.e?)?\d(e-|[\d.oxa-fA-F_])*/g,type:"num"},str:{match:/(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,type:"str"},strDouble:{match:/"((?!")[^\r\n\\]|\\[^])*"?/g,type:"str"}};
