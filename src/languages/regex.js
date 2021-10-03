@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /^(?!\/).*/gm,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		match: /\[((?!\])[^\\]|\\.)*\]/g,
@@ -16,4 +16,4 @@ export default [
 		type: 'var'
 	}
 ];
-export let type = "oper";
+export let type = 'oper';

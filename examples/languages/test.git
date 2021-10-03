@@ -3,7 +3,7 @@ commit 526
 --- before
 +++ after
 @@ -1 +1,2 @@
-#comment
+# TODO comment
 -hello
 +test
 'string'

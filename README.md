@@ -47,22 +47,29 @@ printHighlight('code', 'js', false);
 
 ## Languages supported 🌐
 
-| Name       | Class name    | Support                                             |
-| ---------- | ------------- | -------                                             |
-| javascipt  | shj-lang-js    | basic syntax, regex, jsdoc, json, template literals |
-| regex      | shj-lang-regex | count, set, ...                                     |
-| sql        | shj-lang-sql   | number, string, function, ...                       |
+| Name       | Class name     | Support                                             |
+| ---------- | -------------- | --------------------------------------------------- |
+| bash       | shj-lang-bash  |                                                     |
+| brainfuck  | shj-lang-bf    | increment, operator, print, comment                 |
+| css        | shj-lang-css   | comment, str, selector, units, function, ...        |
 | csv        | shj-lang-csv   | punctuation, ...                                    |
 | git        | shj-lang-git   | comment, insert, deleted, string, ...               |
-| plain      | shj-lang-plain |                                                     |
-| toml       | shj-lang-toml  | comment, table, string, bool, variable              |
-| yaml       | shj-lang-yaml  | comment, numbers, variable, string, bool            |
 | http       | shj-lang-http  | keywork, string, punctuation, variable, version     |
-| log        | shj-lang-log   | number, string, comment, errors                     |
+| ini        | shj-lang-ini   |                                                     |
+| javascipt  | shj-lang-js    | basic syntax, regex, jsdoc, json, template literals |
+| jsdoc      | shj-lang-jsdoc |                                                     |
 | json       | shj-lang-json  | string, number, bool, ...                           |
-| css        | shj-lang-css   | comment, str, selector, units, function, ...        |
-| brainfuck  | shj-lang-bf    | increment, operator, print, comment                 |
+| log        | shj-lang-log   | number, string, comment, errors                     |
+| makefile   | shj-lang-make  |                                                     |
+| markdown   | shj-lang-md    |                                                     |
+| plain      | shj-lang-plain |                                                     |
+| regex      | shj-lang-regex | count, set, ...                                     |
+| sql        | shj-lang-sql   | number, string, function, ...                       |
+| todo       | shj-lang-todo  |                                                     |
+| toml       | shj-lang-toml  | comment, table, string, bool, variable              |
 | typescript | shj-lang-ts    | js syntax, ts keyword, types                        |
+| uri        | shj-lang-uri   |                                                     |
+| yaml       | shj-lang-yaml  | comment, numbers, variable, string, bool            |
 
 ### Tokens
 

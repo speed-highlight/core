@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /^#.*/gm,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		match: /^[-–].*/gm,

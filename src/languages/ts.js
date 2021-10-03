@@ -1,4 +1,4 @@
-import js from './js.js'
+import js_ from './js.js'
 
 export default [
 	{
@@ -9,5 +9,5 @@ export default [
 		match: /\b(type|namespace|typedef|interface|public|private|protected|implements|declare|abstract|readonly)\b/g,
 		type: 'kwd'
 	},
-	...js
+	...js_
 ]

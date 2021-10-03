@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /[^\[\->+.<\]\s].*/g,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		match: /\.+/g,

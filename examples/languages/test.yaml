@@ -3,7 +3,7 @@
 - name: Mary Smith
 	age: !!str 27
 - [name, age]: [Rae Smith, 4]   # sequences as kwds are supported
---- # People, by gender
+--- # TODO People, by gender
 men: ["John Smith", 'Bill Jones', Yes]
 data: >
 	Wrapped text

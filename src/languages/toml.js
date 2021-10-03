@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		match: /("""|''')((?!\1)[^]|\\[^])*\1?/g,
@@ -11,7 +11,7 @@ export default [
 		expand: 'str'
 	},
 	{
-		match: /^\[.+\]$/gm,
+		match: /^\[.+\]\s*$/gm,
 		type: 'section'
 	},
 	{

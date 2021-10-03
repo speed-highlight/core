@@ -1,24 +1,24 @@
 export default [
   {
     match: /^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/gm,
-    type: "kwd",
+    type: 'kwd',
   },
   {
     match: /\bHTTP\/[\d.]+\b/g,
-    type: "kwd",
+    type: 'kwd',
   },
   {
-    expand: "str",
+    expand: 'str',
   },
   {
-    expand: "num",
+    expand: 'num',
   },
   {
     match: /[,;:=]/g,
-    type: "oper",
+    type: 'oper',
   },
   {
     match: /[a-zA-Z][\w-]*(?=:)/g,
-    type: "var",
+    type: 'var',
   },
 ];

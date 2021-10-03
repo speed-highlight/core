@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /\/\*((?!\*\/)[^])*(\*\/)?/g,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		expand: 'str'

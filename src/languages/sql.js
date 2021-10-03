@@ -1,8 +1,7 @@
 export default [
-	//TODO variables ?
 	{
 		match: /--.*\n?|\/\*((?!\*\/)[^])*(\*\/)?/g,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		expand: 'str'
@@ -27,4 +26,8 @@ export default [
 		match: /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|IN|ILIKE|IS|LIKE|NOT|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/g,
 		type: 'oper'
 	},
+	{
+		match: /@\S+/g,
+		type: 'var'
+	}
 ]

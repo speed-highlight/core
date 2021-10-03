@@ -26,7 +26,7 @@ exec_minify_cmd () {
 	mkdir -p $(dirname $out)
 
 	if [[ $file == *.js ]]; then
-		npx uglifyjs $file --compress --mangle --output $out
+		npx uglifyjs $file --compress --mangle --mangle-props --output $out
 	elif [[ $file == *.css ]]; then
 		npx cleancss -o $out $file
 	fi

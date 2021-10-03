@@ -6,11 +6,11 @@ export default [
           j,
           f = _ => {
             while (++i < str.length - 2)
-              if (str[i] == "{") f();
-              else if (str[i] == "}") return;
+              if (str[i] == '{') f();
+              else if (str[i] == '}') return;
           };
         for (; i < str.length; i++)
-          if (str[i - 1] != "\\" && str[i] == "$" && str[i + 1] == "{") {
+          if (str[i - 1] != '\\' && str[i] == '$' && str[i + 1] == '{') {
             j = i++;
             f(i);
             this.lastIndex = i + 1;
@@ -22,7 +22,7 @@ export default [
     sub: [
       {
         match: /^\${|}$/g,
-        type: "kwd",
+        type: 'kwd',
       },
       {
         match: /(?!^\$|{)[^]+(?=}$)/g,

@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmnt'
+		sub: 'todo'
 	},
 	{
 		expand: 'str'
@@ -19,7 +19,7 @@ export default [
 		type: 'bool'
 	},
 	{
-		match: /[+-:]/g,
+		match: /[+:-]/g,
 		type: 'oper'
 	},
 	{
