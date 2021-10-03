@@ -2,14 +2,14 @@
  * Deno adaptation
 */
 
-import { tokenize_ } from './index.js';
+import { tokenize } from './index.js';
 
 let theme_ = {};
 
 export const highlightText = async (src_, lang_) => {
 	let res_ = '';
 
-	await tokenize_(src_, lang_, (str_, token_) => res_ += token_ ? `${theme_[token_] ?? ''}${str_}\x1b[0m` : str_);
+	await tokenize(src_, lang_, (str_, token_) => res_ += token_ ? `${theme_[token_] ?? ''}${str_}\x1b[0m` : str_);
 
 	return res_;
 };
