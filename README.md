@@ -2,7 +2,7 @@
 
 Light, fast, and easy to use syntax highlighter
 
-![](https://github.com/matubu/shj/blob/main/assets/screenshot.png)
+![](https://github.com/matubu/speed_highlight_js/blob/main/assets/screenshot.png)
 
 ## Light 📦
 
