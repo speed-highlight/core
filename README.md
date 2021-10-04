@@ -37,7 +37,7 @@ highlightAll();
 
 ### Deno
 
-[Deno module](https://deno.land/x/speed_highlight_js)
+Use the [Deno module](https://deno.land/x/speed_highlight_js)
 
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/deno.js';
@@ -85,6 +85,10 @@ A modern theme by default
 | atom-dark           |
 | visual-studio-dark  |
 
+## Wiki 👀
+
+Further in-depth documentation for the API and other topics is in our [Wiki](https://github.com/matubu/speed_highlight_js/wiki)
+
 ## License 📃
 
-Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/matubu/shj/blob/main/LICENSE) file for details.
+Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/matubu/speed_highlight_js/blob/main/LICENSE) file for details.
