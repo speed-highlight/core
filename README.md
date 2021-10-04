@@ -1,6 +1,6 @@
 # Speed Highlight JS
 
-Light, fast, and easy to use syntax highlighter
+🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter 
 
 ![](https://github.com/matubu/speed_highlight_js/blob/main/assets/screenshot.png)
 
