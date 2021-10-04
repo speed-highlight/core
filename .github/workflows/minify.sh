@@ -1,16 +1,17 @@
 #!/bin/bash
 # Original code from https://github.com/nizarmah/auto-minify/blob/master/entrypoint.sh
 
-in_dir=./src
-out_dir=./dist
+in_dir=src
+out_dir=dist
 
 find_files () {
 	# find all changed js and css files in in_dir
 
-	diff=$(git diff --name-only HEAD^ HEAD)
+	diff=$(git diff --name-only HEAD~1..HEAD)
+
 	for file in $diff; do
-		if [ [ $file == src/*.js ] || [ $file == src/*.css ] ]; then
-			echo $file
+		if [[ $file == $in_dir/*js ]] || [[ $file == $in_dir/*css ]]; then
+			echo "file: $file"
 		fi
 	done
 }
@@ -47,10 +48,8 @@ minify_file () {
 	exec_minify_cmd $file $out
 }
 
-file_set=$(find_files)
-
 set -e
 
-for file in $file_set; do
+for file in $(find_files); do
 	minify_file $file
 done

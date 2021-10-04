@@ -61,8 +61,10 @@ printHighlight('code', 'js', false);
 | jsdoc      | shj-lang-jsdoc |                                                     |
 | json       | shj-lang-json  | string, number, bool, ...                           |
 | log        | shj-lang-log   | number, string, comment, errors                     |
+| lua        | shj-lang-lua   |                                                     |
 | makefile   | shj-lang-make  |                                                     |
 | markdown   | shj-lang-md    |                                                     |
+| perl       | shj-lang-pl    |                                                     |
 | plain      | shj-lang-plain |                                                     |
 | regex      | shj-lang-regex | count, set, ...                                     |
 | sql        | shj-lang-sql   | number, string, function, ...                       |
