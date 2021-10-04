@@ -72,7 +72,7 @@ printHighlight('code', 'js', false);
 | uri        | shj-lang-uri   |                                                     |
 | yaml       | shj-lang-yaml  | comment, numbers, variable, string, bool            |
 
-## Themes ✨
+## Themes 🌈
 
 A modern theme by default
 
