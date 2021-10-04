@@ -1,6 +1,6 @@
 ---
 name: Language request
-about: Suggest a new language for this project
+about: Suggest a new language 🌐 for this project
 title: "[LANGUAGE]"
 labels: new language
 assignees: ''
