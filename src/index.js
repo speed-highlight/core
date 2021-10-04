@@ -103,9 +103,9 @@ export async function highlightText(src_, lang_, multiline_ = true) {
  * @param {Boolean} [multiline_] inline mode by default if not code element
  */
 export async function highlightElement(elm_, lang_ = elm_.className.match(/shj-lang-([\w-]+)/)?.[1], multiline_ = elm_.tagName != 'CODE') {
-  elm_.dataset.lang = lang_;
-  elm_.classList.add('shj-lang-' + lang_);
-  elm_.innerHTML = await highlightText(elm_.textContent, lang_, multiline_);
+	elm_.dataset.lang = lang_;
+	elm_.classList.add('shj-lang-' + lang_);
+	elm_.innerHTML = await highlightText(elm_.textContent, lang_, multiline_);
 }
 
 /**
@@ -119,6 +119,6 @@ export async function highlightElement(elm_, lang_ = elm_.className.match(/shj-l
  * ```
  */
 export let highlightAll = async () =>
-  document
-    .querySelectorAll('[class*="shj-lang-"]')
-    .forEach(elm_ => highlightElement(elm_));
+	document
+		.querySelectorAll('[class*="shj-lang-"]')
+		.forEach(elm_ => highlightElement(elm_));

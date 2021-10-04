@@ -14,5 +14,5 @@ export default [
 		type: 'var'
 	},
 	...todo_
-]
+];
 export let type = 'cmnt';

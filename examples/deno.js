@@ -1,4 +1,4 @@
-import { setTheme, printHighlight } from '../src/deno.js';
+import { setTheme, printHighlight } from '../src/term.js';
 import { fromFileUrl } from 'https://deno.land/std/path/mod.ts';
 
 const lang = Deno.args[0] ?? 'js';

@@ -15,5 +15,5 @@ export default [
 		match: /\bQUESTION\b/g,
 		type: 'oper'
 	}
-]
+];
 export let type = 'cmnt';

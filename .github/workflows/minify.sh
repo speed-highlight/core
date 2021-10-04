@@ -5,19 +5,21 @@ in_dir=./src
 out_dir=./dist
 
 find_files () {
-	# find all js and css files in_dir
-	# 	- `find` returns the relative path, which is needed
-	# 	- `*` acts as a recursive operator
+	# find all changed js and css files in in_dir
 
-	find $in_dir -name "*.js" -o -name "*.css" -type f
+	diff=$(git diff --name-only HEAD^ HEAD)
+	for file in $diff; do
+		if [ [ $file == src/*.js ] || [ $file == src/*.css ] ]; then
+			echo $file
+		fi
+	done
 }
 
 exec_minify_cmd () {
 	# arguments:
 	# 	1- input file
 	# 	2- output file
-	# returns the command needed to minify the file
-	# depending on what type the file is (its extension)
+	# minify the file depending on the file extension
 
 	file=$1
 	out=$2
@@ -35,11 +37,7 @@ exec_minify_cmd () {
 minify_file () {
 	# arguments:
 	# 	1- input file
-	# checks the file type (whether css or js)
-	# then creates the output file of that file
-	# then minifies the file with a specific command
-	# then checks if the command returned an error
-	# if it did, program exits with that error code
+	# minify a file from in_dir/... to out_dir/...
 
 	file=$1
 	out=${file/${in_dir}/${out_dir}}
@@ -48,8 +46,6 @@ minify_file () {
 
 	exec_minify_cmd $file $out
 }
-
-cd /github/workspace
 
 file_set=$(find_files)
 

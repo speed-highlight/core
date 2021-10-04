@@ -40,7 +40,7 @@ highlightAll();
 Use the [Deno module](https://deno.land/x/speed_highlight_js)
 
 ```js
-import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/deno.js';
+import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
 
 await setTheme('default');
 printHighlight('code', 'js', false);
