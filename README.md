@@ -38,6 +38,8 @@ highlightAll();
 
 ### Deno
 
+[Deno module](https://deno.land/x/speed_highlight_js)
+
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/deno.js';
 
