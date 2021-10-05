@@ -1,20 +1,11 @@
+import diff from './diff.js'
+
 export default [
 	{
 		match: /^#.*/gm,
 		sub: 'todo'
 	},
-	{
-		match: /^[-–].*/gm,
-		type: 'deleted'
-	},
-	{
-		match: /^\+.*/gm,
-		type: 'insert'
-	},
-	{
-		match: /^@@.*@@$/gm,
-		type: 'section'
-	},
+	...diff,
 	{
 		match: /^(\$ )?git(\s.*)?$/gm,
 		type: 'func'

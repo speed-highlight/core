@@ -1,0 +1,27 @@
+0a1,6
+> This is an important
+> notice! It should
+> therefore be located at
+> the beginning of this
+> document!
+>
+11,15d16
+< This paragraph contains
+< text that is outdated.
++ It will be deleted in the
+- near future.
+<
+17c18
+< check this dokument. On
+---
+> check this document. On
+24a26,29
+>
+> This paragraph contains
+> important new additions
+> to this document.
+! to this document.
+
+@@ -1 +1,2 @@
+
+*** pos ***

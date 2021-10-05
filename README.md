@@ -38,9 +38,9 @@ highlightAll();
 #### CDN
 
 ```js
-import ... from 'https://unpkg.com/speed_highlight_js@1.0.0/dist/index.js'
-import ... from 'https://cdnjs.cloudflare.com/ajax/libs/speed_highlight_js/1.0.0/dist/index.js'
-import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js@1.0.0/dist/index.js'
+import ... from 'https://unpkg.com/speed_highlight_js@1.1.0/dist/index.js'
+import ... from 'https://cdnjs.cloudflare.com/ajax/libs/speed_highlight_js/1.1.0/dist/index.js'
+import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js@1.1.0/dist/index.js'
 ```
 
 ### Deno
@@ -73,6 +73,7 @@ setTheme('default')
 | brainfuck  | shj-lang-bf    | increment, operator, print, comment                 |
 | css        | shj-lang-css   | comment, str, selector, units, function, ...        |
 | csv        | shj-lang-csv   | punctuation, ...                                    |
+| diff       | shj-lang-diff  |                                                     |
 | git        | shj-lang-git   | comment, insert, deleted, string, ...               |
 | http       | shj-lang-http  | keywork, string, punctuation, variable, version     |
 | ini        | shj-lang-ini   |                                                     |
@@ -98,14 +99,14 @@ setTheme('default')
 
 A modern theme by default
 
-| Name                | Web | Terminal |
-| ------------------- | --- | -------- |
-| default             | ✅  | ✅      |
-| github-dark         | ✅  | ❌      |
-| github-light        | ✅  | ❌      |
-| github-dim          | ✅  | ❌      |
-| atom-dark           | ✅  | ❌      |
-| visual-studio-dark  | ✅  | ❌      |
+| Name                | Terminal | Web |
+| ------------------- | -------- | --- |
+| default             | ✅      | ✅  |
+| github-dark         | ❌      | ✅  |
+| github-light        | ❌      | ✅  |
+| github-dim          | ❌      | ✅  |
+| atom-dark           | ❌      | ✅  |
+| visual-studio-dark  | ❌      | ✅  |
 
 ## Wiki 👀
 

@@ -1,29 +1,18 @@
 export default [
 	{
-		match: /^#.*/gm,
-		sub: 'todo'
-	},
-	{
-		match: /^[-–].*/gm,
+		match: /^[-<].*/gm,
 		type: 'deleted'
 	},
 	{
-		match: /^\+.*/gm,
+		match: /^[+>].*/gm,
 		type: 'insert'
 	},
 	{
-		match: /^@@.*@@$/gm,
-		type: 'section'
-	},
-	{
-		match: /^(\$ )?git(\s.*)?$/gm,
-		type: 'func'
-	},
-	{
-		match: /^commit \w+$/gm,
+		match: /!.*/gm,
 		type: 'kwd'
 	},
 	{
-		expand: 'str'
+		match: /^@@.*@@$|^\d.*|^([*-+])\1\1.*/gm,
+		type: 'section'
 	}
 ]

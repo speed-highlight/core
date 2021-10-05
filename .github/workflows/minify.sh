@@ -1,5 +1,5 @@
 #!/bin/bash
-# Original code from https://github.com/nizarmah/auto-minify/blob/master/entrypoint.sh
+# borrowed from https://github.com/nizarmah/auto-minify/blob/master/entrypoint.sh
 
 in_dir=./src
 out_dir=./dist
