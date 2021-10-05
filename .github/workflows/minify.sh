@@ -1,38 +1,20 @@
 #!/bin/bash
 # Original code from https://github.com/nizarmah/auto-minify/blob/master/entrypoint.sh
 
-in_dir=src
-out_dir=dist
+in_dir=./src
+out_dir=./dist
+
+# https://esbuild.github.io/getting-started/#download-a-build
+esbuild_system=esbuild-linux-64
+esbuild_version=0.13.3
+esbuild=$esbuild_system-$esbuild_version
+esbuild_bin=./package/bin/esbuild
+esbuild_options="--bundle --minify"
 
 find_files () {
-	# find all changed js and css files in in_dir
+	# find all js and css files in in_dir
 
-	diff=$(git diff --name-only HEAD~1..HEAD)
-
-	for file in $diff; do
-		if [[ $file == $in_dir/*js ]] || [[ $file == $in_dir/*css ]]; then
-			echo "file: $file"
-		fi
-	done
-}
-
-exec_minify_cmd () {
-	# arguments:
-	# 	1- input file
-	# 	2- output file
-	# minify the file depending on the file extension
-
-	file=$1
-	out=$2
-
-	# create output directories if they don't exist
-	mkdir -p $(dirname $out)
-
-	if [[ $file == *.js ]]; then
-		npx uglifyjs $file -c -m toplevel=true --mangle-props regex=/_$/ --output $out
-	elif [[ $file == *.css ]]; then
-		npx cleancss -o $out $file
-	fi
+	find $in_dir \( -name "*.js" -o -name "*.css" \) -type f
 }
 
 minify_file () {
@@ -43,13 +25,30 @@ minify_file () {
 	file=$1
 	out=${file/${in_dir}/${out_dir}}
 
-	echo "Minify : $file -> $out"
+	# create output directories if they don't exist
+	mkdir -p $(dirname $out)
 
-	exec_minify_cmd $file $out
+	$esbuild_bin $file $esbuild_options --format=esm --outfile=$out
+
+	[[ $file == *.css ]] && return
+
+	node=${file/${in_dir}/"${out_dir}/node"}
+
+	mkdir -p $(dirname $node)
+
+	$esbuild_bin $file $esbuild_options --format=cjs --platform=node --outfile=$node
+	sed -i 's/import(/require(/g' $node
 }
+
+[ ! -f $esbuild.tgz ] && curl -O https://registry.npmjs.org/$esbuild_system/-/$esbuild.tgz
+[ ! -f $esbuild_bin ] && tar xf ./$esbuild.tgz
 
 set -e
 
+rm -rf $out_dir
+
 for file in $(find_files); do
-	minify_file $file
+	minify_file $file &
 done
+
+wait

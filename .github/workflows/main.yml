@@ -25,18 +25,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          cache: 'npm'
-
       - name: Auto Minify
         run: |
-          npm install --only=dev
-
-          chmod +x "${GITHUB_WORKSPACE}/.github/workflows/minify.sh"
-
           cd ${GITHUB_WORKSPACE}
+
+          chmod +x ./.github/workflows/minify.sh
 
           ./.github/workflows/minify.sh
 

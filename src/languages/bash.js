@@ -1,4 +1,4 @@
-let variable_ = {
+let variable = {
 	match: /\$\w+|\${[^}]*}|\$\([^)]*\)/g,
 	type: 'var'
 };
@@ -14,7 +14,7 @@ export default [
 	},
 	{
 		match: /(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,
-		sub: [ variable_ ],
+		sub: [ variable ],
 		type: 'str'
 	},
 	{
@@ -40,5 +40,5 @@ export default [
 		match: /\w+(?=\s*=)/g,
 		type: 'var'
 	},
-	variable_
+	variable
 ]

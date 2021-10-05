@@ -1,1 +1,0 @@
-import{tokenize as s}from"./index.js";let n={};const a=async(t,a)=>{let e="";return await s(t,a,(t,a)=>e+=a?`${n[a]??""}${t}\x1b[0m`:t),e},t=async(...t)=>console.log(await a(...t)),e=async t=>n=(await import(`./themes/${t}.js`)).default;export{a as highlightText,t as printHighlight,e as setTheme};

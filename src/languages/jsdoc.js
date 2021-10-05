@@ -1,4 +1,4 @@
-import todo_ from './todo.js';
+import todo from './todo.js';
 
 export default [
 	{
@@ -13,6 +13,6 @@ export default [
 		match: /\[[\w\s="']+\]/g,
 		type: 'var'
 	},
-	...todo_
+	...todo
 ];
 export let type = 'cmnt';

@@ -4,16 +4,16 @@
 
 import { tokenize } from './index.js';
 
-let theme_ = {};
+let theme = {};
 
-export const highlightText = async (src_, lang_) => {
-	let res_ = '';
+export const highlightText = async (src, lang) => {
+	let res = '';
 
-	await tokenize(src_, lang_, (str_, token_) => res_ += token_ ? `${theme_[token_] ?? ''}${str_}\x1b[0m` : str_);
+	await tokenize(src, lang, (str, token) => res += token ? `${theme[token] ?? ''}${str}\x1b[0m` : str);
 
-	return res_;
+	return res;
 };
 
-export const printHighlight = async (...arg_) => console.log(await highlightText(...arg_));
+export const printHighlight = async (...arg) => console.log(await highlightText(...arg));
 
-export const setTheme = async name_ => theme_ = (await import(`./themes/${name_}.js`)).default;
+export const setTheme = async name => theme = (await import(`./themes/${name}.js`)).default;

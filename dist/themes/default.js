@@ -1,1 +1,0 @@
-const m="[30m",e="[31m",t="[32m",r="[90m",s="[33m",n="[34m",o="[35m",c="[36m",d="[37m";export default{deleted:e,var:e,err:e,kwd:e,num:s,class:s,cmnt:r,insert:t,str:t,str:t,bool:c,type:n,oper:n,section:o,func:o};
