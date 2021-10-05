@@ -1,0 +1,1 @@
+var r=Object.defineProperty;var c=e=>r(e,"__esModule",{value:!0});var o=(e,m)=>{c(e);for(var t in m)r(e,t,{get:m[t],enumerable:!0})};o(exports,{default:()=>u});var b="[31m",x="[32m",s="[90m",n="[33m",a="[34m",l="[35m",d="[36m";var u={deleted:b,var:b,err:b,kwd:b,num:n,class:n,cmnt:s,insert:x,str:x,bool:d,type:a,oper:a,section:l,func:l};0&&(module.exports={});

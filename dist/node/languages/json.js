@@ -1,0 +1,1 @@
+var p=Object.defineProperty;var b=t=>p(t,"__esModule",{value:!0});var l=(t,a)=>{b(t);for(var e in a)p(t,e,{get:a[e],enumerable:!0})};l(exports,{default:()=>m});var m=[{match:/("|')?[a-zA-Z]\w*\1(?=\s*:)/g,type:"var"},{expand:"str"},{expand:"num"},{match:/\bnull\b/g,type:"num"},{match:/\b(true|false)\b/g,type:"bool"}];0&&(module.exports={});
