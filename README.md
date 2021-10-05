@@ -79,6 +79,7 @@ setTheme('default')
 | csv        | shj-lang-csv   | punctuation, ...                                    |
 | diff       | shj-lang-diff  |                                                     |
 | git        | shj-lang-git   | comment, insert, deleted, string, ...               |
+| html       | shj-lang-html  |                                                     |
 | http       | shj-lang-http  | keywork, string, punctuation, variable, version     |
 | ini        | shj-lang-ini   |                                                     |
 | javascipt  | shj-lang-js    | basic syntax, regex, jsdoc, json, template literals |

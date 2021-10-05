@@ -5,6 +5,7 @@ export const languages = [
 	'csv',
 	'diff',
 	'git',
+	'html',
 	'http',
 	'ini',
 	'js',
