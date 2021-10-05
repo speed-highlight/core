@@ -11,4 +11,4 @@ const code = await Deno.readTextFile(path);
 
 await setTheme('default');
 
-printHighlight(code, lang, false);
+printHighlight(code, lang);

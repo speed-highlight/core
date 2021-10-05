@@ -35,6 +35,14 @@ import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
 
+#### CDN
+
+```js
+import ... from 'https://unpkg.com/speed_highlight_js@1.0.0/dist/index.js'
+import ... from 'https://cdnjs.cloudflare.com/ajax/libs/speed_highlight_js/1.0.0/dist/index.js'
+import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js@1.0.0/dist/index.js'
+```
+
 ### Deno
 
 Use the [Deno module](https://deno.land/x/speed_highlight_js)
@@ -43,7 +51,18 @@ Use the [Deno module](https://deno.land/x/speed_highlight_js)
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
 
 await setTheme('default');
-printHighlight('code', 'js', false);
+printHighlight('console.log("hello")', 'js');
+```
+
+## Node
+
+Use the [npm package](https://www.npmjs.com/package/speed_highlight_js)
+
+```js
+const { setTheme, printHighlight } = require('speed_highlight_js/dist/node/term.js');
+
+setTheme('default')
+  .then(() => printHighlight('console.log("hello")', 'js'));
 ```
 
 ## Languages supported 🌐

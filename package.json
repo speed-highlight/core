@@ -1,0 +1,32 @@
+{
+  "name": "speed_highlight_js",
+  "version": "1.0.0",
+  "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter",
+  "main": "dist/node/index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matubu/speed_highlight_js.git"
+  },
+  "keywords": [
+    "javascript",
+    "syntax-highlighting",
+    "fast",
+    "js",
+    "simple",
+    "regex",
+    "highlighting",
+    "small"
+  ],
+  "author": "matubu",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/matubu/speed_highlight_js/issues"
+  },
+  "homepage": "https://github.com/matubu/speed_highlight_js#readme"
+}
