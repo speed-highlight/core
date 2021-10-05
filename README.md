@@ -2,7 +2,7 @@
 
 Light, fast, and easy to use, dependencies free javascript syntax highlighter, [try it out here](https://matubu.github.io/speed_highlight_js/examples/)
 
-![](https://github.com/matubu/speed_highlight_js/blob/main/assets/screenshot.png)
+![](./assets/screenshot.png)
 
 ## Light 📦
 
