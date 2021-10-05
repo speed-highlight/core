@@ -20,11 +20,6 @@ jobs:
           node-version: '14'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Changing npm version
-        run: |
-          echo "Setting npm to version ${{ github.event.release.tag_name }}"
-          npm version ${{ github.event.release.tag_name }}
-
       # Publish to npm
       - run: npm publish
         env:
