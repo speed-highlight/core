@@ -1,1 +1,1 @@
-var t=[{match:/^#.*/gm,sub:"todo"},{match:/^[-–].*/gm,type:"deleted"},{match:/^\+.*/gm,type:"insert"},{match:/^@@.*@@$/gm,type:"section"},{match:/^(\$ )?git(\s.*)?$/gm,type:"func"},{match:/^commit \w+$/gm,type:"kwd"},{expand:"str"}];export{t as default};
+var t=[{match:/^[-<].*/gm,type:"deleted"},{match:/^[+>].*/gm,type:"insert"},{match:/!.*/gm,type:"kwd"},{match:/^@@.*@@$|^\d.*|^([*-+])\1\1.*/gm,type:"section"}];export{t as default};
