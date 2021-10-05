@@ -1,0 +1,1 @@
+var e="[31m",b="[32m",x="[90m",m="[33m",t="[34m",r="[35m",n="[36m";var a={deleted:e,var:e,err:e,kwd:e,num:m,class:m,cmnt:x,insert:b,str:b,bool:n,type:t,oper:t,section:r,func:r};export{a as default};
