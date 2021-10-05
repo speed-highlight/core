@@ -23,4 +23,6 @@ more than just one line
 class MyClass:
 	def __init__():
  		x = 5
-		x = f"test{x} test\n {numbers}"
+		x = "%1 test" % name
+		x = f"test{x > 5} t est\n {numbers} {{{test}}}"
+		x = F"test{x > 5} test\n {numbers} {{\{test}}}\" test

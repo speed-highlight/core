@@ -85,6 +85,7 @@ setTheme('default')
 | markdown   | shj-lang-md    |                                                     |
 | perl       | shj-lang-pl    |                                                     |
 | plain      | shj-lang-plain |                                                     |
+| python     | shj-lang-py    |                                                     |
 | regex      | shj-lang-regex | count, set, ...                                     |
 | sql        | shj-lang-sql   | number, string, function, ...                       |
 | todo       | shj-lang-todo  |                                                     |
@@ -97,14 +98,14 @@ setTheme('default')
 
 A modern theme by default
 
-| Name                |
-| ------------------- |
-| default             |
-| github-dark         |
-| github-light        |
-| github-dim          |
-| atom-dark           |
-| visual-studio-dark  |
+| Name                | Web | Terminal |
+| ------------------- | --- | -------- |
+| default             | ✅  | ✅      |
+| github-dark         | ✅  | ❌      |
+| github-light        | ✅  | ❌      |
+| github-dim          | ✅  | ❌      |
+| atom-dark           | ✅  | ❌      |
+| visual-studio-dark  | ✅  | ❌      |
 
 ## Wiki 👀
 
