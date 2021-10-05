@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: '14'
           registry-url: 'https://registry.npmjs.org'
+      - run: echo "Publishing version ${{ github.event.release.tag_name }} on npm"
       - run: npm version ${{ github.event.release.tag_name }}
       # Publish to npm
       - run: npm publish

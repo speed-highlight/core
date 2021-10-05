@@ -36,7 +36,7 @@ export const themes = [
 ];
 export const testFiles = [
 	...languages,
-	'inline.bash',
-	'inline.http',
+	'oneline.bash',
+	'oneline.http',
 	'screenshot.js'
 ];
