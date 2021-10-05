@@ -28,7 +28,7 @@ minify_file () {
 	# create output directories if they don't exist
 	mkdir -p $(dirname $out)
 
-	$esbuild_bin $file $esbuild_options --format=esm --outfile=$out
+	$esbuild_bin $file $esbuild_options --format=esm --target=es2019 --outfile=$out
 
 	[[ $file == *.css ]] && return
 
@@ -36,8 +36,7 @@ minify_file () {
 
 	mkdir -p $(dirname $node)
 
-	$esbuild_bin $file $esbuild_options --format=cjs --platform=node --outfile=$node
-	sed -i 's/import(/require(/g' $node
+	$esbuild_bin $file $esbuild_options --format=cjs --platform=node --target=node12 --outfile=$node
 }
 
 [ ! -f $esbuild.tgz ] && curl -O https://registry.npmjs.org/$esbuild_system/-/$esbuild.tgz
