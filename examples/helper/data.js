@@ -25,5 +25,18 @@ export const languages = [
 	'uri',
 	'yaml'
 ];
-export const themes = ['default', 'dark', 'atom-dark', 'github-dark', 'github-dim', 'visual-studio-dark', 'github-light'];
-export const testFiles = [...languages, 'screenshot.js'];
+export const themes = [
+	'default',
+	'dark',
+	'atom-dark',
+	'github-dark',
+	'github-dim',
+	'visual-studio-dark',
+	'github-light'
+];
+export const testFiles = [
+	...languages,
+	'inline.bash',
+	'inline.http',
+	'screenshot.js'
+];

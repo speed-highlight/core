@@ -13,13 +13,13 @@
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
-code[class*="shj-lang-"] {
+.shj-inline {
 	margin: 0;
 	padding: 2px 5px;
 	display: inline-block;
 	border-radius: 5px
 }
-[class*="shj-lang-"]:not(code):before {
+.shj-multiline:before {
 	content: attr(data-lang);
 	color: #58f;
 	height: 32px;
@@ -85,3 +85,13 @@ code[class*="shj-lang-"] {
 .shj-syn-func {color: #84f}
 .shj-syn-deleted,
 .shj-syn-var {color: #f44}
+
+.shj-oneline {
+	padding: 12px 10px
+}
+.shj-lang-http.shj-oneline .shj-syn-kwd {
+	background: #25f;
+	color: #fff;
+	padding: 5px 7px;
+	border-radius: 5px
+}

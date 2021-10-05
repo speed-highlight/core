@@ -58,7 +58,14 @@
 		import { themes, testFiles } from './helper/data.js';
 
 		// the number of time the highlight will be performed to have a more precise timing
-		const repeatCount = 100;
+		const repeatCount = 100,
+			radioTheme = new Radio('theme', themes, document.body),
+			radiotestFiles = new Radio('language', testFiles, document.body),
+			actions = document.createElement('div'),
+			rehighlight = document.createElement('span'),
+			chrono = document.createElement('span'),
+			code = document.createElement('div'),
+			themeElm = document.createElement('link');
 
 		/**
 		 * Update the textContent of an element with an effect
@@ -92,14 +99,6 @@
 					.catch(err => console.log(err))
 				).catch(err => console.log(err));
 		}
-
-		const radioTheme = new Radio('theme', themes, document.body),
-			radiotestFiles = new Radio('language', testFiles, document.body),
-			actions = document.createElement('div'),
-			rehighlight = document.createElement('span'),
-			chrono = document.createElement('span'),
-			code = document.createElement('div'),
-			themeElm = document.createElement('link');
 
 		themeElm.rel = 'stylesheet';
 		themeElm.type = 'text/css';

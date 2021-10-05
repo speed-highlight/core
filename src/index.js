@@ -99,12 +99,14 @@ export async function highlightText(src, lang, multiline = true) {
  * @function highlightElement highlight a element code with a 'pre' parent
  * @param {HTMLElement} elm the code elm
  * @param {String} [lang] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
- * @param {Boolean} [multiline] inline mode by default if not code element
+ * @param {String} [mode] can be set to inline multiline or oneline by default it's auto detected: inline if `code` tag else depends of the number of lines
  */
-export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], multiline = elm.tagName != 'CODE') {
+export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode) {
+	let txt = elm.textContent;
+	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.split('\n').length < 2 ? 'one' : 'multi')}line`;
 	elm.dataset.lang = lang;
-	elm.classList.add('shj-lang-' + lang);
-	elm.innerHTML = await highlightText(elm.textContent, lang, multiline);
+	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-')).join(' ')} shj-lang-${lang} shj-${mode}`;
+	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline');
 }
 
 /**
