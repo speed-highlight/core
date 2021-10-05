@@ -58,6 +58,10 @@ printHighlight('console.log("hello")', 'js');
 
 Use the [npm package](https://www.npmjs.com/package/speed_highlight_js)
 
+```bash
+npm install speed_highlight_js
+```
+
 ```js
 const { setTheme, printHighlight } = require('speed_highlight_js/dist/node/term.js');
 
