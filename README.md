@@ -39,7 +39,6 @@ highlightAll();
 
 ```js
 import ... from 'https://unpkg.com/speed_highlight_js@1.1.0/dist/index.js'
-import ... from 'https://cdnjs.cloudflare.com/ajax/libs/speed_highlight_js/1.1.0/dist/index.js'
 import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js@1.1.0/dist/index.js'
 ```
 
