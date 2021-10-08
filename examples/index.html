@@ -92,7 +92,7 @@
 						code.textContent = txt;
 						let before = performance.now();
 						for (let i = 0; i < repeatCount; i++)
-							await highlightElement(code, language.split('.').at(-1));
+							await highlightElement(code, language.split('.')[1]);
 						let duration = performance.now() - before;
 						updateTextContent(chrono, `${duration.toFixed(3)}ms (total time for ${repeatCount} performance) ${(duration / repeatCount).toFixed(3)}ms (average)`);
 					})
