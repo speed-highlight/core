@@ -6,6 +6,8 @@ git commit || echo "Commit failed"
 set -euo pipefail
 IFS=$'\n\t'
 
+npm install speed_highlight_js
+
 TEST=5
 
 NAME="John"

@@ -24,7 +24,7 @@ help:
 # target: list - List source files
 list:
 	# Won't work. Each command is in separate shell
-	cd src
+	@cd src
 	ls
 
 	# Correct, continuation of the same shell
