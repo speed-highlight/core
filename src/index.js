@@ -83,7 +83,6 @@ export async function tokenize(src, lang, token) {
  * @param {Boolean} [multiline=true] inline mode
  * @returns {String} the highlighted as String text
  */
-// why +100ms
 export async function highlightText(src, lang, multiline = true) {
 	let res = multiline ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '';
 
