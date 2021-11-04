@@ -16,12 +16,16 @@
   "keywords": [
     "javascript",
     "syntax-highlighting",
+	"language",
     "fast",
     "js",
     "simple",
+	"highlighter",
     "regex",
     "highlighting",
-    "small"
+	"highlightjs",
+    "small",
+	"deno"
   ],
   "author": "matubu",
   "license": "CC0-1.0",

@@ -11,6 +11,7 @@ export const languages = [
 	'js',
 	'jsdoc',
 	'json',
+	'leanpub-md',
 	'log',
 	'lua',
 	'make',

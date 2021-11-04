@@ -1,0 +1,20 @@
+// You might see insertions
+leanpub-start-insert
+const webpack = require("webpack");
+leanpub-end-insert
+
+// You might see deletions as well
+leanpub-start-delete
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+leanpub-end-delete
+
+// Or combinations of both
+leanpub-start-delete
+const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
+leanpub-end-delete
+leanpub-start-insert
+const webpack = require("webpack");
+leanpub-end-insert
+
+// If content has been omitted, then ellipsis is used
+...
