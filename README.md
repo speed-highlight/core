@@ -1,6 +1,6 @@
 # Speed Highlight JS
 
-Light, fast, and easy to use, dependencies free javascript syntax highlighter, [try it out here](https://matubu.github.io/speed_highlight_js/examples/)
+Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://matubu.github.io/speed_highlight_js/examples/)
 
 ![](./assets/screenshot.png)
 
@@ -33,6 +33,15 @@ Highlight the code (in your javascript):
 ```js
 import { highlightAll } from '/path/dist/index.js'
 highlightAll();
+```
+
+Auto language detection
+```js
+import { highlightElement } from '../src/index.js';
+import { detectLanguage } from '../src/detect.js';
+
+elm.textContent = code;
+highlightElement(elm, detectLanguage(code));
 ```
 
 #### CDN
@@ -106,12 +115,12 @@ A modern theme by default
 
 | Name                | Terminal | Web |
 | ------------------- | -------- | --- |
-| default             | ✅      | ✅  |
-| github-dark         | ❌      | ✅  |
-| github-light        | ❌      | ✅  |
-| github-dim          | ❌      | ✅  |
-| atom-dark           | ❌      | ✅  |
-| visual-studio-dark  | ❌      | ✅  |
+| default             | ✅       | ✅  |
+| github-dark         | ❌       | ✅  |
+| github-light        | ❌       | ✅  |
+| github-dim          | ❌       | ✅  |
+| atom-dark           | ❌       | ✅  |
+| visual-studio-dark  | ❌       | ✅  |
 
 ## Wiki 👀
 
