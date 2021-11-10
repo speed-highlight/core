@@ -32,6 +32,7 @@ or
 Highlight the code (in your javascript):
 ```js
 import { highlightAll } from '/path/dist/index.js'
+
 highlightAll();
 ```
 
