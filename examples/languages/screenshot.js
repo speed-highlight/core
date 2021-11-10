@@ -5,6 +5,7 @@
  * @param {Number} [size]
  */
 
+//TODO ...
 const size = 10;
 
 // init state with first state

@@ -32,5 +32,6 @@ export default class Radio {
 	}
 	onchange(callback) {
 		this.callback = _ => callback(this.selected);
+		this.selected = 0;
 	}
 }

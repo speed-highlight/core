@@ -21,7 +21,7 @@ export default [
 	},
 	{
 		match: /("""|''')(\\[^]|(?!\1)[^])*\1?/g,
-		type: 'str'
+		type: 'cmnt'
 	},
 	{
 		expand: 'str'

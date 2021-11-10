@@ -104,7 +104,7 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 	let txt = elm.textContent;
 	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.split('\n').length < 2 ? 'one' : 'multi')}line`;
 	elm.dataset.lang = lang;
-	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-')).join(' ')} shj-lang-${lang} shj-${mode}`;
+	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-') || className.startsWith('shj-mode-')).join(' ')} shj-lang-${lang} shj-${mode}`;
 	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline');
 }
 
