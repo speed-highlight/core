@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Auto detect | Speed highlight JS</title>
+	<link rel="stylesheet" href="../src/themes/atom-dark.css">
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<script type="module">
+		import { highlightElement } from '../src/index.js';
+		import { detectLanguage } from '../src/detect.js';
+		import Radio from './helper/radio.js';
+		import { testFiles } from './helper/data.js';
+
+		const code = document.createElement('div');
+
+		function	loadExample(language = 'js') {
+			let path = language.split('.').length === 1 ? `test.${language}` : language;
+			fetch(`./languages/${path}`)
+				.then(res => res.text()
+					.then(async txt => {
+						code.textContent = txt;
+						await highlightElement(code, detectLanguage(txt));
+					})
+					.catch(err => console.log(err))
+				).catch(err => console.log(err));
+		}
+
+		const radioTestFiles = new Radio('language', testFiles, document.body);
+		radioTestFiles.onchange(loadExample);
+		document.body.appendChild(code);
+	</script>
+</body>
+</html>

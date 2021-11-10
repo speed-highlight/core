@@ -45,8 +45,8 @@ export default [
 		match: /[-/*+<>,=!&|^%]+/g,
 		type: 'oper'
 	},
-  {
-    match: /\b[A-Z]\w*\b/g,
-    type: 'class',
-  }
+	{
+		match: /\b[A-Z]\w*\b/g,
+		type: 'class',
+	}
 ]

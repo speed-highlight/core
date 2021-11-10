@@ -26,3 +26,5 @@ class MyClass:
 		x = "%1 test" % name
 		x = f"test{x > 5} t est\n {numbers} {{{test}}}"
 		x = F"test{x > 5} test\n {numbers} {{\{test}}}\" test
+
+x = lambda a : a + 10

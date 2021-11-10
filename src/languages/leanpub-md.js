@@ -1,4 +1,5 @@
 import md from './md.js'
+import { detectLanguage } from '../detect.js'
 
 export default [
 	{
@@ -11,7 +12,7 @@ export default [
 			},
 			{
 				match: /(?!leanpub-start-insert)((?!leanpub-end-insert)[^])*/g,
-				sub: 'js'
+				sub: detectLanguage
 			}
 		]
 	},
@@ -25,7 +26,7 @@ export default [
 			},
 			{
 				match: /(?!leanpub-start-delete)((?!leanpub-end-delete)[^])*/g,
-				sub: 'js'
+				sub: detectLanguage
 			}
 		]
 	},
