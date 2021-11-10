@@ -35,6 +35,15 @@ import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
 
+Auto language detection
+```js
+import { highlightElement } from '../src/index.js';
+import { detectLanguage } from '../src/detect.js';
+
+elm.textContent = code;
+highlightElement(elm, detectLanguage(code));
+```
+
 #### CDN
 
 ```js
@@ -106,12 +115,12 @@ A modern theme by default
 
 | Name                | Terminal | Web |
 | ------------------- | -------- | --- |
-| default             | ✅      | ✅  |
-| github-dark         | ❌      | ✅  |
-| github-light        | ❌      | ✅  |
-| github-dim          | ❌      | ✅  |
-| atom-dark           | ❌      | ✅  |
-| visual-studio-dark  | ❌      | ✅  |
+| default             | ✅       | ✅  |
+| github-dark         | ❌       | ✅  |
+| github-light        | ❌       | ✅  |
+| github-dim          | ❌       | ✅  |
+| atom-dark           | ❌       | ✅  |
+| visual-studio-dark  | ❌       | ✅  |
 
 ## Wiki 👀
 
