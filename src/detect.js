@@ -1,7 +1,7 @@
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
 	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10]],
-	['http', [/^(GET|HEAD|POST|PUT|DELETE|PATCH)\b/g, 250]],
+	['http', [/^(GET|HEAD|POST|PUT|DELETE|PATCH|HTTP)\b/g, 500]],
 	['js', [/\b(console|await|async|function|export|import|this|class|for|let|const|map|join|require)\b/g, 10]],
 	['ts', [/\b(console|await|async|function|export|import|this|class|for|let|const|map|join|require|implements|interface|namespace)\b/g, 10]],
 	['py', [/\b(def|print|class|and|or|lambda)\b/g, 10]],

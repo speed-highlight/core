@@ -11,11 +11,27 @@ Two spaces at the end of a line
 produce a line break.
 
  Text attributes _italic_,
-**bold**, `monospace`. Some implementations may use *single-asterisks* for italic text.
+**bold**, `monospace`. Some `console.log(lst.filter(e => e == true))` implementations may use *single-asterisks* for italic text.
 
 Horizontal rule:
 
 ---
+
+```
+<link rel="stylesheet" href="style.css">
+<link rel="favicon">
+```
+
+```js
+for (let y = 0; y <= size; y++) {
+  console.log(state.map(star => (star ? '*' : ' ')).join(''));
+  state = state.map((_, i, arr) => arr[i + 1] || arr[i - 1]);
+}
+```
+
+```beurihiuerh
+}
+```
 
 Strikethrough:
 ~~strikethrough~~

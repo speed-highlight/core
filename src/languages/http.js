@@ -1,3 +1,5 @@
+import { detectLanguage } from '../detect.js'
+
 export default [
 	{
 		match: /^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/gm,
@@ -20,5 +22,9 @@ export default [
 	{
 		match: /[a-zA-Z][\w-]*(?=:)/g,
 		type: 'var',
+	},
+	{
+		match: /\n\n[^]*/g,
+		sub: detectLanguage
 	}
 ]
