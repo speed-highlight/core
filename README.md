@@ -1,8 +1,8 @@
 # Speed Highlight JS
 
-Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://matubu.github.io/speed_highlight_js/examples/)
+Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://speed-highlight.github.io/core/examples/)
 
-![](https://github.com/matubu/speed_highlight_js/blob/main/assets/screenshot.png)
+![](https://github.com/speed-highlight/core/blob/main/assets/screenshot.png)
 
 ## Light 📦
 
@@ -124,8 +124,8 @@ A modern theme by default
 
 ## Wiki 👀
 
-Further in-depth documentation for the API and other topics is in our [Wiki](https://github.com/matubu/speed_highlight_js/wiki)
+Further in-depth documentation for the API and other topics is in our [Wiki](https://github.com/speed-highlight/core/wiki)
 
 ## License 📃
 
-Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/matubu/speed_highlight_js/blob/main/LICENSE) file for details.
+Shj is released under the Creative Commons Zero License. See our [LICENSE](https://github.com/speed-highlight/core/blob/main/LICENSE) file for details.
