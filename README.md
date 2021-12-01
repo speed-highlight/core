@@ -47,8 +47,8 @@ highlightElement(elm, detectLanguage(code));
 #### CDN
 
 ```js
-import ... from 'https://unpkg.com/speed_highlight_js@1.1.0/dist/index.js'
-import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js@1.1.0/dist/index.js'
+import ... from 'https://unpkg.com/speed_highlight_js/dist/index.js'
+import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js/dist/index.js'
 ```
 
 ### Deno
