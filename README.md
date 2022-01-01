@@ -53,7 +53,7 @@ import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js/dist/inde
 
 ### Deno
 
-Use the [Deno module](https://deno.land/x/speed_highlight_js)
+Use the [deno module](https://deno.land/x/speed_highlight_js)
 
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
