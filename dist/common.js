@@ -1,1 +1,1 @@
-var t={num:{match:/(\.e?|\b)\d(e-|[\d.oxa-fA-F_])*(\.|\b)/g,type:"num"},str:{match:/(["'])(\\[^]|(?!\1)[^\r\n\\])*\1?/g,type:"str"},strDouble:{match:/"((?!")[^\r\n\\]|\\[^])*"?/g,type:"str"}};export{t as default};
+var t={num:{type:"num",match:/(\.e?|\b)\d(e-|[\d.oxa-fA-F_])*(\.|\b)/g},str:{type:"str",match:/(["'])(\\[^]|(?!\1)[^\r\n\\])*\1?/g},strDouble:{type:"str",match:/"((?!")[^\r\n\\]|\\[^])*"?/g}};export{t as default};

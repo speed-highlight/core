@@ -1,1 +1,1 @@
-var t=[{match:/^(?!\/).*/gm,sub:"todo"},{match:/\[((?!\])[^\\]|\\.)*\]/g,type:"num"},{match:/\||\^|\$|\\.|\w+($|\r|\n)/g,type:"kwd"},{match:/\*|\+|\{\d+,\d+\}/g,type:"var"}],e="oper";export{t as default,e as type};
+var t=[{match:/^(?!\/).*/gm,sub:"todo"},{type:"num",match:/\[((?!\])[^\\]|\\.)*\]/g},{type:"kwd",match:/\||\^|\$|\\.|\w+($|\r|\n)/g},{type:"var",match:/\*|\+|\{\d+,\d+\}/g}],e="oper";export{t as default,e as type};

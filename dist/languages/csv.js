@@ -1,1 +1,1 @@
-var e=[{expand:"strDouble"},{match:/,/g,type:"oper"}];export{e as default};
+var e=[{expand:"strDouble"},{type:"oper",match:/,/g}];export{e as default};

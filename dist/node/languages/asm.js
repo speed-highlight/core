@@ -1,0 +1,1 @@
+var e=Object.defineProperty;var p=t=>e(t,"__esModule",{value:!0});var c=(t,a)=>{p(t);for(var m in a)e(t,m,{get:a[m],enumerable:!0})};c(exports,{default:()=>d});var d=[{type:"cmnt",match:/;.*/gm},{expand:"str"},{expand:"num"},{type:"kwd",match:/^[a-z]+\s+[a-z.]+/gm,sub:[{type:"func",match:/^[a-z]+/g}]},{type:"kwd",match:/^\t[a-z]+/gm}];0&&(module.exports={});

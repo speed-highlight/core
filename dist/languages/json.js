@@ -1,1 +1,1 @@
-var t=[{match:/("|')?[a-zA-Z]\w*\1(?=\s*:)/g,type:"var"},{expand:"str"},{expand:"num"},{match:/\bnull\b/g,type:"num"},{match:/\b(true|false)\b/g,type:"bool"}];export{t as default};
+var t=[{type:"var",match:/("|')?[a-zA-Z]\w*\1(?=\s*:)/g},{expand:"str"},{expand:"num"},{type:"num",match:/\bnull\b/g},{type:"bool",match:/\b(true|false)\b/g}];export{t as default};
