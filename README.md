@@ -2,7 +2,7 @@
 
 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://speed-highlight.github.io/core/examples/)
 
-![](https://github.com/speed-highlight/core/blob/main/assets/screenshot.png)
+![](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
 ## Light 📦
 
