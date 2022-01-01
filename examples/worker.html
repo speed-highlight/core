@@ -12,10 +12,7 @@ this.doesNotWorkOnFirefox = '💩'</div>
 	<script type="module">
 		const code = document.querySelector('#code');
 		const worker = new Worker('./worker.js', { type: "module" });
-		worker.onmessage = e => {
-			console.log(code, e);
-			code.innerHTML = e.data
-		};
+		worker.onmessage = e => code.innerHTML = e.data;
 		worker.postMessage([code.textContent, 'js']);
 	</script>
 </body>

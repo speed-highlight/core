@@ -7,53 +7,46 @@
 </head>
 <body>
 	<script type="module">
-		import { highlightElement } from '../src/index.js';
-		import Radio from './helper/radio.js';
-		import { themes, testFiles } from './helper/data.js';
+		import { highlightElement } from '../src/index.js'
+		import { detectLanguage } from '../src/detect.js'
+		import { elm, Radio, Checkbox } from './helper/elm.js'
+		import { themes, testFiles } from './helper/data.js'
 
-		const code = document.createElement('div');
+		let code = elm('div'),
+			detect = false;
 
-		function updateTextContent(elm, content) {
-			elm.textContent = content;
-			elm.animate(
-				[
+		async function	highlight(language) {
+			let path = language.split('.').length === 1 ? `test.${language}` : language,
+				res = await fetch(`./languages/${path}`),
+				txt = await res.text()
+			code.textContent = txt
+			let before = performance.now()
+			await highlightElement(code, detect ? detectLanguage(txt) : language.split('.')[1] || language)
+			chrono.textContent = `${(performance.now() - before).toFixed(3)}ms (counting loading time)`
+			chrono.animate([
 					{ background: '#25f3' },
 					{ background: 'unset' }
-				],
-				{ duration: 150 }
-			);
+				],{ duration: 150 })
 		}
 
-		function	loadExample(language = 'js') {
-			let path = language.split('.').length === 1 ? `test.${language}` : language;
-			fetch(`./languages/${path}`)
-				.then(res => res.text()
-					.then(async txt => {
-						code.textContent = txt;
-						let before = performance.now();
-						await highlightElement(code, language.split('.')[1] || language);
-						updateTextContent(chrono, `${(performance.now() - before).toFixed(3)}ms (counting loading time)`);
-					})
-					.catch(err => console.log(err))
-				).catch(err => console.log(err));
-		}
+		let stylesheet = elm('link', { rel: 'stylesheet', type: 'text/css' }, document.head)
 
-		const radioTheme = new Radio('theme', themes, document.body),
-			themeElm = document.createElement('link');
-		themeElm.rel = 'stylesheet';
-		themeElm.type = 'text/css';
-		document.head.appendChild(themeElm);
-		radioTheme.onchange(theme => themeElm.href = `../src/themes/${theme}.css`);
+		new Radio('theme', theme => stylesheet.href = `../src/themes/${theme}.css`, themes)
+			
+		new Radio('mode', 
+			mode => code.className = [...code.classList].filter(s => !s.startsWith('shj-mode-')).join(' ')
+				+ (mode == 'none' ? '' : ' shj-mode-' + mode.split(' ')[0])
+		,['none', 'noheader mode', 'window mode'])
 
-		const radioMode = new Radio('mode', ['none', 'noheader mode', 'window mode'], document.body);
-		radioMode.onchange(mode => code.className = `${[...code.classList].filter(s => !s.startsWith('shj-mode-')).join(' ')}${mode == none ? '' : ' shj-mode-' + mode.split(' ')[0]}`);
+		let lang = new Radio('language', lang => highlight(lang, detect), testFiles),
+			container = elm('div', { className: 'radio-list' })
+		new Checkbox('detect', 'detect language', on => {
+			detect = on
+			highlight(lang.selected)
+		}, container)
+		let chrono = elm('span', { className: 'chrono' })
 
-		const radioTestFiles = new Radio('language', testFiles, document.body),
-			chrono = document.createElement('span');
-		radioTestFiles.onchange(loadExample);
-		chrono.className = 'chrono';
-		document.body.appendChild(chrono);
-		document.body.appendChild(code);
+		document.body.appendChild(code)
 	</script>
 </body>
 </html>
