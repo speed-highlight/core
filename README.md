@@ -81,7 +81,7 @@ setTheme('default')
 
 | Name       | Class name          | Support                                             | Language detection |
 | ---------- | ------------------- | --------------------------------------------------- | ------------------ |
-| bash       | shj-lang-bash       |                                                     | ❌                 |
+| bash       | shj-lang-bash       |                                                     | ✅                 |
 | brainfuck  | shj-lang-bf         | increment, operator, print, comment                 | ❌                 |
 | css        | shj-lang-css        | comment, str, selector, units, function, ...        | ✅                 |
 | csv        | shj-lang-csv        | punctuation, ...                                    | ❌                 |
@@ -108,13 +108,13 @@ setTheme('default')
 | typescript | shj-lang-ts         | js syntax, ts keyword, types                        | ✅                 |
 | uri        | shj-lang-uri        |                                                     | ✅                 |
 | yaml       | shj-lang-yaml       | comment, numbers, variable, string, bool            | ❌                 |
-| docker     | shj-lang-docker     |                                                     | ❌                 |
-| c          | shj-lang-c          |                                                     | ❌                 |
-| xml        | shj-lang-xml        |                                                     | ❌                 |
-| rust       | shj-lang-rs         |                                                     | ❌                 |
-| go         | shj-lang-go         |                                                     | ❌                 |
-| java       | shj-lang-java       |                                                     | ❌                 |
-| asm        | shj-lang-asm        |                                                     | ❌                 |
+| docker     | shj-lang-docker     |                                                     | ✅                 |
+| c          | shj-lang-c          |                                                     | ✅                 |
+| xml        | shj-lang-xml        |                                                     | ✅                 |
+| rust       | shj-lang-rs         |                                                     | ✅                 |
+| go         | shj-lang-go         |                                                     | ✅                 |
+| java       | shj-lang-java       |                                                     | ✅                 |
+| asm        | shj-lang-asm        |                                                     | ✅                 |
 
 ## Themes 🌈
 

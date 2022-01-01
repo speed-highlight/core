@@ -1,6 +1,6 @@
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
-	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10]],
+	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^\s+<!DOCTYPE\s+html/g, 500]],
 	['http', [/^(GET|HEAD|POST|PUT|DELETE|PATCH|HTTP)\b/g, 500]],
 	['js', [/\b(console|await|async|function|export|import|this|class|for|let|const|map|join|require)\b/g, 10]],
 	['ts', [/\b(console|await|async|function|export|import|this|class|for|let|const|map|join|require|implements|interface|namespace)\b/g, 10]],
@@ -12,8 +12,15 @@ const languages = [
 	['uri', [/https?:|mailto:|tel:|ftp:/g, 30]],
 	['css', [/^(@import|@page|@media|(\.|#)[a-z]+)/gm, 20]],
 	['diff', [/^[+><-]/gm, 10], [/^@@ ?[-+,0-9 ]+ ?@@/gm, 25]],
-	['md', [/^(>|\t\*|\t\d+.)/gm, 10], [/\[.*\](.*)/g, 10]]
-];
+	['md', [/^(>|\t\*|\t\d+.)/gm, 10], [/\[.*\](.*)/g, 10]],
+	['docker', [/^(FROM|ENTRYPOINT|RUN)/gm, 500]],
+	['xml', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^<\?xml/g, 500]],
+	['c', [/#include\b|\bprintf\s+\(/g, 100]],
+	['rs', [/^\s+(use|fn|mut|match)\b/gm, 100]],
+	['go', [/\b(func|fmt|package)\b/g, 100]],
+	['java', [/^import\s+java/gm, 500]],
+	['asm', [/^(section|global main|extern|\t(call|mov|ret))/gm, 100]],
+]
 
 export const detectLanguage = code => {
 	return (languages
