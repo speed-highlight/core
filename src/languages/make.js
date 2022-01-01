@@ -4,30 +4,30 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /[${}()]+/g,
-		type: 'oper'
-	},
-	{
-		match: /.PHONY:/gm,
-		type: 'class'
-	},
-	{
-		match: /^[\w.]+:/gm,
-		type: 'section'
-	},
-	{
-		match: /\b(ifneq|endif)\b/g,
-		type: 'kwd'
-	},
-	{
 		expand: 'str'
+	},
+	{
+		type: 'oper',
+		match: /[${}()]+/g
+	},
+	{
+		type: 'class',
+		match: /.PHONY:/gm
+	},
+	{
+		type: 'section',
+		match: /^[\w.]+:/gm
+	},
+	{
+		type: 'kwd',
+		match: /\b(ifneq|endif)\b/g
 	},
 	{
 		expand: 'num'
 	},
 	{
-		match: /[A-Z_]+(?=\s*=)/g,
-		type: 'var'
+		type: 'var',
+		match: /[A-Z_]+(?=\s*=)/g
 	},
 	{
 		match: /^.*$/gm,

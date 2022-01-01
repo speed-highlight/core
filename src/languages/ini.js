@@ -4,19 +4,19 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /.*(?==)/g,
-		type: 'var'
+		type: 'str',
+		match: /.*/g
 	},
 	{
-		match: /^\s*\[.+\]\s*$/gm,
-		type: 'section'
+		type: 'var',
+		match: /.*(?==)/g
 	},
 	{
-		match: /=/g,
-		type: 'oper'
+		type: 'section',
+		match: /^\s*\[.+\]\s*$/gm
 	},
 	{
-		match: /.*/g,
-		type: 'str'
+		type: 'oper',
+		match: /=/g
 	}
 ]

@@ -1,96 +1,51 @@
-let prop = '\\s*(\\s+[a-z-]+\\s*(=\\s*([^"\']\\S*|("|\')(\\\\[^]|(?!\\4)[^])*\\4?)?)?\\s*)*',
-	htmlElement = {
-		match: RegExp(`<\/?[a-z-]+${prop}\/?>`, 'g'),
-		sub: [
-			{
-				match: /^<\/?[^\s>\/]+/g,
-				sub: [
-					{
-						match: /^<\/?/g,
-						type: 'oper'
-					}
-				],
-				type: 'var'
-			},
-			{
-				match: /=\s*([^"']\S*|("|')(\\[^]|(?!\2)[^])*\2?)/g,
-				sub: [
-					{
-						match: /^=/g,
-						type: 'oper'
-					}
-				],
-				type: 'str'
-			},
-			{
-				match: /\/?>/g,
-				type: 'oper'
-			},
-			{
-				match: /[a-z-]+/gi,
-				type: 'class'
-			}
-		]
-	};
+import xml, { property, xmlElement } from './xml.js'
 
 export default [
 	{
-		match: /<!--((?!-->)[^])*-->/g,
-		type: 'cmnt'
-	},
-	{
+		type: 'class',
 		match: /<!DOCTYPE("[^"]*"|'[^']*'|[^"'>])*>/gi,
 		sub: [
 			{
-				match: /^<!|>$/g,
-				type: 'oper'
+				type: 'str',
+				match: /"[^"]*"|'[^']*'/g
 			},
 			{
-				match: /"[^"]*"|'[^']*'/g,
-				type: 'str'
+				type: 'oper',
+				match: /^<!|>$/g
 			},
 			{
-				match: /DOCTYPE/gi,
-				type: 'var'
+				type: 'var',
+				match: /DOCTYPE/gi
 			}
-		],
-		type: 'class'
+		]
 	},
 	{
-		match: /<!\[CDATA\[[\s\S]*?\]\]>/gi,
-		type: 'class'
-	},
-	{
-		match: RegExp(`<style${prop}>((?!</style>)[^])*</style\\s*>`, 'g'),
+		match: RegExp(`<style${property}>((?!</style>)[^])*</style\\s*>`, 'g'),
 		sub: [
 			{
-				match: RegExp(`^<style${prop}>`, 'g'),
-				sub: htmlElement.sub
+				match: RegExp(`^<style${property}>`, 'g'),
+				sub: xmlElement.sub
 			},
 			{
-				match: RegExp(`${htmlElement.match}|[^]*(?=</style\\s*>$)`, 'g'),
+				match: RegExp(`${xmlElement.match}|[^]*(?=</style\\s*>$)`, 'g'),
 				sub: 'css'
 			},
-			htmlElement
+			xmlElement
 		]
 	},
 	{
-		match: RegExp(`<script${prop}>((?!</script>)[^])*</script\\s*>`, 'g'),
+		match: RegExp(`<script${property}>((?!</script>)[^])*</script\\s*>`, 'g'),
 		sub: [
 			{
-				match: RegExp(`^<script${prop}>`, 'g'),
-				sub: htmlElement.sub
+				match: RegExp(`^<script${property}>`, 'g'),
+				sub: xmlElement.sub
 			},
 			{
-				match: RegExp(`${htmlElement.match}|[^]*(?=</script\\s*>$)`, 'g'),
+				match: RegExp(`${xmlElement.match}|[^]*(?=</script\\s*>$)`, 'g'),
 				sub: 'js'
 			},
-			htmlElement
+			xmlElement
 		]
 	},
-	htmlElement,
-	{
-		match: /&(#x?)?[\da-z]{1,8};/gi,
-		type: 'var'
-	}
+	...xml
 ]

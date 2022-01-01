@@ -1,28 +1,28 @@
 export default [
 	{
 		match: /^#!.*|--(\[(=*)\[((?!--\]\2\])[^])*--\]\2\]|.*)/g,
-		type: 'cmnt'
-	},
-	{
-		match: /\b(and|break|do|else|elseif|end|for|function|if|in|local|not|or|repeat|return|then|until|while)\b/g,
-		type: 'kwd'
-	},
-	{
-		match: /\b(true|false|nil)\b/g,
-		type: 'bool'
-	},
-	{
-		match: /[+*/%^#=~<>:,.-]+/g,
-		type: 'oper'
+		sub: 'TODO'
 	},
 	{
 		expand: 'str'
 	},
 	{
+		type: 'kwd',
+		match: /\b(and|break|do|else|elseif|end|for|function|if|in|local|not|or|repeat|return|then|until|while)\b/g
+	},
+	{
+		type: 'bool',
+		match: /\b(true|false|nil)\b/g
+	},
+	{
+		type: 'oper',
+		match: /[+*/%^#=~<>:,.-]+/g
+	},
+	{
 		expand: 'num'
 	},
 	{
-		match: /[a-z_]+(?=\s*[({])/g,
-		type: 'func'
+		type: 'func',
+		match: /[a-z_]+(?=\s*[({])/g
 	}
 ]

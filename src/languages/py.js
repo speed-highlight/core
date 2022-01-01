@@ -1,52 +1,52 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmnt'
+		sub: 'TODO'
 	},
 	{
-		match: /f("|')(\\[^]|(?!\1).)*\1?|f((["'])\4\4)(\\[^]|(?!\3)[^])*\3?/gi,
 		type: 'str',
+		match: /f("|')(\\[^]|(?!\1).)*\1?|f((["'])\4\4)(\\[^]|(?!\3)[^])*\3?/gi,
 		sub: [
 			{
+				type: 'var',
 				match: /{[^{}]*}/g,
 				sub: [
 					{
 						match: /(?!^{)[^]*(?=}$)/g,
 						sub: 'py'
 					}
-				],
-				type: 'var'
+				]
 			}
 		]
 	},
 	{
 		match: /("""|''')(\\[^]|(?!\1)[^])*\1?/g,
-		type: 'cmnt'
+		sub: 'TODO'
 	},
 	{
 		expand: 'str'
 	},
 	{
-		match: /\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /\b(and|as|assert|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b/g
 	},
 	{
-		match: /\b(False|True|None)\b/g,
-		type: 'bool'
+		type: 'bool',
+		match: /\b(False|True|None)\b/g
 	},
 	{
 		expand: 'num'
 	},
 	{
-		match: /[a-z_]+(?=\s*\()/g,
-		type: 'func'
+		type: 'func',
+		match: /[a-z_]+(?=\s*\()/g
 	},
 	{
-		match: /[-/*+<>,=!&|^%]+/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[-/*+<>,=!&|^%]+/g
 	},
 	{
-		match: /\b[A-Z]\w*\b/g,
 		type: 'class',
+		match: /\b[A-Z]\w*\b/g
 	}
 ]

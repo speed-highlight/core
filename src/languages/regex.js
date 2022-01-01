@@ -4,16 +4,16 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /\[((?!\])[^\\]|\\.)*\]/g,
-		type: 'num'
+		type: 'num',
+		match: /\[((?!\])[^\\]|\\.)*\]/g
 	},
 	{
-		match: /\||\^|\$|\\.|\w+($|\r|\n)/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /\||\^|\$|\\.|\w+($|\r|\n)/g
 	},
 	{
-		match: /\*|\+|\{\d+,\d+\}/g,
-		type: 'var'
+		type: 'var',
+		match: /\*|\+|\{\d+,\d+\}/g
 	}
 ];
 export let type = 'oper';

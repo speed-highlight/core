@@ -7,26 +7,26 @@ export default [
 		expand: 'str'
 	},
 	{
-		match: /(>|\|)\r?\n((\s[^\n]*)?(\r?\n|$))*/g,
-		type: 'str'
+		type: 'str',
+		match: /(>|\|)\r?\n((\s[^\n]*)?(\r?\n|$))*/g
 	},
 	{
-		match: /!![a-z]+/g,
-		type: 'type'
+		type: 'type',
+		match: /!![a-z]+/g
 	},
 	{
-		match: /\b(Yes|No)\b/g,
-		type: 'bool'
+		type: 'bool',
+		match: /\b(Yes|No)\b/g
 	},
 	{
-		match: /[+:-]/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[+:-]/g
 	},
 	{
 		expand: 'num'
 	},
 	{
-		match: /[a-zA-Z]\w*(?=:)/g,
-		type: 'var'
+		type: 'var',
+		match: /[a-zA-Z]\w*(?=:)/g
 	}
 ]

@@ -1,25 +1,25 @@
 export default [
 	{
 		match: /#.*/g,
-		type: 'cmnt'
+		sub: 'TODO'
 	},
 	{
-		match: /(["'])(\\[^]|(?!\1)[^])*\1?/g,
-		type: 'str'
+		type: 'str',
+		match: /(["'])(\\[^]|(?!\1)[^])*\1?/g
 	},
 	{
 		expand: 'num'
 	},
 	{
-		match: /\b(any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|return|say|state|sub|switch|undef|unless|until|use|when|while|not|and|or|xor)\b/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /\b(any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|return|say|state|sub|switch|undef|unless|until|use|when|while|not|and|or|xor)\b/g
 	},
 	{
-		match: /[-+*/%~!&<>|=?,]+/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[-+*/%~!&<>|=?,]+/g
 	},
 	{
-		match: /[a-z_]+(?=\s*\()/g,
-		type: 'func'
+		type: 'func',
+		match: /[a-z_]+(?=\s*\()/g
 	}
 ]

@@ -4,23 +4,23 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /^\w+(?=:?)/gm,
-		type: 'class'
+		type: 'class',
+		match: /^\w+(?=:?)/gm
 	},
 	{
-		match: /:\d+/g,
-		type: 'num'
+		type: 'num',
+		match: /:\d+/g
 	},
 	{
-		match: /[:/&?]|\w+=/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[:/&?]|\w+=/g
 	},
 	{
-		match: /[.\w]+@|#[\w]+$/gm,
-		type: 'func'
+		type: 'func',
+		match: /[.\w]+@|#[\w]+$/gm
 	},
 	{
-		match: /\w+\.\w+(\.\w+)*/g,
-		type: 'var'
+		type: 'var',
+		match: /\w+\.\w+(\.\w+)*/g
 	}
 ]

@@ -2,16 +2,16 @@ import todo from './todo.js';
 
 export default [
 	{
-		match: /@\w+/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /@\w+/g
 	},
 	{
-		match: /{[\w\s|<>,.@\[\]]+}/g,
-		type: 'class'
+		type: 'class',
+		match: /{[\w\s|<>,.@\[\]]+}/g
 	},
 	{
-		match: /\[[\w\s="']+\]/g,
-		type: 'var'
+		type: 'var',
+		match: /\[[\w\s="']+\]/g
 	},
 	...todo
 ];

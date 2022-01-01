@@ -1,0 +1,23 @@
+# create a dockerfile for a simple hello world app
+
+FROM ubuntu:14.04
+
+RUN apt-get update && apt-get install -y curl
+
+ENV APP_NAME hello-world
+
+EXPOSE 8080
+
+RUN echo "Hello World" > /usr/share/nginx/html/index.html
+
+ARG APP_NAME
+
+RUN [ -d /usr/share/nginx/html/$APP_NAME ] || mkdir /usr/share/nginx/html/$APP_NAME
+
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+
+LABEL maintainer="hello"
+
+maintainer
+
+ENTRYPOINT ["/bin/bash"]

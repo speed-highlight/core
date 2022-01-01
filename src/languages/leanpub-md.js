@@ -3,12 +3,12 @@ import { detectLanguage } from '../detect.js'
 
 export default [
 	{
-		match: /(leanpub-start-insert)((?!leanpub-end-insert)[^])*(leanpub-end-insert)?/g,
 		type: 'insert',
+		match: /(leanpub-start-insert)((?!leanpub-end-insert)[^])*(leanpub-end-insert)?/g,
 		sub: [
 			{
-				match: /leanpub-(start|end)-insert/g,
-				type: 'insert'
+				type: 'insert',
+				match: /leanpub-(start|end)-insert/g
 			},
 			{
 				match: /(?!leanpub-start-insert)((?!leanpub-end-insert)[^])*/g,
@@ -17,12 +17,12 @@ export default [
 		]
 	},
 	{
-		match: /(leanpub-start-delete)((?!leanpub-end-delete)[^])*(leanpub-end-delete)?/g,
 		type: 'deleted',
+		match: /(leanpub-start-delete)((?!leanpub-end-delete)[^])*(leanpub-end-delete)?/g,
 		sub: [
 			{
-				match: /leanpub-(start|end)-delete/g,
-				type: 'deleted'
+				type: 'deleted',
+				match: /leanpub-(start|end)-delete/g
 			},
 			{
 				match: /(?!leanpub-start-delete)((?!leanpub-end-delete)[^])*/g,

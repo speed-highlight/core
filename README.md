@@ -79,35 +79,42 @@ setTheme('default')
 
 ## Languages supported 🌐
 
-| Name       | Class name          | Support                                             |
-| ---------- | ------------------- | --------------------------------------------------- |
-| bash       | shj-lang-bash       |                                                     |
-| brainfuck  | shj-lang-bf         | increment, operator, print, comment                 |
-| css        | shj-lang-css        | comment, str, selector, units, function, ...        |
-| csv        | shj-lang-csv        | punctuation, ...                                    |
-| diff       | shj-lang-diff       |                                                     |
-| git        | shj-lang-git        | comment, insert, deleted, string, ...               |
-| html       | shj-lang-html       |                                                     |
-| http       | shj-lang-http       | keywork, string, punctuation, variable, version     |
-| ini        | shj-lang-ini        |                                                     |
-| javascipt  | shj-lang-js         | basic syntax, regex, jsdoc, json, template literals |
-| jsdoc      | shj-lang-jsdoc      |                                                     |
-| json       | shj-lang-json       | string, number, bool, ...                           |
-| leanpub-md | shj-lang-leanpub-md |                                                     |
-| log        | shj-lang-log        | number, string, comment, errors                     |
-| lua        | shj-lang-lua        |                                                     |
-| makefile   | shj-lang-make       |                                                     |
-| markdown   | shj-lang-md         |                                                     |
-| perl       | shj-lang-pl         |                                                     |
-| plain      | shj-lang-plain      |                                                     |
-| python     | shj-lang-py         |                                                     |
-| regex      | shj-lang-regex      | count, set, ...                                     |
-| sql        | shj-lang-sql        | number, string, function, ...                       |
-| todo       | shj-lang-todo       |                                                     |
-| toml       | shj-lang-toml       | comment, table, string, bool, variable              |
-| typescript | shj-lang-ts         | js syntax, ts keyword, types                        |
-| uri        | shj-lang-uri        |                                                     |
-| yaml       | shj-lang-yaml       | comment, numbers, variable, string, bool            |
+| Name       | Class name          | Support                                             | Language detection |
+| ---------- | ------------------- | --------------------------------------------------- | ------------------ |
+| bash       | shj-lang-bash       |                                                     | no                 |
+| brainfuck  | shj-lang-bf         | increment, operator, print, comment                 | no                 |
+| css        | shj-lang-css        | comment, str, selector, units, function, ...        | yes                |
+| csv        | shj-lang-csv        | punctuation, ...                                    | no                 |
+| diff       | shj-lang-diff       |                                                     | yes                |
+| git        | shj-lang-git        | comment, insert, deleted, string, ...               | no                 |
+| html       | shj-lang-html       |                                                     | yes                |
+| http       | shj-lang-http       | keywork, string, punctuation, variable, version     | yes                |
+| ini        | shj-lang-ini        |                                                     | no                 |
+| javascipt  | shj-lang-js         | basic syntax, regex, jsdoc, json, template literals | yes                |
+| jsdoc      | shj-lang-jsdoc      |                                                     | no                 |
+| json       | shj-lang-json       | string, number, bool, ...                           | no                 |
+| leanpub-md | shj-lang-leanpub-md |                                                     | no                 |
+| log        | shj-lang-log        | number, string, comment, errors                     | no                 |
+| lua        | shj-lang-lua        |                                                     | yes                |
+| makefile   | shj-lang-make       |                                                     | yes                |
+| markdown   | shj-lang-md         |                                                     | yes                |
+| perl       | shj-lang-pl         |                                                     | yes                |
+| plain      | shj-lang-plain      |                                                     | no                 |
+| python     | shj-lang-py         |                                                     | yes                |
+| regex      | shj-lang-regex      | count, set, ...                                     | no                 |
+| sql        | shj-lang-sql        | number, string, function, ...                       | yes                |
+| todo       | shj-lang-todo       |                                                     | no                 |
+| toml       | shj-lang-toml       | comment, table, string, bool, variable              | no                 |
+| typescript | shj-lang-ts         | js syntax, ts keyword, types                        | yes                |
+| uri        | shj-lang-uri        |                                                     | yes                |
+| yaml       | shj-lang-yaml       | comment, numbers, variable, string, bool            | no                 |
+| docker     | shj-lang-docker     |                                                     | no                 |
+| c          | shj-lang-c          |                                                     | no                 |
+| xml        | shj-lang-xml        |                                                     | no                 |
+| rust       | shj-lang-rs         |                                                     | no                 |
+| go         | shj-lang-go         |                                                     | no                 |
+| java       | shj-lang-java       |                                                     | no                 |
+| asm        | shj-lang-asm        |                                                     | no                 |
 
 ## Themes 🌈
 

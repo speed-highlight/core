@@ -1,18 +1,18 @@
 export default [
 	{
-		match: /^[-<].*/gm,
-		type: 'deleted'
+		type: 'deleted',
+		match: /^[-<].*/gm
 	},
 	{
-		match: /^[+>].*/gm,
-		type: 'insert'
+		type: 'insert',
+		match: /^[+>].*/gm
 	},
 	{
-		match: /!.*/gm,
-		type: 'kwd'
+		type: 'kwd',
+		match: /!.*/gm
 	},
 	{
-		match: /^@@.*@@$|^\d.*|^([*-+])\1\1.*/gm,
-		type: 'section'
+		type: 'section',
+		match: /^@@.*@@$|^\d.*|^([*-+])\1\1.*/gm
 	}
 ]

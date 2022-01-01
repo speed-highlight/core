@@ -7,27 +7,27 @@ export default [
 		expand: 'str'
 	},
 	{
-		match: /@\w+\b|\b(and|not|only|or)\b|[a-z-]+(?=[^{}]*{)/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /@\w+\b|\b(and|not|only|or)\b|[a-z-]+(?=[^{}]*{)/g
 	},
 	{
-		match: /\b[\w-]+(?=\s*:)|(::?|\.)[\w-]+(?=[^{}]*{)/g,
-		type: 'var'
+		type: 'var',
+		match: /\b[\w-]+(?=\s*:)|(::?|\.)[\w-]+(?=[^{}]*{)/g
 	},
 	{
-		match: /[+~>*|,;:=]+/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[+~>*|,;:=]+/g
 	},
 	{
-		match: /#[\w-]+(?=[^{}]*{)/g,
-		type: 'func'
+		type: 'func',
+		match: /#[\w-]+(?=[^{}]*{)/g
 	},
 	{
-		match: /#[\da-f]{3,8}|\d(\.\d)?(cm|mm|in|px|pt|pc|em|ex|ch|rem|vm|vh|vmin|vmax|%)?/g,
-		type: 'num'
+		type: 'num',
+		match: /#[\da-f]{3,8}|\d(\.\d)?(cm|mm|in|px|pt|pc|em|ex|ch|rem|vm|vh|vmin|vmax|%)?/g
 	},
 	{
-		match: /[a-zA-Z]\w*(?=\s*\()/g,
-		type: 'func'
+		type: 'func',
+		match: /[a-zA-Z]\w*(?=\s*\()/g
 	}
 ]

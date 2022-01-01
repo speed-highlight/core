@@ -4,15 +4,15 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /\.+/g,
-		type: 'func'
+		type: 'func',
+		match: /\.+/g
 	},
 	{
-		match: /[<>]+/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /[<>]+/g
 	},
 	{
-		match: /[+-]+/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[+-]+/g
 	}
 ]

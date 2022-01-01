@@ -25,7 +25,14 @@ export const languages = [
 	'toml',
 	'ts',
 	'uri',
-	'yaml'
+	'yaml',
+	'docker',
+	'xml',
+	'c',
+	'rs',
+	'go',
+	'java',
+	'asm'
 ];
 export const themes = [
 	'default',

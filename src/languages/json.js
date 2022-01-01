@@ -1,7 +1,7 @@
 export default [
 	{
-		match: /("|')?[a-zA-Z]\w*\1(?=\s*:)/g,
-		type: 'var'
+		type: 'var',
+		match: /("|')?[a-zA-Z]\w*\1(?=\s*:)/g
 	},
 	{
 		expand: 'str'
@@ -10,11 +10,11 @@ export default [
 		expand: 'num'
 	},
 	{
-		match: /\bnull\b/g,
-		type: 'num'
+		type: 'num',
+		match: /\bnull\b/g
 	},
 	{
-		match: /\b(true|false)\b/g,
-		type: 'bool'
+		type: 'bool',
+		match: /\b(true|false)\b/g
 	}
 ]

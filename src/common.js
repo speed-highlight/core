@@ -4,15 +4,15 @@
 
 export default {
 	num: {
-		match: /(\.e?|\b)\d(e-|[\d.oxa-fA-F_])*(\.|\b)/g,
-		type: 'num'
+		type: 'num',
+		match: /(\.e?|\b)\d(e-|[\d.oxa-fA-F_])*(\.|\b)/g
 	},
 	str: {
-		match: /(["'])(\\[^]|(?!\1)[^\r\n\\])*\1?/g,
-		type: 'str'
+		type: 'str',
+		match: /(["'])(\\[^]|(?!\1)[^\r\n\\])*\1?/g
 	},
 	strDouble: {
-		match: /"((?!")[^\r\n\\]|\\[^])*"?/g,
-		type: 'str'
+		type: 'str',
+		match: /"((?!")[^\r\n\\]|\\[^])*"?/g
 	}
 }

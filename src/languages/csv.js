@@ -3,7 +3,7 @@ export default [
 		expand: 'strDouble'
 	},
 	{
-		match: /,/g,
-		type: 'oper'
+		type: 'oper',
+		match: /,/g
 	}
 ]

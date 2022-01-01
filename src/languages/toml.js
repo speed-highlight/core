@@ -4,33 +4,33 @@ export default [
 		sub: 'todo'
 	},
 	{
-		match: /("""|''')((?!\1)[^]|\\[^])*\1?/g,
-		type: 'str'
+		type: 'str',
+		match: /("""|''')((?!\1)[^]|\\[^])*\1?/g
 	},
 	{
 		expand: 'str'
 	},
 	{
-		match: /^\[.+\]\s*$/gm,
-		type: 'section'
+		type: 'section',
+		match: /^\[.+\]\s*$/gm
 	},
 	{
-		match: /\b(inf|nan)\b|\d[\d:ZT.-]*/g,
-		type: 'num'
+		type: 'num',
+		match: /\b(inf|nan)\b|\d[\d:ZT.-]*/g
 	},
 	{
 		expand: 'num'
 	},
 	{
-		match: /\b(true|false)\b/g,
-		type: 'bool'
+		type: 'bool',
+		match: /\b(true|false)\b/g
 	},
 	{
-		match: /[+,.=-]/g,
-		type: 'oper'
+		type: 'oper',
+		match: /[+,.=-]/g
 	},
 	{
-		match: /\w+(?= \=)/g,
-		type: 'var'
+		type: 'var',
+		match: /\w+(?= \=)/g
 	}
 ]

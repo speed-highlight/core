@@ -21,12 +21,12 @@ export default [
 		}(),
 		sub: [
 			{
-			match: /^\${|}$/g,
-			type: 'kwd',
+				type: 'kwd',
+				match: /^\${|}$/g
 			},
 			{
-			match: /(?!^\$|{)[^]+(?=}$)/g,
-			sub: 'js'
+				match: /(?!^\$|{)[^]+(?=}$)/g,
+				sub: 'js'
 			},
 		],
 	},

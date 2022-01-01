@@ -1,7 +1,7 @@
 export default [
 	{
-		match: /^#.*/gm,
-		type: 'cmnt'
+		type: 'cmnt',
+		match: /^#.*/gm
 	},
 	{
 		expand: 'strDouble'
@@ -10,19 +10,19 @@ export default [
 		expand: 'num'
 	},
 	{
-		match: /\b(err(or)?|[a-z_-]*exception|warn|warning|failed|ko|invalid|not ?found|alert|fatal)\b/gi,
-		type: 'err'
+		type: 'err',
+		match: /\b(err(or)?|[a-z_-]*exception|warn|warning|failed|ko|invalid|not ?found|alert|fatal)\b/gi
 	},
 	{
-		match: /\b(null|undefined)\b/gi,
-		type: 'num'
+		type: 'num',
+		match: /\b(null|undefined)\b/gi
 	},
 	{
-		match: /\b(false|true|yes|no)\b/gi,
-		type: 'bool'
+		type: 'bool',
+		match: /\b(false|true|yes|no)\b/gi
 	},
 	{
-		match: /\.|,/g,
-		type: 'oper'
+		type: 'oper',
+		match: /\.|,/g
 	}
 ]

@@ -2,47 +2,47 @@ import { detectLanguage } from '../detect.js'
 
 export default [
 	{
-		match: /^>.*|(=|-)\1+/gm,
-		type: 'cmnt'
+		type: 'cmnt',
+		match: /^>.*|(=|-)\1+/gm
 	},
 	{
-		match: /\*\*((?!\*\*).)*\*\*/g,
-		type: 'class'
+		type: 'class',
+		match: /\*\*((?!\*\*).)*\*\*/g
 	},
 	{
 		match: /```((?!```)[^])*\n```/g,
 		sub: code => ({
+			type: 'kwd',
 			sub: [
 				{
 					match: /\n[^]*(?=```)/g,
 					sub: code.split('\n')[0].slice(3) || detectLanguage(code)
 				}
-			],
-			type: 'kwd'
+			]
 		})
 	},
 	{
-		match: /`[^`]*`/g,
-		type: 'str'
+		type: 'str',
+		match: /`[^`]*`/g
 	},
 	{
-		match: /~~((?!~~).)*~~/g,
-		type: 'var'
+		type: 'var',
+		match: /~~((?!~~).)*~~/g
 	},
 	{
-		match: /_[^_]*_|\*[^*]*\*/g,
-		type: 'kwd'
+		type: 'kwd',
+		match: /_[^_]*_|\*[^*]*\*/g
 	},
 	{
-		match: /^\s*(\*|\d+\.)\s/gm,
-		type: 'kwd'
+		type: 'kwd',
+		match: /^\s*(\*|\d+\.)\s/gm
 	},
 	{
-		match: /\[[^\]]*]/g,
-		type: 'oper'
+		type: 'oper',
+		match: /\[[^\]]*]/g
 	},
 	{
-		match: /\([^)]*\)/g,
-		type: 'func'
+		type: 'func',
+		match: /\([^)]*\)/g
 	}
 ]

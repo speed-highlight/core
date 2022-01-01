@@ -1,19 +1,19 @@
 export default [
 	{
-		match: /\b(TODO|FIXME|DEBUG|OPTIMIZE|WARNING|XXX|BUG)\b/g,
-		type: 'err'
+		type: 'err',
+		match: /\b(TODO|FIXME|DEBUG|OPTIMIZE|WARNING|XXX|BUG)\b/g
 	},
 	{
-		match: /\bIDEA\b/g,
-		type: 'class'
+		type: 'class',
+		match: /\bIDEA\b/g
 	},
 	{
-		match: /\b(CHANGED|FIX|CHANGE)\b/g,
-		type: 'insert'
+		type: 'insert',
+		match: /\b(CHANGED|FIX|CHANGE)\b/g
 	},
 	{
-		match: /\bQUESTION\b/g,
-		type: 'oper'
+		type: 'oper',
+		match: /\bQUESTION\b/g
 	}
 ];
 export let type = 'cmnt';

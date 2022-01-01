@@ -2,26 +2,26 @@ import { detectLanguage } from '../detect.js'
 
 export default [
 	{
-		match: /^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/gm,
 		type: 'kwd',
+		match: /^(GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/gm
 	},
 	{
-		match: /\bHTTP\/[\d.]+\b/g,
+		expand: 'str'
+	},
+	{
 		type: 'section',
+		match: /\bHTTP\/[\d.]+\b/g
 	},
 	{
-		expand: 'str',
+		expand: 'num'
 	},
 	{
-		expand: 'num',
-	},
-	{
-		match: /[,;:=]/g,
 		type: 'oper',
+		match: /[,;:=]/g
 	},
 	{
-		match: /[a-zA-Z][\w-]*(?=:)/g,
 		type: 'var',
+		match: /[a-zA-Z][\w-]*(?=:)/g
 	},
 	{
 		match: /\n\n[^]*/g,
