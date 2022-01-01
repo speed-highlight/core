@@ -2,7 +2,7 @@
 
 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://speed-highlight.github.io/core/examples/)
 
-![](https://github.com/speed-highlight/core/blob/main/assets/screenshot.png)
+![](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
 ## Light 📦
 
@@ -53,7 +53,7 @@ import ... from 'https://cdn.jsdelivr.net/gh/matubu/speed_highlight_js/dist/inde
 
 ### Deno
 
-Use the [Deno module](https://deno.land/x/speed_highlight_js)
+Use the [deno module](https://deno.land/x/speed_highlight_js)
 
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
