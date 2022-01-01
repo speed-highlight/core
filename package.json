@@ -1,5 +1,5 @@
 {
-  "name": "@speed_highlight/speed_highlight_js",
+  "name": "@speed-highlight/core",
   "version": "1.1.3",
   "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
   "main": "dist/node/index.js",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/speed_highlight/speed_highlight_js.git"
+    "url": "git://github.com/speed-highlight/core.git"
   },
   "keywords": [
     "javascript",
@@ -30,7 +30,7 @@
   "author": "matubu",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/speed_highlight/speed_highlight_js/issues"
+    "url": "https://github.com/speed-highlight/core/issues"
   },
-  "homepage": "https://github.com/speed_highlight/speed_highlight_js#readme"
+  "homepage": "https://github.com/speed-highlight/core#readme"
 }
