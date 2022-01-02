@@ -36,7 +36,7 @@ export let property = '\\s*(\\s+[a-z-]+\\s*(=\\s*([^"\']\\S*|("|\')(\\\\[^]|(?!\
 export default [
 	{
 		match: /<!--((?!-->)[^])*-->/g,
-		sub: 'TODO'
+		sub: 'todo'
 	},
 	{
 		type: 'class',

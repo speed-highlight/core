@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /^#!.*|--(\[(=*)\[((?!--\]\2\])[^])*--\]\2\]|.*)/g,
-		sub: 'TODO'
+		sub: 'todo'
 	},
 	{
 		expand: 'str'

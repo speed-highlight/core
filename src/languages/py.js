@@ -1,7 +1,11 @@
 export default [
 	{
 		match: /#.*/g,
-		sub: 'TODO'
+		sub: 'todo'
+	},
+	{
+		match: /("""|''')(\\[^]|(?!\1)[^])*\1?/g,
+		sub: 'todo'
 	},
 	{
 		type: 'str',
@@ -18,10 +22,6 @@ export default [
 				]
 			}
 		]
-	},
-	{
-		match: /("""|''')(\\[^]|(?!\1)[^])*\1?/g,
-		sub: 'TODO'
 	},
 	{
 		expand: 'str'

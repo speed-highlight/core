@@ -1,7 +1,7 @@
 export default [
 	{
 		match: /#.*/g,
-		sub: 'TODO'
+		sub: 'todo'
 	},
 	{
 		type: 'str',
