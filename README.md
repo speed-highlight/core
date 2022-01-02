@@ -13,6 +13,8 @@ Light, fast, and easy to use, dependencies free javascript syntax highlighter, w
 
 ## Fast ⚡
 
+Blazing fast highlighting using regex
+
 ## Simple setup 🚀
 
 ### Web
