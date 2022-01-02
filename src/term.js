@@ -4,10 +4,10 @@
 
 import { tokenize } from './index.js';
 
-let theme = await import('./themes/default.js').default;
+let theme = import('./themes/default.js').default;
 
 export const highlightText = async (src, lang) => {
-	let res = '';
+	let res = '', theme = await theme;
 
 	await tokenize(src, lang, (str, token) => res += token ? `${theme[token] ?? ''}${str}\x1b[0m` : str);
 
