@@ -76,7 +76,7 @@ npm install speed_highlight_js
 const { setTheme, printHighlight } = require('speed_highlight_js/dist/node/term.js');
 
 setTheme('default')
-  .then(() => printHighlight('console.log("hello")', 'js'));
+printHighlight('console.log("hello")', 'js');
 ```
 
 ## Languages supported 🌐
