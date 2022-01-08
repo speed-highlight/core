@@ -21,6 +21,10 @@ export default [
 	},
 	{
 		type: 'kwd',
-		match: /^\t[a-z]+/gm,
+		match: /^\t*[a-z]+/gm,
+	},
+	{
+		match: /%|\$/g,
+		type: 'oper'
 	}
 ]

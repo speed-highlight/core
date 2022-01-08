@@ -35,13 +35,13 @@ export const languages = [
 	'asm'
 ];
 export const themes = [
-	'default',
-	'dark',
 	'atom-dark',
 	'github-dark',
 	'github-dim',
-	'visual-studio-dark',
-	'github-light'
+	'dark',
+	'default',
+	'github-light',
+	'visual-studio-dark'
 ];
 export const testFiles = [
 	...languages,

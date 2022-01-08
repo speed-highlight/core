@@ -36,7 +36,7 @@
 		new Radio('mode', 
 			mode => code.className = [...code.classList].filter(s => !s.startsWith('shj-mode-')).join(' ')
 				+ (mode == 'none' ? '' : ' shj-mode-' + mode.split(' ')[0])
-		,['none', 'noheader mode', 'window mode'])
+		,['none', 'header mode'])
 
 		let lang = new Radio('language', lang => highlight(lang, detect), testFiles),
 			container = elm('div', { className: 'radio-list' })

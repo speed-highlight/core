@@ -32,5 +32,9 @@
   "bugs": {
     "url": "https://github.com/speed-highlight/core/issues"
   },
-  "homepage": "https://github.com/speed-highlight/core#readme"
+  "homepage": "https://github.com/speed-highlight/core#readme",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/",
+    "access": "public"
+  }
 }

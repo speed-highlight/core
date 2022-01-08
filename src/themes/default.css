@@ -2,7 +2,7 @@
 	white-space: pre;
 	margin: 10px 0;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 30px 20px;
 	background: white;
 	color: #112;
 	box-shadow: 0 0 5px #0001;
@@ -20,18 +20,7 @@
 	display: inline-block;
 	border-radius: 5px
 }
-.shj-multiline:before {
-	content: attr(data-lang);
-	color: #58f;
-	height: 32px;
-	display: block;
-	padding: 2px 12px;
-	overflow: hidden;
-	background: #58f3;
-	line-height: 32px;
-	border-radius: 5px;
-	margin-bottom: 10px
-}
+
 [class*="shj-lang-"]::selection,
 [class*="shj-lang-"] ::selection {background: #bdf5}
 [class*="shj-lang-"] > div {
@@ -83,10 +72,16 @@
 	border-radius: 5px
 }
 
-.shj-multiline.shj-mode-noheader {padding: 30px 20px}
-.shj-multiline.shj-mode-noheader:before {display: none}
-
-.shj-multiline.shj-mode-window:before {
-	background: none;
-	content: '🔴 🟡 🔵'
+.shj-multiline.shj-mode-header {padding: 20px;}
+.shj-multiline.shj-mode-header:before {
+	content: attr(data-lang);
+	color: #58f;
+	height: 32px;
+	display: block;
+	padding: 2px 12px;
+	overflow: hidden;
+	background: #58f3;
+	line-height: 32px;
+	border-radius: 5px;
+	margin-bottom: 10px
 }

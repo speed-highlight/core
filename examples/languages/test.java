@@ -29,40 +29,6 @@ List<Token> lexer(String s) {
 		} else {
 			column++;
 		}
-		if (Character.isWhitespace(c)) {
-			i++;
-			continue;
-		}
-		if (Character.isDigit(c)) {
-			StringBuilder sb = new StringBuilder();
-			while (i < s.length() && Character.isDigit(s.charAt(i))) {
-				sb.append(s.charAt(i));
-				i++;
-			}
-			tokens.add(new Token("NUMBER", sb.toString(), line, column));
-			continue;
-		}
-		if (Character.isLetter(c)) {
-			StringBuilder sb = new StringBuilder();
-			while (i < s.length() && Character.isLetter(s.charAt(i))) {
-				sb.append(s.charAt(i));
-				i++;
-			}
-			tokens.add(new Token("ID", sb.toString(), line, column));
-			continue;
-		}
-		if (c == '+') {
-			tokens.add(new Token("PLUS", "+", line, column));
-			i++;
-			continue;
-		}
-		if (c == '-') {
-			tokens.add(new Token("MINUS", "-", line, column));
-			i++;
-			continue;
-		}
-		if (c == '*') {
-			tokens.add(new Token("MULTIPLY", "*", line, column));
 }
 
 //function that take a list of tokens and execute the program
@@ -73,12 +39,6 @@ void run(List<Token>) {
 			stack.push(Integer.parseInt(token.value));
 		} else if (token.type == "ID") {
 			stack.push(stack.pop() + stack.pop());
-		} else if (token.type == "PLUS") {
-			stack.push(stack.pop() + stack.pop());
-		} else if (token.type == "MINUS") {
-			stack.push(stack.pop() - stack.pop());
-		} else if (token.type == "MULTIPLY") {
-			stack.push(stack.pop() * stack.pop());
 		}
 	}
 	System.out.println(stack.pop());

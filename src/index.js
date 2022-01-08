@@ -90,6 +90,7 @@ export async function tokenize(src, lang, token) {
  */
 export async function highlightText(src, lang, multiline = true) {
 	let res = multiline ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '';
+	//let res = multiline ? `<div><div class="shj-numbers">${'<div></div>'.repeat([...src.matchAll(/\n/g)].length+1)}</div><div>` : '';
 
 	await tokenize(src, lang, (str, type) => res += toSpan(sanitize(str), type))
 
