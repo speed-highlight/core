@@ -15,7 +15,8 @@ jobs:
     steps:
       - name: Set Up Workspace
         run: |
-          git clone ${{ github.repository }} .
+          cd ${GITHUB_WORKSPACE}
+          git clone git@github.com:${{ github.repository }}.git .
 
       - name: Auto Minify
         run: |
