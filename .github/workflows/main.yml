@@ -25,10 +25,10 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           chmod +x ./.github/workflows/minify.bash
           ./.github/workflows/minify.bash
-          git config --global user.email speed-highlight@protonmail.com
-          git config --global user.name minify-bot
+      - name: Auto Commit
+        run: |
           git add .
-          git commit -m "Auto minify"
-      - run: git push
+          git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Auto minify"
+          git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
