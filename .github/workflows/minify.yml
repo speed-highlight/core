@@ -1,4 +1,4 @@
-name: CI
+name: Minify workflow
 
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
@@ -22,6 +22,7 @@ jobs:
         run: |
           chmod +x ./.github/workflows/minify.bash
           ./.github/workflows/minify.bash
+
       - name: Auto commit
         run: |
           git add .
