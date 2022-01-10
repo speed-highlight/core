@@ -28,7 +28,7 @@ jobs:
           git config --global user.email speed-highlight@protonmail.com
           git config --global user.name minify-bot
           git add .
-          git commit -m "Auto minify" --author=minify-bot
+          git commit -m "Auto minify"
       - run: git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
