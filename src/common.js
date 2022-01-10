@@ -1,5 +1,5 @@
 /**
- * Commun used match pattern
+ * Commonly used match pattern
 */
 
 export default {
