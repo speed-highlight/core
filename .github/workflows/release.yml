@@ -28,13 +28,13 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm publish --access public --registry=https://registry.npmjs.org/ --tag ${{ github.event.release.tag_name }}
+          npm publish --verbose --access public --registry=https://registry.npmjs.org/ --tag ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
-          npm publish --access public --registry=https://npm.pkg.github.com/ --tag ${{ github.event.release.tag_name }}
+          npm publish --verbose --access public --registry=https://npm.pkg.github.com/ --tag ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
