@@ -32,7 +32,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to github packages
+      - name: Publish to github pkg
         run: |
           npm publish --access public --registry=https://npm.pkg.github.com/ --tag ${{ github.event.release.tag_name }}
         env:
