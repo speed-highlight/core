@@ -1,11 +1,13 @@
-name: npm publish
+name: npm-pkg-workflow
 
 on:
+  # Triggers the workflow on new release publish
   release:
-    types: [created]
+    types: [published]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,25 +15,31 @@ jobs:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v2
+      - name: Set up workspace
+        run: |
+          cd ${GITHUB_WORKSPACE}
+          git clone https://github.com/${{ github.repository }}.git . -b ${GITHUB_REF#refs/heads/}
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
+      - name: Set up npm
+        run: |
+          apt install npm
+          
+      - name: Publish to npm
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm set //https://registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          npm publish --access public --tag ${{ github.event.release.tag_name }}
 
-      # Publish to npm
-      - run: npm publish --access public
+      - name: Publish to github packages
+        run: |
+          npm config set registry https://npm.pkg.github.com/
+          npm set //https://npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
+          npm publish --access public --tag ${{ github.event.release.tag_name }}
+
+      - name: Auto commit
+        run: |
+          git add .
+          git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Npm upgrade version"
+          git push
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@speed-highlight'
-
-      # Publish to GitHub Packages
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
