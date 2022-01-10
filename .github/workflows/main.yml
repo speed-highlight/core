@@ -13,16 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set Up Workspace
+      - name: Set up workspace
         run: |
           cd ${GITHUB_WORKSPACE}
-          git clone git@github.com:${{ github.repository }}.git .
+          git clone https://github.com/${{ github.repository }}.git .
 
-      - name: Auto Minify
+      - name: Auto minify
         run: |
           chmod +x ./.github/workflows/minify.bash
           ./.github/workflows/minify.bash
-      - name: Auto Commit
+      - name: Auto commit
         run: |
           git add .
           git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Auto minify" || exit 0
