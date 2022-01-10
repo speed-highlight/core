@@ -25,6 +25,8 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           chmod +x ./.github/workflows/minify.bash
           ./.github/workflows/minify.bash
+          git config --global user.email speed-highlight@protonmail.com
+          git config --global user.name minify-bot
           git add .
           git commit -m "Auto minify" --author=minify-bot
       - run: git push
