@@ -28,9 +28,9 @@ jobs:
 
       - name: Create new npm version
         run: |
+          git config --global user.email "speed-highlight@protonmail.com"
+          git config --global user.name "npm-pkg-bot"
           npm version ${{ github.event.release.tag_name }}
-          git add .
-          git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Npm upgrade version"
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
