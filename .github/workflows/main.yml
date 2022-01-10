@@ -16,7 +16,7 @@ jobs:
       - name: Set up workspace
         run: |
           cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/${{ github.repository }}.git . -b ${GITHUB_REF}
+          git clone https://github.com/${{ github.repository }}.git . -b ${{ github.head_ref }}
 
       - name: Auto minify
         run: |
