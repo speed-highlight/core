@@ -26,22 +26,23 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/${{ github.repository }}.git .
 
-      - name: Publish to npm
+      - name: Create new npm version
         run: |
-          npm publish --verbose --access public --registry=https://registry.npmjs.org/ --tag ${{ github.event.release.tag_name }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish to github pkg
-        run: |
-          npm publish --verbose --access public --registry=https://npm.pkg.github.com/ --tag ${{ github.event.release.tag_name }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Auto commit
-        run: |
+          npm version ${{ github.event.release.tag_name }}
           git add .
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Npm upgrade version"
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to npm
+        run: |
+          npm publish --verbose --access public --registry=https://registry.npmjs.org/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish to github pkg
+        run: |
+          npm publish --verbose --access public --registry=https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
