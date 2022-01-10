@@ -22,7 +22,7 @@ jobs:
 
       - name: Set up npm
         run: |
-          apt install npm
+          sudo apt-get install npm
           
       - name: Publish to npm
         run: |
