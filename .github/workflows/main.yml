@@ -27,7 +27,7 @@ jobs:
           ./.github/workflows/minify.bash
       - name: Auto Commit
         run: |
-          git add .
+          git add . || (echo "nothing to commit" && exit 0)
           git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Auto minify"
           git push
         env:
