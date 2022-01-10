@@ -3,7 +3,7 @@ name: npm-pkg-workflow
 on:
   # Triggers the workflow on new release publish
   release:
-    types: [published]
+    types: [ published ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,15 +28,15 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm config set registry https://registry.npmjs.org/
-          npm set //https://registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          npm publish --access public --tag ${{ github.event.release.tag_name }}
+          npm publish --access public --registry=https://registry.npmjs.org/ --tag ${{ github.event.release.tag_name }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github packages
         run: |
-          npm config set registry https://npm.pkg.github.com/
-          npm set //https://npm.pkg.github.com/:_authToken ${{ secrets.GITHUB_TOKEN }}
-          npm publish --access public --tag ${{ github.event.release.tag_name }}
+          npm publish --access public --registry=https://npm.pkg.github.com/ --tag ${{ github.event.release.tag_name }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto commit
         run: |
