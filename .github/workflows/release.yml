@@ -13,10 +13,6 @@ jobs:
         matrix:
          node-version: [16.x]
 
-    permissions:
-      contents: write
-      packages: write
-
     steps:
       - name: Set up workspace
         run: |
