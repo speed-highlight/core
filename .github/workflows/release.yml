@@ -29,8 +29,6 @@ jobs:
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
           git add package.json
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm
         run: |
