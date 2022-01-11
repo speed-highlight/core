@@ -29,6 +29,7 @@ jobs:
           git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
           git show --summary
           git tag
+          echo "pushing"
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
