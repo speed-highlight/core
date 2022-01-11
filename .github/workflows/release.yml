@@ -30,7 +30,7 @@ jobs:
           git show --summary
           git tag
           echo "pushing"
-          git push
+          git push --verbose
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
