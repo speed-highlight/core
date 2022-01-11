@@ -34,12 +34,12 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm publish --registry=https://registry.npmjs.org/ --tag latest
+          npm publish --registry=https://registry.npmjs.org/ --scope=@speed-highlight --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
-          npm publish --registry=https://npm.pkg.github.com/ --tag latest
+          npm publish --registry=https://npm.pkg.github.com/ --scope=@speed-highlight --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
