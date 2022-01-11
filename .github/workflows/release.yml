@@ -29,20 +29,19 @@ jobs:
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
           git add package.json
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
-        #  git push --verbose
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://registry.npmjs.org/ --tag latest
+          npm publish --registry=https://registry.npmjs.org/ --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
           npm config set //npm.pkg.github.com//:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://npm.pkg.github.com/ --tag latest
+          npm publish --registry=https://npm.pkg.github.com/ --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
