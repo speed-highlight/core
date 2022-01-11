@@ -1,6 +1,6 @@
 {
   "name": "@speed-highlight/core",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
   "main": "dist/node/index.js",
   "directories": {
@@ -16,16 +16,16 @@
   "keywords": [
     "javascript",
     "syntax-highlighting",
-	"language",
+    "language",
     "fast",
     "js",
     "simple",
-	"highlighter",
+    "highlighter",
     "regex",
     "highlighting",
-	"highlightjs",
+    "highlightjs",
     "small",
-	"deno"
+    "deno"
   ],
   "author": "matubu",
   "license": "CC0-1.0",
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/speed-highlight/core#readme",
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/",
+    "registry": "https://npm.pkg.github.com/",
     "access": "public"
   }
 }
