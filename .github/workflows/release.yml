@@ -13,6 +13,11 @@ jobs:
     strategy:
         matrix:
          node-version: [16.x]
+         
+    permissions:
+      contents: write
+      packages: write
+
 
     steps:
       - name: Set up workspace
@@ -23,18 +28,10 @@ jobs:
       - name: Create new npm version
         run: |
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
-          git branch
-          head package.json
-          git add package.json
-          git status
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
-          git show --summary
-          git tag
-          echo "pushing"
-          git push --verbose
+          git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Publish to npm
         run: |
