@@ -12,7 +12,7 @@ jobs:
 
     strategy:
         matrix:
-         node-version: [12.x]
+         node-version: [16.x]
 
     permissions:
       contents: write
@@ -34,14 +34,12 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           npm publish --registry=https://registry.npmjs.org/ --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
-          npm config set //npm.pkg.github.com//:_authToken ${NPM_TOKEN}
           npm publish --registry=https://npm.pkg.github.com/ --tag latest
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
