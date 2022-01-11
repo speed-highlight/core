@@ -44,6 +44,7 @@ jobs:
         run: |
           git branch
           git show --summary
+          git status
           git push https://github.com/${{ github.repository }}.git main
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
