@@ -27,21 +27,19 @@ jobs:
         run: |
           git config --global user.email speed-highlight@protonmail.com
           git config --global user.name npm-pkg-bot
-          npm version ${{ github.event.release.tag_name }}
+          npm version ${{ github.event.release.tag_name }} --no-git-tag-version
 
       - name: Publish to npm
         run: |
-          npm adduser --registry=https://registry.npmjs.org/ --scope=@speed-highlight
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://registry.npmjs.org/
+          npm publish --ignore-scripts --registry=https://registry.npmjs.org/ --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
-          npm adduser --registry=https://npm.pkg.github.com/ --scope=@speed-highlight
           npm config set //npm.pkg.github.com//:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://npm.pkg.github.com/
+          npm publish --ignore-scripts --registry=https://npm.pkg.github.com/ --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
