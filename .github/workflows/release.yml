@@ -23,14 +23,14 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/${{ github.repository }}.git .
 
-#      - name: Create new npm version
-#        run: |
-#          git config --global user.email speed-highlight@protonmail.com
-#          git config --global user.name npm-pkg-bot
-#          npm version ${{ github.event.release.tag_name }}
-#          git push
-#        env:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create new npm version
+        run: |
+          git config --global user.email speed-highlight@protonmail.com
+          git config --global user.name npm-pkg-bot
+          npm version ${{ github.event.release.tag_name }}
+          git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm
         run: |
