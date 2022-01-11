@@ -3,21 +3,20 @@ name: npm-pkg-workflow
 on:
   # Triggers the workflow on new release
   release:
-    types: [ created ]
+    types: [ published ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
-
+    
     strategy:
         matrix:
-         node-version: [16.x]
+         node-version: [12.x]
          
     permissions:
       contents: write
       packages: write
-
 
     steps:
       - name: Set up workspace
