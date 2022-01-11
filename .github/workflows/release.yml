@@ -31,6 +31,7 @@ jobs:
 
       - name: Publish to npm
         run: |
+          npm adduser --registry=https://registry.npmjs.org/ --scope=@speed-highlight
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
           npm publish --ignore-scripts --registry=https://registry.npmjs.org/
         env:
@@ -38,6 +39,7 @@ jobs:
 
       - name: Publish to github pkg
         run: |
+          npm adduser --registry=https://npm.pkg.github.com/ --scope=@speed-highlight
           npm config set //npm.pkg.github.com//:_authToken ${NPM_TOKEN}
           npm publish --ignore-scripts --registry=https://npm.pkg.github.com/
         env:
