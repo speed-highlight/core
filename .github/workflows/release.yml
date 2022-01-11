@@ -22,8 +22,8 @@ jobs:
 
       - name: Create new npm version
         run: |
-          git config --system user.email speed-highlight@protonmail.com
-          git config --system user.name npm-pkg-bot
+          git config user.email speed-highlight@protonmail.com
+          git config user.name npm-pkg-bot
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
 
       - name: Publish to npm
