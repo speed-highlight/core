@@ -24,14 +24,14 @@ jobs:
       - name: Set up workspace
         run: |
           cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/${{ github.repository }}.git .
+          git clone https://github.com/${{ github.repository }}.git . -b main
 
       - name: Create new npm version
         run: |
           git config --global user.email speed-highlight@protonmail.com
           git config --global user.name npm-pkg-bot
           npm version ${{ github.event.release.tag_name }}
-          git push
+          git push origin main
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
