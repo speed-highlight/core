@@ -21,7 +21,7 @@ jobs:
       - name: Set up workspace
         run: |
           cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/${{ github.repository }}.git .
+          git clone git@github.com:${{ github.repository }}.git .
 
       - name: Create new npm version
         run: |
