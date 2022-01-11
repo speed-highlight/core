@@ -34,6 +34,7 @@ jobs:
           git push --verbose
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Publish to npm
         run: |
