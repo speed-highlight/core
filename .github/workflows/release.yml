@@ -22,9 +22,9 @@ jobs:
 
       - name: Create new npm version
         run: |
-          git config user.email speed-highlight@protonmail.com
-          git config user.name npm-pkg-bot
-          npm version --no-git-tag-version ${{ github.event.release.tag_name }}
+          git config --global user.email speed-highlight@protonmail.com
+          git config --global user.name npm-pkg-bot
+          npm version --no-git-tag-version ${{ github.event.release.tag_name }} -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
 
       - name: Publish to npm
         run: |
@@ -45,3 +45,4 @@ jobs:
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
