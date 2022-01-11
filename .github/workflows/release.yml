@@ -24,7 +24,15 @@ jobs:
         run: |
           git config --global user.email speed-highlight@protonmail.com
           git config --global user.name npm-pkg-bot
-          npm version --no-git-tag-version ${{ github.event.release.tag_name }} -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
+          npm version --no-git-tag-version ${{ github.event.release.tag_name }}
+          git branch
+          git add package.json
+          git status
+          git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
+          git show --summary
+          git push https://github.com/${{ github.repository }}.git main
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to npm
         run: |
@@ -39,13 +47,3 @@ jobs:
           npm publish --ignore-scripts --registry=https://npm.pkg.github.com/ --tag latest --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Push new version
-        run: |
-          git branch
-          git show --summary
-          git status
-          git push https://github.com/${{ github.repository }}.git main
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
