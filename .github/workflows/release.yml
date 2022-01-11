@@ -28,14 +28,14 @@ jobs:
       - name: Publish to npm
         run: |
           npm config set //registry.npmjs.org/:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://registry.npmjs.org/ --dry-run
+          npm publish --ignore-scripts --registry=https://registry.npmjs.org/ --tag latest --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
           npm config set //npm.pkg.github.com//:_authToken ${NPM_TOKEN}
-          npm publish --ignore-scripts --registry=https://npm.pkg.github.com/ --dry-run
+          npm publish --ignore-scripts --registry=https://npm.pkg.github.com/ --tag latest --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
