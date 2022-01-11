@@ -42,7 +42,9 @@ jobs:
           
       - name: Push new version
         run: |
-          git push
+          git branch
+          git show --summary
+          git push https://github.com/${{ github.repository }}.git main
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
