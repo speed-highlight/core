@@ -22,8 +22,6 @@ jobs:
 
       - name: Create new npm version
         run: |
-          git config --global user.email speed-highlight@protonmail.com
-          git config --global user.name npm-pkg-bot
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
           git branch
           git add package.json
