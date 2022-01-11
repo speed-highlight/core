@@ -28,6 +28,7 @@ jobs:
       - name: Create new npm version
         run: |
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
+          git add package.json
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
           git push
         env:
