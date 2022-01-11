@@ -34,14 +34,10 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.GITHUB_TOKEN }}
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           npm publish --registry=https://registry.npmjs.org/ --scope=@speed-highlight --access public --tag latest
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
           npm config set //npm.pkg.github.com//:_authToken ${{ secrets.GITHUB_TOKEN }}
           npm publish --registry=https://npm.pkg.github.com/ --scope=@speed-highlight --access public --tag latest
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
