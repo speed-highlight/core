@@ -51,3 +51,9 @@ jobs:
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push new version to github
+        run: |
+          git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
