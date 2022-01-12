@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
-    strategy:
-        matrix:
-         node-version: [16.x]
-
     permissions:
       contents: write
       packages: write
@@ -24,6 +20,12 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/${{ github.repository }}.git .
 
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          scope: '@speed-highlight'
+
       - name: Create new npm version
         run: |
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
@@ -32,12 +34,12 @@ jobs:
 
       - name: Publish to npm
         run: |
-          npm publish --access public --scope=@speed-highlight --registry=http://registry.npmjs.org/
+          npm publish --access public --registry=https://registry.npmjs.org/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish to github pkg
         run: |
-          npm publish --access public --scope=@speed-highlight --registry=http://npm.pkg.github.com/
+          npm publish --access public --registry=https://npm.pkg.github.com/
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
