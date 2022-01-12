@@ -20,28 +20,34 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/${{ github.repository }}.git .
 
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          scope: '@speed-highlight'
-
       - name: Create new npm version
         run: |
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
           git add package.json
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
 
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+          scope: '@speed-highlight'
+
       - name: Publish to npm
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          npm publish --access public --registry https://registry.npmjs.org/
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://npm.pkg.github.com/
+          scope: '@speed-highlight'
+
       - name: Publish to github pkg
         run: |
-          npm config set //npm.pkg.github.com//:_authToken ${{ secrets.GITHUB_TOKEN }}
-          npm publish --access public --registry https://npm.pkg.github.com/
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
