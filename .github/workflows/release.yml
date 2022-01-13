@@ -15,10 +15,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Set up workspace
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/${{ github.repository }}.git .
+      - uses: actions/checkout@v2
 
       - name: Create new npm version
         run: |
