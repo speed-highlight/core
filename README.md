@@ -1,4 +1,4 @@
-# Speed Highlight JS
+# Speed-highlight JS
 
 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection, [try it out here](https://speed-highlight.github.io/core/examples/)
 
