@@ -7,10 +7,8 @@
 	color: #112;
 	box-shadow: 0 0 5px #0001;
 	text-shadow: none;
-	font-size: 14px;
-	font-weight: normal;
 	line-height: 19px;
-	font-family: Consolas, "Courier New", Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font: normal 18px Consolas, "Courier New", Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
