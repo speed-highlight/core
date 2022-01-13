@@ -7,8 +7,8 @@
 	color: #112;
 	box-shadow: 0 0 5px #0001;
 	text-shadow: none;
-	line-height: 19px;
 	font: normal 18px Consolas, "Courier New", Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	line-height: 24px;
 	box-sizing: border-box;
 	max-width: min(100%, 100vw)
 }
