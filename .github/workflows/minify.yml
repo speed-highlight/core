@@ -14,10 +14,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - name: Set up workspace
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/${{ github.repository }}.git . -b ${GITHUB_REF#refs/heads/}
+      - uses: actions/checkout@v2
 
       - name: Auto minify
         run: |
