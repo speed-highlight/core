@@ -33,7 +33,7 @@ export const languages = [
 	'go',
 	'java',
 	'asm'
-];
+].sort();
 export const themes = [
 	'atom-dark',
 	'github-dark',

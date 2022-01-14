@@ -6,6 +6,9 @@
 	<meta name="description" content="Showcase of all supported languages by Speed-highlight JS">
 	<title>Languages | Speed-highlight JS</title>
 	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
+		.fira {font: 16px 'Fira Code', monospace !important}
+		
 		body {margin: 0}
 		html {background: #001220}
 		main {margin: 10px}
@@ -90,7 +93,7 @@
 			chrono.animate([ { background: '#25f3' }, { background: 'unset' }],{ duration: 150 })
 		}
 
-		let code = elm('div'),
+		let code = elm('div', { className: 'fira' }),
 			detect = false,
 			stylesheet = elm('link', { rel: 'stylesheet', type: 'text/css' }),
 			lang = new Radio('language', lang => highlight(lang, detect), testFiles),
@@ -102,6 +105,7 @@
 		new Radio('theme', theme => stylesheet.href = `../src/themes/${theme}.css`, themes)
 		new Checkbox('detect', 'detect language', on => { detect = on; highlight(lang.selected) }, container)
 		new Checkbox('header', 'header mode', mode => code.classList.toggle('shj-mode-header', mode), container)
+		new Checkbox('fira', 'use fira font', use => code.classList.toggle('fira', use), container).on = true
 
 		main.append(container, chrono, code)
 	</script>
