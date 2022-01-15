@@ -1,1 +1,1 @@
-var e="[31m",b="[32m",x="[90m",m="[33m",t="[34m",r="[35m",n="[36m";var a={deleted:e,var:e,err:e,kwd:e,num:m,class:m,cmnt:x,insert:b,str:b,bool:n,type:t,oper:t,section:r,func:r};export{a as default};
+var e="\x1B[31m",b="\x1B[32m",x="\x1B[90m",m="\x1B[33m",t="\x1B[34m",r="\x1B[35m",n="\x1B[36m";var a={deleted:e,var:e,err:e,kwd:e,num:m,class:m,cmnt:x,insert:b,str:b,bool:n,type:t,oper:t,section:r,func:r};export{a as default};
