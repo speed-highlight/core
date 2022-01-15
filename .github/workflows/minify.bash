@@ -4,7 +4,7 @@ in_dir=./src
 out_dir=./dist
 
 esbuild_system=esbuild-linux-64
-esbuild_version=0.14.0
+esbuild_version=0.14.11
 esbuild=$esbuild_system-$esbuild_version
 esbuild_bin=./package/bin/esbuild
 esbuild_options="--bundle --minify"
