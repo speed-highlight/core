@@ -48,6 +48,10 @@ highlightElement(elm, detectLanguage(code));
 
 #### CDN
 
+```css
+<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
+```
 ```js
 import ... from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
 import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js'
