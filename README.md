@@ -48,7 +48,7 @@ highlightElement(elm, detectLanguage(code));
 
 #### CDN
 
-```css
+```html
 <link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
 ```
