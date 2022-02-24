@@ -79,6 +79,11 @@ export async function tokenize(src, lang, token) {
 }
 
 /**
+ * @typedef {Object} HighlightOptions
+ * @property {boolean} hideLineNumbers - Indicates whether to hide line numbers.
+ */
+
+/**
  * @async
  * @function highlightText A function that highlight a string text and return it
  * @example
@@ -86,10 +91,11 @@ export async function tokenize(src, lang, token) {
  * @param {String} src the text content to be highlighted
  * @param {String} lang the lang name ex: 'js'
  * @param {Boolean} [multiline=true] inline mode
+ * @param {HighlightOptions} [options={}] other options
  * @returns {String} the highlighted as String text
  */
-export async function highlightText(src, lang, multiline = true) {
-	let res = multiline ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '';
+export async function highlightText(src, lang, multiline = true, options = {}) {
+	let res = multiline && !options.hideLineNumbers ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '';
 
 	await tokenize(src, lang, (str, type) => res += toSpan(sanitize(str), type))
 
