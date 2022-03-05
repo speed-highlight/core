@@ -22,7 +22,7 @@ jobs:
         with:
           source_dir: ./src
           output_dir: ./doc
-          config_file: conf.json
+          config_file: jsdoc.json
           template: minami
           front_page: README.md
 
