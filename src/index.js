@@ -80,7 +80,7 @@ export async function tokenize(src, lang, token) {
 
 /**
  * @typedef {Object} HighlightOptions
- * @property {boolean} hideLineNumbers - Indicates whether to hide line numbers.
+ * @property {boolean} [hideLineNumbers=false] - Indicates whether to hide line numbers.
  */
 
 /**
@@ -91,17 +91,16 @@ export async function tokenize(src, lang, token) {
  * @param {String} src the text content to be highlighted
  * @param {String} lang the lang name ex: 'js'
  * @param {Boolean} [multiline=true] inline mode
- * @param {HighlightOptions} [options={}] other options
+ * @param {HighlightOptions} [opt={}] other options
  * @returns {String} the highlighted as String text
  */
-export async function highlightText(src, lang, multiline = true, options = {}) {
-	let res = multiline && !options.hideLineNumbers ? `<div><div class="shj-numbers">${'<div></div>'.repeat(src.split('\n').length)}</div><div>` : '';
+export async function highlightText(src, lang, multiline = true, opt = {}) {
+	let tmp = ''
+	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
 
-	await tokenize(src, lang, (str, type) => res += toSpan(sanitize(str), type))
-
-	if (multiline)
-		res += '</div></div>';
-	return res;
+	return multiline
+		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.split('\n').length)}</div><div>${tmp}</div></div>`
+		: tmp;
 }
 
 /**
@@ -110,16 +109,19 @@ export async function highlightText(src, lang, multiline = true, options = {}) {
  * @param {HTMLElement} elm the code elm
  * @param {String} [lang] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
  * @param {String} [mode] can be set to inline multiline or oneline by default it's auto detected: inline if `code` tag else depends of the number of lines
+ * @param {HighlightOptions} [opt={}] other options
  */
-export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode) {
+export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode, opt) {
 	let txt = elm.textContent;
 	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.split('\n').length < 2 ? 'one' : 'multi')}line`;
 	elm.dataset.lang = lang;
 	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-') || className.startsWith('shj-mode-')).join(' ')} shj-lang-${lang} shj-${mode}`;
-	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline');
+	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline', opt);
 }
 
 /**
+ * @async
+ * @function highlightAll
  * for all element that have a class name starting with "shj-lang-"
  * this function will call highlightElement with the html element as argument
  * The function will select those scheme for example:
@@ -128,8 +130,9 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
  * or
  * <code class='shj-lang-[code-language]'>[inline code]</code>
  * ```
+ * @param {HighlightOptions} [opt={}] other options
  */
-export let highlightAll = async () =>
+export let highlightAll = async (opt) =>
 	document
 		.querySelectorAll('[class*="shj-lang-"]')
-		.forEach(elm => highlightElement(elm));
+		.forEach(elm => highlightElement(elm, undefined, undefined, opt))

@@ -7,7 +7,7 @@
 	<title>Languages | Speed-highlight JS</title>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
-		.fira {font: 16px 'Fira Code', monospace !important}
+		.fira {font: 18px 'Fira Code', monospace !important}
 		
 		body {margin: 0}
 		html {background: #001220}
@@ -63,9 +63,9 @@
 
 		class Checkbox
 		{
-			constructor(name, content, callback, parent, type = 'checkbox')
+			constructor(content, callback, parent, name)
 			{
-				parent.append(this.input = elm('input', { name, type, id: content }))
+				parent.append(this.input = elm('input', { name, type: name ? 'radio' : 'checkbox', id: content }))
 				parent.append(elm('label', { htmlFor: content, textContent: (this.content = content) }))
 				this.input.addEventListener('change', this.callback = e => callback(this.on))
 			}
@@ -77,7 +77,7 @@
 		class Radio {
 			constructor(name, callback, options) {
 				main.append(this.container = elm('div', { className: 'container' }, parent))
-				this.list = options.map(option => new Checkbox(name, option, e => callback(this.selected), this.container, 'radio'))
+				this.list = options.map(option => new Checkbox(option, e => callback(this.selected), this.container, name))
 				this.selected = 0
 			}
 			set selected(id) {this.list[id].on = true}
@@ -88,13 +88,15 @@
 			let path = language.includes('.') ? language : `test.${language}`,
 				txt = code.textContent = await (await fetch(`./languages/${path}`)).text()
 			let start = performance.now()
-			await highlightElement(code, detect ? detectLanguage(txt) : path.split('.')[1])
+			console.log(hideLineNumbers)
+			await highlightElement(code, detect ? detectLanguage(txt) : path.split('.')[1], undefined, { hideLineNumbers })
 			chrono.textContent = `${(performance.now() - start).toFixed(3)}ms (counting loading time)`
 			chrono.animate([ { background: '#25f3' }, { background: 'unset' }],{ duration: 150 })
 		}
 
 		let code = elm('div', { className: 'fira' }),
 			detect = false,
+			hideLineNumbers = false,
 			stylesheet = elm('link', { rel: 'stylesheet', type: 'text/css' }),
 			lang = new Radio('language', lang => highlight(lang, detect), testFiles),
 			container = elm('div', { className: 'container' }),
@@ -103,9 +105,10 @@
 		document.head.append(stylesheet)
 
 		new Radio('theme', theme => stylesheet.href = `../src/themes/${theme}.css`, themes)
-		new Checkbox('detect', 'detect language', on => { detect = on; highlight(lang.selected) }, container)
-		new Checkbox('header', 'header mode', mode => code.classList.toggle('shj-mode-header', mode), container)
-		new Checkbox('fira', 'use fira font', use => code.classList.toggle('fira', use), container).on = true
+		new Checkbox('detect language', on => { console.log('hello world'); detect = on; highlight(lang.selected) }, container)
+		new Checkbox('header mode', mode => code.classList.toggle('shj-mode-header', mode), container)
+		new Checkbox('use fira font', use => code.classList.toggle('fira', use), container).on = true
+		new Checkbox('hide line numbering', ln => { hideLineNumbers = ln; highlight(lang.selected) }, container)
 
 		main.append(container, chrono, code)
 	</script>
