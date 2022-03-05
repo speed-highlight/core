@@ -2,8 +2,7 @@
     "plugins": [],
     "recurseDepth": 10,
     "source": {
-        "includePattern": ".+\\.js(doc|x)?$",
-        "excludePattern": "(^|\\/|\\\\)_"
+        "includePattern": ".+\\.js$"
     },
     "sourceType": "module",
     "tags": {

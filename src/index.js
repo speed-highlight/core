@@ -9,16 +9,17 @@ const langs = {},
 	sanitize = (str = '') =>
 		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 	/**
+	 * @function
 	 * @private
 	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
 	 * @param {String} [token] The type of token
 	 * @returns A HMTL string
- 	 * @function
 	 */
 	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
+ * @function tokenize
  * Find the tokens in the given code and call the callback
  * @param {String} src The code
  * @param {String|Object} lang The language of the code
@@ -26,7 +27,6 @@ const langs = {},
  * this function will be given
  * * the text of the token
  * * the type of the token
- * @function
  */
 export async function tokenize(src, lang, token) {
 	try {
@@ -88,6 +88,7 @@ export async function tokenize(src, lang, token) {
  */
 
 /**
+ * @function highlightText
  * @async
  * Highlight a string passed as argument and return it
  * @example
@@ -97,7 +98,6 @@ export async function tokenize(src, lang, token) {
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
  * @param {HighlightOptions} [opt={}] Customization options
  * @returns {String} The highlighted string
- * @function
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
 	let tmp = ''
@@ -109,6 +109,7 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 }
 
 /**
+ * @function highlightElement
  * @async
  * Highlight a DOM element by getting the new innerHTML with highlightText
  * @param {HTMLElement} elm The DOM element
@@ -118,7 +119,6 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
  * * oneline inside `div` element and containing only one line
  * * multiline inside `div` element
  * @param {HighlightOptions} [opt={}] Customization options
- * @function
  */
 export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode, opt) {
 	let txt = elm.textContent;
@@ -129,10 +129,10 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 }
 
 /**
+ * @function highlightAll
  * @async
  * Call highlightElement on element with a css class starting with `shj-lang-`
  * @param {HighlightOptions} [opt={}] Customization options
- * @function
  */
 export let highlightAll = async (opt) =>
 	document
