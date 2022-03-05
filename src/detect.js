@@ -1,4 +1,5 @@
 /**
+ * @module detect
  * Language detector
 */
 
@@ -27,7 +28,6 @@ const languages = [
 ]
 
 /**
- * @function
  * Try to find the language the given code belong to
  * @param {String} code The code
  * @returns {String} The language of the code

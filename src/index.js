@@ -1,4 +1,5 @@
 /**
+ * @module index
  * Base script
 */
 
@@ -9,7 +10,6 @@ const langs = {},
 		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 	/**
 	 * @private
-	 * @function
 	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
 	 * @param {String} [token] The type of token
@@ -18,7 +18,6 @@ const langs = {},
 	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
- * @function
  * Find the tokens in the given code and call the callback
  * @param {String} src The code
  * @param {String|Object} lang The language of the code
@@ -88,7 +87,6 @@ export async function tokenize(src, lang, token) {
 
 /**
  * @async
- * @function
  * Highlight a string passed as argument and return it
  * @example
  * elm.innerHTML = await highlightText(code, 'js');
@@ -109,7 +107,6 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 
 /**
  * @async
- * @function
  * Highlight a DOM element by getting the new innerHTML with highlightText
  * @param {HTMLElement} elm The DOM element
  * @param {String} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
@@ -129,7 +126,6 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 
 /**
  * @async
- * @function
  * Call highlightElement on element with a css class starting with `shj-lang-`
  * @param {HighlightOptions} [opt={}] Customization options
  */
