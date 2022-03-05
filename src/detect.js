@@ -31,6 +31,7 @@ const languages = [
  * Try to find the language the given code belong to
  * @param {String} code The code
  * @returns {String} The language of the code
+ * @function
  */
 export const detectLanguage = code => {
 	return (languages
