@@ -8,6 +8,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+concurrency:
+  group: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +26,7 @@ jobs:
           source_dir: ./src
           output_dir: ./doc
           config_file: jsdoc.json
-          template: minami
+          template: @alexispuga/jsdoc-template
           front_page: README.md
 
       - name: Auto commit

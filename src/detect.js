@@ -1,3 +1,7 @@
+/**
+ * Language detector
+*/
+
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
 	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^\s+<!DOCTYPE\s+html/g, 500]],
@@ -22,6 +26,12 @@ const languages = [
 	['asm', [/^(section|global main|extern|\t(call|mov|ret))/gm, 100]],
 ]
 
+/**
+ * @function
+ * Try to find the language the given code belong to
+ * @param {String} code The code
+ * @returns {String} The language of the code
+ */
 export const detectLanguage = code => {
 	return (languages
 		.map(([lang, ...features]) => [

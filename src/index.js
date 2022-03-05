@@ -8,21 +8,24 @@ const langs = {},
 	sanitize = (str = '') =>
 		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 	/**
-	 * A function that turn text in HTML to apply a class to it
-	 * @param {String} str need to be sanitize to be safe
-	 * @param {String} [token] token type
-	 * @returns A string with HTML semantics
+	 * @private
+	 * @function
+	 * Create a HTML element with the right token styling
+	 * @param {String} str The content (need to be sanitized)
+	 * @param {String} [token] The type of token
+	 * @returns A HMTL string
 	 */
 	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
- * A
- * @param {String} src
- * @param {String|Object} lang
- * @param {Function} token the callback that will be call for every token found.
- * the arguments pass will be:
- * * the token as a string (can be an empty string)
- * * the token type also as a string like 'err', 'cmnt', ...
+ * @function
+ * Find the tokens in the given code and call the callback
+ * @param {String} src The code
+ * @param {String|Object} lang The language of the code
+ * @param {Function} token The callback function
+ * this function will be given
+ * * the text of the token
+ * * the type of the token
  */
 export async function tokenize(src, lang, token) {
 	try {
@@ -80,19 +83,20 @@ export async function tokenize(src, lang, token) {
 
 /**
  * @typedef {Object} HighlightOptions
- * @property {boolean} [hideLineNumbers=false] - Indicates whether to hide line numbers.
+ * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
  */
 
 /**
  * @async
- * @function highlightText A function that highlight a string text and return it
+ * @function
+ * Highlight a string passed as argument and return it
  * @example
  * elm.innerHTML = await highlightText(code, 'js');
- * @param {String} src the text content to be highlighted
- * @param {String} lang the lang name ex: 'js'
- * @param {Boolean} [multiline=true] inline mode
- * @param {HighlightOptions} [opt={}] other options
- * @returns {String} the highlighted as String text
+ * @param {String} src The code
+ * @param {String} lang The language of the code
+ * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
+ * @param {HighlightOptions} [opt={}] Customization options
+ * @returns {String} The highlighted string
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
 	let tmp = ''
@@ -105,11 +109,15 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 
 /**
  * @async
- * @function highlightElement highlight a element code with a 'pre' parent
- * @param {HTMLElement} elm the code elm
- * @param {String} [lang] the lang used for syntax highlighting by default is found in the className of the parent or the elm it self
- * @param {String} [mode] can be set to inline multiline or oneline by default it's auto detected: inline if `code` tag else depends of the number of lines
- * @param {HighlightOptions} [opt={}] other options
+ * @function
+ * Highlight a DOM element by getting the new innerHTML with highlightText
+ * @param {HTMLElement} elm The DOM element
+ * @param {String} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
+ * @param {String} [mode] The display mode (guessed by default)
+ * * inline inside `code` element
+ * * oneline inside `div` element and containing only one line
+ * * multiline inside `div` element
+ * @param {HighlightOptions} [opt={}] Customization options
  */
 export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode, opt) {
 	let txt = elm.textContent;
@@ -121,16 +129,9 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 
 /**
  * @async
- * @function highlightAll
- * for all element that have a class name starting with "shj-lang-"
- * this function will call highlightElement with the html element as argument
- * The function will select those scheme for example:
- * ```html
- * <div class='shj-lang-[code-language]'>[code]</div>
- * or
- * <code class='shj-lang-[code-language]'>[inline code]</code>
- * ```
- * @param {HighlightOptions} [opt={}] other options
+ * @function
+ * Call highlightElement on element with a css class starting with `shj-lang-`
+ * @param {HighlightOptions} [opt={}] Customization options
  */
 export let highlightAll = async (opt) =>
 	document

@@ -135,9 +135,9 @@ A modern theme by default
 | atom-dark           | ❌       | ✅  |
 | visual-studio-dark  | ❌       | ✅  |
 
-## Wiki 👀
+## Documentation 👀
 
-Further in-depth documentation for the API and other topics is in our [Wiki](https://github.com/speed-highlight/core/wiki)
+Further in-depth documentation for the API and other topics is in our [Wiki](https://github.com/speed-highlight/core/wiki) and our [Documentation](https://speed-highlight.github.io/core/doc/)
 
 ## License 📃
 
