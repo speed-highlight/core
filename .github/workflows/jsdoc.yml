@@ -1,4 +1,4 @@
-name: minify-workflow
+name: jsdoc-workflow
 
 on:
   # Triggers the workflow on push events but only for the main or dev branch
@@ -17,15 +17,19 @@ jobs:
       - name: Set up workspace
         uses: actions/checkout@v2
 
-      - name: Auto minify
-        run: |
-          chmod +x ./.github/workflows/minify.bash
-          ./.github/workflows/minify.bash
+      - name: Build documention
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./src
+          output_dir: ./doc
+          config_file: conf.json
+          template: minami
+          front_page: README.md
 
       - name: Auto commit
         run: |
           git add .
-          git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Auto minify" || exit 0
+          git -c user.name='jsdoc-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Doc update" || exit 0
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
