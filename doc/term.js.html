@@ -24,7 +24,10 @@
 						</div>
 					</div>
 				</header>
-				<h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><abbr title="Global">Glo</abbr> <a href="global.html#CallhighlightElementonelementwithacssclassstartingwith%2560shj-lang-%2560">Call highlightElement on element with a css class starting with `shj-lang-`</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Changethecurrentusedthemeforhighlighting">Change the current used theme for highlighting</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Findthetokensinthegivencodeandcallthecallback">Find the tokens in the given code and call the callback</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#HighlightaDOMelementbygettingthenewinnerHTMLwithhighlightText">Highlight a DOM element by getting the new innerHTML with highlightText</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightastringpassedasargumentandreturnastringthatcandirectlybeprinted">Highlight a string passed as argument and return a string that can directly be printed</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightastringpassedasargumentandreturnit">Highlight a string passed as argument and return it</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightandprintagivenstring">Highlight and print a given string</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#languages">languages</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Trytofindthelanguagethegivencodebelongto">Try to find the language the given code belong to</a></li></ul>
+				<h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><abbr title="Module">Mod</abbr> <a href="detect%250ALanguage%2520detectormodule_.html">detect
+Language detector</a></li><li><abbr title="Module">Mod</abbr> <a href="index%250ABase%2520scriptmodule_.html">index
+Base script</a></li><li><abbr title="Module">Mod</abbr> <a href="term%250ATerminal%2520adaptormodule_.html">term
+Terminal adaptor</a></li></ul>
 			</nav>
 		</header>
 		<div id='main-wrapper'>
@@ -40,6 +43,7 @@
     
     <figure class='source-code-wrapper'>
         <pre class="prettyprint source linenums"><code>/**
+ * @module term
  * Terminal adaptor
 */
 
@@ -49,7 +53,6 @@ let theme = import('./themes/default.js');
 
 /**
  * @async
- * @function
  * Highlight a string passed as argument and return a string that can directly be printed
  * @param {String} src The code
  * @param {String} lang The language of the code
@@ -65,14 +68,12 @@ export const highlightText = async (src, lang) => {
 
 /**
  * @async
- * @function
  * Highlight and print a given string
  * @param {String} code The code
  */
 export const printHighlight = async (...arg) => console.log(await highlightText(...arg));
 
 /**
- * @function
  * Change the current used theme for highlighting
  * @param {String} name The name of the theme
  */

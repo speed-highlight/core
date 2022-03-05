@@ -24,7 +24,10 @@
 						</div>
 					</div>
 				</header>
-				<h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><abbr title="Global">Glo</abbr> <a href="global.html#CallhighlightElementonelementwithacssclassstartingwith%2560shj-lang-%2560">Call highlightElement on element with a css class starting with `shj-lang-`</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Changethecurrentusedthemeforhighlighting">Change the current used theme for highlighting</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Findthetokensinthegivencodeandcallthecallback">Find the tokens in the given code and call the callback</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#HighlightaDOMelementbygettingthenewinnerHTMLwithhighlightText">Highlight a DOM element by getting the new innerHTML with highlightText</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightastringpassedasargumentandreturnastringthatcandirectlybeprinted">Highlight a string passed as argument and return a string that can directly be printed</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightastringpassedasargumentandreturnit">Highlight a string passed as argument and return it</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Highlightandprintagivenstring">Highlight and print a given string</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#languages">languages</a></li><li><abbr title="Global">Glo</abbr> <a href="global.html#Trytofindthelanguagethegivencodebelongto">Try to find the language the given code belong to</a></li></ul>
+				<h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><abbr title="Module">Mod</abbr> <a href="detect%250ALanguage%2520detectormodule_.html">detect
+Language detector</a></li><li><abbr title="Module">Mod</abbr> <a href="index%250ABase%2520scriptmodule_.html">index
+Base script</a></li><li><abbr title="Module">Mod</abbr> <a href="term%250ATerminal%2520adaptormodule_.html">term
+Terminal adaptor</a></li></ul>
 			</nav>
 		</header>
 		<div id='main-wrapper'>
@@ -40,6 +43,7 @@
     
     <figure class='source-code-wrapper'>
         <pre class="prettyprint source linenums"><code>/**
+ * @module index
  * Base script
 */
 
@@ -50,7 +54,6 @@ const langs = {},
 		str.replaceAll('&amp;', '&amp;#38;').replaceAll?.('&lt;', '&amp;lt;').replaceAll?.('>', '&amp;gt;'),
 	/**
 	 * @private
-	 * @function
 	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
 	 * @param {String} [token] The type of token
@@ -59,7 +62,6 @@ const langs = {},
 	toSpan = (str, token) => token ? `&lt;span class="shj-syn-${token}">${str}&lt;/span>` : str;
 
 /**
- * @function
  * Find the tokens in the given code and call the callback
  * @param {String} src The code
  * @param {String|Object} lang The language of the code
@@ -129,7 +131,6 @@ export async function tokenize(src, lang, token) {
 
 /**
  * @async
- * @function
  * Highlight a string passed as argument and return it
  * @example
  * elm.innerHTML = await highlightText(code, 'js');
@@ -150,7 +151,6 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 
 /**
  * @async
- * @function
  * Highlight a DOM element by getting the new innerHTML with highlightText
  * @param {HTMLElement} elm The DOM element
  * @param {String} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
@@ -170,7 +170,6 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 
 /**
  * @async
- * @function
  * Call highlightElement on element with a css class starting with `shj-lang-`
  * @param {HighlightOptions} [opt={}] Customization options
  */
