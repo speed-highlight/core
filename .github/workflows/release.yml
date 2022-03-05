@@ -51,6 +51,9 @@ jobs:
 
       - name: Push new version to github
         run: |
+          git log
+          git status
+          git config --get remote.origin.url
           git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
