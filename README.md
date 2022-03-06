@@ -132,7 +132,7 @@ A modern theme by default
 | github-dark         | ❌       | ✅  |
 | github-light        | ❌       | ✅  |
 | github-dim          | ❌       | ✅  |
-| atom-dark           | ❌       | ✅  |
+| atom-dark           | ✅       | ✅  |
 | visual-studio-dark  | ❌       | ✅  |
 
 ## Documentation 👀

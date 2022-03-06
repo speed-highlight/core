@@ -1,7 +1,11 @@
 /**
  * @module detect
- * Language detector
+ * (Language detector)
 */
+
+/**
+ * @typedef {import('../data.js').ShjLanguage} ShjLanguage
+ */
 
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
@@ -31,7 +35,7 @@ const languages = [
  * @function detectLanguage
  * Try to find the language the given code belong to
  * @param {String} code The code
- * @returns {String} The language of the code
+ * @returns {ShjLanguage} The language of the code
  */
 export const detectLanguage = code => {
 	return (languages

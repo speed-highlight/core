@@ -4,7 +4,7 @@ export default {
 	deleted: col.red,
 	var: col.red,
 	err: col.red,
-	kwd: col.red,
+	kwd: col.magenta,
 	num: col.yellow,
 	class: col.yellow,
 	cmnt: col.gray,
@@ -14,5 +14,5 @@ export default {
 	type: col.blue,
 	oper: col.blue,
 	section: col.magenta,
-	func: col.magenta
+	func: col.blue
 }

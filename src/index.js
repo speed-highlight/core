@@ -1,7 +1,27 @@
 /**
  * @module index
- * Base script
+ * (Base script)
 */
+
+/**
+ * @typedef {Object} ShjOptions
+ * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
+ */
+
+/**
+ * @typedef {('inline'|'oneline'|'multiline')} ShjDisplayMode
+ * * `inline` inside `code` element
+ * * `oneline` inside `div` element and containing only one line
+ * * `multiline` inside `div` element
+ */
+
+/**
+ * @typedef {import('../data.js').ShjLanguage} ShjLanguage
+ */
+
+/**
+ * @typedef {('deleted'|'err'|'var'|'section'|'kwd'|'class'|'cmnt'|'insert'|'type'|'func'|'bool'|'num'|'oper'|'str'|'esc')} ShjToken
+ */
 
 import expandData from './common.js';
 
@@ -13,7 +33,7 @@ const langs = {},
 	 * @private
 	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
-	 * @param {String} [token] The type of token
+	 * @param {ShjToken} [token] The type of token
 	 * @returns A HMTL string
 	 */
 	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
@@ -22,8 +42,8 @@ const langs = {},
  * @function tokenize
  * Find the tokens in the given code and call the callback
  * @param {String} src The code
- * @param {String|Object} lang The language of the code
- * @param {Function} token The callback function
+ * @param {ShjLanguage|Array} lang The language of the code
+ * @param {function(String,ShjToken):void} token The callback function
  * this function will be given
  * * the text of the token
  * * the type of the token
@@ -83,20 +103,15 @@ export async function tokenize(src, lang, token) {
 }
 
 /**
- * @typedef {Object} HighlightOptions
- * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
- */
-
-/**
  * @function highlightText
  * @async
  * Highlight a string passed as argument and return it
  * @example
  * elm.innerHTML = await highlightText(code, 'js');
  * @param {String} src The code
- * @param {String} lang The language of the code
+ * @param {ShjLanguage} lang The language of the code
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
- * @param {HighlightOptions} [opt={}] Customization options
+ * @param {ShjOptions} [opt={}] Customization options
  * @returns {String} The highlighted string
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
@@ -113,12 +128,9 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
  * @async
  * Highlight a DOM element by getting the new innerHTML with highlightText
  * @param {HTMLElement} elm The DOM element
- * @param {String} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
- * @param {String} [mode] The display mode (guessed by default)
- * * inline inside `code` element
- * * oneline inside `div` element and containing only one line
- * * multiline inside `div` element
- * @param {HighlightOptions} [opt={}] Customization options
+ * @param {ShjLanguage} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
+ * @param {ShjDisplayMode} [mode] The display mode (guessed by default)
+ * @param {ShjOptions} [opt={}] Customization options
  */
 export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode, opt) {
 	let txt = elm.textContent;
@@ -132,7 +144,7 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
  * @function highlightAll
  * @async
  * Call highlightElement on element with a css class starting with `shj-lang-`
- * @param {HighlightOptions} [opt={}] Customization options
+ * @param {ShjOptions} [opt={}] Customization options
  */
 export let highlightAll = async (opt) =>
 	document

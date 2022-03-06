@@ -56,7 +56,7 @@
 	<script type="module">
 		import { highlightElement } from '../src/index.js'
 		import { detectLanguage } from '../src/detect.js'
-		import { themes, testFiles } from './helper/data.js'
+		import { themesBrowser, testFiles } from '../data.js'
 
 		const main = document.querySelector('main')
 		const elm = (type, opt) => Object.assign(document.createElement(type), opt)
@@ -86,8 +86,8 @@
 
 		async function	highlight(language) {
 			let path = language.includes('.') ? language : `test.${language}`,
-				txt = code.textContent = await (await fetch(`./languages/${path}`)).text()
-			let start = performance.now()
+				txt = code.textContent = await (await fetch(`./languages/${path}`)).text(),
+				start = performance.now()
 			await highlightElement(code, detect ? detectLanguage(txt) : path.split('.')[1], undefined, { hideLineNumbers })
 			chrono.textContent = `${(performance.now() - start).toFixed(3)}ms (counting loading time)`
 			chrono.animate([ { background: '#25f3' }, { background: 'unset' }],{ duration: 150 })
@@ -103,7 +103,7 @@
 
 		document.head.append(stylesheet)
 
-		new Radio('theme', theme => stylesheet.href = `../src/themes/${theme}.css`, themes)
+		new Radio('theme', theme => stylesheet.href = `../src/themes/${theme}.css`, themesBrowser)
 		new Checkbox('detect language', on => { detect = on; highlight(lang.selected) }, container)
 		new Checkbox('header mode', mode => code.classList.toggle('shj-mode-header', mode), container)
 		new Checkbox('use fira font', use => code.classList.toggle('fira', use), container).on = true
