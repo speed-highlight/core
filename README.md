@@ -64,8 +64,8 @@ Use the [deno module](https://deno.land/x/speed_highlight_js)
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
 
-await setTheme('default');
-printHighlight('console.log("hello")', 'js');
+await setTheme('[theme-name]')
+printHighlight('console.log("hello")', 'js')
 ```
 
 ## Node
@@ -79,8 +79,8 @@ npm i @speed-highlight/core
 ```js
 const { setTheme, printHighlight } = require('@speed-highlight/core/dist/node/term.js');
 
-setTheme('default')
-printHighlight('console.log("hello")', 'js');
+setTheme('[theme-name]')
+printHighlight('console.log("hello")', 'js')
 ```
 
 ## Languages supported 🌐
