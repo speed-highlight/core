@@ -107,7 +107,7 @@
 		new Checkbox('detect language', on => { detect = on; highlight(lang.selected) }, container)
 		new Checkbox('header mode', mode => code.classList.toggle('shj-mode-header', mode), container)
 		new Checkbox('use fira font', use => code.classList.toggle('fira', use), container).on = true
-		new Checkbox('hide line numbering', ln => { hideLineNumbers = ln; highlight(lang.selected) }, container)
+		new Checkbox('hide line numbering', ln => { hideLineNumbers = ln; highlight(lang.selected) }, container).on = true
 
 		main.append(container, chrono, code)
 	</script>
