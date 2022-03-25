@@ -1,7 +1,6 @@
-/**
- * Languages supported
- * @typedef {('asm'|'bash'|'bf'|'c'|'css'|'csv'|'diff'|'docker'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjLanguage
- */
+import '../typedef.js'
+
+/** @type {ShjLanguage[]} */
 export const languages = [
 	'js',
 	'py',
@@ -39,10 +38,7 @@ export const languages = [
 	'yaml'
 ]
 
-/**
- * Themes supported in the browser
- * @typedef {('atom-dark'|'github-dark'|'github-dim'|'dark'|'default'|'github-light'|'visual-studio-dark')} ShjBrowserTheme
- */
+/** @type {ShjBrowserTheme[]} */
 export const themesBrowser = [
 	'default',
 	'atom-dark',
@@ -53,10 +49,7 @@ export const themesBrowser = [
 	'visual-studio-dark'
 ]
 
-/**
- * Languages supported
- * @typedef {('default')} ShjTerminalTheme
- */
+/** @type {ShjTerminalTheme[]} */
 export const themesTerminal = [
 	'default',
 	'atom-dark'

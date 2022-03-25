@@ -1,5 +1,5 @@
-import { languages, themesTerminal } from '../data.js'
-import { setTheme, printHighlight } from '../src/term.js';
+import { languages, themesTerminal } from './data.js'
+import { setTheme, printHighlight } from '../src/terminal.js';
 import { fromFileUrl } from 'https://deno.land/std/path/mod.ts';
 import { parse } from "https://deno.land/std/flags/mod.ts"
 
@@ -17,7 +17,7 @@ if (args.help)
 	console.log(`THEME may be:`)
 	console.log(`${themesTerminal.join(', ')}`)
 	console.log(`LANGUAGE may be:`)
-	console.log(`${themesTerminal.join(', ')}`)
+	console.log(`${languages.join(', ')}`)
 	Deno.exit(0)
 }
 
@@ -25,7 +25,8 @@ if (args.theme)
 {
 	if (!themesTerminal.includes(args.theme))
 	{
-		console.error(`'${args.theme}' is not included in the themes list`)
+		console.error(`'${args.theme}' is not a supported try on of the following theme:`)
+		console.log(`${themesTerminal.join(', ')}`)
 		Deno.exit(1)
 	}
 	await setTheme(args.theme)
@@ -33,7 +34,7 @@ if (args.theme)
 
 if (args.lang && !languages.includes(args.lang))
 {
-	console.error(`'${args.lang}' is not a supported try on of:`)
+	console.error(`'${args.lang}' is not a supported try on of the following languages:`)
 	console.log(`${languages.join(', ')}`)
 	Deno.exit(1)
 }
@@ -50,11 +51,10 @@ if (args.stdin)
 	Deno.exit(0)
 }
 
-const relativePath = `languages/${args._[0] ?? 'test.js'}`
-const absolutePath = fromFileUrl(import.meta.url.replace(/[^\\\/]+$/, relativePath))
+const absolutePath = args._[0] ?? fromFileUrl(import.meta.url.replace(/[^\\\/]+$/, './languages/test.js'))
 	.replace(Deno.cwd(), '')
 	.slice(1)
 
 const code = await Deno.readTextFile(absolutePath);
 
-printHighlight(code, args.lang ?? args._[0].split('.')[1] ?? 'js');
+printHighlight(code, args.lang ?? args._[0]?.split?.('.')?.[1] ?? 'js');

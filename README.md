@@ -62,7 +62,7 @@ import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js'
 Use the [deno module](https://deno.land/x/speed_highlight_js)
 
 ```js
-import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/term.js';
+import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/terminal.js';
 
 await setTheme('[theme-name]')
 printHighlight('console.log("hello")', 'js')
@@ -77,10 +77,50 @@ npm i @speed-highlight/core
 ```
 
 ```js
-const { setTheme, printHighlight } = require('@speed-highlight/core/dist/node/term.js');
+const { setTheme, printHighlight } = require('@speed-highlight/core/terminal.js');
 
 setTheme('[theme-name]')
 printHighlight('console.log("hello")', 'js')
+```
+
+## Migrating from prism
+
+Speed-highlight JS is a lighter and faster version of prism that share a similar API
+
+### Style
+Remove the prism stylesheet in the head of your html file
+Clone this repository or use a cdn to load our stylesheet
+```diff
+<head>
+-	<link href="themes/prism.css" rel="stylesheet" />
++	<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
+</head>
+```
+
+### Script
+For the script part remove the prism.js script and replace it by a import and a call to `highlightAll`
+```diff
+<body>
+-	<script src="prism.js"></script>
++<script>
++	import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
++	highlightAll()
++</script>
+</body>
+```
+If you want to highlight only a specific element you can use the `highlightElement` function instead
+
+### Code block
+For the code blocks replace the `<pre><code>` by only one `<div>`
+And use `shj-lang-` prefix instead of `language-` for the class property
+```diff
+-<pre><code class="language-css">p { color: red }</code></pre>
++<div class="shj-lang-css">p { color: red }</div>
+```
+And for inline code block you just have to change the class property
+```diff
+-<code class="language-css">p { color: red }</code>
++<code class="shj-lang-css">p { color: red }</code>
 ```
 
 ## Languages supported 🌐

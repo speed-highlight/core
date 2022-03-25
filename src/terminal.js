@@ -1,15 +1,9 @@
 /**
- * @module term
+ * @module terminal
  * (Terminal adaptor)
 */
 
-/**
- * @typedef {import('../data.js').ShjLanguage} ShjLanguage
- */
-
-/**
- * @typedef {import('../data.js').ShjTerminalTheme} ShjTerminalTheme
- */
+import '../typedef.js'
 
 import { tokenize } from './index.js';
 
@@ -21,7 +15,7 @@ let theme = import('./themes/default.js');
  * Highlight a string passed as argument and return a string that can directly be printed
  * @param {String} src The code
  * @param {ShjLanguage} lang The language of the code
- * @returns {String} The highlighted string
+ * @returns {Promise<String>} The highlighted string
  */
 export const highlightText = async (src, lang) => {
 	let res = '', themeMap = (await theme).default;
@@ -35,9 +29,10 @@ export const highlightText = async (src, lang) => {
  * @function printHighlight
  * @async
  * Highlight and print a given string
- * @param {String} code The code
+ * @param {String} src The code
+ * @param {ShjLanguage} lang The language of the code
  */
-export const printHighlight = async (...arg) => console.log(await highlightText(...arg));
+export const printHighlight = async (src, lang) => console.log(await highlightText(src, lang));
 
 /**
  * @function setTheme

@@ -1,6 +1,6 @@
 const fs = require('fs'),
 	path = require('path'),
-	{ setTheme, printHighlight } = require('../dist/node/term.js');
+	{ setTheme, printHighlight } = require('@speed-highlight/core/terminal');
 
 const lang = process.argv[2] ?? 'js';
 

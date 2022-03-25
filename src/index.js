@@ -3,25 +3,7 @@
  * (Base script)
 */
 
-/**
- * @typedef {Object} ShjOptions
- * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
- */
-
-/**
- * @typedef {('inline'|'oneline'|'multiline')} ShjDisplayMode
- * * `inline` inside `code` element
- * * `oneline` inside `div` element and containing only one line
- * * `multiline` inside `div` element
- */
-
-/**
- * @typedef {import('../data.js').ShjLanguage} ShjLanguage
- */
-
-/**
- * @typedef {('deleted'|'err'|'var'|'section'|'kwd'|'class'|'cmnt'|'insert'|'type'|'func'|'bool'|'num'|'oper'|'str'|'esc')} ShjToken
- */
+import '../typedef.js'
 
 import expandData from './common.js';
 
@@ -30,7 +12,7 @@ const langs = {},
 		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 	/**
 	 * @function
-	 * @private
+	 * @ignore
 	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
 	 * @param {ShjToken} [token] The type of token
@@ -43,7 +25,7 @@ const langs = {},
  * Find the tokens in the given code and call the callback
  * @param {String} src The code
  * @param {ShjLanguage|Array} lang The language of the code
- * @param {function(String,ShjToken):void} token The callback function
+ * @param {function(String, ShjToken=):void} token The callback function
  * this function will be given
  * * the text of the token
  * * the type of the token
@@ -112,7 +94,7 @@ export async function tokenize(src, lang, token) {
  * @param {ShjLanguage} lang The language of the code
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
  * @param {ShjOptions} [opt={}] Customization options
- * @returns {String} The highlighted string
+ * @returns {Promise<String>} The highlighted string
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
 	let tmp = ''
@@ -127,7 +109,7 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
  * @function highlightElement
  * @async
  * Highlight a DOM element by getting the new innerHTML with highlightText
- * @param {HTMLElement} elm The DOM element
+ * @param {Element} elm The DOM element
  * @param {ShjLanguage} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
  * @param {ShjDisplayMode} [mode] The display mode (guessed by default)
  * @param {ShjOptions} [opt={}] Customization options

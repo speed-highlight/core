@@ -3,10 +3,11 @@
  * (Language detector)
 */
 
-/**
- * @typedef {import('../data.js').ShjLanguage} ShjLanguage
- */
+import '../typedef.js'
 
+/**
+ * @type {Array.<[ShjLanguage, ...[RegExp, Number][]]>}
+ */
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
 	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^\s+<!DOCTYPE\s+html/g, 500]],
@@ -40,9 +41,9 @@ const languages = [
 export const detectLanguage = code => {
 	return (languages
 		.map(([lang, ...features]) => [
-			features.reduce((acc, [match, score]) => acc + [...code.matchAll(match)].length * score, 0),
-			lang
+			lang,
+			features.reduce((acc, [match, score]) => acc + [...code.matchAll(match)].length * score, 0)
 		])
-		.filter(([score, lang]) => score > 10)
-		.sort((a, b) => b[0] - a[0])[0]?.[1] || 'plain');
+		.filter(([lang, score]) => score > 20)
+		.sort((a, b) => b[1] - a[1])[0]?.[0] || 'plain');
 }
