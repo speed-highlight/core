@@ -3,11 +3,13 @@
  * @typedef {('asm'|'bash'|'bf'|'c'|'css'|'csv'|'diff'|'docker'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjLanguage
  */
 export const languages = [
-	'asm',
+	'js',
+	'py',
 	'bash',
-	'bf',
+	'ts',
 	'c',
 	'css',
+	'asm',
 	'csv',
 	'diff',
 	'docker',
@@ -17,23 +19,21 @@ export const languages = [
 	'http',
 	'ini',
 	'java',
-	'js',
 	'jsdoc',
 	'json',
 	'leanpub-md',
+	'bf',
 	'log',
 	'lua',
 	'make',
 	'md',
 	'pl',
 	'plain',
-	'py',
 	'regex',
 	'rs',
 	'sql',
 	'todo',
 	'toml',
-	'ts',
 	'uri',
 	'xml',
 	'yaml'
@@ -44,11 +44,11 @@ export const languages = [
  * @typedef {('atom-dark'|'github-dark'|'github-dim'|'dark'|'default'|'github-light'|'visual-studio-dark')} ShjBrowserTheme
  */
 export const themesBrowser = [
+	'default',
 	'atom-dark',
 	'github-dark',
 	'github-dim',
 	'dark',
-	'default',
 	'github-light',
 	'visual-studio-dark'
 ]
@@ -58,8 +58,8 @@ export const themesBrowser = [
  * @typedef {('default')} ShjTerminalTheme
  */
 export const themesTerminal = [
-	'atom-dark',
-	'default'
+	'default',
+	'atom-dark'
 ]
 
 export const testFiles = [
