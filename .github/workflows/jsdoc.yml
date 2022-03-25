@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build documention
-        uses: andstor/jsdoc-action@v1
+        uses: andstor/jsdoc-action@v1.2.1
         with:
           source_dir: ./src
           output_dir: ./doc
