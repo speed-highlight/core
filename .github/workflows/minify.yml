@@ -22,8 +22,7 @@ jobs:
 
       - name: Auto minify
         run: |
-          chmod +x ./.github/workflows/minify.bash
-          ./.github/workflows/minify.bash
+          sh ./.github/workflows/minify.sh
 
       - name: Auto commit
         run: |

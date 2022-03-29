@@ -1,10 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 in_dir=./src
 out_dir=./dist
 
 esbuild_system=esbuild-linux-64
-esbuild_version=0.14.11
+[ "$(uname)" == "Darwin" ] && esbuild_system=esbuild-darwin-64
+
+esbuild_version=0.14.28
 esbuild=$esbuild_system-$esbuild_version
 esbuild_bin=./package/bin/esbuild
 esbuild_options="--bundle --minify"
