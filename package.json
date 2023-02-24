@@ -7,7 +7,11 @@
 		".": "./dist/index.js",
 		"./index.js": "./dist/index.js",
 		"./detect.js": "./dist/detect.js",
-		"./terminal.js": "./dist/terminal.js"
+		"./terminal.js": "./dist/terminal.js",
+
+		"./cjs/index.js": "./dist/index.js",
+		"./cjs/detect.js": "./dist/detect.js",
+		"./cjs/terminal.js": "./dist/terminal.js"
 	},
 	"directories": {
 		"example": "examples"
