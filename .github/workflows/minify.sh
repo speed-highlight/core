@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 in_dir=./src
 out_dir=./dist
