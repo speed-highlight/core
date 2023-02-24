@@ -17,7 +17,7 @@ class Token {
 
 //lexer function that take a string and return a list of tokens
 List<Token> lexer(String s) {
-	List<Token> tokens = new ArrayList<Token>();
+	List<Token> tokensList = new ArrayList<Token>();
 	int line = 1;
 	int column = 0;
 	int i = 0;
@@ -47,6 +47,6 @@ void run(List<Token>) {
 //main function
 public static void main(String[] args) {
 	String s = "1+2+3";
-	List<Token> tokens = lexer(s);
-	run(tokens);
+	List<Token> tokensList = lexer(s);
+	run(tokensList);
 }

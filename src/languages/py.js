@@ -47,6 +47,6 @@ export default [
 	},
 	{
 		type: 'class',
-		match: /\b[A-Z]\w*\b/g
+		match: /\b[A-Z][\w_]*\b/g
 	}
 ]

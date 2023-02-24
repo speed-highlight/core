@@ -132,3 +132,13 @@ export let highlightAll = async (opt) =>
 	document
 		.querySelectorAll('[class*="shj-lang-"]')
 		.forEach(elm => highlightElement(elm, undefined, undefined, opt))
+
+/**
+ * @function loadLanguage
+ * Load a language and add it to the langs object
+ * @param {String} languageName The name of the language
+ * @param {ShjLanguage} language The language
+ */
+export let loadLanguage = (languageName, language) => {
+	langs[languageName] = language;
+}

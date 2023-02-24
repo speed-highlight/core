@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 {
 	printf("Hello World!\n");
 
-	Point p;
+	Point pTest;
 
 	asm("movl $1, %0" : "=r"(p.x));
 	asm {

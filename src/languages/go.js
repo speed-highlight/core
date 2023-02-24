@@ -19,7 +19,7 @@ export default [
 	},
 	{
 		type: 'class',
-		match: /[A-Z][\w_]*/g
+		match: /\b[A-Z][\w_]*\b/g
 	},
 	{
 		type: 'oper',

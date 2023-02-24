@@ -46,6 +46,13 @@ elm.textContent = code;
 highlightElement(elm, detectLanguage(code));
 ```
 
+Load custom language
+```js
+import { loadLanguage } from '../src/index.js';
+
+loadLanguage('language-name', customLanguage);
+```
+
 #### CDN
 
 ```html
