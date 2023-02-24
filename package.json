@@ -2,16 +2,16 @@
 	"name": "@speed-highlight/core",
 	"version": "1.1.9",
 	"description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
-	"main": "dist/node/index.js",
+	"main": "./dist/index.js",
 	"exports": {
 		".": "./dist/index.js",
 		"./index.js": "./dist/index.js",
 		"./detect.js": "./dist/detect.js",
 		"./terminal.js": "./dist/terminal.js",
 
-		"./cjs/index.js": "./dist/index.js",
-		"./cjs/detect.js": "./dist/detect.js",
-		"./cjs/terminal.js": "./dist/terminal.js"
+		"./cjs/index.js": "./dist/node/index.js",
+		"./cjs/detect.js": "./dist/node/detect.js",
+		"./cjs/terminal.js": "./dist/node/terminal.js"
 	},
 	"directories": {
 		"example": "examples"
