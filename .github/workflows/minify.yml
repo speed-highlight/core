@@ -22,7 +22,7 @@ jobs:
 
       - name: Auto minify
         run: |
-          sh ./.github/workflows/minify.sh
+          ./.github/workflows/minify.sh
 
       - name: Auto commit
         run: |
