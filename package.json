@@ -4,8 +4,10 @@
 	"description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
 	"main": "dist/node/index.js",
 	"exports": {
-		"./terminal": "./dist/node/terminal.js",
-		"./terminal.js": "./dist/node/terminal.js"
+		".": "./dist/index.js",
+		"./index.js": "./dist/index.js",
+		"./detect.js": "./dist/detect.js",
+		"./terminal.js": "./dist/terminal.js"
 	},
 	"directories": {
 		"example": "examples"

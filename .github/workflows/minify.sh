@@ -23,10 +23,10 @@ minify_file () {
 	mkdir -p $(dirname $out)
 	$esbuild_bin $file $esbuild_options --format=esm --target=es2019 --outfile=$out
 
-	[[ $file == *.css ]] && return
-	node=${file/${in_dir}/"${out_dir}/node"}
-	mkdir -p $(dirname $node)
-	$esbuild_bin $file $esbuild_options --format=cjs --platform=node --target=node12 --outfile=$node
+	# [[ $file == *.css ]] && return
+	# node=${file/${in_dir}/"${out_dir}/node"}
+	# mkdir -p $(dirname $node)
+	# $esbuild_bin $file $esbuild_options --format=cjs --platform=node --target=node12 --outfile=$node
 }
 
 [ ! -f $esbuild.tgz ] && curl -O https://registry.npmjs.org/$esbuild_system/-/$esbuild.tgz
