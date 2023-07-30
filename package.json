@@ -23,6 +23,11 @@
 		"type": "git",
 		"url": "git://github.com/speed-highlight/core.git"
 	},
+	"release": {
+		"branches": [
+			"main"
+		]
+	},
 	"keywords": [
 		"javascript",
 		"syntax-highlighting",
