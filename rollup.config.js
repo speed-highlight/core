@@ -1,5 +1,5 @@
 import dynamicImportVars from '@rollup/plugin-dynamic-import-vars';
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 import copy from 'rollup-plugin-copy'
 
 
