@@ -1,67 +1,35 @@
-name: npm-pkg-workflow
+name: Release
 
-on:
-  # Triggers the workflow on new release
-  release:
-    types: [ published ]
+"on":
+  push:
+    branches:
+      - main
 
-concurrency:
-  group: push
+permissions:
+  contents: read # for checkout
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
+  release:
     permissions:
-      contents: write
-      packages: write
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
 
+    name: release
+    runs-on: ubuntu-latest
     steps:
-      - name: Set up workspace
-        uses: actions/checkout@v2
-
-      - name: Create new npm version
-        run: |
-          git branch
-          git checkout main
-          git branch
-          npm version --no-git-tag-version ${{ github.event.release.tag_name }}
-          git branch
-          git add package.json
-          git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
-
-      - name: Set up Node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@3 # v3
+      - uses: actions/setup-node@3 # v3
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-          scope: '@speed-highlight'
+          cache: npm
+          node-version: lts/*
 
-      - name: Publish to npm
-        run: |
-          npm publish --access public
+      - run: npm clean-install
+      - run: npm audit signatures
+      - run: npm run build
+
+      - run: npx semantic-release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
-          scope: '@speed-highlight'
-
-      - name: Publish to github pkg
-        run: |
-          npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push new version to github
-        run: |
-          git log
-          git status
-          git config --get remote.origin.url
-          git push
-        env:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
