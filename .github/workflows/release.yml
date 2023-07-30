@@ -22,8 +22,11 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 # v3
-      - uses: actions/setup-node@v3 # v3
+      - name: Setup Repo
+        uses: actions/checkout@v3 # v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3 # v3
         with:
           cache: npm
           node-version: lts/*
@@ -32,7 +35,8 @@ jobs:
       - run: npm audit signatures
       - run: npm run build
 
-      - run: npx semantic-release
+      - name: Release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

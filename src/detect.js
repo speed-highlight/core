@@ -31,8 +31,8 @@ const languages = [
 	['java', [/^import\s+java/gm, 500]],
 	['asm', [/^(section|global main|extern|\t(call|mov|ret))/gm, 100]],
 	['css', [/^(@import|@page|@media|(\.|#)[a-z]+)/gm, 20]],
-	['json', [/\b(true|false|null|\{})\b|\"[a-z]\"+:/g, 10]],
-	['yaml', [/^(\s+)?[a-z]+:/gm, 10]]
+	['json', [/\b(true|false|null|\{})\b|\"[^"]+\":/g, 10]],
+	['yaml', [/^(\s+)?[a-z][a-z0-9]*:/gmi, 10]]
 ]
 
 /**
