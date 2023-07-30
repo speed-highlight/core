@@ -19,8 +19,8 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3 # v3
-      - uses: actions/setup-node@3 # v3
+      - uses: actions/checkout@v3 # v3
+      - uses: actions/setup-node@v3 # v3
         with:
           cache: npm
           node-version: lts/*
