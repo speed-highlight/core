@@ -30,6 +30,9 @@ const languages = [
 	['go', [/\b(func|fmt|package)\b/g, 100]],
 	['java', [/^import\s+java/gm, 500]],
 	['asm', [/^(section|global main|extern|\t(call|mov|ret))/gm, 100]],
+	['css', [/^(@import|@page|@media|(\.|#)[a-z]+)/gm, 20]],
+	['json', [/\b(true|false|null)\b/g, 10]],
+	['yaml', [/^(\s+)?[a-z]+:/gm, 10]]
 ]
 
 /**
