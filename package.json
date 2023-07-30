@@ -3,6 +3,7 @@
 	"version": "1.1.9",
 	"description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
 	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": "./dist/index.js",
 		"./index.js": "./dist/index.js",
@@ -55,5 +56,10 @@
 		"@rollup/plugin-terser": "^0.4.3",
 		"rollup": "^2.75.7",
 		"rollup-plugin-copy": "^3.4.0"
+	},
+	"typesVersions": {
+		"*": {
+			"*": ["dist/*", "dist"]
+		}
 	}
 }

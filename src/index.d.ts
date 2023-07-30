@@ -41,7 +41,10 @@ export type ShjLanguageComponent =
 			match: RegExp;
 			sub:
 				| string
-				| ((code: string) => { type: string; sub: Array<{ match: RegExp; sub: string }> });
+				| ((code: string) => {
+            type: string;
+            sub: Array<{ match: RegExp; sub: string | Promise<string> }>
+          });
 	  };
 
 export type ShjLanguageDefinition = Array<ShjLanguageComponent>;
@@ -98,7 +101,7 @@ export declare function highlightElement<T extends string = ShjLanguage>(
  * Call highlightElement on element with a css class starting with `shj-lang-`
  * @param opt Customization options
  */
-export declare function HighlightAll(opt?: ShjOptions): Promise<void>;
+export declare function highlightAll(opt?: ShjOptions): Promise<void>;
 
 /**
  * Load a language and add it to the langs object
