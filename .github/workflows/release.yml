@@ -34,6 +34,12 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@speed-highlight'
 
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build packages
+        run: npm run build
+
       - name: Publish to npm
         run: |
           npm publish --access public
