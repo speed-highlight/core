@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});exports.default=[{match:/^(?!\/).*/gm,sub:"todo"},{type:"num",match:/\[((?!\])[^\\]|\\.)*\]/g},{type:"kwd",match:/\||\^|\$|\\.|\w+($|\r|\n)/g},{type:"var",match:/\*|\+|\{\d+,\d+\}/g}],exports.type="oper";

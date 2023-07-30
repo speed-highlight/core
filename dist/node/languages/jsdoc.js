@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=[{type:"kwd",match:/@\w+/g},{type:"class",match:/{[\w\s|<>,.@\[\]]+}/g},{type:"var",match:/\[[\w\s="']+\]/g},...require("./todo.js").default];exports.default=e,exports.type="cmnt";

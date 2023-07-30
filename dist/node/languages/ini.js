@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});exports.default=[{match:/(^[ \f\t\v]*)[#;].*/gm,sub:"todo"},{type:"str",match:/.*/g},{type:"var",match:/.*(?==)/g},{type:"section",match:/^\s*\[.+\]\s*$/gm},{type:"oper",match:/=/g}];

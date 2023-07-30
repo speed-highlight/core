@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=[{type:"type",match:/:\s*(any|void|number|boolean|string|object|never|enum)\b/g},{type:"kwd",match:/\b(type|namespace|typedef|interface|public|private|protected|implements|declare|abstract|readonly)\b/g},...require("./js.js").default];exports.default=e;

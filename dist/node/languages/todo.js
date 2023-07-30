@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});exports.default=[{type:"err",match:/\b(TODO|FIXME|DEBUG|OPTIMIZE|WARNING|XXX|BUG)\b/g},{type:"class",match:/\bIDEA\b/g},{type:"insert",match:/\b(CHANGED|FIX|CHANGE)\b/g},{type:"oper",match:/\bQUESTION\b/g}],exports.type="cmnt";

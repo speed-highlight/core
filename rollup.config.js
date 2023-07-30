@@ -15,7 +15,9 @@ export default {
 		})
 	],
 	input: [
-		'src/index.js'
+		'src/index.js',
+		'src/terminal.js',
+		'src/detect.js'
 	],
 	output: [
 		{

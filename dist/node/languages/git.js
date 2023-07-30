@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=[{match:/^#.*/gm,sub:"todo"},{expand:"str"},...require("./diff.js").default,{type:"func",match:/^(\$ )?git(\s.*)?$/gm},{type:"kwd",match:/^commit \w+$/gm}];exports.default=e;
