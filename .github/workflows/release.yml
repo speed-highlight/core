@@ -35,6 +35,14 @@ jobs:
       - run: npm audit signatures
       - run: npm run build
 
+      - name: Auto commit
+        run: |
+          git add .
+          git -c user.name='minify-bot' -c user.email='speed-highlight@protonmail.com' commit -m "Auto minify" || exit 0
+          git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Release
         run: npx semantic-release
         env:
