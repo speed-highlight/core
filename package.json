@@ -23,10 +23,8 @@
 		"type": "git",
 		"url": "git://github.com/speed-highlight/core.git"
 	},
-	"release": {
-		"branches": [
-			"main"
-		]
+	"bugs": {
+		"url": "https://github.com/speed-highlight/core/issues"
 	},
 	"keywords": [
 		"javascript",
@@ -44,15 +42,17 @@
 	],
 	"author": "matubu",
 	"license": "CC0-1.0",
-	"bugs": {
-		"url": "https://github.com/speed-highlight/core/issues"
-	},
 	"homepage": "https://github.com/speed-highlight/core#readme",
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/",
-		"access": "public"
+	"release": {
+		"branches": [
+			"main"
+		]
 	},
-	"type": "module",
+	"private": false,
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"files": [
 		"dist"
 	],
@@ -70,5 +70,6 @@
 				"dist"
 			]
 		}
-	}
+	},
+	"type": "module"
 }

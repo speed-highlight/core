@@ -8,6 +8,9 @@ name: Release
 permissions:
   contents: read # for checkout
 
+concurrency:
+  group: push
+
 jobs:
   release:
     permissions:
