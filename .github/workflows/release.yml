@@ -23,7 +23,11 @@ jobs:
 
       - name: Create new npm version
         run: |
+          git branch
+          git checkout main
+          git branch
           npm version --no-git-tag-version ${{ github.event.release.tag_name }}
+          git branch
           git add package.json
           git -c user.name='npm-pkg-bot' -c user.email='speed-highlight@protonmail.com' commit -m "[npm-pkg-bot] updated package.json to version ${{ github.event.release.tag_name }}"
 
@@ -58,11 +62,6 @@ jobs:
           git log
           git status
           git config --get remote.origin.url
-          
-          git checkout -b newRelease
-          git checkout main
-          git merge newRelease
-          git push origin main
-          git branch -d newRelease
+          git push
         env:
           github-token: ${{ secrets.GITHUB_TOKEN }}
