@@ -1,1 +1,1 @@
-var a=[{expand:"strDouble"}];export{a as default};
+var e=[{expand:"strDouble"}];export{e as default};
