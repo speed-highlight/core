@@ -17,7 +17,7 @@
 		"example": "examples"
 	},
 	"scripts": {
-		"build": "sh .github/workflows/build.sh"
+		"build": "bash .github/workflows/build.sh"
 	},
 	"repository": {
 		"type": "git",
