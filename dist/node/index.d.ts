@@ -36,7 +36,7 @@ export interface ShjOptions {
 
 export type ShjLanguageComponent =
 	| { type: string; match: RegExp }
-	| { extand: string }
+	| { expand: string }
 	| {
 			match: RegExp;
 			sub:
