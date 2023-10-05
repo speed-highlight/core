@@ -1,79 +1,82 @@
 {
-	"name": "@speed-highlight/core",
-	"version": "1.2.4",
-	"description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		".": "./dist/index.js",
-		"./index.js": "./dist/index.js",
-		"./detect.js": "./dist/detect.js",
-		"./terminal.js": "./dist/terminal.js",
-		"./cjs/index.js": "./dist/node/index.js",
-		"./cjs/detect.js": "./dist/node/detect.js",
-		"./cjs/terminal.js": "./dist/node/terminal.js"
-	},
-	"directories": {
-		"example": "examples"
-	},
-	"scripts": {
-		"build": "bash .github/workflows/build.sh"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/speed-highlight/core.git"
-	},
-	"bugs": {
-		"url": "https://github.com/speed-highlight/core/issues"
-	},
-	"keywords": [
-		"javascript",
-		"syntax-highlighting",
-		"language",
-		"fast",
-		"js",
-		"simple",
-		"highlighter",
-		"regex",
-		"highlighting",
-		"highlightjs",
-		"small",
-		"deno"
-	],
-	"author": "matubu",
-	"license": "CC0-1.0",
-	"homepage": "https://github.com/speed-highlight/core#readme",
-	"devDependencies": {
-		"semantic-release": "^21.0.7",
-		"@semantic-release/git": "^10.0.1"
-	},
-	"release": {
-		"branches": [
-			"main"
-		],
-		"plugins": [
-			"@semantic-release/commit-analyzer",
-			"@semantic-release/release-notes-generator",
-			"@semantic-release/npm",
-			"@semantic-release/git",
-			"@semantic-release/github"
-		]
-	},
-	"private": false,
-	"publishConfig": {
-		"access": "public",
-		"provenance": true
-	},
-	"files": [
-		"dist"
-	],
-	"typesVersions": {
-		"*": {
-			"*": [
-				"dist/*",
-				"dist"
-			]
-		}
-	},
-	"type": "module"
+  "name": "@speed-highlight/core",
+  "version": "1.2.4",
+  "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./detect": "./dist/detect.js",
+    "./terminal": "./dist/terminal.js",
+    "./themes/*.css": "./dist/themes/*.css",
+    "./index.js": "./dist/index.js",
+    "./detect.js": "./dist/detect.js",
+    "./terminal.js": "./dist/terminal.js",
+    "./cjs/index.js": "./dist/node/index.js",
+    "./cjs/detect.js": "./dist/node/detect.js",
+    "./cjs/terminal.js": "./dist/node/terminal.js"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "build": "bash .github/workflows/build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/speed-highlight/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/speed-highlight/core/issues"
+  },
+  "keywords": [
+    "javascript",
+    "syntax-highlighting",
+    "language",
+    "fast",
+    "js",
+    "simple",
+    "highlighter",
+    "regex",
+    "highlighting",
+    "highlightjs",
+    "small",
+    "deno"
+  ],
+  "author": "matubu",
+  "license": "CC0-1.0",
+  "homepage": "https://github.com/speed-highlight/core#readme",
+  "devDependencies": {
+    "semantic-release": "^21.0.7",
+    "@semantic-release/git": "^10.0.1"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "files": [
+    "dist"
+  ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*",
+        "dist"
+      ]
+    }
+  },
+  "type": "module"
 }
