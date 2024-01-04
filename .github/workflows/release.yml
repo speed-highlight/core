@@ -8,9 +8,6 @@ on:
 permissions:
   contents: read # for checkout
 
-concurrency:
-  group: push
-
 jobs:
   release:
     permissions:
@@ -34,6 +31,9 @@ jobs:
       - run: npm clean-install
       - run: npm audit signatures
       - run: npm run build
+
+      - name: Build documention
+        run: npx -y typedoc src/index.js src/detect.js src/terminal.js
 
       - name: Auto commit
         run: |
