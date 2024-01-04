@@ -37,7 +37,14 @@ export function highlightText(src: string, lang: ShjLanguage, multiline?: boolea
 export function highlightElement(elm: Element, lang?: ShjLanguage, mode?: ShjDisplayMode, opt?: ShjOptions): Promise<void>;
 export function highlightAll(opt?: ShjOptions): Promise<any>;
 export function loadLanguage(languageName: string, language: ShjLanguage): void;
-export type ShjToken = ('deleted' | 'err' | 'var' | 'section' | 'kwd' | 'class' | 'cmnt' | 'insert' | 'type' | 'func' | 'bool' | 'num' | 'oper' | 'str' | 'esc');
+/**
+ * Default languages supported
+ */
+export type ShjLanguage = ('asm' | 'bash' | 'bf' | 'c' | 'css' | 'csv' | 'diff' | 'docker' | 'git' | 'go' | 'html' | 'http' | 'ini' | 'java' | 'js' | 'jsdoc' | 'json' | 'leanpub-md' | 'log' | 'lua' | 'make' | 'md' | 'pl' | 'plain' | 'py' | 'regex' | 'rs' | 'sql' | 'todo' | 'toml' | 'ts' | 'uri' | 'xml' | 'yaml');
+/**
+ * Themes supported in the browser
+ */
+export type ShjBrowserTheme = ('atom-dark' | 'github-dark' | 'github-dim' | 'dark' | 'default' | 'github-light' | 'visual-studio-dark');
 export type ShjOptions = {
     /**
      * Indicates whether to hide line numbers
@@ -51,11 +58,7 @@ export type ShjOptions = {
  */
 export type ShjDisplayMode = ('inline' | 'oneline' | 'multiline');
 /**
- * Themes supported in the browser
+ * Token types
  */
-export type ShjBrowserTheme = ('atom-dark' | 'github-dark' | 'github-dim' | 'dark' | 'default' | 'github-light' | 'visual-studio-dark');
-/**
- * Languages supported
- */
-export type ShjLanguage = ('asm' | 'bash' | 'bf' | 'c' | 'css' | 'csv' | 'diff' | 'docker' | 'git' | 'go' | 'html' | 'http' | 'ini' | 'java' | 'js' | 'jsdoc' | 'json' | 'leanpub-md' | 'log' | 'lua' | 'make' | 'md' | 'pl' | 'plain' | 'py' | 'regex' | 'rs' | 'sql' | 'todo' | 'toml' | 'ts' | 'uri' | 'xml' | 'yaml');
+export type ShjToken = ('deleted' | 'err' | 'var' | 'section' | 'kwd' | 'class' | 'cmnt' | 'insert' | 'type' | 'func' | 'bool' | 'num' | 'oper' | 'str' | 'esc');
 //# sourceMappingURL=index.d.ts.map
