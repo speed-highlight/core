@@ -3,7 +3,32 @@
  * (Base script)
 */
 
-import '../typedef.js'
+/**
+ * Default languages supported
+ * @typedef {('asm'|'bash'|'bf'|'c'|'css'|'csv'|'diff'|'docker'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjLanguage
+ */
+
+/**
+ * Themes supported in the browser
+ * @typedef {('atom-dark'|'github-dark'|'github-dim'|'dark'|'default'|'github-light'|'visual-studio-dark')} ShjBrowserTheme
+ */
+
+/**
+ * @typedef {Object} ShjOptions
+ * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
+ */
+
+/**
+ * @typedef {('inline'|'oneline'|'multiline')} ShjDisplayMode
+ * * `inline` inside `code` element
+ * * `oneline` inside `div` element and containing only one line
+ * * `multiline` inside `div` element
+ */
+
+/**
+ * Token types
+ * @typedef {('deleted'|'err'|'var'|'section'|'kwd'|'class'|'cmnt'|'insert'|'type'|'func'|'bool'|'num'|'oper'|'str'|'esc')} ShjToken
+ */
 
 import expandData from './common.js';
 
@@ -11,9 +36,10 @@ const langs = {},
 	sanitize = (str = '') =>
 		str.replaceAll('&', '&#38;').replaceAll?.('<', '&lt;').replaceAll?.('>', '&gt;'),
 	/**
+	 * Create a HTML element with the right token styling
+	 *
 	 * @function
 	 * @ignore
-	 * Create a HTML element with the right token styling
 	 * @param {String} str The content (need to be sanitized)
 	 * @param {ShjToken} [token] The type of token
 	 * @returns A HMTL string
@@ -21,8 +47,9 @@ const langs = {},
 	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
+ * Find the tokens in the given code and call the given callback
+ *
  * @function tokenize
- * Find the tokens in the given code and call the callback
  * @param {String} src The code
  * @param {ShjLanguage|Array} lang The language of the code
  * @param {function(String, ShjToken=):void} token The callback function
@@ -85,11 +112,12 @@ export async function tokenize(src, lang, token) {
 }
 
 /**
- * @function highlightText
- * @async
  * Highlight a string passed as argument and return it
  * @example
  * elm.innerHTML = await highlightText(code, 'js');
+ *
+ * @async
+ * @function highlightText
  * @param {String} src The code
  * @param {ShjLanguage} lang The language of the code
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
@@ -106,9 +134,10 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 }
 
 /**
- * @function highlightElement
- * @async
  * Highlight a DOM element by getting the new innerHTML with highlightText
+ *
+ * @async
+ * @function highlightElement
  * @param {Element} elm The DOM element
  * @param {ShjLanguage} [lang] The language of the code (seaching by default on `elm` for a 'shj-lang-' class)
  * @param {ShjDisplayMode} [mode] The display mode (guessed by default)
@@ -123,9 +152,10 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 }
 
 /**
- * @function highlightAll
- * @async
  * Call highlightElement on element with a css class starting with `shj-lang-`
+ *
+ * @async
+ * @function highlightAll
  * @param {ShjOptions} [opt={}] Customization options
  */
 export let highlightAll = async (opt) =>
@@ -134,8 +164,9 @@ export let highlightAll = async (opt) =>
 		.forEach(elm => highlightElement(elm, undefined, undefined, opt))
 
 /**
- * @function loadLanguage
  * Load a language and add it to the langs object
+ *
+ * @function loadLanguage
  * @param {String} languageName The name of the language
  * @param {ShjLanguage} language The language
  */

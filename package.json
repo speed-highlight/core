@@ -3,18 +3,24 @@
   "version": "1.2.4",
   "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./detect": "./dist/detect.js",
-    "./terminal": "./dist/terminal.js",
-    "./themes/*.css": "./dist/themes/*.css",
-    "./index.js": "./dist/index.js",
-    "./detect.js": "./dist/detect.js",
-    "./terminal.js": "./dist/terminal.js",
-    "./cjs/index.js": "./dist/node/index.js",
-    "./cjs/detect.js": "./dist/node/detect.js",
-    "./cjs/terminal.js": "./dist/node/terminal.js"
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/node/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./detect": {
+      "import": "./dist/detect.js",
+      "require": "./dist/node/detect.js",
+      "types": "./dist/detect.d.ts"
+    },
+    "./terminal": {
+      "import": "./dist/terminal.js",
+      "require": "./dist/node/terminal.js",
+      "types": "./dist/terminal.d.ts"
+    },
+
+    "./themes/*.css": "./dist/themes/*.css"
   },
   "directories": {
     "example": "examples"
@@ -47,8 +53,9 @@
   "license": "CC0-1.0",
   "homepage": "https://github.com/speed-highlight/core#readme",
   "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
     "semantic-release": "^21.0.7",
-    "@semantic-release/git": "^10.0.1"
+    "typescript": "^5.3.3"
   },
   "release": {
     "branches": [

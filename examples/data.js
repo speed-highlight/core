@@ -1,6 +1,4 @@
-import '../typedef.js'
-
-/** @type {ShjLanguage[]} */
+/** @type {import('../src/index.js').ShjLanguage[]} */
 export const languages = [
 	'js',
 	'py',
@@ -38,7 +36,7 @@ export const languages = [
 	'yaml'
 ]
 
-/** @type {ShjBrowserTheme[]} */
+/** @type {import('../src/index.js').ShjBrowserTheme[]} */
 export const themesBrowser = [
 	'default',
 	'atom-dark',
@@ -49,7 +47,7 @@ export const themesBrowser = [
 	'visual-studio-dark'
 ]
 
-/** @type {ShjTerminalTheme[]} */
+/** @type {import('../src/terminal.js').ShjTerminalTheme[]} */
 export const themesTerminal = [
 	'default',
 	'atom-dark'

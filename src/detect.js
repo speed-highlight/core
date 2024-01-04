@@ -3,10 +3,12 @@
  * (Language detector)
 */
 
-import '../typedef.js'
+/**
+ * @typedef {import('./index.js').ShjLanguage} ShjLanguage
+ */
 
 /**
- * @type {Array.<[ShjLanguage, ...[RegExp, Number][]]>}
+ * @type {[ShjLanguage, [RegExp, Number]][]}
  */
 const languages = [
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
@@ -36,8 +38,9 @@ const languages = [
 ]
 
 /**
- * @function detectLanguage
  * Try to find the language the given code belong to
+ *
+ * @function detectLanguage
  * @param {String} code The code
  * @returns {ShjLanguage} The language of the code
  */

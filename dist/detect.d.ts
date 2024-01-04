@@ -1,8 +1,3 @@
-/**
- * Try to find the language the given code belong to
- * @param code The code
- * @returns The language of the code
- */
-export declare function detectLanguage(
-  code: string
-): Promise<import('.').ShjLanguage>
+export function detectLanguage(code: string): ShjLanguage;
+export type ShjLanguage = import('./index.js').ShjLanguage;
+//# sourceMappingURL=detect.d.ts.map

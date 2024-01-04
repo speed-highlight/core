@@ -20,14 +20,12 @@ jobs:
       - name: Set up workspace
         uses: actions/checkout@v3
 
-      - name: Build documention
-        uses: andstor/jsdoc-action@v1.2.1
+      - uses: actions/setup-node@v4
         with:
-          source_dir: ./src
-          output_dir: ./doc
-          config_file: jsdoc.json
-          template: '@alexispuga/jsdoc-template'
-          front_page: README.md
+          node-version: 20
+
+      - name: Build documention
+        run: npx -y typedoc src/index.js src/detect.js src/terminal.js
 
       - name: Auto commit
         run: |

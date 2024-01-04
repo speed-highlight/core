@@ -1,26 +1,6 @@
-/**
- * Highlight a string passed as argument and return a string that can directly be printed
- * @param src The code
- * @param ang The language of the code
- * @returns The highlighted string
- */
-export declare function highlightText<T extends string = import('.').ShjLanguage>(
-  src: string,
-  lang: T
-): Promise<string>;
-
-/**
- * Highlight and print a given string
- * @param src The code
- * @param lang The language of the code
- */
-export declare function printHighlight<T extends string = import('.').ShjLanguage>(
-  src: string,
-  lang: T
-): Promise<void>;
-
-/**
- * Change the current used theme for highlighting
- * @param name The name of the theme
- */
-export declare function setTheme(name: import('.').ShjBrowserTheme): Promise<void>;
+export function highlightText(src: string, lang: ShjLanguage): Promise<string>;
+export function printHighlight(src: string, lang: ShjLanguage): Promise<any>;
+export function setTheme(name: any): Promise<any>;
+export type ShjLanguage = import('./index.js').ShjLanguage;
+export type ShjTerminalTheme = import('./index.js').ShjTerminalTheme;
+//# sourceMappingURL=terminal.d.ts.map

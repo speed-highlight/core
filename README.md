@@ -84,7 +84,7 @@ npm i @speed-highlight/core
 ```
 
 ```js
-const { setTheme, printHighlight } = require('@speed-highlight/core/terminal.js');
+const { setTheme, printHighlight } = require('@speed-highlight/core/terminal');
 
 setTheme('[theme-name]')
 printHighlight('console.log("hello")', 'js')
