@@ -6,10 +6,10 @@ Light, fast, and easy to use, dependencies free javascript syntax highlighter, w
 
 ## Light 📦
 
- * The core is about **1kB** (gzipped & minified)
- * Languages definition are from **a few bytes** to **1kB**
- * Themes are about **1kB**
- * Language rules needed are automatically loaded
+- The core is about **1kB** (gzipped & minified)
+- Languages definition are from **a few bytes** to **1kB**
+- Themes are about **1kB**
+- Language rules needed are automatically loaded
 
 ## Fast ⚡
 
@@ -20,11 +20,13 @@ Blazing fast highlighting using regex
 ### Web
 
 Style/theme (in the header of your html file):
+
 ```html
 <link rel="stylesheet" href="/path/dist/themes/default.css">
 ```
 
 In the body of your html file:
+
 ```html
 <div class='shj-lang-[code-language]'>[code]</div>
 or
@@ -32,12 +34,14 @@ or
 ```
 
 Highlight the code (in your javascript):
+
 ```js
 import { highlightAll } from '/path/dist/index.js'
 highlightAll();
 ```
 
 Auto language detection
+
 ```js
 import { highlightElement } from '../src/index.js';
 import { detectLanguage } from '../src/detect.js';
@@ -47,6 +51,7 @@ highlightElement(elm, detectLanguage(code));
 ```
 
 Load custom language
+
 ```js
 import { loadLanguage } from '../src/index.js';
 
@@ -59,6 +64,7 @@ loadLanguage('language-name', customLanguage);
 <link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
 ```
+
 ```js
 import ... from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
 import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js'
@@ -95,36 +101,45 @@ printHighlight('console.log("hello")', 'js')
 Speed-highlight JS is a lighter and faster version of prism that share a similar API
 
 ### Style
+
 Remove the prism stylesheet in the head of your html file
 Clone this repository or use a cdn to load our stylesheet
+
 ```diff
 <head>
--	<link href="themes/prism.css" rel="stylesheet" />
-+	<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
+-  <link href="themes/prism.css" rel="stylesheet" />
++  <link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
 </head>
 ```
 
 ### Script
+
 For the script part remove the prism.js script and replace it by a import and a call to `highlightAll`
+
 ```diff
 <body>
--	<script src="prism.js"></script>
+-  <script src="prism.js"></script>
 +<script>
-+	import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
-+	highlightAll()
++  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
++  highlightAll()
 +</script>
 </body>
 ```
+
 If you want to highlight only a specific element you can use the `highlightElement` function instead
 
 ### Code block
+
 For the code blocks replace the `<pre><code>` by only one `<div>`
 And use `shj-lang-` prefix instead of `language-` for the class property
+
 ```diff
 -<pre><code class="language-css">p { color: red }</code></pre>
 +<div class="shj-lang-css">p { color: red }</div>
 ```
+
 And for inline code block you just have to change the class property
+
 ```diff
 -<code class="language-css">p { color: red }</code>
 +<code class="shj-lang-css">p { color: red }</code>

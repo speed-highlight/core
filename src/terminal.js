@@ -21,9 +21,9 @@ let theme = import('./themes/default.js');
  *
  * @async
  * @function highlightText
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage} lang The language of the code
- * @returns {Promise<String>} The highlighted string
+ * @returns {Promise<string>} The highlighted string
  */
 export const highlightText = async (src, lang) => {
 	let res = '', themeMap = (await theme).default;
@@ -38,7 +38,7 @@ export const highlightText = async (src, lang) => {
  *
  * @async
  * @function printHighlight
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage} lang The language of the code
  */
 export const printHighlight = async (src, lang) => console.log(await highlightText(src, lang));

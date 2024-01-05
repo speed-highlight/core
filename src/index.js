@@ -40,7 +40,7 @@ const langs = {},
 	 *
 	 * @function
 	 * @ignore
-	 * @param {String} str The content (need to be sanitized)
+	 * @param {string} str The content (need to be sanitized)
 	 * @param {ShjToken} [token] The type of token
 	 * @returns A HMTL string
 	 */
@@ -50,9 +50,9 @@ const langs = {},
  * Find the tokens in the given code and call the given callback
  *
  * @function tokenize
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage|Array} lang The language of the code
- * @param {function(String, ShjToken=):void} token The callback function
+ * @param {function(string, ShjToken=):void} token The callback function
  * this function will be given
  * * the text of the token
  * * the type of the token
@@ -118,11 +118,11 @@ export async function tokenize(src, lang, token) {
  *
  * @async
  * @function highlightText
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage} lang The language of the code
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
  * @param {ShjOptions} [opt={}] Customization options
- * @returns {Promise<String>} The highlighted string
+ * @returns {Promise<string>} The highlighted string
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
 	let tmp = ''
@@ -147,7 +147,7 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
 	let txt = elm.textContent;
 	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.split('\n').length < 2 ? 'one' : 'multi')}line`;
 	elm.dataset.lang = lang;
-	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-') || className.startsWith('shj-mode-')).join(' ')} shj-lang-${lang} shj-${mode}`;
+	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-')).join(' ')} shj-lang-${lang} shj-${mode}`;
 	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline', opt);
 }
 
@@ -164,11 +164,22 @@ export let highlightAll = async (opt) =>
 		.forEach(elm => highlightElement(elm, undefined, undefined, opt))
 
 /**
+ * @typedef {{ match: RegExp, type: string }
+ *   | { match: RegExp, sub: string | ShjLanguageDefinition | (code:string) => ShjLanguageComponent }
+ *   | { expand: string }
+ * } ShjLanguageComponent
+ */
+
+/**
+ * @typedef {ShjLanguageComponent[]} ShjLanguageDefinition
+ */
+
+/**
  * Load a language and add it to the langs object
  *
  * @function loadLanguage
- * @param {String} languageName The name of the language
- * @param {ShjLanguage} language The language
+ * @param {string} languageName The name of the language
+ * @param {{ default: ShjLanguageDefinition }} language The language
  */
 export let loadLanguage = (languageName, language) => {
 	langs[languageName] = language;
