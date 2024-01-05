@@ -2,9 +2,9 @@
  * Find the tokens in the given code and call the given callback
  *
  * @function tokenize
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage|Array} lang The language of the code
- * @param {function(String, ShjToken=):void} token The callback function
+ * @param {function(string, ShjToken=):void} token The callback function
  * this function will be given
  * * the text of the token
  * * the type of the token
@@ -17,11 +17,11 @@ export function tokenize(src: string, lang: ShjLanguage | any[], token: (arg0: s
  *
  * @async
  * @function highlightText
- * @param {String} src The code
+ * @param {string} src The code
  * @param {ShjLanguage} lang The language of the code
  * @param {Boolean} [multiline=true] If it is multiline, it will add a wrapper for the line numbering and header
  * @param {ShjOptions} [opt={}] Customization options
- * @returns {Promise<String>} The highlighted string
+ * @returns {Promise<string>} The highlighted string
  */
 export function highlightText(src: string, lang: ShjLanguage, multiline?: boolean, opt?: ShjOptions): Promise<string>;
 /**
@@ -36,7 +36,9 @@ export function highlightText(src: string, lang: ShjLanguage, multiline?: boolea
  */
 export function highlightElement(elm: Element, lang?: ShjLanguage, mode?: ShjDisplayMode, opt?: ShjOptions): Promise<void>;
 export function highlightAll(opt?: ShjOptions): Promise<any>;
-export function loadLanguage(languageName: string, language: ShjLanguage): void;
+export function loadLanguage(languageName: string, language: {
+    default: ShjLanguageDefinition;
+}): void;
 /**
  * Default languages supported
  */
@@ -61,4 +63,14 @@ export type ShjDisplayMode = ('inline' | 'oneline' | 'multiline');
  * Token types
  */
 export type ShjToken = ('deleted' | 'err' | 'var' | 'section' | 'kwd' | 'class' | 'cmnt' | 'insert' | 'type' | 'func' | 'bool' | 'num' | 'oper' | 'str' | 'esc');
+export type ShjLanguageComponent = {
+    match: RegExp;
+    type: string;
+} | {
+    match: RegExp;
+    sub: string | ShjLanguageDefinition | ((code: string) => ShjLanguageComponent);
+} | {
+    expand: string;
+};
+export type ShjLanguageDefinition = ShjLanguageComponent[];
 //# sourceMappingURL=index.d.ts.map
