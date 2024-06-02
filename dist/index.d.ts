@@ -35,7 +35,7 @@ export function highlightText(src: string, lang: ShjLanguage, multiline?: boolea
  * @param {ShjOptions} [opt={}] Customization options
  */
 export function highlightElement(elm: Element, lang?: ShjLanguage, mode?: ShjDisplayMode, opt?: ShjOptions): Promise<void>;
-export function highlightAll(opt?: ShjOptions): Promise<any>;
+export function highlightAll(opt?: ShjOptions): Promise<void[]>;
 export function loadLanguage(languageName: string, language: {
     default: ShjLanguageDefinition;
 }): void;
