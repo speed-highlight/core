@@ -159,9 +159,9 @@ export async function highlightElement(elm, lang = elm.className.match(/shj-lang
  * @param {ShjOptions} [opt={}] Customization options
  */
 export let highlightAll = async (opt) =>
-	await Promise.all(
+	Promise.all(
 		Array.from(document.querySelectorAll('[class*="shj-lang-"]'))
-		.map(elem => highlightElement(elm, undefined, undefined, opt)))
+		.map(elm => highlightElement(elm, undefined, undefined, opt)))
 
 /**
  * @typedef {{ match: RegExp, type: string }
