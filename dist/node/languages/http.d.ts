@@ -10,7 +10,7 @@ declare const _default: ({
     sub?: undefined;
 } | {
     match: RegExp;
-    sub: (code: string) => import("../index.js").ShjLanguage;
+    sub: (code: string) => ShjLanguage;
     type?: undefined;
     expand?: undefined;
 })[];

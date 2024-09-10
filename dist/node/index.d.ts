@@ -42,11 +42,11 @@ export function loadLanguage(languageName: string, language: {
 /**
  * Default languages supported
  */
-export type ShjLanguage = ('asm' | 'bash' | 'bf' | 'c' | 'css' | 'csv' | 'diff' | 'docker' | 'git' | 'go' | 'html' | 'http' | 'ini' | 'java' | 'js' | 'jsdoc' | 'json' | 'leanpub-md' | 'log' | 'lua' | 'make' | 'md' | 'pl' | 'plain' | 'py' | 'regex' | 'rs' | 'sql' | 'todo' | 'toml' | 'ts' | 'uri' | 'xml' | 'yaml');
+export type ShjLanguage = ("asm" | "bash" | "bf" | "c" | "css" | "csv" | "diff" | "docker" | "git" | "go" | "html" | "http" | "ini" | "java" | "js" | "jsdoc" | "json" | "leanpub-md" | "log" | "lua" | "make" | "md" | "pl" | "plain" | "py" | "regex" | "rs" | "sql" | "todo" | "toml" | "ts" | "uri" | "xml" | "yaml");
 /**
  * Themes supported in the browser
  */
-export type ShjBrowserTheme = ('atom-dark' | 'github-dark' | 'github-dim' | 'dark' | 'default' | 'github-light' | 'visual-studio-dark');
+export type ShjBrowserTheme = ("atom-dark" | "github-dark" | "github-dim" | "dark" | "default" | "github-light" | "visual-studio-dark");
 export type ShjOptions = {
     /**
      * Indicates whether to hide line numbers
@@ -58,11 +58,11 @@ export type ShjOptions = {
  * * `oneline` inside `div` element and containing only one line
  * * `multiline` inside `div` element
  */
-export type ShjDisplayMode = ('inline' | 'oneline' | 'multiline');
+export type ShjDisplayMode = ("inline" | "oneline" | "multiline");
 /**
  * Token types
  */
-export type ShjToken = ('deleted' | 'err' | 'var' | 'section' | 'kwd' | 'class' | 'cmnt' | 'insert' | 'type' | 'func' | 'bool' | 'num' | 'oper' | 'str' | 'esc');
+export type ShjToken = ("deleted" | "err" | "var" | "section" | "kwd" | "class" | "cmnt" | "insert" | "type" | "func" | "bool" | "num" | "oper" | "str" | "esc");
 export type ShjLanguageComponent = {
     match: RegExp;
     type: string;
