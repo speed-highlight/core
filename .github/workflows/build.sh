@@ -2,6 +2,8 @@
 
 set -e
 
+npm i
+
 in_dir=./src
 out_dir=./dist
 
@@ -21,7 +23,7 @@ minify_js () {
 
 rm -rf $out_dir
 
-for file in $(find $in_dir \( -name "*.ts" \) -type f); do
+for file in $(find $in_dir \( -name "*.ts" -or -name "*.js" \) -type f); do
 	minify_js $file &
 done
 
