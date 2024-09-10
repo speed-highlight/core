@@ -36,7 +36,7 @@ or
 Highlight the code (in your javascript):
 
 ```js
-import { highlightAll } from '/path/dist/index.js'
+import { highlightAll } from '/path/dist/index.js';
 highlightAll();
 ```
 
@@ -66,8 +66,8 @@ loadLanguage('language-name', customLanguage);
 ```
 
 ```js
-import ... from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
-import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js'
+import ... from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
+import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js';
 ```
 
 ### Deno
@@ -77,8 +77,8 @@ Use the [deno module](https://deno.land/x/speed_highlight_js)
 ```js
 import { setTheme, printHighlight } from 'https://x.nest.land/speed_highlight_js/dist/terminal.js';
 
-await setTheme('[theme-name]')
-printHighlight('console.log("hello")', 'js')
+await setTheme('[theme-name]');
+printHighlight('console.log("hello")', 'js');
 ```
 
 ## Node
@@ -92,8 +92,8 @@ npm i @speed-highlight/core
 ```js
 const { setTheme, printHighlight } = require('@speed-highlight/core/terminal');
 
-setTheme('[theme-name]')
-printHighlight('console.log("hello")', 'js')
+setTheme('[theme-name]');
+printHighlight('console.log("hello")', 'js');
 ```
 
 ## Migrating from prism
@@ -120,8 +120,8 @@ For the script part remove the prism.js script and replace it by a import and a 
 <body>
 -  <script src="prism.js"></script>
 +<script>
-+  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js'
-+  highlightAll()
++  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
++  highlightAll();
 +</script>
 </body>
 ```
