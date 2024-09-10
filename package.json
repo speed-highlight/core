@@ -53,7 +53,9 @@
   "homepage": "https://github.com/speed-highlight/core#readme",
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
-    "semantic-release": "^21.0.7",
+    "esbuild": "^0.21.5",
+    "lightningcss-cli": "^1.25.1",
+    "semantic-release": "^24.0.0",
     "typescript": "^5.3.3"
   },
   "release": {
