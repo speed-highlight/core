@@ -14,31 +14,38 @@ export default [
 		sub: [ variable ]
 	},
 	{
+		// relative or absolute path
+		type: "oper",
+		match: /(?<=\s|^)\.*\/[a-z/_.-]+/gi,
+	},
+	{
 		type: 'kwd',
-		match: /-[a-zA-Z]+|$<|[&|;]+|\b(unset|readonly|shift|export|if|fi|else|elif|while|do|done|for|until|case|esac|break|continue|exit|return|trap|wait|eval|exec|then|declare|enable|local|select|typeset|time|add|remove|install|update|delete)\b/g
+		match: /\s-[a-zA-Z]+|$<|[&|;]+|\b(unset|readonly|shift|export|if|fi|else|elif|while|do|done|for|until|case|esac|break|continue|exit|return|trap|wait|eval|exec|then|declare|enable|local|select|typeset|time|add|remove|install|update|delete)(?=\s|$)/g
 	},
 	{
 		expand: 'num'
 	},
 	{
+		// command
 		type: 'func',
-		match: /\b(set|alias|bg|bind|builtin|caller|command|compgen|complete|dirs|disown|echo|enable|eval|exec|exit|fc|fg|getopts|hash|help|history|jobs|kill|let|logout|popd|printf|pushd|pwd|read|set|shift|shopt|source|suspend|test|times|trap|type|ulimit|umask|unalias|unset)\b/g
+		match: /(?<=(^|\||\&\&|\;)\s*)[a-z_.-]+(?=\s|$)/gmi
 	},
 	{
 		type: 'bool',
-		match: /\b(true|false)\b/g
+		match: /(?<=\s|^)(true|false)(?=\s|$)/g
 	},
-	{
-		type: 'func',
-		match: /[a-z_]+(?=\s*\()/g
-	},
+	// {
+	// 	// function definition
+	// 	type: 'func',
+	// 	match: /(?<=\s|^)[a-z_]+(?=\s*\()/g
+	// },
 	{
 		type: 'oper',
-		match: /[=(){}<>+*/!?~^-]+/g
+		match: /[=(){}<>!]+/g
 	},
 	{
 		type: 'var',
-		match: /\w+(?=\s*=)/g
+		match: /(?<=\s|^)[\w_]+(?=\s*=)/g
 	},
 	variable
 ]

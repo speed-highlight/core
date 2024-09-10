@@ -10,7 +10,7 @@ npm install speed_highlight_js
 
 TEST=5
 
-NAME="John"
+HELLO_WORLD="John"
 echo "Hi $NAME"  #=> Hi John
 cat 'Hi $NAME'#=> TODO Hi $NAME
 
@@ -29,4 +29,7 @@ minify_file () {
 	test=false
 	out=${ file/${in_dir}/${out_dir} }
 	exec_minify_cmd $file $out
+	test-hello &
+	./a.out test-hello
+	cat /etc/test
 }

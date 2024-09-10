@@ -9,7 +9,7 @@ export default [
 					if (str[i] == '{') f();
 					else if (str[i] == '}') return;
 				};
-			for (; i < str.length; i++)
+			for (; i < str.length; ++i)
 				if (str[i - 1] != '\\' && str[i] == '$' && str[i + 1] == '{') {
 				j = i++;
 				f(i);
