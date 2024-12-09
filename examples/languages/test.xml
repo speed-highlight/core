@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Simple example from w3schools-->
-<breakfast_menu>
+<breakfast:menu>
 <food>
 	<name>Belgian Waffles</name>
 	<price>$5.95</price>
@@ -41,4 +41,31 @@
 	</description>
 	<calories>950</calories>
 </food>
-</breakfast_menu> 
+</breakfast:menu>
+
+<article xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:oasis="http://www.niso.org/standards/z39-96/ns/oasis-exchange/table" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:ali="http://www.niso.org/schemas/ali/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" article-type="research-article" xml:lang="en" dtd-version="1.2">
+
+    <inline-graphic xlink:href="filename.png"/>
+
+    <mml:math>
+        <mml:mn>4</mml:mn>
+        <mml:mo>&#x2264;</mml:mo>
+        <mml:mi>x</mml:mi>
+        <mml:mo>&lt;</mml:mo>
+        <mml:mn>10</mml:mn>
+        <mml:mrow>
+            <mml:mtext>"&#xA0;</mml:mtext>
+        </mml:mrow>
+    </mml:math>
+
+    <?processing-instruction-name processing-instruction-value?>
+
+    <p content-type="example">This element and attribute is here to show that speed-highlight is running.</p>
+
+</article>
+
+</test  test="a"  >
+<test  test="b" />
+<test  test="c" ?>
+<?test  test="d" >
+<!test test="e" >
