@@ -32,7 +32,7 @@ export let
 			},
 			{
 				type: 'class',
-				match: /[a-z0-9_\-:]+/gi
+				match: RegExp(`${Name}`, 'gi')
 			}
 		]
 	};
@@ -51,12 +51,33 @@ export default [
 				match: /^<\?|\?>$/g
 			},
 			{
-				type: 'str',
-				match: /"[^"]*"|'[^']*'/g
+				type: 'var',
+				match: RegExp(`${Name}`, 'gi')
 			},
 			{
-				type: 'var',
-				match: /[a-z0-9_\\-]+/gi
+				type: 'str',
+				match: /[\s\S]+(?!\\?>)$/g,
+				sub: [
+					{
+						type: 'oper',
+						match: /\?>$/g
+					},
+					{
+						type: 'class',
+						match: RegExp(`\s*${Name}\s*=\s*("[^"]*"|'[^']*')\s*`, 'gi'),
+						sub: [
+							{
+								type: 'oper',
+								match: /=/g
+							},
+							{
+								type: 'str',
+								match: /("[^"]*"|'[^']*')/g	
+							}
+						]
+					}
+				
+				]
 			}
 		]
 	},
