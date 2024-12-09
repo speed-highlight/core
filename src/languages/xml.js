@@ -1,14 +1,18 @@
-export let property = '\\s*(\\s+[a-z-]+\\s*(=\\s*([^"\']\\S*|("|\')(\\\\[^]|(?!\\4)[^])*\\4?)?)?\\s*)*',
+let
+	nameStartChar = ":A-Z_a-z\u{C0}-\u{D6}\u{D8}-\u{F6}\u{F8}-\u{2FF}\u{370}-\u{37D}\u{37F}-\u{1FFF}\u{200C}-\u{200D}\u{2070}-\u{218F}\u{2C00}-\u{2FEF}\u{3001}-\u{D7FF}\u{F900}-\u{FDCF}\u{FDF0}-\u{FFFD}",
+	nameChar = nameStartChar + "\\-\\.0-9\u{B7}\u{0300}-\u{036F}\u{203F}-\u{2040}",
+	name = "[" + nameStartChar + "][" + nameChar + "]*";
+export let property = `\\s*(\\s+${name}\\s*(=\\s*([^"\']\\S*|("|\')(\\\\[^]|(?!\\4)[^])*\\4?)?)?\\s*)*`,
 	xmlElement = {
-		match: RegExp(`<\/?[a-z_-]+${property}\/?>`, 'g'),
+		match: RegExp(`<[\/?!]?${name}${property}[\/?!]?>`, 'g'),
 		sub: [
 			{
 				type: 'var',
-				match: /^<\/?[^\s>\/]+/g,
+				match: /^<[\/?!]?[^\s>\/]+/g,
 				sub: [
 					{
 						type: 'oper',
-						match: /^<\/?/g
+						match: /^<[\/?!]?/g
 					}
 				]
 			},
@@ -24,11 +28,11 @@ export let property = '\\s*(\\s+[a-z-]+\\s*(=\\s*([^"\']\\S*|("|\')(\\\\[^]|(?!\
 			},
 			{
 				type: 'oper',
-				match: /\/?>/g
+				match: /[\/?!]?>/g
 			},
 			{
 				type: 'class',
-				match: /[a-z-]+/gi
+				match: RegExp(`${name}`, 'gi')
 			}
 		]
 	};
@@ -37,24 +41,6 @@ export default [
 	{
 		match: /<!--((?!-->)[^])*-->/g,
 		sub: 'todo'
-	},
-	{
-		type: 'class',
-		match: RegExp(`<\\?xml${property}\\?>`, 'gi'),
-		sub: [
-			{
-				type: 'oper',
-				match: /^<\?|\?>$/g
-			},
-			{
-				type: 'str',
-				match: /"[^"]*"|'[^']*'/g
-			},
-			{
-				type: 'var',
-				match: /xml/gi
-			}
-		]
 	},
 	{
 		type: 'class',
