@@ -8,8 +8,6 @@
 
 ![Screenshot](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
-Features:
-
 - 🪶 Lightweight (**~2kB** for the core + **~1kB** by language)
 - ⚡ Fast (faster than prism and highlight.js on average)
 - 🧹 Minimal Codebase
