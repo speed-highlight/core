@@ -11,6 +11,8 @@ declare const _default: ({
 } | {
     type: string;
     match: RegExp;
+    sub?: undefined;
+    expand?: undefined;
 })[];
 export default _default;
 //# sourceMappingURL=ts.d.ts.map

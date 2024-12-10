@@ -1,4 +1,5 @@
-export let property: string;
+export let name: string;
+export let properties: string;
 export namespace xmlElement {
     let match: RegExp;
     let sub: ({
