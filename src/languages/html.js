@@ -1,4 +1,4 @@
-import xml, { property, xmlElement } from './xml.js'
+import xml, { properties, xmlElement } from './xml.js'
 
 export default [
 	{
@@ -20,10 +20,10 @@ export default [
 		]
 	},
 	{
-		match: RegExp(`<style${property}>((?!</style>)[^])*</style\\s*>`, 'g'),
+		match: RegExp(`<style${properties}>((?!</style>)[^])*</style\\s*>`, 'g'),
 		sub: [
 			{
-				match: RegExp(`^<style${property}>`, 'g'),
+				match: RegExp(`^<style${properties}>`, 'g'),
 				sub: xmlElement.sub
 			},
 			{
@@ -34,10 +34,10 @@ export default [
 		]
 	},
 	{
-		match: RegExp(`<script${property}>((?!</script>)[^])*</script\\s*>`, 'g'),
+		match: RegExp(`<script${properties}>((?!</script>)[^])*</script\\s*>`, 'g'),
 		sub: [
 			{
-				match: RegExp(`^<script${property}>`, 'g'),
+				match: RegExp(`^<script${properties}>`, 'g'),
 				sub: xmlElement.sub
 			},
 			{
