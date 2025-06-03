@@ -48,7 +48,11 @@
     "small",
     "deno"
   ],
-  "author": "matubu",
+  "author": {
+    "name": "matubu",
+    "email": "hi@mathias.ninja",
+    "url": "https://mathias.ninja"
+  },
   "license": "CC0-1.0",
   "homepage": "https://github.com/speed-highlight/core#readme",
   "devDependencies": {
