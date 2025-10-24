@@ -14,6 +14,8 @@ def fib(n):
 				a, b = b, a+b
 		print()
 fib(1000)
+Test(32)
+TEST(42)
 numbers = [2, 4, 6, 8]
 """
 This is a comment
