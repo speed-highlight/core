@@ -1,7 +1,7 @@
 export default [
 	{
 		type: 'var',
-		match: /("|')?[a-zA-Z]\w*\1(?=\s*:)/g
+		match: /(("|')((?!\2)[^\r\n\\]|\\[^])*\2|[a-zA-Z]\w*)(?=\s*:)/g
 	},
 	{
 		expand: 'str'

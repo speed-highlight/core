@@ -9,7 +9,7 @@
     "state": "NY",
     "postalCode": "10021-3100"
   },
-  "phoneNumbers": [
+  "phone.numbers": [
     {
       "type": "home",
       "number": "212 555-1234"
