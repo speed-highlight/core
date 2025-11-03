@@ -48,7 +48,7 @@ Numbered list:
   2. rinse
   3. repeat
 
-An [example](http://example.com).
+An [example](http://example.com). <http://example.com>
 
 ![Image](Icon-pictures.png "icon")
 
@@ -60,3 +60,7 @@ An [example](http://example.com).
 |--------------|-----------|------------|
 | Juicy Apples | 1.99      | *7*        |
 | Bananas      | **1.89**  | 5234       |
+
+Inline code (should start here: `await session.close()`) ended here [12][6]
+
+Another inline code: `any`

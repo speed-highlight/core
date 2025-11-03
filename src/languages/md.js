@@ -38,11 +38,13 @@ export default [
 		match: /^\s*(\*|\d+\.)\s/gm
 	},
 	{
-		type: 'oper',
-		match: /\[[^\]]*]/g
-	},
-	{
 		type: 'func',
-		match: /\([^)]*\)/g
+		match: /\[[^\]]*]\([^)]*\)|<[^>]*>/g,
+		sub: [
+			{
+				type: 'oper',
+				match: /^\[[^\]]*]/g
+			}
+		]
 	}
 ]
