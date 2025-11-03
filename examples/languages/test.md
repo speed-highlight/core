@@ -67,9 +67,11 @@ Another inline code: `any`
 
 This is a function_name. Another_One.
 
-Same for__double under__scores
+Same for__double under__scores __ **
 
 Within a word*italic*should written like this.
 
 And the**bold**like this.
 
+*test * *test * _test _ _ test_
+_ test_ _test _

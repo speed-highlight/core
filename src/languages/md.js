@@ -31,7 +31,7 @@ export default [
 	},
 	{
 		type: 'kwd',
-		match: /\b_[^_]*_\b|\*[^*]*\*/g
+		match: /\b_\S([^\n]*?\S)?_\b|\*\S([^\n]*?\S)?\*/g
 	},
 	{
 		type: 'kwd',
