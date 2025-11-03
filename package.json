@@ -1,6 +1,6 @@
 {
   "name": "@speed-highlight/core",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
   "main": "./dist/index.js",
   "exports": {
