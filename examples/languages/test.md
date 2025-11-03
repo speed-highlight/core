@@ -64,3 +64,12 @@ An [example](http://example.com). <http://example.com>
 Inline code (should start here: `await session.close()`) ended here [12][6]
 
 Another inline code: `any`
+
+This is a function_name. Another_One.
+
+Same for__double under__scores
+
+Within a word*italic*should written like this.
+
+And the**bold**like this.
+
