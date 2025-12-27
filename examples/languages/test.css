@@ -1,20 +1,404 @@
-@import "my-styles.css";
+/* TODO Test Modern CSS Features */
+@charset "UTF-8";
 
-p > a,
-.class,
-#id {
-	color: blue;
-	text-decoration: underline;
-}
-/*TODO comment*/
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import "animations.css" layer(animations);
 
-@page :left {
-	color: #2222;
-	margin-left: 4cm;
-	margin-right: 3cm;
-	background: url(test.jpg);
-	color: rgb(5, 5, 5);
+@layer reset, base, components, utilities;
+
+@namespace url(http://www.w3.org/1999/xhtml);
+@namespace svg url(http://www.w3.org/2000/svg);
+
+@font-face {
+  font-family: "CustomFont";
+  src: url("font.woff2") format("woff2"),
+       url("font.woff") format("woff");
+  font-weight: 100 900;
+  font-display: swap;
 }
-@media print {
-	body { font-size: 10pt }
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --my-color {
+  syntax: "<color>";
+  initial-value: #c0ffee;
+  inherits: true;
+}
+
+@counter-style custom-counter {
+  system: cyclic;
+  symbols: ◉ ◌ ◎;
+  suffix: " ";
+}
+
+:root {
+  --primary: oklch(0.7 0.2 200);
+  --secondary: color-mix(in oklch, var(--primary) 80%, white);
+  --spacing-xs: 0.25rem;
+  --spacing-sm: clamp(0.5rem, 2vw, 1rem);
+  --grid-gap: max(1rem, 2%);
+  --border-radius: round(up, 12px, 4px);
+}
+
+@supports (container-type: inline-size) {
+  .card {
+    container-type: inline-size;
+    container-name: card;
+  }
+}
+
+/* Nesting & Scoping */
+.container * {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: var(--grid-gap);
+  
+  & > .item {
+    background: light-dark(white, #1a1a1a);
+    padding: var(--spacing-sm);
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    
+    &:hover {
+      scale: 1.05;
+      rotate: 2deg;
+      translate: 0 -5px;
+    }
+    
+    &:has(> img) {
+      aspect-ratio: 16 / 9;
+    }
+    
+    @media (width >= 768px) {
+      padding: calc(var(--spacing-sm) * 2);
+    }
+  }
+}
+
+/* Container Queries */
+@container card (min-width: 400px) {
+  .card-title {
+    font-size: clamp(1.5rem, 4cqw, 2.5rem);
+  }
+}
+
+/* Advanced Selectors */
+:is(article, section, aside):has(> h2) {
+  margin-block: 2rem;
+}
+
+:where(.button, .link):not(:disabled, [aria-disabled="true"]) {
+  cursor: pointer;
+  
+  &:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Cascade Layers */
+@layer components {
+  .button {
+    all: unset;
+    padding: 0.5em 1em;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: var(--border-radius);
+    
+    &[data-variant="ghost"] {
+      background: none;
+      color: var(--primary);
+      border: 1px solid currentColor;
+    }
+  }
+}
+
+/* Complex Animations */
+@keyframes spin-colors {
+  from {
+    --gradient-angle: 0deg;
+    filter: hue-rotate(0deg);
+  }
+  to {
+    --gradient-angle: 360deg;
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes slide-fade {
+  0% {
+    opacity: 0;
+    translate: -100% 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Scroll-driven Animations */
+@supports (animation-timeline: scroll()) {
+  .parallax {
+    animation: parallax linear;
+    animation-timeline: scroll();
+  }
+  
+  @keyframes parallax {
+    to {
+      translate: 0 -50%;
+    }
+  }
+}
+
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}
+
+/* Complex Functions & Calculations */
+.complex-layout {
+  width: calc(100% - var(--spacing-sm) * 2);
+  height: max(50vh, 400px);
+  padding: clamp(1rem, 5vw, 3rem);
+  margin-inline: auto;
+  
+  background: 
+    linear-gradient(
+      calc(var(--gradient-angle) + 45deg),
+      oklch(0.7 0.2 calc(var(--gradient-angle) * 1)),
+      oklch(0.5 0.3 calc(var(--gradient-angle) * 2))
+    );
+  
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 2rem),
+    calc(100% - 2rem) 100%,
+    0 100%
+  );
+  
+  box-shadow: 
+    0 1px 2px hsl(0 0% 0% / 0.1),
+    0 4px 8px hsl(0 0% 0% / 0.1),
+    0 12px 24px hsl(0 0% 0% / 0.1);
+}
+
+/* Subgrid */
+.grid-parent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  
+  & .grid-child {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: span 4;
+  }
+}
+
+/* Logical Properties */
+.card {
+  padding-block: 2rem;
+  padding-inline: 1.5rem;
+  margin-block-end: var(--spacing-sm);
+  border-inline-start: 4px solid var(--primary);
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+/* Media Queries */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: oklch(0.8 0.2 200);
+  }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+  .hero {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive:hover {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+/* Custom Media Queries (future) */
+@custom-media --mobile (width < 768px);
+@custom-media --desktop (width >= 1024px);
+
+/* Feature Queries */
+@supports (backdrop-filter: blur(10px)) {
+  .glass {
+    background: rgb(255 255 255 / 0.1);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+  }
+}
+
+@supports selector(:has(> img)) {
+  .card:has(img) {
+    padding: 0;
+  }
+}
+
+/* Anchor Positioning */
+.tooltip {
+  position: absolute;
+  position-anchor: --trigger;
+  bottom: anchor(top);
+  left: anchor(center);
+  translate: -50% -8px;
+}
+
+/* Advanced Pseudo-classes */
+input:user-invalid {
+  border-color: red;
+}
+
+dialog:modal {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+:target-within {
+  background: color-mix(in srgb, yellow 20%, transparent);
+}
+
+/* Color Functions */
+.color-demo {
+  background: oklch(0.7 0.2 200 / 0.8);
+  border-color: lch(50% 50 200);
+  color: lab(60% 40 30);
+  box-shadow: 0 4px 12px hwb(200 20% 20% / 0.5);
+  
+  &::before {
+    background: color-mix(in oklch, red 30%, blue);
+  }
+  
+  &::after {
+    background: color-contrast(
+      wheat vs tan, sienna, var(--primary), #d2691e
+    );
+  }
+}
+
+/* Relative Colors */
+.relative-colors {
+  --base: oklch(0.7 0.2 200);
+  background: oklch(from var(--base) calc(l * 0.8) c h);
+  border: 1px solid oklch(from var(--base) l calc(c * 1.5) h / 0.5);
+}
+
+/* Math Functions */
+.math {
+  width: round(nearest, 34.6%, 10%);
+  height: mod(100vh, 50px);
+  padding: rem(18px, 16px);
+  gap: hypot(3em, 4em);
+  rotate: atan2(1, 1);
+}
+
+/* Trigonometry */
+.trig {
+  transform: rotate(calc(sin(45deg) * 360deg));
+  width: calc(cos(60deg) * 100%);
+  translate: calc(tan(30deg) * 1rem) 0;
+}
+
+/* Advanced Grid */
+.masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: masonry;
+  align-tracks: start;
+}
+
+/* Scroll Snap */
+.carousel {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  overscroll-behavior-x: contain;
+  
+  & > * {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+/* Text Styling */
+.text {
+  text-wrap: balance;
+  text-box-trim: both;
+  text-box-edge: cap alphabetic;
+  hanging-punctuation: first last;
+  initial-letter: 3 2;
+  
+  &::first-line {
+    font-variant: small-caps;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* Filters & Blend Modes */
+.effects {
+  filter: 
+    blur(4px)
+    brightness(1.2)
+    contrast(1.1)
+    drop-shadow(0 4px 12px rgb(0 0 0 / 0.3))
+    grayscale(0.2)
+    hue-rotate(45deg)
+    invert(0.1)
+    saturate(1.5);
+  
+  mix-blend-mode: multiply;
+  background-blend-mode: overlay, soft-light;
+}
+
+/* Masks */
+.mask {
+  mask-image: 
+    linear-gradient(to bottom, black 50%, transparent),
+    url("mask.svg");
+  mask-composite: intersect;
+  mask-mode: alpha, luminance;
+  mask-size: 100% 100%, contain;
+}
+
+/* Multiple Backgrounds */
+.multi-bg {
+  background: 
+    url("pattern.svg") repeat,
+    linear-gradient(135deg, var(--primary), transparent),
+    radial-gradient(circle at 30% 50%, color-mix(in srgb, red 20%, transparent), transparent 70%),
+    conic-gradient(from 90deg at 50% 50%, red, yellow, green, cyan, blue, magenta, red);
+  background-size: 50px 50px, cover, cover, cover;
+  background-position: 0 0, center, center, center;
+  background-blend-mode: overlay, normal, screen, hue;
 }
