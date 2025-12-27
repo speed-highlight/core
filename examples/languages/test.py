@@ -38,3 +38,7 @@ class MyClass:
 		x = F"test{x > 5} test\n {numbers} {{\{test}}}\" test
 
 x = lambda a : a + 10
+
+res = await dst_conn.executemany(f"""
+	Synced {synced}.
+""", to_upsert)
