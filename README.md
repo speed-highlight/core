@@ -1,201 +1,193 @@
-# Speed Highlight JS
+<img src="./assets/speed-highlight-banner.svg" alt="Speed Highlight" width="100%">
 
-<p align="center">
-	<a href="https://speed-highlight.github.io/core/examples">Demo</a> |
-	<a href="https://github.com/speed-highlight/core/wiki">Wiki</a> |
-	<a href="https://speed-highlight.github.io/core/docs">Docs</a>
-</p>
+> Light, fast, dependency-free JavaScript syntax highlighter for the web and the terminal
+
+[![npm version](https://badge.fury.io/js/@speed-highlight%2Fcore.svg)](https://badge.fury.io/js/@speed-highlight%2Fcore) ![NPM Downloads](https://img.shields.io/npm/dm/%40speed-highlight%2Fcore)
+ ![GitHub License](https://img.shields.io/github/license/speed-highlight/core) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40speed-highlight%2Fcore) ![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
+
+**Used by**
+
+<table>
+<tr>
+<td align="center">
+<img src="./assets/adobe.svg" alt="Adobe"/>
+</td>
+<td align="center">
+<img src="./assets/discord.svg" alt="Discord"/>
+</td>
+<td align="center">
+<img src="./assets/cloudflare.svg" alt="Cloudflare"/>
+</td>
+<td align="center">
+<img src="./assets/vercel.svg" alt="Vercel"/>
+</td>
+</tr>
+<tr>
+<td align="center">
+<img src="./assets/atlassian.svg" alt="Atlassian"/>
+</td>
+<td align="center">
+<img src="./assets/mistral.svg" alt="Mistral AI"/>
+</td>
+<td align="center">
+<img src="./assets/microsoft.svg" alt="Microsoft"/>
+</td>
+<td align="center">
+<img src="./assets/linux-foundation.svg" alt="Linux Foundation"/>
+</td>
+</tr>
+</table>
 
 ![Screenshot](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
-- 🪶 Lightweight (**~2kB** for the core + **~1kB** by language)
-- ⚡ Fast (faster than prism and highlight.js on average)
-- 🧹 Minimal Codebase
+<p align="center">
+	<a href="https://speed-highlight.github.io/core/">Documentation</a> |
+	<a href="https://speed-highlight.github.io/core/demo">Demo</a>
+</p>
 
-## Simple setup 🚀
+- **Tiny** <small>(~2kB core, ~1kB per language)</small>
+- **Fast** <small>(outperforms Prism and highlight.js)</small>
+- **Simple** <small>(zero dependencies)</small>
 
-### Web
-
-Style/theme (in the header of your html file):
-
-```html
-<link rel="stylesheet" href="/path/dist/themes/default.css">
-```
-
-In the body of your html file:
-
-```html
-<div class='shj-lang-[code-language]'>[code]</div>
-or
-<code class='shj-lang-[code-language]'>[inline code]</code>
-```
-
-Highlight the code (in your javascript):
-
-```js
-import { highlightAll } from '/path/dist/index.js';
-highlightAll();
-```
-
-Auto language detection
-
-```js
-import { highlightElement } from '../dist/index.js';
-import { detectLanguage } from '../dist/detect.js';
-
-elm.textContent = code;
-highlightElement(elm, detectLanguage(code));
-```
-
-Load custom language
-
-```js
-import { loadLanguage } from '../dist/index.js';
-
-loadLanguage('language-name', customLanguage);
-```
-
----
-
-#### CDN
-
-```html
-<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/themes/default.css">
-```
-
-```js
-import ... from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
-import ... from 'https://cdn.jsdelivr.net/gh/speed-highlight/core/dist/index.js';
-```
-
----
-
-### Deno
-
-Use the [deno module](https://deno.land/x/speed_highlight_js)
-
-```js
-import { setTheme, printHighlight } from 'https://deno.land/x/speed_highlight_js/dist/terminal.js';
-
-await setTheme('[theme-name]');
-printHighlight('console.log("hello")', 'js');
-```
-
----
-
-### Node
-
-Use the [npm package](https://www.npmjs.com/package/@speed-highlight/core)
+## Installation
 
 ```bash
 npm i @speed-highlight/core
 ```
 
-```js
-const { setTheme, printHighlight } = require('@speed-highlight/core/terminal');
+## For the Web
 
-setTheme('[theme-name]');
+**1. Add a theme**
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
+```
+
+**2. Mark your code blocks**
+
+```html
+<div class="shj-lang-js">console.log('Hello')</div>
+```
+
+**3. Highlight**
+
+```html
+<script type="module">
+  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
+  highlightAll();
+</script>
+```
+
+With npm/bundler:
+
+```js
+import { highlightAll } from '@speed-highlight/core';
+highlightAll();
+```
+
+→ [Full Web Guide](https://speed-highlight.github.io/core/web)
+
+## For the Terminal
+
+Terminal output via ANSI escape codes.
+
+**Node.js**
+
+```js
+import { setTheme, printHighlight } from '@speed-highlight/core/terminal';
+
+setTheme('default');
 printHighlight('console.log("hello")', 'js');
 ```
 
-## Migrating from prism
+**Deno**
 
-Speed-highlight JS is a lighter and faster version of prism that share a similar API
+```js
+import { setTheme, printHighlight } from 'https://deno.land/x/speed_highlight_js/dist/terminal.js';
 
-### Style
-
-Remove the prism stylesheet in the head of your html file
-Clone this repository or use a cdn to load our stylesheet
-
-```diff
-<head>
--  <link href="themes/prism.css" rel="stylesheet" />
-+  <link rel="stylesheet" href="https://unpkg.com/@speed-highlight/core/dist/themes/default.css">
-</head>
+await setTheme('default');
+printHighlight('console.log("hello")', 'js');
 ```
 
-### Script
+→ [Full Terminal Guide](https://speed-highlight.github.io/core/terminal)
 
-For the script part remove the prism.js script and replace it by a import and a call to `highlightAll`
+## API Overview
 
-```diff
-<body>
--  <script src="prism.js"></script>
-+<script>
-+  import { highlightAll } from 'https://unpkg.com/@speed-highlight/core/dist/index.js';
-+  highlightAll();
-+</script>
-</body>
-```
+| Function | Description |
+|----------|-------------|
+| `highlightAll()` | Highlight all `shj-lang-*` elements |
+| `highlightElement(el, lang?, mode?, opts?)` | Highlight a specific element |
+| `highlightText(code, lang)` | Get highlighted HTML string |
+| `detectLanguage(code)` | Auto-detect language |
+| `loadLanguage(name, def)` | Register custom language |
 
-If you want to highlight only a specific element you can use the `highlightElement` function instead
+→ [Full API Reference](https://speed-highlight.github.io/core/api)
 
-### Code block
+## Switching from Prism or highlight.js?
 
-For the code blocks replace the `<pre><code>` by only one `<div>`
-And use `shj-lang-` prefix instead of `language-` for the class property
+| Feature | Speed Highlight | Prism | highlight.js |
+|---------|-----------------|-------|--------------|
+| Core size | ~2kB | ~17kB | ~40kB |
+| Dependencies | 0 | 0 | 0 |
+| Languages | 35 | 290+ | 190+ |
+| Terminal support | ✅ Built-in | ❌ | ❌ |
 
-```diff
--<pre><code class="language-css">p { color: red }</code></pre>
-+<div class="shj-lang-css">p { color: red }</div>
-```
+→ [Prism Migration Guide](https://speed-highlight.github.io/core/vs-prism) | [highlight.js Migration Guide](https://speed-highlight.github.io/core/vs-highlightjs)
 
-And for inline code block you just have to change the class property
+## Languages
 
-```diff
--<code class="language-css">p { color: red }</code>
-+<code class="shj-lang-css">p { color: red }</code>
-```
+| Name       | Class               | Detection |
+| ---------- | ------------------- | --------- |
+| JavaScript | `shj-lang-js`       | ✅ |
+| TypeScript | `shj-lang-ts`       | ✅ |
+| Python     | `shj-lang-py`       | ✅ |
+| Rust       | `shj-lang-rs`       | ✅ |
+| Go         | `shj-lang-go`       | ✅ |
+| Java       | `shj-lang-java`     | ✅ |
+| C          | `shj-lang-c`        | ✅ |
+| HTML       | `shj-lang-html`     | ✅ |
+| CSS        | `shj-lang-css`      | ✅ |
+| JSON       | `shj-lang-json`     | ❌ |
+| Bash       | `shj-lang-bash`     | ✅ |
+| SQL        | `shj-lang-sql`      | ✅ |
+| Markdown   | `shj-lang-md`       | ✅ |
+| YAML       | `shj-lang-yaml`     | ❌ |
+| TOML       | `shj-lang-toml`     | ❌ |
+| Docker     | `shj-lang-docker`   | ✅ |
+| Makefile   | `shj-lang-make`     | ✅ |
+| Diff       | `shj-lang-diff`     | ✅ |
+| XML        | `shj-lang-xml`      | ✅ |
+| Lua        | `shj-lang-lua`      | ✅ |
+| Perl       | `shj-lang-pl`       | ✅ |
+| Assembly   | `shj-lang-asm`      | ✅ |
+| HTTP       | `shj-lang-http`     | ✅ |
+| URI        | `shj-lang-uri`      | ✅ |
+| Regex      | `shj-lang-regex`    | ❌ |
+| INI        | `shj-lang-ini`      | ❌ |
+| CSV        | `shj-lang-csv`      | ❌ |
+| Log        | `shj-lang-log`      | ❌ |
+| Git        | `shj-lang-git`      | ❌ |
+| JSDoc      | `shj-lang-jsdoc`    | ❌ |
+| Brainfuck  | `shj-lang-bf`       | ❌ |
+| Todo       | `shj-lang-todo`     | ❌ |
+| Plain      | `shj-lang-plain`    | ❌ |
+| Leanpub MD | `shj-lang-leanpub-md` | ❌ |
 
-## Languages supported 🌐
+→ [Full Language List](https://speed-highlight.github.io/core/languages)
 
-| Name       | Class name          | Support                                             | Language detection |
-| ---------- | ------------------- | --------------------------------------------------- | ------------------ |
-| asm        | shj-lang-asm        |                                                     | ✅                 |
-| bash       | shj-lang-bash       |                                                     | ✅                 |
-| brainfuck  | shj-lang-bf         | increment, operator, print, comment                 | ❌                 |
-| c          | shj-lang-c          |                                                     | ✅                 |
-| css        | shj-lang-css        | comment, str, selector, units, function, ...        | ✅                 |
-| csv        | shj-lang-csv        | punctuation, ...                                    | ❌                 |
-| diff       | shj-lang-diff       |                                                     | ✅                 |
-| docker     | shj-lang-docker     |                                                     | ✅                 |
-| git        | shj-lang-git        | comment, insert, deleted, string, ...               | ❌                 |
-| go         | shj-lang-go         |                                                     | ✅                 |
-| html       | shj-lang-html       |                                                     | ✅                 |
-| http       | shj-lang-http       | keywork, string, punctuation, variable, version     | ✅                 |
-| ini        | shj-lang-ini        |                                                     | ❌                 |
-| java       | shj-lang-java       |                                                     | ✅                 |
-| javascipt  | shj-lang-js         | basic syntax, regex, jsdoc, json, template literals | ✅                 |
-| jsdoc      | shj-lang-jsdoc      |                                                     | ❌                 |
-| json       | shj-lang-json       | string, number, bool, ...                           | ❌                 |
-| leanpub-md | shj-lang-leanpub-md |                                                     | ❌                 |
-| log        | shj-lang-log        | number, string, comment, errors                     | ❌                 |
-| lua        | shj-lang-lua        |                                                     | ✅                 |
-| makefile   | shj-lang-make       |                                                     | ✅                 |
-| markdown   | shj-lang-md         |                                                     | ✅                 |
-| perl       | shj-lang-pl         |                                                     | ✅                 |
-| plain      | shj-lang-plain      |                                                     | ❌                 |
-| python     | shj-lang-py         |                                                     | ✅                 |
-| regex      | shj-lang-regex      | count, set, ...                                     | ❌                 |
-| rust       | shj-lang-rs         |                                                     | ✅                 |
-| sql        | shj-lang-sql        | number, string, function, ...                       | ✅                 |
-| todo       | shj-lang-todo       |                                                     | ❌                 |
-| toml       | shj-lang-toml       | comment, table, string, bool, variable              | ❌                 |
-| typescript | shj-lang-ts         | js syntax, ts keyword, types                        | ✅                 |
-| uri        | shj-lang-uri        |                                                     | ✅                 |
-| xml        | shj-lang-xml        |                                                     | ✅                 |
-| yaml       | shj-lang-yaml       | comment, numbers, variable, string, bool            | ❌                 |
+## Themes
 
-## Themes 🌈
+| Theme              | Terminal | Web |
+| ------------------ | -------- | --- |
+| default            | ✅       | ✅  |
+| github-dark        | ❌       | ✅  |
+| github-light       | ❌       | ✅  |
+| github-dim         | ❌       | ✅  |
+| atom-dark          | ✅       | ✅  |
+| visual-studio-dark | ❌       | ✅  |
 
-A modern theme by default
+→ [Themes Guide](https://speed-highlight.github.io/core/themes) | [Styling Guide](https://speed-highlight.github.io/core/styling)
 
-| Name                | Terminal | Web |
-| ------------------- | -------- | --- |
-| default             | ✅       | ✅  |
-| github-dark         | ❌       | ✅  |
-| github-light        | ❌       | ✅  |
-| github-dim          | ❌       | ✅  |
-| atom-dark           | ✅       | ✅  |
-| visual-studio-dark  | ❌       | ✅  |
+## License
+
+Speed Highlight is released under the [CC0 1.0 Universal license](LICENSE) (public domain).
