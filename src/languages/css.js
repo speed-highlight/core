@@ -27,7 +27,7 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /[\w-]+(?=\s*(?::|<=|>=|<|>|=))/g
+		match: /[\w-]+(?=\s*:(?:\s|$))/g
 	},
 	{
 		type: 'num',
@@ -50,8 +50,7 @@ export default [
 		match: /\b(auto|inherit|initial|unset|revert|revert-layer|none|normal|all|both|transparent|currentColor|true|false|block|inline|flex|grid|subgrid|contents|table|list-item|run-in|ruby|flexbox|absolute|relative|fixed|sticky|static|left|right|top|bottom|center|middle|start|end|space-between|space-around|space-evenly|baseline|stretch|bold|bolder|lighter|italic|oblique|underline|overline|line-through|uppercase|lowercase|capitalize|pre|nowrap|wrap|break-word|clip|ellipsis|solid|dashed|dotted|double|groove|ridge|inset|outset|hidden|and|not|only|or|from|to)(?:-[\w-]+)?\b/g
 	},
 	{
-
 		type: 'type',
-		match: /(?:\.|#|::?)[a-zA-Z0-9_-]+|(?<!@[\w-]+\s+(?:[\w-]+\s,\s*))(?<![\w-])[a-z][\w-](?![a-z0-9_-])/gmi
+		match: /(?:\.|#|::?)[\w-]+|(?<!@[\w-]+\s+)(?<![-\w:])\b[a-z][\w\d-]*(?=[^{};]*\{)|(?<=\b:[a-z-]+\()[a-z][\w\d-]*(?=[^)]*\))/gmi
 	}
 ]

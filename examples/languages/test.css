@@ -52,17 +52,17 @@
 }
 
 /* Nesting & Scoping */
-.container * {
+container h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
   gap: var(--grid-gap);
   
-  & > .item {
+  & > h2 {
     background: light-dark(white, #1a1a1a);
     padding: var(--spacing-sm);
     border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
     
-    &:hover {
+    &:hover h2 {
       scale: 1.05;
       rotate: 2deg;
       translate: 0 -5px;
