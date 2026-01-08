@@ -1,6 +1,6 @@
 {
   "name": "@speed-highlight/core",
-  "version": "1.2.12",
+  "version": "1.2.14",
   "description": "🌈 Light, fast, and easy to use, dependencies free javascript syntax highlighter, with automatic language detection",
   "main": "./dist/index.js",
   "exports": {
@@ -59,7 +59,7 @@
     "@semantic-release/git": "^10.0.1",
     "esbuild": "^0.25.0",
     "lightningcss-cli": "^1.25.1",
-    "semantic-release": "^24.0.0",
+    "semantic-release": "^25.0.2",
     "typescript": "^5.3.3"
   },
   "release": {
