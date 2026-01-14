@@ -86,7 +86,7 @@ export default [
 		match: /:/g
 	},
 	{
-		match: /(?<=(?:^|[=(,:[!&|?{};<>\+*\-\/%^~]|\b(?:case|else|do|return|throw|typeof|void|yield|await|new|in|instanceof))\s*)\/(?!\s)(?:\\.|\[(?:\\.|\[(?:\\.|[^\]])*\]|[^\]])*\]|(?!\/)[^\r\n\\])+\/[dgimsuyv]*/g,
+		match: /(?<=(?:^|[=(,:[!&|?{};<>\+*\-\/%^~]|\b(?:case|else|do|return|throw|typeof|void|yield|await|new|in|instanceof))\s*)\/(?:\\.|\[(?:\\.|\[(?:\\.|[^\]])*\]|[^\]])*\]|(?!\/)[^\r\n\\])+\/[dgimsuyv]*/g,
 		sub: 'regex'
 	},
 	{
