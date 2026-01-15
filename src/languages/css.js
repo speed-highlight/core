@@ -47,7 +47,7 @@ export default [
 	},
 	{
 		type: 'bool',
-		match: /\b(in|from|to|at|vs|nearest|up|down|always|stable|both|none|auto|inherit|initial|unset|revert|normal|all|transparent|currentColor|true|false|block|inline|flex|grid|subgrid|contents|table|flexbox|absolute|relative|fixed|sticky|static|left|right|top|bottom|center|middle|start|end|baseline|stretch|bold|bolder|lighter|italic|oblique|underline|overline|pre|nowrap|wrap|clip|ellipsis|solid|dashed|dotted|double|groove|ridge|inset|outset|hidden|and|not|only|or)(?:-[\w-]+)?\b/g
+		match: /\b(in|from|to|at|vs|nearest|up|down|always|stable|both|none|auto|inherit|initial|unset|revert|normal|all|transparent|currentColor|true|false|block|inline|flex|grid|subgrid|contents|table|absolute|relative|fixed|sticky|static|left|right|top|bottom|center|middle|start|end|baseline|stretch|bold|bolder|lighter|italic|oblique|underline|overline|pre|nowrap|wrap|clip|ellipsis|solid|dashed|dotted|double|groove|ridge|inset|outset|hidden|and|not|only|or|cover|contain|x|y|scroll|visible|pointer|default|zoom|row|column|ease|linear|step|overlay|safe|unsafe|self|first|last|legacy|dense|min|max|fit|available|border|list|flow|ruby|separate|collapse|mix|multiply|screen|darken|lighten|difference|exclusion|hue|saturation|luminosity)(?:-[\w-]+)?\b/g
 	},
     {
         type: 'section', 
