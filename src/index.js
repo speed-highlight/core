@@ -129,7 +129,7 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
 
 	return multiline
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.split('\n').length)}</div><div>${tmp}</div></div>`
+		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && (src.match(/\n/g) || []).length + 1)}</div><div>${tmp}</div></div>`
 		: tmp;
 }
 
@@ -145,7 +145,7 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
  */
 export async function highlightElement(elm, lang = elm.className.match(/shj-lang-([\w-]+)/)?.[1], mode, opt) {
 	let txt = elm.textContent;
-	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.split('\n').length < 2 ? 'one' : 'multi')}line`;
+	mode ??= `${elm.tagName == 'CODE' ? 'in' : (txt.includes('\n') ? 'multi' : 'one')}line`;
 	elm.dataset.lang = lang;
 	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-')).join(' ')} shj-lang-${lang} shj-${mode}`;
 	elm.innerHTML = await highlightText(txt, lang, mode == 'multiline', opt);
@@ -183,4 +183,18 @@ export let highlightAll = async (opt) =>
  */
 export let loadLanguage = (languageName, language) => {
 	langs[languageName] = language;
+}
+
+/**
+ * Pre-load one or more languages
+ *
+ * @async 
+ * @function preLoadLanguage
+ * @param {...string} languageNames The names of the languages to load
+ * @returns {Promise<void>} A promise that resolves when all languages have been preloaded
+ */
+export let preLoadLanguage = async (...languageNames) => {
+	await Promise.all(
+		languageNames.map(lang => langs[lang] ? Promise.resolve() : import(`./languages/${lang}.js`).then(module => langs[lang] = module))
+	);
 }
