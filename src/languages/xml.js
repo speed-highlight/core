@@ -48,7 +48,6 @@ export default [
 		match: /<!\[CDATA\[[\s\S]*?\]\]>/gi
 	},
 	xmlElement,
-	// https://github.com/speed-highlight/core/issues/49
 	{
 		type: 'str',
 		match: RegExp(`<\\?${name}([^?]|\\?[^?>])*\\?+>`, 'g'),

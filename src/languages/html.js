@@ -1,4 +1,83 @@
-import xml, { properties, xmlElement } from './xml.js'
+import xml, { name, properties, xmlElement } from './xml.js'
+
+export const htmlElement = {
+	match: RegExp(`<[\/!?]?${name}${properties}[\/!?]?>`, 'g'),
+	sub: [
+		{
+			type: 'var',
+			match: RegExp(`^<[\/!?]?${name}`, 'g'),
+			sub: [
+				{
+					type: 'oper',
+					match: /^<[\/!?]?/g
+				}
+			]
+		},
+		{
+			match: /style\s*=\s*('[^']*'|"[^"]*")/gi,
+			sub: [
+				{
+					match: /^style\s*=\s*/gi,
+					sub: [
+						{
+							type: 'class',
+							match: /^style/gi
+						},
+						{
+							type: 'oper',
+							match: /=/g
+						}
+					]
+				},
+				{
+					match: /('[^']*'|"[^"]*")/g,
+					sub: [
+						{
+							type: 'str', // quotes
+							match: /^['"]|['"]$/g
+						},
+						{
+							match: /[^"']+/g,
+							sub: 'css'
+						}
+					]
+				}
+			]
+		},
+		{
+			match: /on\w+\s*=\s*('[^']*'|"[^"]*")/gi,
+			sub: [
+				{
+					match: /^on\w+\s*=\s*/gi,
+					sub: [
+						{
+							type: 'class',
+							match: /^on\w+/gi
+						},
+						{
+							type: 'oper',
+							match: /=/g
+						}
+					]
+				},
+				{
+					match: /('[^']*'|"[^"]*")/g,
+					sub: [
+						{
+							type: 'str', // quotes
+							match: /^['"]|['"]$/g
+						},
+						{
+							match: /[^"']+/g,
+							sub: 'js'
+						}
+					]
+				}
+			]
+		},
+		...xmlElement.sub
+	]
+};
 
 export default [
 	{
@@ -24,13 +103,13 @@ export default [
 		sub: [
 			{
 				match: RegExp(`^<style${properties}>`, 'g'),
-				sub: xmlElement.sub
+				sub: htmlElement.sub
 			},
 			{
 				match: RegExp(`${xmlElement.match}|[^]*(?=</style\\s*>$)`, 'g'),
 				sub: 'css'
 			},
-			xmlElement
+			htmlElement
 		]
 	},
 	{
@@ -38,14 +117,15 @@ export default [
 		sub: [
 			{
 				match: RegExp(`^<script${properties}>`, 'g'),
-				sub: xmlElement.sub
+				sub: htmlElement.sub
 			},
 			{
 				match: RegExp(`${xmlElement.match}|[^]*(?=</script\\s*>$)`, 'g'),
 				sub: 'js'
 			},
-			xmlElement
+			htmlElement
 		]
 	},
+	htmlElement,
 	...xml
 ]
