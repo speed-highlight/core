@@ -4,10 +4,6 @@ export default [
 		sub: 'todo'
 	},
 	{
-		type: 'str',
-		match: /.*/g
-	},
-	{
 		type: 'var',
 		match: /.*(?==)/g
 	},
@@ -18,5 +14,9 @@ export default [
 	{
 		type: 'oper',
 		match: /=/g
-	}
+	},
+	{
+		type: 'str',
+		match: /.*/g
+	},
 ]
