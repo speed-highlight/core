@@ -63,10 +63,6 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /\b[a-zA-Z$_][\w$_]*(?=\s*=\s*)/g
-	},
-	{
-		type: 'var',
 		match: /(?<!(?<!\.)\.)(?<!\?\.)(?<=\.|(?:\?\.\s*))[#a-zA-Z$_][\w$_]*/g
 	},
 	{

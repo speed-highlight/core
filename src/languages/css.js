@@ -14,7 +14,7 @@ export default [
 		]
 	},
 	{
-		type: 'type',
+		type: 'kwd',
 		match: /@[\w-]+\b/g
 	},
 	{
