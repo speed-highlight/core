@@ -6,8 +6,8 @@ export default [
 		match: /@\w+/g
 	},
 	{
-		type: 'class',
-		match: /{[\w\s|<>,.@\[\]]+}/g
+		type: 'type',
+		match: /{(?:[^}{]|\{(?:[^}{]|\{[^}{]*\})*\})*}/g
 	},
 	{
 		type: 'var',
