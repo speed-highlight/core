@@ -32,3 +32,9 @@ export default {
 	${test + 2.5}hello`,
 	'Hello world': true
 }
+
+{
+	Aw: Class()
+	AW: 1
+	key: 'value1'
+}
