@@ -1,5 +1,10 @@
 declare const _default: ({
     match: RegExp;
+    sub?: undefined;
+    expand?: undefined;
+    type?: undefined;
+} | {
+    match: RegExp;
     sub: string;
     expand?: undefined;
     type?: undefined;
