@@ -40,7 +40,7 @@ export let
 
 export default [
 	{
-		match: /<!--((?!-->)[^])*-->/g,
+		match: /<!--[^]*?-->/g,
 		sub: 'todo'
 	},
 	{

@@ -7,10 +7,10 @@ export default [
 	},
 	{
 		type: 'class',
-		match: /\*\*((?!\*\*).)*\*\*/g
+		match: /\*\*.*?\*\*/g
 	},
 	{
-		match: /```((?!```)[^])*\n```/g,
+		match: /^(`{3,})(.*)\n[^]*?^\1[ \t]*$/gm,
 		sub: code => ({
 			type: 'kwd',
 			sub: [
@@ -27,7 +27,7 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /~~((?!~~).)*~~/g
+		match: /~~.*?~~/g
 	},
 	{
 		type: 'kwd',

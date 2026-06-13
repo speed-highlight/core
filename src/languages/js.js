@@ -1,6 +1,6 @@
 export default [
 	{ // js objects
-		match: /(("|')((?!\2)[^\r\n\\]|\\[^])*\2|[a-zA-Z]\w*)(?=\s*:)/g
+		match: /(("|')([^\r\n\\]|\\[^])*?\2|[a-zA-Z]\w*)(?=\s*:)/g
 	},
 	{ // jsdoc comments
 		match: /\/\*\*((?!\*\/)[^])*(\*\/)?/g,

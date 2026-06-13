@@ -20,7 +20,7 @@ export default [
 		]
 	},
 	{
-		match: RegExp(`<style${properties}>((?!</style>)[^])*</style\\s*>`, 'g'),
+		match: RegExp(`<style${properties}>[^]*?</style\\s*>`, 'g'),
 		sub: [
 			{
 				match: RegExp(`^<style${properties}>`, 'g'),
@@ -34,7 +34,7 @@ export default [
 		]
 	},
 	{
-		match: RegExp(`<script${properties}>((?!</script>)[^])*</script\\s*>`, 'g'),
+		match: RegExp(`<script${properties}>[^]*?</script\\s*>`, 'g'),
 		sub: [
 			{
 				match: RegExp(`^<script${properties}>`, 'g'),
