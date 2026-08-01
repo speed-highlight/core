@@ -36,5 +36,6 @@ export default {
 {
 	Aw: Class()
 	AW: 1
+	A: N
 	key: 'value1'
 }

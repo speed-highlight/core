@@ -38,6 +38,7 @@ class MyClass:
 		x = F"test{x > 5} test\n {numbers} {{\{test}}}\" test
 
 x = lambda a : a + 10
+async def main(): await fib(1000)
 
 res = await dst_conn.executemany(f"""
 	Synced {synced}.

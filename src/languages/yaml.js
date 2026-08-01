@@ -27,6 +27,6 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /[a-zA-Z]\w*(?=:)/g
+		match: /[a-zA-Z][\w-]*(?=:)/g
 	}
 ]

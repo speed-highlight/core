@@ -5,7 +5,7 @@ export default [
 	},
 	{
 		type: 'class',
-		match: /^\w+(?=:?)/gm
+		match: /^\w+(?=:)/gm
 	},
 	{
 		type: 'num',
