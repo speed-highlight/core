@@ -16,39 +16,6 @@ A JavaScript syntax highlighter for the web and the terminal
 
 ![Screenshot](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
-**Used by**
-
-<table>
-<tr>
-<td align="center">
-<img src="./assets/adobe.svg" alt="Adobe"/>
-</td>
-<td align="center">
-<img src="./assets/discord.svg" alt="Discord"/>
-</td>
-<td align="center">
-<img src="./assets/cloudflare.svg" alt="Cloudflare"/>
-</td>
-<td align="center">
-<img src="./assets/vercel.svg" alt="Vercel"/>
-</td>
-</tr>
-<tr>
-<td align="center">
-<img src="./assets/atlassian.svg" alt="Atlassian"/>
-</td>
-<td align="center">
-<img src="./assets/mistral.svg" alt="Mistral AI"/>
-</td>
-<td align="center">
-<img src="./assets/microsoft.svg" alt="Microsoft"/>
-</td>
-<td align="center">
-<img src="./assets/linux-foundation.svg" alt="Linux Foundation"/>
-</td>
-</tr>
-</table>
-
 ## Simple setup 🚀
 
 ### Web
