@@ -1,5 +1,9 @@
 export default [
 	{
+		type: 'section',
+		match: /^@@.*@@$|^\d.*|^\*\*\*.*|^([+-])\1\1( \S+)?$/gm
+	},
+	{
 		type: 'deleted',
 		match: /^[-<].*/gm
 	},
@@ -9,10 +13,6 @@ export default [
 	},
 	{
 		type: 'kwd',
-		match: /!.*/gm
-	},
-	{
-		type: 'section',
-		match: /^@@.*@@$|^\d.*|^([*-+])\1\1.*/gm
+		match: /^!.*/gm
 	}
 ]
