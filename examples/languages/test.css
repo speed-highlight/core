@@ -18,3 +18,6 @@ p > a,
 @media print {
 	body { font-size: 10pt }
 }
+
+.pointer-events-none,
+.overflow-wrap-anywhere

@@ -8,7 +8,7 @@ export default [
 	},
 	{
 		type: 'kwd',
-		match: /@\w+\b|\b(and|not|only|or)\b|\b[a-z-]+(?=[^{}]*{)/g
+		match: /@\w+\b|\b(and|not|only|or)\b|\b(?=([a-z-]+))\2(?=[^{}]*{)/g
 	},
 	{
 		type: 'var',
