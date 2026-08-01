@@ -95,8 +95,9 @@ npm i @speed-highlight/core
 ```js
 const { setTheme, printHighlight } = require('@speed-highlight/core/terminal');
 
-setTheme('[theme-name]');
-printHighlight('console.log("hello")', 'js');
+setTheme('[theme-name]').then(_ => {
+	printHighlight('console.log("hello")', 'js');
+});
 ```
 
 ## Migrating from prism
