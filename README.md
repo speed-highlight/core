@@ -193,6 +193,7 @@ And for inline code block you just have to change the class property
 | typescript | shj-lang-ts         | js syntax, ts keyword, types                        | ✅                 |
 | uri        | shj-lang-uri        |                                                     | ✅                 |
 | vimscript  | shj-lang-vim        |                                                     | ✅                 |
+| webassembly| shj-lang-wat        |                                                     | ❌                 |
 | xml        | shj-lang-xml        |                                                     | ✅                 |
 | yaml       | shj-lang-yaml       | comment, numbers, variable, string, bool            | ❌                 |
 

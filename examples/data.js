@@ -59,6 +59,7 @@ export const themesTerminal = [
 	'ps1',
 	'rb',
 	'vim',
+	'wat',
 	'atom-dark'
 ]
 
