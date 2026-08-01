@@ -19,6 +19,11 @@
       "require": "./dist/node/terminal.js",
       "types": "./dist/terminal.d.ts"
     },
+    "./languages/*.js": {
+      "import": "./dist/languages/*.js",
+      "require": "./dist/node/languages/*.js",
+      "types": "./dist/languages/*.d.ts"
+    },
     "./themes/*.css": "./dist/themes/*.css"
   },
   "directories": {
