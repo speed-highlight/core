@@ -3,7 +3,7 @@ let
 	nameChar = nameStartChar + "\\-\\.0-9\u{B7}\u{0300}-\u{036F}\u{203F}-\u{2040}";
 export let
 	name = `[${nameStartChar}][${nameChar}]*`,
-	properties = `\\s*(\\s+${name}\\s*(=\\s*([^"']\\S*|("|')(\\\\[^]|(?!\\4)[^])*\\4?)?)?\\s*)*`,
+	properties = `(\\s+${name}\\s*(=\\s*([^"'>\\s][^>\\s]*|("|')(\\\\[^]|(?!\\4)[^])*\\4?)?)?)*\\s*`,
 	xmlElement = {
 		match: RegExp(`<[\/!?]?${name}${properties}[\/!?]?>`, 'g'),
 		sub: [
@@ -19,7 +19,7 @@ export let
 			},
 			{
 				type: 'str',
-				match: /=\s*([^"']\S*|("|')(\\[^]|(?!\2)[^])*\2?)/g,
+				match: /=\s*([^"'>\s][^>\s]*|("|')(\\[^]|(?!\2)[^])*\2?)/g,
 				sub: [
 					{
 						type: 'oper',
