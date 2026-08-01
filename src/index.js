@@ -129,7 +129,7 @@ export async function highlightText(src, lang, multiline = true, opt = {}) {
 	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
 
 	return multiline
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.split('\n').length)}</div><div>${tmp}</div></div>`
+		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.replace(/\n$/, '').split('\n').length)}</div><div>${tmp}</div></div>`
 		: tmp;
 }
 
