@@ -58,6 +58,7 @@ export const themesTerminal = [
 	'php',
 	'ps1',
 	'rb',
+	'vim',
 	'atom-dark'
 ]
 

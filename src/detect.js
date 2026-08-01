@@ -16,6 +16,7 @@ const languages = [
 	['cs', [/^using\s+System[\w.]*;/gm, 500]],
 	['php', [/^<\?php/g, 500]],
 	['rb', [/\b(require_relative|attr_accessor|attr_reader|attr_writer)\b|^=begin\b/gm, 100]],
+	['vim', [/\b(nnoremap|inoremap|vnoremap|xnoremap|noremap|augroup|endfunction)\b/g, 100]],
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
 	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^\s+<!DOCTYPE\s+html/g, 500]],
 	['http', [/^(GET|HEAD|POST|PUT|DELETE|PATCH|HTTP)\b/g, 500]],
