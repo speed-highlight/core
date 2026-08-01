@@ -4,6 +4,11 @@ Heading
 Sub-heading
 -----------
 
+  Indented sub-heading
+  --------------------
+
+### Another deeper heading with **bold** and `code`
+
 Paragraphs are separated
 by a blank line.
 
@@ -41,12 +46,17 @@ Bullet list:
   * apples
   * oranges
   * pears
+  - dashes work too
+  + and pluses
+  *
 
 Numbered list:
 
   1. lather
   2. rinse
   3. repeat
+  4) or with a parenthesis
+  5.
 
 An [example](http://example.com). <http://example.com>
 

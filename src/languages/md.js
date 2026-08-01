@@ -3,7 +3,11 @@ import { detectLanguage } from '../detect.js'
 export default [
 	{
 		type: 'cmnt',
-		match: /^>.*|(=|-)\1+/gm
+		match: /^>.*|^[ \t]*(=|-)\1+[ \t]*$/gm
+	},
+	{
+		type: 'section',
+		match: /^#{1,6}[ \t]/gm
 	},
 	{
 		type: 'class',
@@ -35,7 +39,7 @@ export default [
 	},
 	{
 		type: 'kwd',
-		match: /^\s*(\*|\d+\.)\s/gm
+		match: /^[ \t]*([*+-]|\d+[.)])([ \t]|$)/gm
 	},
 	{
 		type: 'func',
