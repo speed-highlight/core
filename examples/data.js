@@ -52,6 +52,7 @@ export const themesTerminal = [
 	'default',
 	'cobol',
 	'cpp',
+	'cs',
 	'atom-dark'
 ]
 
