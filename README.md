@@ -1,9 +1,8 @@
 # Speed Highlight JS
 
-[![npm version](https://badge.fury.io/js/@speed-highlight%2Fcore.svg)](https://badge.fury.io/js/@speed-highlight%2Fcore) ![NPM Downloads](https://img.shields.io/npm/dm/%40speed-highlight%2Fcore)
- ![GitHub License](https://img.shields.io/github/license/speed-highlight/core) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40speed-highlight%2Fcore) ![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
+[![NPM Version](https://badge.fury.io/js/@speed-highlight%2Fcore.svg)](https://badge.fury.io/js/@speed-highlight%2Fcore) ![NPM Downloads](https://img.shields.io/npm/dm/%40speed-highlight%2Fcore)
 
-Light, fast, dependency-free JavaScript syntax highlighter for the web and the terminal
+A JavaScript syntax highlighter for the web and the terminal
 
 - **Tiny** <small>(~2kB core, ~1kB per language)</small>
 - **Fast** <small>(outperforms Prism and highlight.js)</small>
