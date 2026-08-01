@@ -56,6 +56,7 @@ export const themesTerminal = [
 	'gd',
 	'mongodb',
 	'php',
+	'ps1',
 	'atom-dark'
 ]
 

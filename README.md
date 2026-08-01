@@ -182,6 +182,7 @@ And for inline code block you just have to change the class property
 | perl       | shj-lang-pl         |                                                     | ✅                 |
 | php        | shj-lang-php        |                                                     | ✅                 |
 | plain      | shj-lang-plain      |                                                     | ❌                 |
+| powershell | shj-lang-ps1        |                                                     | ❌                 |
 | python     | shj-lang-py         |                                                     | ✅                 |
 | regex      | shj-lang-regex      | count, set, ...                                     | ❌                 |
 | rust       | shj-lang-rs         |                                                     | ✅                 |
