@@ -51,6 +51,7 @@ export const themesBrowser = [
 export const themesTerminal = [
 	'default',
 	'cobol',
+	'cpp',
 	'atom-dark'
 ]
 

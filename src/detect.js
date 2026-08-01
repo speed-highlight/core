@@ -12,6 +12,7 @@
  */
 const languages = [
 	['cobol', [/\b(IDENTIFICATION|PROCEDURE) +DIVISION *\./g, 500]],
+	['cpp', [/\bstd::(cout|cerr|endl)\b|#include <iostream>/g, 500]],
 	['bash', [/#!(\/usr)?\/bin\/bash/g, 500], [/\b(if|elif|then|fi|echo)\b|\$/g, 10]],
 	['html', [/<\/?[a-z-]+[^\n>]*>/g, 10], [/^\s+<!DOCTYPE\s+html/g, 500]],
 	['http', [/^(GET|HEAD|POST|PUT|DELETE|PATCH|HTTP)\b/g, 500]],

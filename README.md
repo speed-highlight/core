@@ -156,6 +156,7 @@ And for inline code block you just have to change the class property
 | bash       | shj-lang-bash       |                                                     | ✅                 |
 | brainfuck  | shj-lang-bf         | increment, operator, print, comment                 | ❌                 |
 | c          | shj-lang-c          |                                                     | ✅                 |
+| c++        | shj-lang-cpp        |                                                     | ✅                 |
 | cobol      | shj-lang-cobol      |                                                     | ✅                 |
 | css        | shj-lang-css        | comment, str, selector, units, function, ...        | ✅                 |
 | csv        | shj-lang-csv        | punctuation, ...                                    | ❌                 |
