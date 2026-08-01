@@ -27,6 +27,7 @@ function test(test) {
 export default {
 	jsonData: a > 5,
 	match: /test/g,
+	headers: { 'Content-Type': 'text/html', 'Cache-Control': 'no-cache' },
 	type: `test
 	${'test'}hello
 	${test + 2.5}hello`,
