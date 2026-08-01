@@ -55,7 +55,7 @@ import { loadLanguage } from '../dist/index.js';
 loadLanguage('language-name', customLanguage);
 ```
 
-Preload a bundled language, so it is not fetched at highlight time
+Preload a bundled language
 
 ```js
 import { loadLanguage } from '@speed-highlight/core';
