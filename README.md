@@ -1,4 +1,4 @@
-# speed highlight
+# speed-highlight
 
 [![NPM Version](https://badge.fury.io/js/@speed-highlight%2Fcore.svg)](https://badge.fury.io/js/@speed-highlight%2Fcore) ![NPM Downloads](https://img.shields.io/npm/dm/%40speed-highlight%2Fcore)
 
@@ -114,7 +114,7 @@ printHighlight('console.log("hello")', 'js');
 
 ## Migrating from prism
 
-Speed-highlight JS is a lighter and faster version of prism that share a similar API
+speed-highlight is a lighter and faster version of prism that share a similar API
 
 ### Style
 
