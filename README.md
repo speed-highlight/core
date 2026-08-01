@@ -180,6 +180,7 @@ And for inline code block you just have to change the class property
 | markdown   | shj-lang-md         |                                                     | ✅                 |
 | mongodb    | shj-lang-mongodb    |                                                     | ❌                 |
 | perl       | shj-lang-pl         |                                                     | ✅                 |
+| php        | shj-lang-php        |                                                     | ✅                 |
 | plain      | shj-lang-plain      |                                                     | ❌                 |
 | python     | shj-lang-py         |                                                     | ✅                 |
 | regex      | shj-lang-regex      | count, set, ...                                     | ❌                 |

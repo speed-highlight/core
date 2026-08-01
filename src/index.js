@@ -5,7 +5,7 @@
 
 /**
  * Default languages supported
- * @typedef {('asm'|'bash'|'bf'|'c'|'cobol'|'cpp'|'cs'|'css'|'csv'|'diff'|'docker'|'gd'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'mongodb'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjLanguage
+ * @typedef {('asm'|'bash'|'bf'|'c'|'cobol'|'cpp'|'cs'|'css'|'csv'|'diff'|'docker'|'gd'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'mongodb'|'php'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjLanguage
  */
 
 /**
