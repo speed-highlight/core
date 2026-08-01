@@ -16,6 +16,7 @@
 /**
  * @typedef {Object} ShjOptions
  * @property {Boolean} [hideLineNumbers=false] Indicates whether to hide line numbers
+ * @property {Boolean} [wrap=false] Wrap long lines instead of scrolling horizontally
  */
 
 /**
@@ -125,12 +126,20 @@ export async function tokenize(src, lang, token) {
  * @returns {Promise<string>} The highlighted string
  */
 export async function highlightText(src, lang, multiline = true, opt = {}) {
-	let tmp = ''
-	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
+	// numbering a wrapped line needs its own grid row, so each line gets its own cell
+	let rows = multiline && opt.wrap && !opt.hideLineNumbers,
+		tmp = rows ? [''] : '';
+	await tokenize(src, lang, (str, type) => rows
+		? sanitize(str).split('\n').forEach((line, i) => i
+			? tmp.push(toSpan(line, type))
+			: tmp[tmp.length - 1] += toSpan(line, type))
+		: tmp += toSpan(sanitize(str), type))
 
-	return multiline
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.split('\n').length)}</div><div>${tmp}</div></div>`
-		: tmp;
+	return rows
+		? `<div class="shj-wrap">${tmp.map(line => `<div class="shj-numbers"><div></div></div><div>${line}</div>`).join('')}</div>`
+		: multiline
+			? `<div${opt.wrap ? ' class="shj-wrap"' : ''}><div class="shj-numbers">${'<div></div>'.repeat(!opt.hideLineNumbers && src.split('\n').length)}</div><div>${tmp}</div></div>`
+			: tmp;
 }
 
 /**

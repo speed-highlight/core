@@ -23,16 +23,21 @@
 [class*="shj-lang-"] ::selection {background: #bdf5}
 [class*="shj-lang-"] > div {
 	display: flex;
-	overflow: auto
+	overflow: auto;
+	counter-reset: line
 }
 [class*="shj-lang-"] > div :last-child {
 	flex: 1;
 	outline: none
 }
-.shj-numbers {
-	padding-left: 5px;
-	counter-reset: line
+[class*="shj-lang-"] > .shj-wrap {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	overflow: visible;
+	white-space: pre-wrap;
+	overflow-wrap: break-word
 }
+.shj-numbers {padding-left: 5px}
 .shj-numbers div {padding-right: 5px}
 .shj-numbers div::before {
 	color: #999;
