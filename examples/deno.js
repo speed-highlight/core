@@ -1,5 +1,5 @@
 import { languages, themesTerminal } from './data.js'
-import { setTheme, printHighlight } from '../src/terminal.js';
+import { setTheme, printHighlight, highlightText } from '../src/terminal.js';
 import { fromFileUrl } from 'https://deno.land/std/path/mod.ts';
 import { parse } from "https://deno.land/std/flags/mod.ts"
 
@@ -39,22 +39,26 @@ if (args.lang && !languages.includes(args.lang))
 	Deno.exit(1)
 }
 
+let code;
+let language;
+
 if (args.stdin)
 {
-	const buf = new Uint8Array(1024)
-	let n;
-	do {
-		n = await Deno.stdin.read(buf)
-		const code = new TextDecoder().decode(buf.subarray(0, n))
-		await printHighlight(code, args.lang ?? 'js');
-	} while (n)
-	Deno.exit(0)
+	code = await new Response(Deno.stdin.readable).text();
+	language = args.lang ?? 'js';
+} else {
+	const absolutePath = args._[0] ?? fromFileUrl(import.meta.url.replace(/[^\\\/]+$/, './languages/test.js'))
+		.replace(Deno.cwd(), '')
+		.slice(1)
+
+	code = await Deno.readTextFile(absolutePath);
+	language = args.lang ?? args._[0]?.split?.('.')?.[1] ?? 'js';
 }
 
-const absolutePath = args._[0] ?? fromFileUrl(import.meta.url.replace(/[^\\\/]+$/, './languages/test.js'))
-	.replace(Deno.cwd(), '')
-	.slice(1)
+await printHighlight(code, language);
 
-const code = await Deno.readTextFile(absolutePath);
-
-printHighlight(code, args.lang ?? args._[0]?.split?.('.')?.[1] ?? 'js');
+console.time('highlight')
+for (let i = 0; i < 100; i++) {
+	await highlightText(code, language);
+}
+console.timeEnd('highlight')
