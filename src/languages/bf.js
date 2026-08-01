@@ -1,6 +1,6 @@
 export default [
 	{
-		match: /[^\[\->+.<\]\s].*/g,
+		match: /[^,\[\->+.<\]\s].*/g,
 		sub: 'todo'
 	},
 	{

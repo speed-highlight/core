@@ -19,5 +19,6 @@ section .text
 	vmovaps	2528(%rbx,%rax), %xmm3
 	vfmadd213ps	%xmm6, %xmm5, %xmm3
 	vpslld	$23, %xmm4, %xmm4
+    vzeroupper                              # space indented
 
 	ret

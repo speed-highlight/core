@@ -35,7 +35,8 @@ export default {
 }
 
 {
-	Aw: Class()
-	AW: 1
+	Aw: Class(),
+	AW: 1,
+	A: N + PI + Math.PI,
 	key: 'value1'
 }

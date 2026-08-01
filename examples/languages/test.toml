@@ -8,6 +8,7 @@ dob = 1979-05-27T07:32:00-08:00
 
 [database]
 enabled = true
+connection-max=5000
 ports = [ 8000, inf, 8002 ]
 data = [ ["delta", "phi"], [3.14] ]
 temp_targets = { cpu = 79.5, case = 72.0 }

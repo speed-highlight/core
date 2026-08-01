@@ -29,7 +29,7 @@ export default [
 	{
 		// instruction (ex: "mov")
 		type: 'kwd',
-		match: /^\t*[a-z][a-z\d]*\b/gm,
+		match: /^[ \t]*[a-z][a-z\d]*\b/gm,
 	},
 	{
 		match: /%|\$/g,
