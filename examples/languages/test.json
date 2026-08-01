@@ -7,7 +7,8 @@
     "streetAddress": "21 2nd Street",
     "city": "New York",
     "state": "NY",
-    "postalCode": "10021-3100"
+    "postalCode": "10021-3100",
+    "country": { "code": "US", "name": "United States" }
   },
   "phone.numbers": [
     {
