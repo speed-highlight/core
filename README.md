@@ -55,6 +55,16 @@ import { loadLanguage } from '../dist/index.js';
 loadLanguage('language-name', customLanguage);
 ```
 
+Preload a bundled language, so it is not fetched at highlight time
+(also what to do when your bundler cannot resolve the dynamic import)
+
+```js
+import { loadLanguage } from '@speed-highlight/core';
+import * as js from '@speed-highlight/core/languages/js.js';
+
+loadLanguage('js', js);
+```
+
 ---
 
 #### CDN
