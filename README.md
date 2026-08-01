@@ -178,6 +178,7 @@ And for inline code block you just have to change the class property
 | lua        | shj-lang-lua        |                                                     | ✅                 |
 | makefile   | shj-lang-make       |                                                     | ✅                 |
 | markdown   | shj-lang-md         |                                                     | ✅                 |
+| mongodb    | shj-lang-mongodb    |                                                     | ❌                 |
 | perl       | shj-lang-pl         |                                                     | ✅                 |
 | plain      | shj-lang-plain      |                                                     | ❌                 |
 | python     | shj-lang-py         |                                                     | ✅                 |
