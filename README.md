@@ -1,6 +1,15 @@
 # Speed Highlight JS
 
-<p align="center">
+[![npm version](https://badge.fury.io/js/@speed-highlight%2Fcore.svg)](https://badge.fury.io/js/@speed-highlight%2Fcore) ![NPM Downloads](https://img.shields.io/npm/dm/%40speed-highlight%2Fcore)
+ ![GitHub License](https://img.shields.io/github/license/speed-highlight/core) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40speed-highlight%2Fcore) ![dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
+
+Light, fast, dependency-free JavaScript syntax highlighter for the web and the terminal
+
+- **Tiny** <small>(~2kB core, ~1kB per language)</small>
+- **Fast** <small>(outperforms Prism and highlight.js)</small>
+- **Simple** <small>(zero dependencies)</small>
+
+<p>
 	<a href="https://speed-highlight.github.io/core/examples">Demo</a> |
 	<a href="https://github.com/speed-highlight/core/wiki">Wiki</a> |
 	<a href="https://speed-highlight.github.io/core/docs">Docs</a>
@@ -8,9 +17,38 @@
 
 ![Screenshot](https://raw.githubusercontent.com/speed-highlight/core/main/assets/screenshot.png)
 
-- 🪶 Lightweight (**~2kB** for the core + **~1kB** by language)
-- ⚡ Fast (faster than prism and highlight.js on average)
-- 🧹 Minimal Codebase
+**Used by**
+
+<table>
+<tr>
+<td align="center">
+<img src="./assets/adobe.svg" alt="Adobe"/>
+</td>
+<td align="center">
+<img src="./assets/discord.svg" alt="Discord"/>
+</td>
+<td align="center">
+<img src="./assets/cloudflare.svg" alt="Cloudflare"/>
+</td>
+<td align="center">
+<img src="./assets/vercel.svg" alt="Vercel"/>
+</td>
+</tr>
+<tr>
+<td align="center">
+<img src="./assets/atlassian.svg" alt="Atlassian"/>
+</td>
+<td align="center">
+<img src="./assets/mistral.svg" alt="Mistral AI"/>
+</td>
+<td align="center">
+<img src="./assets/microsoft.svg" alt="Microsoft"/>
+</td>
+<td align="center">
+<img src="./assets/linux-foundation.svg" alt="Linux Foundation"/>
+</td>
+</tr>
+</table>
 
 ## Simple setup 🚀
 
