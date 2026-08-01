@@ -185,6 +185,7 @@ And for inline code block you just have to change the class property
 | powershell | shj-lang-ps1        |                                                     | ❌                 |
 | python     | shj-lang-py         |                                                     | ✅                 |
 | regex      | shj-lang-regex      | count, set, ...                                     | ❌                 |
+| ruby       | shj-lang-rb         |                                                     | ✅                 |
 | rust       | shj-lang-rs         |                                                     | ✅                 |
 | sql        | shj-lang-sql        | number, string, function, ...                       | ✅                 |
 | todo       | shj-lang-todo       |                                                     | ❌                 |
