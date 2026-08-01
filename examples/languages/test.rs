@@ -7,6 +7,14 @@ use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 use std::thread;
 
+//the greeting sent to every new client
+const GREETING: &'static str = "hello";
+
+//keep the message up to the first space
+fn first_word<'a>(msg: &'a str) -> &'a str {
+	msg.split(' ').next().unwrap()
+}
+
 //function that handles the client
 fn handle_client(mut stream: TcpStream) {
 	//read the message

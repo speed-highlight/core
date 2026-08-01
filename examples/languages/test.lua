@@ -10,6 +10,11 @@
 	We can include "]=]" inside this comment
 f --]==]
 
+--[[
+	This is also a block comment
+	It is closed without the dashes
+]]
+
 vf --tst
 
 a = 'alo\n123"'
