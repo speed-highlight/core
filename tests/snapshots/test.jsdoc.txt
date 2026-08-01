@@ -1,0 +1,7 @@
+kwd	"@name"
+cmnt	" test.js\n"
+kwd	"@params"
+cmnt	" "
+class	"{Number}"
+cmnt	" "
+var	"[test=null]"
