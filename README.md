@@ -163,6 +163,7 @@ And for inline code block you just have to change the class property
 | csv        | shj-lang-csv        | punctuation, ...                                    | ❌                 |
 | diff       | shj-lang-diff       |                                                     | ✅                 |
 | docker     | shj-lang-docker     |                                                     | ✅                 |
+| gdscript   | shj-lang-gd         |                                                     | ❌                 |
 | git        | shj-lang-git        | comment, insert, deleted, string, ...               | ❌                 |
 | go         | shj-lang-go         |                                                     | ✅                 |
 | html       | shj-lang-html       |                                                     | ✅                 |
