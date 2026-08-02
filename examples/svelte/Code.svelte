@@ -1,5 +1,6 @@
 <script>
 	import { highlightText } from '@speed-highlight/core';
+	import '@speed-highlight/core/themes/default.css';
 
 	// svelte 5. on svelte 4, replace $props/$state/$effect with
 	// `export let code, lang, multiline = true`, `let html = ''` and `$: { ... }`

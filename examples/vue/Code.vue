@@ -1,5 +1,6 @@
 <script setup>
 import { highlightText } from '@speed-highlight/core';
+import '@speed-highlight/core/themes/default.css';
 import { ref, watchEffect } from 'vue';
 
 const props = defineProps({

@@ -1,4 +1,5 @@
 import { highlightText } from '@speed-highlight/core';
+import '@speed-highlight/core/themes/default.css';
 import { useEffect, useState } from 'react';
 
 // the highlighted code is html, so render it with dangerouslySetInnerHTML rather
