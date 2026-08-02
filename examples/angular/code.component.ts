@@ -1,4 +1,5 @@
 import { highlightText } from '@speed-highlight/core';
+import '@speed-highlight/core/themes/default.css';
 import { Component, effect, input, signal } from '@angular/core';
 
 // [innerHTML] is enough: angular's sanitizer keeps the class attribute, which is
