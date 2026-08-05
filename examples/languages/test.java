@@ -46,6 +46,10 @@ void run(List<Token>) {
 
 //main function
 public static void main(String[] args) {
+	//the help text, written as a text block
+	String help = """
+		type an expression like "1+2+3"
+		""";
 	String s = "1+2+3";
 	List<Token> tokensList = lexer(s);
 	run(tokensList);

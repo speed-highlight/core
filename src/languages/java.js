@@ -4,6 +4,10 @@ export default [
 		sub: 'todo'
 	},
 	{
+		type: 'str',
+		match: /"""(\\[^]|(?!""")[^])*(""")?/g
+	},
+	{
 		expand: 'str'
 	},
 	{

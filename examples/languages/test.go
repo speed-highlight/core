@@ -18,4 +18,7 @@ func main() {
 
 	// print the value of num
 	fmt.Println(numTest)
+
+	// a raw string keeps its content untouched
+	fmt.Println(`SELECT "n" FROM nums WHERE n = 10`)
 }

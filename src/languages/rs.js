@@ -4,6 +4,11 @@ export default [
 		sub: 'todo'
 	},
 	{
+		// lifetime (ex: "'a")
+		type: 'type',
+		match: /'[a-z_]\w*(?!')/g
+	},
+	{
 		expand: 'str'
 	},
 	{
