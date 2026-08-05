@@ -68,6 +68,19 @@ import * as js from '@speed-highlight/core/languages/js.js';
 loadLanguage('js', js);
 ```
 
+Tokenize without the language registry, so a bundler only keeps the languages you import
+
+```js
+import { tokenize } from '@speed-highlight/core/tokenize';
+import html from '@speed-highlight/core/languages/html.js';
+import css from '@speed-highlight/core/languages/css.js';
+import js from '@speed-highlight/core/languages/js.js';
+
+tokenize(code, { sub: html }, (str, type) => { /* ... */ }, { languages: { css, js } });
+```
+
+This entry is synchronous and a `sub` referring to a language not given in `languages` is emitted as plain text.
+
 ---
 
 #### CDN

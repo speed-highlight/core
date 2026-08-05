@@ -19,6 +19,16 @@
       "require": "./dist/node/terminal.js",
       "types": "./dist/terminal.d.ts"
     },
+    "./tokenize": {
+      "import": "./dist/tokenize.js",
+      "require": "./dist/node/tokenize.js",
+      "types": "./dist/tokenize.d.ts"
+    },
+    "./common.js": {
+      "import": "./dist/common.js",
+      "require": "./dist/node/common.js",
+      "types": "./dist/common.d.ts"
+    },
     "./languages/*.js": {
       "import": "./dist/languages/*.js",
       "require": "./dist/node/languages/*.js",
@@ -30,7 +40,8 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "bash .github/workflows/build.sh"
+    "build": "bash .github/workflows/build.sh",
+    "test": "node --test tests/*.test.js"
   },
   "repository": {
     "type": "git",
