@@ -22,6 +22,11 @@
 > to this document.
 ! to this document.
 
+--- a/document.txt
++++ b/document.txt
 @@ -1 +1,2 @@
+ notice! It should
+--- a deleted comment
++++i, ++j;
 
 *** pos ***
