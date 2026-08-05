@@ -50,6 +50,16 @@ export const themesBrowser = [
 /** @type {import('../src/terminal.js').ShjTerminalTheme[]} */
 export const themesTerminal = [
 	'default',
+	'cobol',
+	'cpp',
+	'cs',
+	'gd',
+	'mongodb',
+	'php',
+	'ps1',
+	'rb',
+	'vim',
+	'wat',
 	'atom-dark'
 ]
 
