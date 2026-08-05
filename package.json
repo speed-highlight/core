@@ -30,7 +30,8 @@
     "example": "examples"
   },
   "scripts": {
-    "build": "bash .github/workflows/build.sh"
+    "build": "bash .github/workflows/build.sh",
+    "test": "node --test tests/*.test.js"
   },
   "repository": {
     "type": "git",

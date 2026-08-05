@@ -1,0 +1,3 @@
+func	"echo"
+.	" "
+str	"\"hello world\""

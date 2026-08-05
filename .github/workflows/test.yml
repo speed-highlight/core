@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read # for checkout
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Repo
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          cache: npm
+          node-version: lts/*
+
+      - run: npm clean-install
+      - run: npm test
