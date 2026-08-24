@@ -12,7 +12,7 @@ export default /** @satisfies {import('../index.js').ShjLanguageData} */ ({
 		match: /@\w+/g
 	},
 	{
-		type: 'class',
+		type: 'type',
 		match: /{[\w\s|<>,.@\[\]]+}/g
 	},
 	{

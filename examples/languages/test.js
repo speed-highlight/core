@@ -40,3 +40,11 @@ export default {
 	A: N + PI + Math.PI,
 	key: 'value1'
 }
+
+class Store extends Map {
+	#hits = 0;
+	static #instances = 0;
+	get ratio() { return this.#hits / Store.#instances / 2 }
+	has(key) { return /^[a-z-]+$/iv.test(key) && !super.has(key) }
+	set(key, value) { return { ...this, [key]: value, default: opt.default, in: opt.in } }
+}
