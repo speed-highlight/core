@@ -3,6 +3,10 @@ declare const _default: ({
     match: RegExp;
     sub?: undefined;
 } | {
+    type: "section";
+    match: RegExp;
+    sub?: undefined;
+} | {
     type: "class";
     match: RegExp;
     sub?: undefined;
