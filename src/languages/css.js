@@ -12,14 +12,22 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		expand: 'str'
 	},
 	{
+		type: 'var',
+		// a name before a colon is a property, and a custom property is one
+		// anywhere, so both win over the selector guessed below, which a
+		// nested block would otherwise take them for
+		match: /--[\w-]+|\b[\w-]+(?=\s*:)/g
+	},
+	{
 		type: 'kwd',
 		// (?=([a-z-]+))\2 fakes an atomic group (JS has none), avoiding
 		// catastrophic backtracking a plain [a-z-]+ would have here
-		match: /@\w+\b|\b(and|not|only|or)\b|\b(?=([a-z-]+))\2(?=[^{}]*{)/g
+		match: /@[\w-]+\b|!important\b|\b(and|not|only|or)\b|\b(?=([a-z-]+))\2(?=[^{}]*{)/g
 	},
 	{
 		type: 'var',
-		match: /\b[\w-]+(?=\s*:)|(::?|\.)[\w-]+(?=[^{}]*{)/g
+		// (?!\d) keeps a number that opens a value (.3s) out of the class selectors
+		match: /(::?|\.)(?!\d)[\w-]+(?=[^{}]*{)/g
 	},
 	{
 		type: 'func',
@@ -27,15 +35,16 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'num',
-		match:  /#[\da-f]{3,8}/g
+		match:  /#[\da-f]{3,8}/gi
 	},
 	{
 		type: 'num',
-		match: /\d+(\.\d+)?(cm|mm|in|px|pt|pc|em|ex|ch|rem|vm|vh|vmin|vmax|%)?/g,
+		// any unit rather than a list of them, so the next one css gains needs no edit
+		match: /-?\d*\.?\d+([a-z]+|%)?/gi,
 		sub: [
 			{
 				type: 'var',
-				match: /[a-z]+|%/g
+				match: /[a-z]+|%/gi
 			}
 		]
 	},
@@ -54,7 +63,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'func',
-		match: /\b[a-zA-Z]\w*(?=\s*\()/g
+		match: /\b[a-zA-Z][\w-]*(?=\s*\()/g
 	},
 	{
 		type: 'num',
