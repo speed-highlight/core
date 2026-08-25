@@ -61,6 +61,11 @@ declare const _default: ({
     sub?: undefined;
     expand?: undefined;
 } | {
+    type: "var";
+    match: RegExp;
+    sub?: undefined;
+    expand?: undefined;
+} | {
     type: "oper";
     match: RegExp;
     sub?: undefined;

@@ -9,12 +9,12 @@ declare const _default: ({
     type?: undefined;
     sub?: undefined;
 } | {
-    type: "kwd";
+    type: "var";
     match: RegExp;
     sub?: undefined;
     expand?: undefined;
 } | {
-    type: "var";
+    type: "kwd";
     match: RegExp;
     sub?: undefined;
     expand?: undefined;

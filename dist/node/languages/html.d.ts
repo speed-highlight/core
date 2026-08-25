@@ -44,8 +44,8 @@ declare const _default: ({
 } | {
     match: RegExp;
     sub: ({
+        sub: import("../tokenize.js").ShjRule[];
         match: RegExp;
-        sub: import("../index.js").ShjGrammar;
     } | {
         match: RegExp;
         sub: string;
