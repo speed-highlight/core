@@ -20,6 +20,6 @@ export default /** @satisfies {import('../index.js').ShjLanguageData} */ ({
 	},
 	{
 		type: 'var',
-		match: /\*|\+|\{\d+,\d+\}/g
+		match: /[*+?.]|\{\d+(,\d*)?\}/g
 	}
 ]});

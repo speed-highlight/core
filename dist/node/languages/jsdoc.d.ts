@@ -4,6 +4,9 @@ declare namespace _default {
         type: "err";
         match: RegExp;
     } | {
+        type: "class";
+        match: RegExp;
+    } | {
         type: "insert";
         match: RegExp;
     } | {
@@ -13,7 +16,7 @@ declare namespace _default {
         type: "kwd";
         match: RegExp;
     } | {
-        type: "class";
+        type: "type";
         match: RegExp;
     } | {
         type: "var";
