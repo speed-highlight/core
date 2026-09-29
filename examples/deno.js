@@ -2,9 +2,9 @@ import { parse } from "https://deno.land/std/flags/mod.ts";
 import { fromFileUrl } from 'https://deno.land/std/path/mod.ts';
 import { highlightANSI } from '../src/index.js';
 
-const languages = ['js', 'py', 'bash', 'ts', 'c', 'css', 'asm', 'csv', 'diff', 'docker', 'git', 'go',
+const languages = ['js', 'py', 'bash', 'ts', 'c', 'cobol', 'cpp', 'cs', 'css', 'asm', 'csv', 'diff', 'docker', 'git', 'gd', 'go',
 	'html', 'http', 'ini', 'java', 'jsdoc', 'json', 'leanpub-md', 'bf', 'log', 'lua', 'make', 'md',
-	'pl', 'plain', 'regex', 'rs', 'sql', 'todo', 'toml', 'uri', 'xml', 'yaml'];
+	'mongodb', 'php', 'pl', 'plain', 'ps1', 'rb', 'regex', 'rs', 'sql', 'todo', 'toml', 'uri', 'vim', 'wat', 'xml', 'yaml'];
 const themesTerminal = ['default', 'atom-dark'];
 
 let args = parse(Deno.args)
