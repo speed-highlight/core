@@ -28,7 +28,15 @@
 [class*="shj-lang-"] ::selection {background: #bdf5}
 [class*="shj-lang-"] > div {
 	display: flex;
-	overflow-x: auto
+	overflow-x: auto;
+	counter-reset: line
+}
+[class*="shj-lang-"] > .shj-wrap {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	overflow-x: visible;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere
 }
 [class*="shj-lang-"] > div :last-child {
 	flex: 1;
@@ -38,8 +46,7 @@
 	padding-right: .75em;
 	margin-right: .75em;
 	border-right: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-	text-align: right;
-	counter-reset: line
+	text-align: right
 }
 /* the column is emitted either way, and numbers are off by default, so the
    empty one must take no room at all */

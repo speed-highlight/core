@@ -1,7 +1,7 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightHTML, tokenize as tokenizeAsync } from '../src/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -74,4 +74,32 @@ test('a sub that is not given keeps the type of its rule', () => {
 
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
+});
+
+test('a trailing newline does not add a line number', async () => {
+	let html = await highlightHTML('let answer = 42;\n', 'js', { showLineNumbers: true });
+
+	deepStrictEqual(html.match(/<div><\/div>/g)?.length, 1);
+});
+
+
+test('wrapped numbered lines keep each logical line with its own gutter cell', async () => {
+	let grammar = [{ match: /alpha\nbeta/g, type: 'kwd' }];
+	deepStrictEqual(await highlightHTML('alpha\nbeta\n', grammar, { wrap: true, showLineNumbers: true }),
+		'<div class="shj-wrap"><div class="shj-numbers"><div></div></div><div><span class="shj-syn-kwd">alpha</span></div><div class="shj-numbers"><div></div></div><div><span class="shj-syn-kwd">beta</span></div></div>');
+});
+
+
+test('wrapped line numbers include blank lines and escape token text', async () => {
+	deepStrictEqual(await highlightHTML('<a>\n\n<b>', 'plain', { wrap: true, showLineNumbers: true }),
+		'<div class="shj-wrap"><div class="shj-numbers"><div></div></div><div>&lt;a&gt;</div><div class="shj-numbers"><div></div></div><div></div><div class="shj-numbers"><div></div></div><div>&lt;b&gt;</div></div>');
+});
+
+
+test('wrapped blocks without numbers and inline output retain their highlighting', async () => {
+	let grammar = [{ match: /alpha/g, type: 'kwd' }];
+	deepStrictEqual(await highlightHTML('alpha\nbeta', grammar, { wrap: true }),
+		'<div class="shj-wrap"><div class="shj-numbers"></div><div><span class="shj-syn-kwd">alpha</span>\nbeta</div></div>');
+	deepStrictEqual(await highlightHTML('alpha', grammar, { wrap: true, block: false, showLineNumbers: true }),
+		'<span class="shj-syn-kwd">alpha</span>');
 });
