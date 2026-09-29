@@ -1,6 +1,6 @@
 /**
  * Languages bundled by default
- * @typedef {('asm'|'bash'|'bf'|'c'|'css'|'csv'|'diff'|'docker'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjBuiltinLanguage
+ * @typedef {('asm'|'bash'|'bf'|'c'|'cobol'|'cpp'|'cs'|'css'|'csv'|'diff'|'docker'|'gd'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'mongodb'|'php'|'pl'|'plain'|'ps1'|'py'|'rb'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'vim'|'wat'|'xml'|'yaml')} ShjBuiltinLanguage
  */
 
 /**
