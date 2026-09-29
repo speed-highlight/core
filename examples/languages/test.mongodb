@@ -1,0 +1,52 @@
+use analytics
+show collections
+
+// TODO: drop status_recent once the rollout is done, it duplicates the ttl index
+db.orders.createIndex({ status: 1, createdAt: -1 }, { name: 'status_recent' })
+db.orders.createIndex({ createdAt: 1 }, { expireAfterSeconds: 7776000 })
+
+/* the aggregation below feeds the monthly report
+	FIXME: it still scans the whole collection, check .explain('executionStats') */
+
+const since = ISODate('2026-01-01T00:00:00Z')
+const cutoff = new Date()
+
+db.orders.find({
+	status: { $in: ['paid', 'shipped'] },
+	total: { $gte: 49.9, $lt: 1000 },
+	'customer.email': /@dibsteur\.com$/,
+	refundedAt: null,
+	archived: false
+}).sort({ createdAt: -1 }).limit(20)
+
+db.orders.updateMany(
+	{ createdAt: { $lt: since }, archived: { $exists: false } },
+	{ $set: { archived: true }, $inc: { version: 1 }, $unset: { note: '' } }
+)
+
+db.orders.aggregate([
+	{ $match: { createdAt: { $gte: since, $lte: cutoff } } },
+	{ $unwind: '$items' },
+	{ $group: {
+		_id: { sku: '$items.sku', month: { $month: '$createdAt' } },
+		revenue: { $sum: { $multiply: ['$items.price', '$items.qty'] } },
+		orders: { $sum: 1 }
+	} },
+	{ $sort: { revenue: -1 } },
+	{ $limit: 10 }
+], { allowDiskUse: true })
+
+const order = db.orders.findOne({ _id: ObjectId('64f0c2b5a1c4e21d9f3b7a10') })
+const skus = order.items.map(i => i.sku)
+printjson(skus)
+
+db.orders.find({ note: 'refund asked // see /* ticket 4821 */' }).forEach(function (o) {
+	print(o._id + ' ' + o.total)
+})
+
+db.getSiblingDB('audit').events.insertOne({
+	kind: 'report',
+	at: new Date(),
+	count: NumberLong(42),
+	amount: NumberDecimal('19.99')
+})
