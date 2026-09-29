@@ -44,7 +44,7 @@
  * lines, in a gutter laid out inside the block
  */
 
-import { tokenizer } from './tokenize.js';
+import { tokenizer, createHTMLRenderer } from './tokenize.js';
 
 /**
  * Loader of the bundled languages, can be called
@@ -68,17 +68,7 @@ export function setLoader(newLoader) {
 	loader = newLoader;
 }
 
-const cache = /** @type {Object<string, ReturnType<ShjLanguageLoader>>} */ ({}),
-	sanitize = (str = '') =>
-		str.replaceAll('&', '&#38;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'),
-	/**
-	 * Create a HTML element with the right token styling
-	 *
-	 * @param {string} str The content (need to be sanitized)
-	 * @param {ShjToken} [token] The type of token
-	 * @returns A HTML string
-	 */
-	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
+const cache = /** @type {Object<string, ReturnType<ShjLanguageLoader>>} */ ({});
 
 /**
  * Find the tokens in the given code and call the given callback,
@@ -117,12 +107,9 @@ export async function tokenize(src, lang, onToken) {
  * @returns {Promise<string>} The highlighted string
  */
 export async function highlightHTML(src, lang, opt = {}) {
-	let tmp = ''
-	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
-
-	return (opt.block ?? true)
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.split('\n').length : 0)}</div><div>${tmp}</div></div>`
-		: tmp;
+	let renderer = createHTMLRenderer(src, opt);
+	await tokenize(src, lang, renderer.onToken);
+	return renderer.html();
 }
 
 /**

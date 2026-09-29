@@ -1,9 +1,9 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightHTML, tokenize as tokenizeAsync } from '../src/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
-import { tokenizeWith } from '../src/tokenize.js';
+import { highlightHTMLSync, tokenizeWith } from '../src/tokenize.js';
 
 let fixtures = new URL('../examples/languages/', import.meta.url),
 	languages = { css, html, js, jsdoc, json, regex, todo },
@@ -74,4 +74,30 @@ test('a sub that is not given keeps the type of its rule', () => {
 
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
+});
+
+test('synchronous HTML highlighting matches the loader-based output', async () => {
+	let grammar = [{ match: /alpha\nbeta/g, type: 'kwd' }],
+		src = 'alpha\nbeta\n';
+
+	for (let opt of [{ block: false }, { showLineNumbers: true }])
+		deepStrictEqual(highlightHTMLSync(src, grammar, opt), await highlightHTML(src, grammar, opt));
+});
+
+
+test('synchronous HTML highlighting uses supplied sub-languages', async () => {
+	let src = '<style>p { color: #fff }</style>',
+		opt = { block: false, languages: { css } };
+
+	deepStrictEqual(highlightHTMLSync(src, html, opt), await highlightHTML(src, 'html', { block: false }));
+});
+
+
+test('synchronous and loader-based rendering escape text and reject unsafe token classes', async () => {
+	let grammar = [{ match: /<x>/g, type: 'kwd injected' }],
+		src = '<x>\n&';
+	for (let opt of [{ block: false }, { showLineNumbers: true }]) {
+		deepStrictEqual(highlightHTMLSync(src, grammar, opt), await highlightHTML(src, grammar, opt));
+		deepStrictEqual(highlightHTMLSync(src, grammar, opt).includes('shj-syn-'), false);
+	}
 });
