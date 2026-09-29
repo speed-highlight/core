@@ -241,7 +241,7 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | HTTP | `shj-lang-http` | keywork, string, punctuation, variable, version | ✅ | [`986 B`](src/languages/http.js) |
 | INI | `shj-lang-ini` |  | ❌ | [`158 B`](src/languages/ini.js) |
 | Java | `shj-lang-java` |  | ✅ | [`457 B`](src/languages/java.js) |
-| JavaScript | `shj-lang-js` | basic syntax, regex, jsdoc, json, template literals | ⛔ reported as TypeScript | [`820 B`](src/languages/js.js) |
+| JavaScript | `shj-lang-js` | basic syntax, regex, jsdoc, json, template literals | ✅ | [`820 B`](src/languages/js.js) |
 | JSDoc | `shj-lang-jsdoc` |  | ❌ | [`251 B`](src/languages/jsdoc.js) |
 | JSON | `shj-lang-json` | string, number, bool, ... | ❌ | [`172 B`](src/languages/json.js) |
 | LeanPub Markdown | `shj-lang-leanpub-md` |  | ❌ | [`1.2 kB`](src/languages/leanpub-md.js) |
