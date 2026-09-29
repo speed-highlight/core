@@ -1,7 +1,7 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightHTML, tokenize as tokenizeAsync } from '../src/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -74,4 +74,10 @@ test('a sub that is not given keeps the type of its rule', () => {
 
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
+});
+
+test('a trailing newline does not add a line number', async () => {
+	let html = await highlightHTML('let answer = 42;\n', 'js', { showLineNumbers: true });
+
+	deepStrictEqual(html.match(/<div><\/div>/g)?.length, 1);
 });
