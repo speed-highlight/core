@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  # main after a merge, every pull request before it; a branch pushed for a
+  # pull request is tested once, through the pull request
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # the release workflow tests main only after the merge, this catches a
+  # broken example or playground on the pull request itself
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Repo
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            playground/package-lock.json
+            tests/examples/package-lock.json
+
+      # runs the deno example, it is skipped without it
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      # the tests, the examples and the site all use dist, as an app would
+      - run: npm clean-install
+      - run: npm run build
+      - run: npm test
+
+      # builds, renders and runs every example of examples/manifest.js
+      - run: npm clean-install
+        working-directory: tests/examples
+      - run: npm test
+        working-directory: tests/examples
+
+      # prerenders the site, it shows the examples as text
+      - run: npm clean-install
+        working-directory: playground
+      - run: npm run build
+        working-directory: playground
