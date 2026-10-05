@@ -1,0 +1,24 @@
+{
+  "name": "speed-highlight-example-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@angular/common": "^22.2.1",
+    "@angular/compiler": "^22.2.1",
+    "@angular/compiler-cli": "^22.2.1",
+    "@angular/core": "^22.2.1",
+    "@angular/platform-browser": "^22.2.1",
+    "@happy-dom/global-registrator": "^20.14.5",
+    "@speed-highlight/core": "file:../..",
+    "esbuild": "^0.28.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "rxjs": "^7.8.2",
+    "svelte": "^5.57.1",
+    "typescript": "^6.0.3",
+    "vue": "^3.5.43"
+  }
+}

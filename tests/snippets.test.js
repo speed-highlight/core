@@ -43,7 +43,7 @@ test('package import paths in code blocks resolve against the exports map', () =
 
 	const specifiers = codeBlocks
 		.flatMap(({ body }) => [...body.matchAll(/(?:from\s+|import\s*\(\s*|require\s*\(\s*|^\s*import\s+)['"]([^'"]+)['"]/gm)])
-		.map(match => match[1])
+		.map(match => match[1].replace(/^npm:/, ''))
 		.filter(spec => spec === pkg.name || spec.startsWith(`${pkg.name}/`));
 	assert.ok(specifiers.length > 0, 'expected the README to contain package imports');
 
@@ -116,7 +116,7 @@ const buildModule = body => {
 		return null;
 
 	const source = body
-		.replace(/(from\s+)['"](@speed-highlight\/core[^'"]*)['"]/g, (_, from, spec) => `${from}'${rewriteSpec(spec)}'`)
+		.replace(/(from\s+)['"](?:npm:)?(@speed-highlight\/core[^'"]*)['"]/g, (_, from, spec) => `${from}'${rewriteSpec(spec)}'`)
 		.replace(/^import\s+['"][^'"]+\.css['"];?\s*$/gm, '');
 
 	const bound = new Set();

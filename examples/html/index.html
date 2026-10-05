@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@speed-highlight/core@2/dist/themes/default.css">
+</head>
+<body>
+	<div class="shj-lang-js">console.log('hello');</div>
+	<p>Inline too: <code class="shj-lang-js">const a = 1;</code></p>
+
+	<script type="module">
+		import { highlightAll } from 'https://cdn.jsdelivr.net/npm/@speed-highlight/core@2/dist/index.js';
+
+		// every element with a shj-lang-* class; a code element renders inline
+		highlightAll();
+	</script>
+</body>
+</html>

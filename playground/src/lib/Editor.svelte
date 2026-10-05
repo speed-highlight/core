@@ -1,11 +1,11 @@
 <script>
 	import { highlightHTML } from '@speed-highlight/core';
+	import { untrack } from 'svelte';
 
 	let { code = $bindable(), lang, numbers = true, caret, darkTooltip = false, onms } = $props();
 
 	let mirror = $state();
 	let input = $state();
-	let mirrorHtml = $state('');
 	let textX = $state(0);
 	let textY = $state(0);
 	let codeSize = $state('');
@@ -13,23 +13,22 @@
 	let codePad = $state('');
 	let tooltip = $state(null);
 
-	let run = 0;
-	$effect(() => {
-		const id = ++run;
-		// the trailing zero-width space goes through the highlighter so it
-		// lands inside the code column, keeping the last line's height when
-		// the code ends with a newline
-		const [source, language] = [code + '\u200b', lang];
+	// timed, the toolbar shows how long the highlighting takes
+	async function highlight(source, language, showLineNumbers) {
 		const start = performance.now();
-		highlightHTML(source, language, { showLineNumbers: numbers }).then(html => {
-			// a language import may resolve after the code already changed,
-			// never paint a stale result over a newer one
-			if (id !== run)
-				return;
-			onms?.(performance.now() - start);
-			mirrorHtml = html;
-			clearHover();
-		});
+		const html = await highlightHTML(source, language, { showLineNumbers });
+		return { html, ms: performance.now() - start };
+	}
+
+	// the trailing zero-width space goes through the highlighter so it lands
+	// inside the code column, keeping the last line's height when the code
+	// ends with a newline. Awaited, a result never lands over a newer one
+	const highlighted = $derived(await highlight(code + '\u200b', lang, numbers));
+
+	$effect(() => {
+		onms?.(highlighted.ms);
+		// the hovered token belonged to the replaced nodes
+		untrack(clearHover);
 	});
 
 	// the theme decides where the highlighted text lands and how big it is:
@@ -37,7 +36,7 @@
 	// column's separator. Measuring the result beats copying numbers out of
 	// the theme, so any theme keeps the caret on the glyphs
 	$effect(() => {
-		mirrorHtml; // read to re-measure on every repaint, the nodes are replaced each time
+		highlighted; // read to re-measure on every repaint, the nodes are replaced each time
 		const scroller = mirror?.firstElementChild;
 		const codeColumn = scroller?.lastElementChild;
 		if (!codeColumn)
@@ -159,7 +158,7 @@
 </script>
 
 <div class="editor relative overflow-hidden bg-page" style="--caret: {caret ?? 'currentColor'}; --text-x: {textX}px; --text-y: {textY}px; --code-size: {codeSize}; --code-lh: {codeLh}; --code-pad: {codePad}">
-	<div class="shj-lang-{lang} shj-block" bind:this={mirror} aria-hidden="true">{@html mirrorHtml}</div>
+	<div class="shj-lang-{lang} shj-block" bind:this={mirror} aria-hidden="true">{@html highlighted.html}</div>
 	<textarea
 		bind:this={input}
 		bind:value={code}

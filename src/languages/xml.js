@@ -7,7 +7,12 @@ let
 	nameChar = nameStartChar + "\\-\\.0-9\u{B7}\u{0300}-\u{036F}\u{203F}-\u{2040}";
 export let
 	name = `[${nameStartChar}][${nameChar}]*`,
-	properties = `(\\s+${name}\\s*(=\\s*([^"'>\\s][^>\\s]*|("|')(\\\\[^]|(?!\\4)[^])*\\4?)?)?)*\\s*`,
+	/**
+	 * The attributes of a tag, given the regex source of an attribute name
+	 * @type {(attribute: string) => string}
+	 */
+	attributes = attribute => `(\\s+${attribute}\\s*(=\\s*([^"'>\\s][^>\\s]*|("|')(\\\\[^]|(?!\\4)[^])*\\4?)?)?)*\\s*`,
+	properties = attributes(name),
 	/** @type {{ match: RegExp, sub: import('../index.js').ShjGrammar }} */
 	xmlElement = {
 		match: RegExp(`<[\/!?]?${name}${properties}[\/!?]?>`, 'g'),

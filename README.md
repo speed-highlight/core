@@ -93,7 +93,7 @@ If you highlight at build time and bytes do not matter, use Shiki. speed-highlig
 
 ### In a component
 
-Frameworks own their DOM, so highlight the *string* and render it, as in the quick start (mutating a mounted node with `highlightElement` gets wiped on the next render). The output is HTML-escaped (`&`, `<`, `>`), safe to inject even for untrusted code; the `shj-lang-*` and `shj-block` classes hook it into the theme. The same pattern works in Vue, Svelte, and Angular; ready-made components are in [#85](https://github.com/speed-highlight/core/pull/85).
+Frameworks own their DOM, so highlight the *string* and render it, as in the quick start (mutating a mounted node with `highlightElement` gets wiped on the next render). The output is HTML-escaped (`&`, `<`, `>`), safe to inject even for untrusted code; the `shj-lang-*` and `shj-block` classes hook it into the theme. The same pattern works in Vue, Svelte, and Angular; ready-made components are in [examples](examples).
 
 ### On a plain page
 
@@ -193,11 +193,11 @@ export default {
 };
 ```
 
-For Deno, use the [deno module](https://deno.land/x/speed_highlight_js):
+For Deno, import the npm package with `npm:`, nothing to install:
 
 ```js
-import { highlightANSI } from 'https://deno.land/x/speed_highlight_js/dist/index.js';
-import theme from 'https://deno.land/x/speed_highlight_js/dist/themes/default.js';
+import { highlightANSI } from 'npm:@speed-highlight/core';
+import theme from 'npm:@speed-highlight/core/themes/default.js';
 
 console.log(await highlightANSI('console.log("hello")', 'js', theme));
 ```

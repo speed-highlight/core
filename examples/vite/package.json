@@ -1,0 +1,15 @@
+{
+  "name": "speed-highlight-vite-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@speed-highlight/core": "file:../.."
+  },
+  "devDependencies": {
+    "vite": "^8.2.1"
+  }
+}
