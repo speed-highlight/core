@@ -1,4 +1,9 @@
 export let name: string;
+/**
+ * The attributes of a tag, given the regex source of an attribute name
+ * @type {(attribute: string) => string}
+ */
+export let attributes: (attribute: string) => string;
 export let properties: string;
 /** @type {{ match: RegExp, sub: import('../index.js').ShjGrammar }} */
 export let xmlElement: {
