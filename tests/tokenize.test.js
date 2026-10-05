@@ -75,3 +75,11 @@ test('a sub that is not given keeps the type of its rule', () => {
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
 });
+
+test('html takes the attribute names framework templates write', () => {
+	for (let attribute of ['[code]', '(click)', '@click', ':code', '{code}', '#slot', '*ngIf'])
+		deepStrictEqual(
+			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
+			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
+			attribute);
+});
