@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://speed-highlight.github.io/">
+	<link rel="canonical" href="https://speed-highlight.github.io/">
+	<!-- the page mode before the first paint, the prerendered page is light -->
+	<script>
+		document.documentElement.classList.toggle('dark', localStorage.getItem('shj-dark')
+			? localStorage.getItem('shj-dark') === '1'
+			: matchMedia('(prefers-color-scheme: dark)').matches);
+	</script>
+	%sveltekit.head%
+</head>
+<body>
+	<div style="display: contents">%sveltekit.body%</div>
+</body>
+</html>

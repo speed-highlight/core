@@ -19,7 +19,10 @@
 	--color-ink-strong: #1a1a1a;
 	--color-line: #e5e5e5;
 	--color-card: #f5f5f5;
-	--color-accent: oklch(70.5% 0.213 47.6);
+	--color-accent: #d68bf0;
+	/* the accent as text: #d68bf0 is too light to read on white, the same
+	   hue deepened; dark mode reads the accent itself */
+	--color-accent-ink: #a855c8;
 }
 
 .dark {
@@ -30,6 +33,7 @@
 	--color-ink-strong: #ffffff;
 	--color-line: #d9d9d933;
 	--color-card: #d9d9d921;
+	--color-accent-ink: #d68bf0;
 }
 
 body {
@@ -38,10 +42,54 @@ body {
 	font-family: var(--font-sans);
 }
 
-/* the language sidebar scrolls on its own, with a quiet scrollbar */
-.lang-list {
+/* lists and panes that scroll on their own, with a quiet scrollbar */
+.thin-scroll {
 	scrollbar-width: thin;
 	scrollbar-color: var(--color-line) transparent;
+}
+
+@layer components {
+	.icon-button {
+		@apply flex size-8.5 items-center justify-center rounded-lg text-ink hover:bg-line/40 focus-visible:outline-2 focus-visible:outline-ink;
+	}
+	/* the toolbar pickers, one look for the language and the theme */
+	.picker-button {
+		@apply flex h-9 cursor-pointer items-center gap-2 rounded-lg border border-line bg-card px-2.5 text-[13px] font-medium text-ink-strong transition-colors select-none hover:bg-line/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink aria-expanded:bg-line/40;
+	}
+	.picker-button .chevron {
+		@apply -mr-0.5 text-ink-dim transition-transform duration-75;
+	}
+	.picker-button[aria-expanded='true'] .chevron {
+		@apply rotate-180;
+	}
+	/* a smaller picker button, floating over the code it unfolds; the card
+	   color is translucent in dark mode, so it is laid over the page color
+	   and the code under the button never shows through */
+	.expand-button {
+		@apply flex h-7 cursor-pointer items-center gap-1.5 rounded-md border border-line px-2.5 text-[12px] font-medium text-ink shadow-[0_2px_8px_-2px_rgb(0_0_0/0.12)] transition-colors select-none hover:text-ink-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
+		background: linear-gradient(var(--color-card), var(--color-card)), var(--color-page);
+	}
+	.expand-button:hover {
+		background: linear-gradient(var(--color-line), var(--color-line)), var(--color-page);
+	}
+	.expand-button .chevron {
+		@apply -ml-0.5 text-ink-dim transition-transform duration-75;
+	}
+	.popover {
+		@apply absolute top-full left-0 z-30 mt-1.5 overflow-hidden rounded-xl border border-line bg-page shadow-[0_12px_32px_-8px_rgb(0_0_0/0.18),0_2px_6px_-2px_rgb(0_0_0/0.08)];
+		animation: popover-in 70ms ease-out;
+	}
+	/* underline tabs, the accent bar marks the open one */
+	.tab {
+		@apply relative flex h-9 shrink-0 cursor-pointer items-center gap-1.5 px-2.5 text-[13px] text-ink-dim transition-colors hover:text-ink focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ink aria-selected:font-medium aria-selected:text-ink-strong;
+	}
+	.tab[aria-selected='true']::after {
+		@apply absolute inset-x-2 bottom-0 h-0.5 rounded-full bg-accent content-[''];
+	}
+}
+
+@keyframes popover-in {
+	from { opacity: 0; transform: translateY(-2px); }
 }
 
 /* hovered token in the editor, colored by its own syntax color */
@@ -83,4 +131,31 @@ body {
 .editor [class*='shj-lang-'] {
 	min-height: 380px;
 	overflow: hidden;
+}
+
+/* the snippets of the examples are drawn by the picked theme too, only
+   sized down and flattened into the panel they sit in */
+.snippets [class*='shj-lang-'] {
+	margin: 0;
+	border: 0;
+	border-top: 1px solid var(--color-line);
+	border-radius: 0;
+	padding: 1em 1.25em;
+	font-family: var(--font-mono) !important;
+	font-size: 12.5px;
+	max-width: none;
+}
+.snippets [class*='shj-lang-'] > div {
+	scrollbar-width: thin;
+}
+
+/* the hero's install command keeps the theme's token colors only, the chip
+   around it is the page's */
+.hero-install [class*='shj-lang-'] {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font: inherit !important;
+	color: inherit;
 }
