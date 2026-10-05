@@ -1,12 +1,13 @@
 <script setup>
-import { highlightText } from '@speed-highlight/core';
+import { highlightHTML } from '@speed-highlight/core';
 import '@speed-highlight/core/themes/default.css';
 import { ref, watchEffect } from 'vue';
 
 const props = defineProps({
 	code: String,
 	lang: String,
-	multiline: { type: Boolean, default: true }
+	block: { type: Boolean, default: true },
+	showLineNumbers: Boolean
 });
 
 const html = ref('');
@@ -14,7 +15,7 @@ const html = ref('');
 watchEffect(onCleanup => {
 	let stale = false;
 
-	highlightText(props.code, props.lang, props.multiline)
+	highlightHTML(props.code, props.lang, { block: props.block, showLineNumbers: props.showLineNumbers })
 		.then(res => stale || (html.value = res));
 
 	// a slow language import can resolve after the props changed
@@ -22,13 +23,7 @@ watchEffect(onCleanup => {
 });
 </script>
 
-<!--
-	v-html is safe here: highlightText escapes &, < and > in every token before
-	wrapping it (see sanitize in src/index.js), so the only markup in the result
-	is the spans it added itself.
--->
+<!-- v-html is safe for any code, every token is escaped -->
 <template>
-	<div :class="`shj-lang-${lang} shj-${multiline ? 'multi' : 'one'}line`" v-html="html" />
+	<div :class="`shj-lang-${lang} shj-${block ? 'block' : 'inline'}`" v-html="html" />
 </template>
-
-<!-- <Code lang="js" :code="'const a = 1;'" /> -->

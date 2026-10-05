@@ -1,0 +1,8 @@
+{
+  "name": "speed-highlight-node-example",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@speed-highlight/core": "file:../.."
+  }
+}

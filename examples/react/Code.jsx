@@ -1,32 +1,25 @@
-import { highlightText } from '@speed-highlight/core';
+import { highlightHTML } from '@speed-highlight/core';
 import '@speed-highlight/core/themes/default.css';
 import { useEffect, useState } from 'react';
 
-// the highlighted code is html, so render it with dangerouslySetInnerHTML rather
-// than highlighting the dom node imperatively: react owns that node and would
-// overwrite the spans on its next render.
-//
-// this is safe for untrusted code: highlightText escapes &, < and > in every
-// token before wrapping it (see sanitize in src/index.js), so the only markup
-// in the result is the spans it added itself.
+// renders the highlighted string: react owns the node, highlighting it in place
+// would be undone on the next render. Safe for any code, every token is escaped
 
-export default function Code({ code, lang, multiline = true, ...props }) {
+export default function Code({ code, lang, block = true, showLineNumbers = false, ...props }) {
 	let [html, setHtml] = useState('');
 
 	useEffect(() => {
 		let stale = false;
 
-		highlightText(code, lang, multiline)
+		highlightHTML(code, lang, { block, showLineNumbers })
 			.then(res => stale || setHtml(res));
 
 		// a slow language import can resolve after the props changed
 		return () => stale = true;
-	}, [code, lang, multiline]);
+	}, [code, lang, block, showLineNumbers]);
 
 	return <div
-		className={`shj-lang-${lang} shj-${multiline ? 'multi' : 'one'}line`}
+		className={`shj-lang-${lang} shj-${block ? 'block' : 'inline'}`}
 		dangerouslySetInnerHTML={{ __html: html }}
 		{...props} />;
 }
-
-// <Code lang='js' code={'const a = 1;'} />

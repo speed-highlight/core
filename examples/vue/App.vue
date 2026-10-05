@@ -1,12 +1,10 @@
-<script setup lang="ts">
-import { ref } from 'vue';
+<script setup>
 import Code from './Code.vue';
 
-const myCode = ref(`printf('Hello World!\n');`);
-const myLang = ref('c');
+const code = `const tag = '<b>' + "&";\nconsole.log(tag);`;
 </script>
 
 <template>
-	<p>Here is the example code:</p>
-	<Code :code="myCode" :lang="myLang" />
+	<Code lang="js" :code="code" show-line-numbers />
+	<Code lang="js" code="const a = 1;" :block="false" />
 </template>

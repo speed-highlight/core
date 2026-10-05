@@ -4,19 +4,13 @@
 $ npm i @speed-highlight/core
 ```
 
-`code.component.ts` wraps the highlighter as a standalone component:
+[`code.component.ts`](code.component.ts) is the component,
+[`app.component.ts`](app.component.ts) uses it. Why it renders the highlighted
+string, and why that is safe: [the examples](../README.md#components).
 
-```html
-<shj-code lang="js" [code]="'const a = 1;'" />
-```
+`[innerHTML]` needs no `bypassSecurityTrustHtml`: angular's sanitizer keeps
+the `class` attribute, the only thing the themes rely on.
 
-No `bypassSecurityTrustHtml` is needed — angular's sanitizer keeps the `class`
-attribute, which is the only thing the themes rely on.
-
-The component renders the string `highlightText` returns instead of calling
-`highlightElement` on a mounted node — angular owns that node and would wipe the
-spans on its next render. It also drops a result that arrives after its inputs
-changed, since `highlightText` is async while it imports the language.
-
-Injecting that html is safe even for code you did not write: every token is
-escaped before it is wrapped, so the only markup left is the library's own spans.
+The theme is global css, so it goes in the app's `src/styles.css`, as in
+[`styles.css`](styles.css), not in the component: angular scopes a
+component's own styles, they would not reach the html it injects.

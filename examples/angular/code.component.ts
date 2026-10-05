@@ -1,23 +1,18 @@
-import { highlightText } from '@speed-highlight/core';
-import '@speed-highlight/core/themes/default.css';
+import { highlightHTML } from '@speed-highlight/core';
 import { Component, effect, input, signal } from '@angular/core';
 
-// [innerHTML] is enough: angular's sanitizer keeps the class attribute, which is
-// where all the colouring lives, so no bypassSecurityTrustHtml is needed.
-//
-// it is also safe for untrusted code: highlightText escapes &, < and > in every
-// token before wrapping it (see sanitize in src/index.js), so the only markup in
-// the result is the spans it added itself.
+// [innerHTML] is enough, angular's sanitizer keeps the classes the themes use.
+// Safe for any code, every token is escaped
 
 @Component({
 	selector: 'shj-code',
-	standalone: true,
-	template: `<div [class]="'shj-lang-' + lang() + ' shj-' + (multiline() ? 'multi' : 'one') + 'line'" [innerHTML]="html()"></div>`
+	template: `<div [class]="'shj-lang-' + lang() + ' shj-' + (block() ? 'block' : 'inline')" [innerHTML]="html()"></div>`
 })
 export class CodeComponent {
 	code = input.required<string>();
 	lang = input.required<string>();
-	multiline = input(true);
+	block = input(true);
+	showLineNumbers = input(false);
 
 	html = signal('');
 
@@ -25,7 +20,7 @@ export class CodeComponent {
 		effect(onCleanup => {
 			let stale = false;
 
-			highlightText(this.code(), this.lang(), this.multiline())
+			highlightHTML(this.code(), this.lang(), { block: this.block(), showLineNumbers: this.showLineNumbers() })
 				.then(res => stale || this.html.set(res));
 
 			// a slow language import can resolve after the inputs changed
@@ -33,5 +28,3 @@ export class CodeComponent {
 		});
 	}
 }
-
-// <shj-code lang="js" [code]="'const a = 1;'" />
