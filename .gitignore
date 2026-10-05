@@ -2,4 +2,6 @@
 node_modules
 deno.lock
 playground/dist
+playground/.svelte-kit
 tests/.tmp-snippets
+tests/examples/.tmp
