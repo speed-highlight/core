@@ -71,7 +71,16 @@ const expandData = {
  */
 export function* tokenizer(src, lang, onToken, fallback) {
 	// outside the try so the catch can emit only what is left
-	let i = 0;
+	let i = 0, callbackFailed = false;
+	const emit = (str, type) => {
+		try {
+			onToken(str, type);
+		}
+		catch (error) {
+			callbackFailed = true;
+			throw error;
+		}
+	};
 	try {
 		let m,
 			part,
@@ -111,21 +120,22 @@ export function* tokenizer(src, lang, onToken, fallback) {
 			}
 			if (first.index === null)
 				break;
-			onToken(src.slice(i, first.index), data.type);
+			emit(src.slice(i, first.index), data.type);
 			// consume the text before the match now, the match itself only once
 			// it is emitted, so a throw in a sub resumes on the match and never
 			// repeats or drops it
 			i = first.index;
 			if (first.part.sub)
-				yield* tokenizer(first.match, typeof first.part.sub === 'string' ? first.part.sub : (typeof first.part.sub === 'function' ? first.part.sub(first.match) : first.part), onToken, first.part.type);
+				yield* tokenizer(first.match, typeof first.part.sub === 'string' ? first.part.sub : (typeof first.part.sub === 'function' ? first.part.sub(first.match) : first.part), emit, first.part.type);
 			else
-				onToken(first.match, first.part.type);
+				emit(first.match, first.part.type);
 			i = first.end;
 		}
-		onToken(src.slice(i, src.length), data.type);
+		emit(src.slice(i, src.length), data.type);
 	}
-	catch {
-		onToken(src.slice(i), fallback);
+	catch (error) {
+		if (callbackFailed) throw error;
+		emit(src.slice(i), fallback);
 	}
 }
 
