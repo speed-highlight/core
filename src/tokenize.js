@@ -152,3 +152,63 @@ export function tokenizeWith(src, lang, onToken, opt = {}) {
 	while (!res.done)
 		res = it.next(opt.languages?.[/** @type {string} */ (res.value)]);
 }
+
+
+/**
+ * Options for synchronous HTML highlighting
+ * @typedef {Object} ShjHTMLSyncOptions
+ * @property {boolean} [block=true] Render as a block, with the line numbering
+ * and header wrapper, rather than inline
+ * @property {boolean} [showLineNumbers=false] Indicates whether to number the
+ * lines, in a gutter laid out inside the block
+ * @property {Record<string, ShjLanguageData>} [languages] Grammars that the
+ * language embeds by name
+ */
+
+const sanitize = (str = '') =>
+	str.replaceAll('&', '&#38;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'),
+	/**
+	 * Create a HTML element with the right token styling
+	 *
+	 * @param {string} str The content (need to be sanitized)
+	 * @param {ShjToken} [token] The type of token
+	 * @returns A HTML string
+	 */
+	toSpan = (str, token) => token && /^[a-z0-9_-]+$/i.test(token) ? `<span class="shj-syn-${token}">${str}</span>` : str;
+
+/**
+ * Make a synchronous HTML renderer shared by both tokenizer entry points.
+ * Tokens are rendered as they arrive, without retaining the token stream.
+ *
+ * @param {string} src The original code, used for line numbering
+ * @param {ShjHTMLSyncOptions} [opt={}] Customization options
+ * @returns {{ onToken: ShjTokenCallback, html: () => string }} The token callback and finalizer
+ */
+export function createHTMLRenderer(src, opt = {}) {
+	let tmp = '';
+	const onToken = (str, type) => tmp += toSpan(sanitize(str), type);
+	const html = () => (opt.block ?? true)
+		? `<div><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.split('\n').length : 0)}</div><div>${tmp}</div></div>`
+		: tmp;
+	return { onToken, html };
+}
+
+/**
+ * Highlight a string synchronously with grammars supplied by the caller
+ *
+ * @example
+ * import html from '@speed-highlight/core/languages/html.js';
+ * import { highlightHTMLSync } from '@speed-highlight/core/tokenize';
+ *
+ * let markup = highlightHTMLSync('<h1>Hello</h1>', html);
+ *
+ * @param {string} src The code
+ * @param {string|ShjLanguageData} lang The language of the code
+ * @param {ShjHTMLSyncOptions} [opt={}] Customization options and sub-languages
+ * @returns {string} The highlighted HTML
+ */
+export function highlightHTMLSync(src, lang, opt = {}) {
+	let renderer = createHTMLRenderer(src, opt);
+	tokenizeWith(src, lang, renderer.onToken, opt);
+	return renderer.html();
+}
