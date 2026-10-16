@@ -148,17 +148,26 @@ setLoader(name => ({
 })[name]?.());
 ```
 
-For full tree-shaking skip the loader entirely: `tokenizeWith` takes every language from the caller, so a bundler keeps only what you import. Include the sub-languages a grammar embeds (`html` uses `css` and `js`; `js` uses `jsdoc`, `todo`, and `regex`). A sub that is not given keeps the type of its rule and only skips the inner highlighting:
+For full tree-shaking skip the loader entirely: `tokenizeWith` takes every language from the caller, so a bundler keeps only what you import. Import a language directly from `@speed-highlight/core/languages/<name>.js`, rather than the language barrel, when you only need that grammar:
 
 ```js
-import { tokenizeWith } from '@speed-highlight/core/tokenize';
-import { html, css, js, jsdoc, todo, regex } from '@speed-highlight/core/languages';
+import html from '@speed-highlight/core/languages/html.js';
+import css from '@speed-highlight/core/languages/css.js';
+import js from '@speed-highlight/core/languages/js.js';
+import jsdoc from '@speed-highlight/core/languages/jsdoc.js';
+import todo from '@speed-highlight/core/languages/todo.js';
+import regex from '@speed-highlight/core/languages/regex.js';
+import { highlightHTMLSync, tokenizeWith } from '@speed-highlight/core/tokenize';
 
-tokenizeWith(code, html, (str, type) => { /* ... */ }, { languages: { css, js, jsdoc, todo, regex } });
+const languages = { css, js, jsdoc, todo, regex };
+tokenizeWith(code, html, (str, type) => { /* ... */ }, { languages });
+const markup = highlightHTMLSync(code, html, { languages });
 ```
 
+`highlightHTMLSync` returns the same escaped HTML as `highlightHTML`, but does not load languages and never returns a promise. Include the sub-languages a grammar embeds (`html` uses `css` and `js`; `js` uses `jsdoc`, `todo`, and `regex`). A sub that is not given keeps the type of its rule and only skips the inner highlighting.
+
 > [!NOTE]
-> `highlightHTML` and `tokenizeWith` never touch the DOM, so they also run server-side or in a web worker: highlight there and send the string over.
+> `highlightHTML`, `highlightHTMLSync`, and `tokenizeWith` never touch the DOM, so they also run server-side or in a web worker: highlight there and send the string over.
 
 ### CDN (no build step)
 
@@ -215,12 +224,12 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | | `tokenize(src, lang, onToken)` | Loader-based tokenizer, calls `onToken(text, type)` |
 | | `setLoader(loader)` / `defaultLoader` | Replace or compose how language names are resolved |
 | [`.../detect`](src/detect.js) | `detectLanguage(code)` | Guess the language, `'plain'` when unsure |
-| [`.../tokenize`](src/tokenize.js) | `tokenizeWith(src, lang, onToken, opt?)`, `tokenizer` | Registry-free synchronous tokenizer (and the underlying generator), languages passed by the caller |
+| [`.../tokenize`](src/tokenize.js) | `highlightHTMLSync(src, lang, opt?)`, `tokenizeWith(src, lang, onToken, opt?)`, `tokenizer` | Registry-free synchronous highlighter and tokenizer, languages passed by the caller |
 | [`.../languages`](src/languages/) | one named export per language | Grammars, import only what you need |
 | [`.../themes/*.css`](src/themes/) | | Web themes |
 | [`.../themes/*.js`](src/themes/) | | Terminal themes, plus `termcolor.js` helpers |
 
-`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }`: line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
+`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }` for `highlightHTML`; `highlightHTMLSync` also accepts `{ languages?: Record<string, ShjLanguageData> }` for embedded grammars. Line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
 
 ## Languages
 
