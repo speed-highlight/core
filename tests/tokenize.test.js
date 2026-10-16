@@ -2,11 +2,11 @@ import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { tokenize as tokenizeAsync } from '../src/index.js';
-import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
+import { css, diff, git, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
 let fixtures = new URL('../examples/languages/', import.meta.url),
-	languages = { css, html, js, jsdoc, json, regex, todo },
+	languages = { css, diff, git, html, js, jsdoc, json, regex, todo },
 	read = file => readFileSync(new URL(file, fixtures), 'utf8'),
 	collect = (src, lang, opt) => {
 		let tokens = [];
@@ -82,4 +82,54 @@ test('html takes the attribute names framework templates write', () => {
 			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
 			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
 			attribute);
+});
+
+test('diff file headers take precedence over inserted and deleted lines', () => {
+	deepStrictEqual(collect('--- a/document.txt\n+++ b/document.txt', diff), [
+		[undefined, ''],
+		['section', '--- a/document.txt'],
+		[undefined, '\n'],
+		['section', '+++ b/document.txt'],
+		[undefined, '']
+	]);
+});
+
+
+test('diff metadata and git prose do not highlight unanchored punctuation', () => {
+	deepStrictEqual(collect('notice! It should\n! metadata', diff), [
+		[undefined, 'notice! It should\n'],
+		['kwd', '! metadata'],
+		[undefined, '']
+	]);
+	deepStrictEqual(collect("fix: don't expand the quote\n\"unclosed", git), [
+		[undefined, "fix: don't expand the quote\n"],
+		['str', '"unclosed'],
+		[undefined, '']
+	]);
+});
+
+
+test('diff file headers accept spaced paths and tab-separated timestamps', () => {
+	deepStrictEqual(collect('--- a/dir/mon fichier.txt\n+++ b/dir/mon fichier.txt\n--- ancien fichier.txt\t2026-09-29 12:00:00\n+++ nouveau fichier.txt\t2026-09-29 12:00:00', diff), [
+		[undefined, ''],
+		['section', '--- a/dir/mon fichier.txt'],
+		[undefined, '\n'],
+		['section', '+++ b/dir/mon fichier.txt'],
+		[undefined, '\n'],
+		['section', '--- ancien fichier.txt\t2026-09-29 12:00:00'],
+		[undefined, '\n'],
+		['section', '+++ nouveau fichier.txt\t2026-09-29 12:00:00'],
+		[undefined, '']
+	]);
+});
+
+
+test('bare diff markers remain content lines', () => {
+	deepStrictEqual(collect('---\n+++', diff), [
+		[undefined, ''],
+		['deleted', '---'],
+		[undefined, '\n'],
+		['insert', '+++'],
+		[undefined, '']
+	]);
 });
