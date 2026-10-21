@@ -78,7 +78,7 @@ const cache = /** @type {Object<string, ReturnType<ShjLanguageLoader>>} */ ({}),
 	 * @param {ShjToken} [token] The type of token
 	 * @returns A HTML string
 	 */
-	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
+	toSpan = (str, token) => token && /^[a-z0-9_-]+$/i.test(token) ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
  * Find the tokens in the given code and call the given callback,
