@@ -121,7 +121,7 @@ export async function highlightHTML(src, lang, opt = {}) {
 	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
 
 	return (opt.block ?? true)
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.split('\n').length : 0)}</div><div>${tmp}</div></div>`
+		? `<div><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.replace(/\n$/, '').split('\n').length : 0)}</div><div>${tmp}</div></div>`
 		: tmp;
 }
 
