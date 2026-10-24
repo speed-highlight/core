@@ -1,6 +1,6 @@
 /**
  * Languages bundled by default
- * @typedef {('asm'|'bash'|'bf'|'c'|'css'|'csv'|'diff'|'docker'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'pl'|'plain'|'py'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'xml'|'yaml')} ShjBuiltinLanguage
+ * @typedef {('asm'|'bash'|'bf'|'c'|'cobol'|'cpp'|'cs'|'css'|'csv'|'diff'|'docker'|'gd'|'git'|'go'|'html'|'http'|'ini'|'java'|'js'|'jsdoc'|'json'|'leanpub-md'|'log'|'lua'|'make'|'md'|'mongodb'|'php'|'pl'|'plain'|'ps1'|'py'|'rb'|'regex'|'rs'|'sql'|'todo'|'toml'|'ts'|'uri'|'vim'|'wat'|'xml'|'yaml')} ShjBuiltinLanguage
  */
 
 /**
@@ -42,6 +42,7 @@
  * the element instead: a `code` element is inline, anything else is a block
  * @property {boolean} [showLineNumbers=false] Indicates whether to number the
  * lines, in a gutter laid out inside the block
+ * @property {boolean} [wrap=false] Wrap long lines instead of scrolling horizontally in a block
  */
 
 import { tokenizer } from './tokenize.js';
@@ -78,7 +79,7 @@ const cache = /** @type {Object<string, ReturnType<ShjLanguageLoader>>} */ ({}),
 	 * @param {ShjToken} [token] The type of token
 	 * @returns A HTML string
 	 */
-	toSpan = (str, token) => token ? `<span class="shj-syn-${token}">${str}</span>` : str;
+	toSpan = (str, token) => token && /^[a-z0-9_-]+$/i.test(token) ? `<span class="shj-syn-${token}">${str}</span>` : str;
 
 /**
  * Find the tokens in the given code and call the given callback,
@@ -117,11 +118,25 @@ export async function tokenize(src, lang, onToken) {
  * @returns {Promise<string>} The highlighted string
  */
 export async function highlightHTML(src, lang, opt = {}) {
-	let tmp = ''
-	await tokenize(src, lang, (str, type) => tmp += toSpan(sanitize(str), type))
+	let numberedWrap = (opt.block ?? true) && opt.wrap && opt.showLineNumbers,
+		lines = numberedWrap ? [''] : null,
+		tmp = '';
+	await tokenize(src, lang, (str, type) => {
+		if (lines) {
+			let parts = sanitize(str).split('\n');
+			parts.forEach((part, i) => {
+				if (i) lines.push('');
+				if (part) lines[lines.length - 1] += toSpan(part, type);
+			});
+		} else tmp += toSpan(sanitize(str), type);
+	});
 
+	if (lines) {
+		if (src.endsWith('\n')) lines.pop();
+		return `<div class="shj-wrap">${lines.map(line => `<div class="shj-numbers"><div></div></div><div>${line}</div>`).join('')}</div>`;
+	}
 	return (opt.block ?? true)
-		? `<div><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.split('\n').length : 0)}</div><div>${tmp}</div></div>`
+		? `<div${opt.wrap ? ' class="shj-wrap"' : ''}><div class="shj-numbers">${'<div></div>'.repeat(opt.showLineNumbers ? src.replace(/\n$/, '').split('\n').length : 0)}</div><div>${tmp}</div></div>`
 		: tmp;
 }
 
