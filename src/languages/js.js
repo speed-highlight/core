@@ -1,7 +1,6 @@
 /**
  * @name JavaScript
  * @support basic syntax, regex, jsdoc, json, template literals
- * @detect ⛔ reported as TypeScript
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{ // js objects
