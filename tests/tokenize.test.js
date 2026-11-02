@@ -1,7 +1,7 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightHTML, tokenize as tokenizeAsync } from '../src/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -82,4 +82,10 @@ test('html takes the attribute names framework templates write', () => {
 			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
 			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
 			attribute);
+});
+
+test('a trailing newline does not add a line number', async () => {
+	let html = await highlightHTML('let answer = 42;\n', 'js', { showLineNumbers: true });
+
+	deepStrictEqual(html.match(/<div><\/div>/g)?.length, 1);
 });
