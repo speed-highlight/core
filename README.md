@@ -220,7 +220,7 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | [`.../themes/*.css`](src/themes/) | | Web themes |
 | [`.../themes/*.js`](src/themes/) | | Terminal themes, plus `termcolor.js` helpers |
 
-`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }`: line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
+`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean, wrap?: boolean }`: line numbers and wrapping are opt-in. With `wrap: true`, long lines wrap instead of scrolling horizontally; numbered lines keep their gutter aligned when they wrap. `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
 
 ## Languages
 
