@@ -1,5 +1,7 @@
 git diff
 commit 526
+Merge branch 'main'
+fix: don't expand the quote
 --- before
 +++ after
 @@ -1 +1,2 @@
@@ -8,3 +10,4 @@ commit 526
 +test
 'string'
 "string"
+"unclosed
