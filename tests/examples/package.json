@@ -11,7 +11,7 @@
     "@angular/compiler-cli": "^22.2.1",
     "@angular/core": "^22.2.1",
     "@angular/platform-browser": "^22.2.1",
-    "@happy-dom/global-registrator": "^20.14.5",
+    "@happy-dom/global-registrator": "^21.0.4",
     "@speed-highlight/core": "file:../..",
     "esbuild": "^0.28.2",
     "react": "^19.3.0",
