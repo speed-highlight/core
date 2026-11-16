@@ -16,7 +16,11 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'str',
-		match: /(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,
+		match: /'((?!')[^\r\n\\]|\\[^])*'?/g
+	},
+	{
+		type: 'str',
+		match: /"((?!")[^\r\n\\]|\\[^])*"?/g,
 		sub: [ variable ]
 	},
 	{

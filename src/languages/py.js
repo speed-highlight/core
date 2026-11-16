@@ -13,7 +13,29 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		sub: [
 			{
 				type: 'var',
-				match: /{[^{}]*}/g,
+				match: new class {
+					exec(src) {
+						let start, depth = 0,
+							strings = /("""|'''|"|')(\\[^]|(?!\1)[^])*\1?/gy;
+						for (let i = this.lastIndex; i < src.length; i++) {
+							if (!depth && src[i] == '{' && src[i + 1] == '{') i++;
+							else if (depth && (src[i] == '"' || src[i] == "'")) {
+								strings.lastIndex = i;
+								strings.exec(src);
+								i = strings.lastIndex - 1;
+							}
+							else if (src[i] == '{') {
+								if (!depth) start = i;
+								depth++;
+							}
+							else if (src[i] == '}' && depth && !--depth) {
+								this.lastIndex = i + 1;
+								return { index: start, 0: src.slice(start, i + 1) };
+							}
+						}
+						return null;
+					}
+				}(),
 				sub: [
 					{
 						match: /(?!^{)[^]*(?=}$)/g,

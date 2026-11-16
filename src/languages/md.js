@@ -26,8 +26,8 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 			type: 'kwd',
 			sub: [
 				{
-					match: /\n[^]*(?=```)/g,
-					sub: code.split('\n')[0].slice(3) || detectLanguage(code)
+					match: /\n[^]*(?=^`{3,}[ \t]*$)/gm,
+					sub: code.match(/^`+[ \t]*([^ \t\r\n`]+)/)?.[1] || detectLanguage(code)
 				}
 			]
 		})
