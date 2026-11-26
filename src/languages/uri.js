@@ -17,7 +17,7 @@ export default [
 	},
 	{
 		type: 'func',
-		match: /(?<![.\w])[.\w]+@|#[\w]+$/gm
+		match: /(?<![.\w])[.\w]+@|#\w+$/gm
 	},
 	{
 		type: 'var',
