@@ -47,8 +47,8 @@ for pid in $(jobs -p); do
 	wait $pid || (wait && echo -e "\n\033[91mError: could not minify some files\033[0m" && exit 1)
 done
 
-npx tsc --outDir dist
-npx tsc --outDir dist/node
+npx -p typescript tsc --outDir dist
+npx -p typescript tsc --outDir dist/node
 
 echo '{"type": "commonjs"}' > dist/node/package.json
 
