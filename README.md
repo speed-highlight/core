@@ -97,11 +97,12 @@ Frameworks own their DOM, so highlight the *string* and render it, as in the qui
 
 ### On a plain page
 
-Mark code blocks with a `shj-lang-*` class and call `highlightAll` once:
+Mark code blocks with a `shj-lang-*` class, or put the standard `language-*` that markdown renders on a `code`, and call `highlightAll` once:
 
 ```html
 <div class="shj-lang-js">console.log('hello')</div>
 <code class="shj-lang-js">inline code</code>
+<pre><code class="language-javascript">console.log('from markdown')</code></pre>
 
 <script type="module">
 	import { highlightAll } from '@speed-highlight/core';
@@ -109,9 +110,9 @@ Mark code blocks with a `shj-lang-*` class and call `highlightAll` once:
 </script>
 ```
 
-Blocks are a single `<div>` instead of `<pre><code>` so the line-number gutter can be laid out inside; the `shj-lang-` prefix avoids colliding with Prism's `language-*` during a migration.
+A `<div>` is enough for a block, the line-number gutter is laid out inside it. A `language-*` block whose language is not bundled (`language-mermaid`) is left as it is, and `defaultLoader` maps the common fence names (`javascript`, `python`, `sh`, `yml`...) to their grammar. If another highlighter already handles `language-*` on the page, use `shj-lang-*` and `highlightElement` instead of `highlightAll`.
 
-For per-element control use `highlightElement`. It renders a `code` element inline and anything else as a block, accepts `block` as an override, and sets `data-lang` so a theme can render a language header with `content: attr(data-lang)`:
+For per-element control use `highlightElement`. It renders a `code` element inline, unless it is inside a `pre`, and anything else as a block, accepts `block` as an override, and sets `data-lang` so a theme can render a language header with `content: attr(data-lang)`:
 
 ```js
 import { highlightElement } from '@speed-highlight/core';
@@ -208,7 +209,7 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 
 | Entry | Export | Description |
 | --- | --- | --- |
-| [`@speed-highlight/core`](src/index.js) | `highlightAll(opt?)` | Highlight every element with a `shj-lang-*` class |
+| [`@speed-highlight/core`](src/index.js) | `highlightAll(opt?)` | Highlight every element with a `shj-lang-*` class, and every `code` with a `language-*` class |
 | | `highlightElement(elm, lang?, opt?)` | Highlight one element (language read from its class by default) |
 | | `highlightHTML(src, lang, opt?)` | Highlight a string, resolves to an HTML string |
 | | `highlightANSI(src, lang, theme)` | Highlight a string, resolves to an ANSI string for terminals |
@@ -220,7 +221,7 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | [`.../themes/*.css`](src/themes/) | | Web themes |
 | [`.../themes/*.js`](src/themes/) | | Terminal themes, plus `termcolor.js` helpers |
 
-`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }`: line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
+`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }`: line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline (unless inside a `pre`) and anything else is a block.
 
 ## Languages
 

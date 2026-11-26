@@ -39,7 +39,7 @@
  * @typedef {Object} ShjOptions
  * @property {boolean} [block=true] Render as a block, with the line numbering
  * and header wrapper, rather than inline. `highlightElement` defaults it from
- * the element instead: a `code` element is inline, anything else is a block
+ * the element instead: a `code` element is inline unless inside a `pre`, anything else is a block
  * @property {boolean} [showLineNumbers=false] Indicates whether to number the
  * lines, in a gutter laid out inside the block
  */
@@ -52,7 +52,10 @@ import { tokenizer } from './tokenize.js';
  *
  * @type {ShjLanguageLoader}
  */
-export const defaultLoader = name => import(`./languages/${name}.js`);
+export const defaultLoader = name => import(`./languages/${aliases[name] ?? name}.js`);
+
+// the usual markdown fence names, so `language-javascript` finds js
+const aliases = /** @type {Object<string, string>} */ ({ javascript: 'js', typescript: 'ts', python: 'py', sh: 'bash', shell: 'bash', yml: 'yaml', markdown: 'md', rust: 'rs', text: 'plain' });
 
 let loader = defaultLoader;
 
@@ -69,6 +72,20 @@ export function setLoader(newLoader) {
 }
 
 const cache = /** @type {Object<string, ReturnType<ShjLanguageLoader>>} */ ({}),
+	/**
+	 * The language for a name, undefined when it does not load. The loader is
+	 * only called on cache misses, import() can throw synchronously when
+	 * bundled so it cannot be a catch on the promise
+	 *
+	 * @param {string} name
+	 */
+	load = async name => {
+		try {
+			let data = /** @type {any} */ (await (cache[name] ??= loader(name)));
+			return /** @type {ShjLanguageData|undefined} */ (data?.default ?? data);
+		}
+		catch {}
+	},
 	sanitize = (str = '') =>
 		str.replaceAll('&', '&#38;').replaceAll('<', '&lt;').replaceAll('>', '&gt;'),
 	/**
@@ -94,15 +111,7 @@ export async function tokenize(src, lang, onToken) {
 		res = it.next();
 
 	while (!res.done) {
-		let name = /** @type {string} */ (res.value),
-			data;
-		try {
-			// the loader is only called on cache misses, import() can throw
-			// synchronously when bundled so it cannot be a catch on the promise
-			data = /** @type {{ default?: ShjLanguageData, sub?: ShjGrammar }|undefined} */ (await (cache[name] ??= loader(name)));
-		}
-		catch {}
-		res = it.next(/** @type {ShjLanguageData|undefined} */ (data?.default ?? data));
+		res = it.next(await load(/** @type {string} */ (res.value)));
 	}
 }
 
@@ -129,27 +138,32 @@ export async function highlightHTML(src, lang, opt = {}) {
  * Highlight a DOM element by getting the new innerHTML with highlightHTML
  *
  * @param {Element} elm The DOM element
- * @param {ShjLanguage} [lang] The language of the code (searching by default on `elm` for a 'shj-lang-' class)
- * @param {ShjOptions} [opt={}] Customization options, `block` defaults to the element: a `code` element is inline
+ * @param {ShjLanguage} [lang] The language of the code (read by default from a `shj-lang-*` or `language-*` class of `elm`)
+ * @param {ShjOptions} [opt={}] Customization options, `block` defaults to the element: a `code` element is inline, unless inside a `pre`
  * @returns {Promise<void>} Resolves once the element has been highlighted
  */
-export async function highlightElement(elm, lang = /** @type {ShjLanguage} */ (elm.className.match(/shj-lang-([\w-]+)/)?.[1]), opt = {}) {
+export async function highlightElement(elm, lang, opt = {}) {
+	let shj = elm.className.match(/shj-lang-([\w-]+)/)?.[1],
+		std = elm.className.match(/(?:^|\s)language-([\w-]+)/)?.[1];
+	lang ??= shj ?? std;
+	// language-* is also used by blocks that are not code (mermaid, math...), left as they are
+	if (!shj && std && std == lang && !await load(std)) return;
 	let txt = elm.textContent;
-	let block = opt.block ?? elm.tagName != 'CODE';
+	let block = opt.block ?? (elm.tagName != 'CODE' || elm.parentElement?.tagName == 'PRE');
 	/** @type {HTMLElement} */ (elm).dataset.lang = lang;
 	elm.className = `${[...elm.classList].filter(className => !className.startsWith('shj-')).join(' ')} shj-lang-${lang} shj-${block ? 'block' : 'inline'}`;
 	elm.innerHTML = await highlightHTML(txt, lang, { ...opt, block });
 }
 
 /**
- * Call highlightElement on element with a css class starting with `shj-lang-`
+ * Call highlightElement on every element with a `shj-lang-*` class, and every `code` with a `language-*` class
  *
  * @param {ShjOptions} [opt={}] Customization options
  * @returns {Promise<void[]>} Resolves once every element has been highlighted
  */
 export async function highlightAll(opt) {
 	return Promise.all(
-		Array.from(document.querySelectorAll('[class*="shj-lang-"]'))
+		Array.from(document.querySelectorAll('[class*="shj-lang-"],code[class*="language-"]'))
 		.map(elm => highlightElement(elm, undefined, opt)));
 }
 
