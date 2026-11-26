@@ -66,9 +66,10 @@ const values = [
 
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{
-		// what comes before a `{` is a selector or an at-rule prelude; it starts
-		// only after `{`, `}` or `;`, so every character is read once
-		match: /(?<![^{};])[^{};]*{/g,
+		// what comes before a `{` is a selector or an at-rule prelude. It starts
+		// only after `{`, `}`, `;` or a comment, and stops at the next of them, at
+		// a comment, or at a string holding one, so every character is read once
+		match: /(?<=^|[{};]|\*\/)([^{};/*"']|\/(?!\*)|\*(?!\/)|"[^"{};]*"|'[^'{};]*')*{/g,
 		sub: [
 			comment,
 			{ expand: 'str' },

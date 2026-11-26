@@ -15,7 +15,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'err',
-		match: /\b(err(or)?|\w*exception|warn|warning|failed|ko|invalid|not ?found|alert|fatal)\b/gi
+		match: /(?<![\w-])[\w-]*exception\b|\b(err(or)?|warn|warning|failed|ko|invalid|not ?found|alert|fatal)\b/gi
 	},
 	{
 		type: 'num',
