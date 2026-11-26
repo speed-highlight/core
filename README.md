@@ -119,6 +119,19 @@ import { highlightElement } from '@speed-highlight/core';
 await highlightElement(element, 'js', { showLineNumbers: true });
 ```
 
+HTML rendered from markdown marks blocks as `<pre><code class="language-js">`. Highlight them with `highlightElement`, skipping the blocks other tools render, and map the fence names that differ from the file names:
+
+```js
+import { defaultLoader, highlightElement, setLoader } from '@speed-highlight/core';
+
+setLoader(name => defaultLoader({ javascript: 'js', python: 'py', sh: 'bash', yml: 'yaml' }[name] ?? name));
+
+for (const code of document.querySelectorAll('pre > code[class*="language-"]')) {
+	const lang = code.className.match(/language-(\S+)/)[1];
+	if (lang !== 'mermaid') highlightElement(code, lang, { block: true });
+}
+```
+
 ### Detect the language
 
 Detection is a separate ~1 kB import so the core stays small. It recognizes about 20 common languages and returns `'plain'` when unsure:
