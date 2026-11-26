@@ -1,7 +1,7 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightANSI, tokenize as tokenizeAsync } from '../src/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -74,6 +74,11 @@ test('a sub that is not given keeps the type of its rule', () => {
 
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
+});
+
+test('the terminal output keeps no control character of the code', async () => {
+	// an escape in a file could retitle or clear the terminal it is printed in
+	deepStrictEqual(await highlightANSI('a\x1b]0;title\x07\x1b[2Jb\r\n\tc\x9b', 'plain', {}), 'a]0;title[2Jb\n\tc');
 });
 
 test('html takes the attribute names framework templates write', () => {
