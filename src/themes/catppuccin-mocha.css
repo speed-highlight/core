@@ -1,0 +1,24 @@
+@import 'default.css';
+
+/* official Catppuccin Mocha palette, mapped by the code editor style guide
+   https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md */
+[class*="shj-lang-"] {
+	color: #cdd6f4;
+	background: #1e1e2e
+}
+
+.shj-syn-deleted,
+.shj-syn-err {color: #f38ba8}
+.shj-syn-kwd {color: #cba6f7}
+.shj-syn-type,
+.shj-syn-class {color: #f9e2af}
+.shj-syn-cmnt {color: #9399b2}
+.shj-numbers {color: #7f849c}
+.shj-syn-insert,
+.shj-syn-str {color: #a6e3a1}
+.shj-syn-section,
+.shj-syn-num,
+.shj-syn-bool {color: #fab387}
+.shj-syn-oper {color: #89dceb}
+.shj-syn-var,
+.shj-syn-func {color: #89b4fa}
