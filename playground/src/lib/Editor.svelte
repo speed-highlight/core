@@ -13,10 +13,8 @@
 	let codePad = $state('');
 	let tooltip = $state(null);
 
-	// timed, the toolbar shows how long the highlighting takes; a first
-	// untimed pass loads the grammars, so the count leaves out their import
+	// timed, the toolbar shows how long the highlighting takes
 	async function highlight(source, language, showLineNumbers) {
-		await highlightHTML(source, language, { showLineNumbers });
 		const start = performance.now();
 		const html = await highlightHTML(source, language, { showLineNumbers });
 		return { html, ms: performance.now() - start };

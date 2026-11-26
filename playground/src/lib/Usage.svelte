@@ -29,7 +29,6 @@
 
 	// what the command prints, timed; only for the terminal targets
 	async function runCommand(source, language, themeName) {
-		await highlightANSI(source, language, terminalThemeMaps[themeName]); // loads the grammars, untimed
 		const start = performance.now();
 		const ansi = await highlightANSI(source, language, terminalThemeMaps[themeName]);
 		return { html: ansiToHtml(ansi), ms: performance.now() - start };
@@ -126,7 +125,7 @@
 							class="cursor-pointer rounded px-1.5 py-px font-mono text-[11px] text-ink-dim hover:text-ink aria-checked:bg-card aria-checked:text-ink-strong">{name}</button>
 					{/each}
 				</span>
-				<span class="w-12 text-right tabular-nums">{terminal.ms.toFixed(terminal.ms >= 10 ? 0 : 1)} ms</span>
+				<span class="w-12 text-right tabular-nums" title="Time to highlight, the first run includes loading the grammar">{terminal.ms.toFixed(terminal.ms >= 10 ? 0 : 1)} ms</span>
 			{/snippet}
 			{@render header(icon('shell'), 'terminal', command, themeSwitch)}
 			<!-- a terminal always looks dark, regardless of the page mode, so the

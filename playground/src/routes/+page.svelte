@@ -175,7 +175,7 @@
 			onpreview={name => previewTheme = name} />
 		<span class="ml-auto flex items-center gap-4">
 			<Toggle bind:checked={numbers} label="Line numbers" />
-			<span class="w-14 text-right font-mono text-[11.5px] text-ink-dim tabular-nums" title="Time to highlight">
+			<span class="w-14 text-right font-mono text-[11.5px] text-ink-dim tabular-nums" title="Time to highlight, the first run includes loading the grammar">
 				{ms === null ? '' : `${ms >= 10 ? ms.toFixed(0) : ms.toFixed(1)} ms`}
 			</span>
 		</span>
