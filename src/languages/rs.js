@@ -28,6 +28,6 @@ export default [
 	},
 	{
 		type: 'func',
-		match: /[a-zA-Z_][\w_]*(?=\s*!?\s*\()/g
+		match: /\b[a-zA-Z_]\w*(?=\s*!?\s*\()/g
 	}
 ]

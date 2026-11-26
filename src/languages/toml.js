@@ -31,6 +31,6 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /[\w-]+(?=\s*=)/g
+		match: /(?<![\w-])[\w-]+(?=\s*=)/g
 	}
 ]

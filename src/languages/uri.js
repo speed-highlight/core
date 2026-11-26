@@ -13,14 +13,14 @@ export default [
 	},
 	{
 		type: 'oper',
-		match: /[:/&?]|\w+=/g
+		match: /[:/&?]|\b\w+=/g
 	},
 	{
 		type: 'func',
-		match: /[.\w]+@|#[\w]+$/gm
+		match: /(?<![.\w])[.\w]+@|#\w+$/gm
 	},
 	{
 		type: 'var',
-		match: /\w+\.\w+(\.\w+)*/g
+		match: /\b\w+\.\w+(\.\w+)*/g
 	}
 ]
