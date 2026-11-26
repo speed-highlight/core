@@ -38,7 +38,7 @@ A tiny, fast, simple syntax highlighter for the web and the terminal in JavaScri
 npm i @speed-highlight/core
 ```
 
-In a terminal, print the highlighted string:
+Terminal:
 
 ```js
 import { highlightANSI } from '@speed-highlight/core';
@@ -47,7 +47,7 @@ import theme from '@speed-highlight/core/themes/default.js';
 console.log(await highlightANSI('console.log("hello")', 'js', theme));
 ```
 
-In a component, highlight a string and render it:
+Web component (React). `highlightHTML` is async because languages load on first use, so stale results are skipped:
 
 ```jsx
 import { useEffect, useState } from 'react';
@@ -56,9 +56,7 @@ import '@speed-highlight/core/themes/default.css';
 
 export function Code({ code, lang }) {
 	const [html, setHtml] = useState('');
-
 	useEffect(() => {
-		// highlightHTML is async (languages load on first use), skip stale results
 		let stale = false;
 		highlightHTML(code, lang).then(result => { if (!stale) setHtml(result); });
 		return () => { stale = true; };
@@ -70,30 +68,30 @@ export function Code({ code, lang }) {
 
 ## How it works
 
-The tokenizer runs a language's regex rules over your code and emits typed tokens (`kwd`, `str`, `cmnt`, ...). On the web each token becomes a `<span class="shj-syn-kwd">`; in the terminal it becomes an ANSI escape code. A theme is just CSS (or a token-to-escape map) coloring those names, which is why themes are under 1 kB and writing your own is a few lines.
+The tokenizer runs a language's regex rules and emits typed tokens (`kwd`, `str`, `cmnt`, ...). Each token becomes a `<span class="shj-syn-kwd">` on the web, an ANSI escape code in the terminal. A theme colors those names with CSS or a token-to-escape map, so it stays under 1 kB and a custom one is a few lines.
 
 ## Comparison
 
-Highlighters trade size for grammar fidelity: TextMate engines (Shiki, starry-night) are the most faithful and heaviest, mature regex engines (highlight.js, Prism) sit in the middle, lightweight regex tokenizers (speed-highlight, sugar-high) are the smallest and approximate on exotic syntax.
+Highlighters trade size for fidelity: TextMate engines are the most faithful and heaviest, lightweight regex tokenizers the smallest but approximate on exotic syntax.
 
 | | Core (gzip) | Per language (gzip) | Languages | Grammar model | Terminal | Status | Choose it for |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| speed-highlight | 1.5 kB | 0.07–1.6 kB | ~30 | lightweight regex | ✅ built in | ✅ v2 (this repo) | runtime highlighting where size and startup matter |
+| speed-highlight | 1.5 kB | 0.07–1.6 kB | 34 | lightweight regex | ✅ built in | ✅ v2 (this repo) | runtime highlighting where size and startup matter |
 | [sugar-high](https://github.com/huozhi/sugar-high) | 1.7 kB | 0.18–2.9 kB | 25 | lightweight regex | ❌ | ✅ v2.0.0 | CSS-variable theming, JSX/TSX-aware JavaScript |
 | [Prism](https://prismjs.com) | 3.1 kB | 0.3–3 kB | ~290 | mature regex | ❌ | ⚠️ v1.30.0, frozen since Mar 2025 (v2 rewrite) | its plugin ecosystem |
 | [highlight.js](https://highlightjs.org) | 8.3 kB | 0.3–2.5 kB | ~190 | mature regex | ❌ (via wrappers) | ✅ v11.11 (Jun 2026) | broad auto-detection and rare languages |
 | [Shiki](https://shiki.style) | 35 kB + engine: 145 kB WASM or 20 kB JS | 5–16 kB | ~220 | TextMate (VS Code) | ✅ via `@shikijs/cli` | ✅ v4.4, very active | highest fidelity (the same grammars as VS Code); zero client JS when run at build time |
 | [starry-night](https://github.com/wooorm/starry-night) | 185 kB incl. WASM | 3–25 kB | 600+ | TextMate (GitHub) | ❌ | ✅ active | GitHub-identical rendering in Node |
 
-Sizes are min+gzip, measured from the installed packages at the versions shown (per-language = range over the benchmark corpus; starry-night figures from its own README). Wrappers reuse these engines and inherit their numbers: lowlight/refractor wrap highlight.js/Prism for virtual DOMs, rehype-pretty-code and bright wrap Shiki, and the terminal-only [emphasize](https://github.com/wooorm/emphasize) and [cli-highlight](https://github.com/felixfbecker/cli-highlight) wrap highlight.js grammars into ANSI. Editors (CodeMirror, Monaco, tree-sitter) are a different category.
-
-If you highlight at build time and bytes do not matter, use Shiki. speed-highlight's case is the opposite one: highlighting at runtime, where the entire library with all 34 grammars bundled into one file gzips to 9.0 kB, barely more than highlight.js's core alone, before it has loaded a single grammar.
+- Sizes: min+gzip of the installed packages at the versions shown; per-language is the range over the benchmark corpus; starry-night from its README.
+- Wrappers inherit their engine's numbers: lowlight/refractor (highlight.js/Prism, virtual DOM), rehype-pretty-code and bright (Shiki), [emphasize](https://github.com/wooorm/emphasize) and [cli-highlight](https://github.com/felixfbecker/cli-highlight) (highlight.js to ANSI). Editors (CodeMirror, Monaco, tree-sitter) are a different category.
+- Build-time highlighting where bytes do not matter: use Shiki. At runtime, all of speed-highlight with its 34 grammars in one file gzips to 9.0 kB, barely more than highlight.js's core without any grammar.
 
 ## Web usage
 
 ### In a component
 
-Frameworks own their DOM, so highlight the *string* and render it, as in the quick start (mutating a mounted node with `highlightElement` gets wiped on the next render). The output is HTML-escaped (`&`, `<`, `>`), safe to inject even for untrusted code; the `shj-lang-*` and `shj-block` classes hook it into the theme. The same pattern works in Vue, Svelte, and Angular; ready-made components are in [examples](examples).
+Highlight the *string* and render it, as in the [quick start](#quick-start); `highlightElement` on a mounted node is wiped on the next render. The output is HTML-escaped (`&`, `<`, `>`), safe even for untrusted code. The `shj-lang-*` and `shj-block` classes apply the theme. Same pattern in Vue, Svelte and Angular: see [examples](examples).
 
 ### On a plain page
 
@@ -109,9 +107,9 @@ Mark code blocks with a `shj-lang-*` class and call `highlightAll` once:
 </script>
 ```
 
-Blocks are a single `<div>` instead of `<pre><code>` so the line-number gutter can be laid out inside; the `shj-lang-` prefix avoids colliding with Prism's `language-*` during a migration.
+Blocks are a `<div>`, not `<pre><code>`, so the line-number gutter fits inside. The `shj-lang-` prefix avoids clashing with Prism's `language-*` during a migration.
 
-For per-element control use `highlightElement`. It renders a `code` element inline and anything else as a block, accepts `block` as an override, and sets `data-lang` so a theme can render a language header with `content: attr(data-lang)`:
+`highlightElement` highlights one element: `code` renders inline, anything else as a block (override with `block`). It sets `data-lang`, for a theme header with `content: attr(data-lang)`:
 
 ```js
 import { highlightElement } from '@speed-highlight/core';
@@ -121,7 +119,7 @@ await highlightElement(element, 'js', { showLineNumbers: true });
 
 ### Detect the language
 
-Detection is a separate ~1 kB import so the core stays small. It recognizes about 20 common languages and returns `'plain'` when unsure:
+A separate ~1 kB import. Recognizes about 20 common languages, returns `'plain'` when unsure:
 
 ```js
 import { highlightElement } from '@speed-highlight/core';
@@ -133,7 +131,7 @@ await highlightElement(element, detectLanguage(code));
 
 ### Control loading and bundling
 
-Languages load lazily through a loader. Replace it with `setLoader` to add custom languages or restrict what your bundler includes; a name the loader cannot resolve renders as plain text:
+Languages load lazily through a loader. `setLoader` replaces it, to add languages or limit what the bundler includes. An unresolved name renders as plain text:
 
 ```js
 import { setLoader, defaultLoader } from '@speed-highlight/core';
@@ -148,7 +146,7 @@ setLoader(name => ({
 })[name]?.());
 ```
 
-For full tree-shaking skip the loader entirely: `tokenizeWith` takes every language from the caller, so a bundler keeps only what you import. Include the sub-languages a grammar embeds (`html` uses `css` and `js`; `js` uses `jsdoc`, `todo`, and `regex`). A sub that is not given keeps the type of its rule and only skips the inner highlighting:
+Full tree-shaking: `tokenizeWith` skips the loader and takes every language from the caller. Pass the sub-languages a grammar embeds (`html` uses `css`, `js`; `js` uses `jsdoc`, `todo`, `regex`). A missing sub keeps its rule's type and only skips the inner highlighting:
 
 ```js
 import { tokenizeWith } from '@speed-highlight/core/tokenize';
@@ -158,7 +156,7 @@ tokenizeWith(code, html, (str, type) => { /* ... */ }, { languages: { css, js, j
 ```
 
 > [!NOTE]
-> `highlightHTML` and `tokenizeWith` never touch the DOM, so they also run server-side or in a web worker: highlight there and send the string over.
+> `highlightHTML` and `tokenizeWith` never touch the DOM: they also run server-side or in a web worker.
 
 ### CDN (no build step)
 
@@ -172,7 +170,7 @@ tokenizeWith(code, html, (str, type) => { /* ... */ }, { languages: { css, js, j
 
 ## Terminal usage
 
-`highlightANSI` returns a string ready to print; the theme is required, import one from `themes/*.js`:
+`highlightANSI` returns a printable string. The theme is required (`themes/*.js`):
 
 ```js
 import { highlightANSI } from '@speed-highlight/core';
@@ -181,7 +179,7 @@ import theme from '@speed-highlight/core/themes/atom-dark.js';
 console.log(await highlightANSI(code, 'js', theme));
 ```
 
-A terminal theme is a plain token-to-escape map, built with the `termcolor` helpers or raw escapes:
+A terminal theme is a token-to-escape map, built with the `termcolor` helpers or raw escapes:
 
 ```js
 import * as col from '@speed-highlight/core/themes/termcolor.js';
@@ -193,7 +191,7 @@ export default {
 };
 ```
 
-For Deno, import the npm package with `npm:`, nothing to install:
+Deno: import with `npm:`, no install:
 
 ```js
 import { highlightANSI } from 'npm:@speed-highlight/core';
@@ -204,7 +202,7 @@ console.log(await highlightANSI('console.log("hello")', 'js', theme));
 
 ## API
 
-The main entry covers most apps; reach for `/tokenize` when you want the raw token stream and full control over what gets bundled. Everything ships TypeScript types.
+The main entry covers most apps. `/tokenize` gives the raw token stream and full control over bundling. TypeScript types included.
 
 | Entry | Export | Description |
 | --- | --- | --- |
@@ -220,7 +218,8 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | [`.../themes/*.css`](src/themes/) | | Web themes |
 | [`.../themes/*.js`](src/themes/) | | Terminal themes, plus `termcolor.js` helpers |
 
-`lang` is a name (`'js'`) or a grammar object passed directly. `opt` is `{ block?: boolean, showLineNumbers?: boolean }`: line numbers are opt-in, `block` defaults to `true`, except that `highlightElement` and `highlightAll` read it off the element instead, where a `code` element is inline and anything else is a block.
+- `lang`: a name (`'js'`) or a grammar object.
+- `opt`: `{ block?: boolean, showLineNumbers?: boolean }`. Line numbers are opt-in. `block` defaults to `true`; `highlightElement` and `highlightAll` read it from the element instead (`code` is inline, anything else a block).
 
 ## Languages
 
@@ -279,7 +278,7 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 
 ## Custom languages
 
-A language is an array of rules. Every rule's regex (global flag required) is tried; the earliest match in the string wins, ties go to the earlier rule:
+A language is an array of rules. Each regex needs the global flag. The earliest match wins; ties go to the earlier rule:
 
 ```js
 export default [
@@ -294,7 +293,7 @@ export default [
 - `{ expand }` reuses a shared pattern: `'num'`, `'str'`, or `'strDouble'`
 - `{ match, sub }` re-tokenizes the matched region with another language: a name (loaded through the loader), an inline grammar array, or a function `code => name | grammar` deciding per match
 
-A language can also set a default token for unmatched text by exporting `{ type, sub }` instead of a bare array (see [`http.js`](src/languages/http.js)). Use a grammar by passing it directly as `lang`, or register a name with `setLoader`. To extend an existing language, spread it after your rules:
+Export `{ type, sub }` instead of an array to set a default token for unmatched text (see [`http.js`](src/languages/http.js)). Pass a grammar as `lang`, or register a name with `setLoader`. To extend a language, spread it after your rules:
 
 ```js
 import js from '@speed-highlight/core/languages/js.js';
@@ -319,7 +318,7 @@ Missing a language? [Open an issue](https://github.com/speed-highlight/core/issu
 
 ## Custom themes
 
-A web theme colors the token classes; start from [`default.css`](src/themes/default.css) and override:
+A web theme colors the token classes. Start from [`default.css`](src/themes/default.css):
 
 ```css
 [class*="shj-lang-"] { color: #f8f8f2; background: #282a36; }
@@ -329,7 +328,7 @@ A web theme colors the token classes; start from [`default.css`](src/themes/defa
 .shj-numbers { color: #6272a4; }
 ```
 
-Display-mode hooks: `.shj-inline` (inside `code`), `.shj-block`, and `.shj-numbers` for the gutter. Terminal themes are the token-to-escape maps shown in [Terminal usage](#terminal-usage).
+Display classes: `.shj-inline` (inside `code`), `.shj-block`, `.shj-numbers` (gutter). Terminal themes: see [Terminal usage](#terminal-usage).
 
 ## Migrating from v1
 
@@ -380,4 +379,6 @@ bash                      945,526 ops/min     60,045 ops/min      6,141 ops/min
 ```
 <!-- AUTOGENERATED:BENCHMARK:END -->
 
-Identical inputs from [`examples/languages/`](examples/languages/), tiled up to each size bucket, HTML-string output for every library, one op = one highlighted file. Each figure is the median of 9 repeated trials, reported as ops/min (the huge bucket can drop below 1 op/sec for the slower libraries). Warm runs have grammars preloaded; cold start is import plus first highlight, measured once (not size-swept). Shiki does more work by design (see [Comparison](#comparison)).
+- Same inputs for every library ([`examples/languages/`](examples/languages/), tiled to each size), HTML-string output, one op = one highlighted file.
+- Median of 9 trials, in ops/min (the huge size can drop below 1 op/sec for slower libraries).
+- Warm runs preload grammars; cold start (import + first highlight) is measured once, not per size. Shiki does more work by design (see [Comparison](#comparison)).
