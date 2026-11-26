@@ -15,7 +15,7 @@
 
 	// the code theme that goes with each page mode
 	const modeTheme = { light: 'default', dark: 'atom-dark' };
-	const defaultTarget = 'node';
+	const defaultTarget = 'html';
 
 	// the page is prerendered in its default state, and the browser hydrates
 	// that html as is: the state a link or the device asks for is applied
@@ -175,7 +175,7 @@
 			onpreview={name => previewTheme = name} />
 		<span class="ml-auto flex items-center gap-4">
 			<Toggle bind:checked={numbers} label="Line numbers" />
-			<span class="w-14 text-right font-mono text-[11.5px] text-ink-dim tabular-nums" title="Time to highlight">
+			<span class="w-14 text-right font-mono text-[11.5px] text-ink-dim tabular-nums" title="Time to highlight (the first run also loads the grammar)">
 				{ms === null ? '' : `${ms >= 10 ? ms.toFixed(0) : ms.toFixed(1)} ms`}
 			</span>
 		</span>

@@ -125,7 +125,7 @@
 							class="cursor-pointer rounded px-1.5 py-px font-mono text-[11px] text-ink-dim hover:text-ink aria-checked:bg-card aria-checked:text-ink-strong">{name}</button>
 					{/each}
 				</span>
-				<span class="w-12 text-right tabular-nums">{terminal.ms.toFixed(terminal.ms >= 10 ? 0 : 1)} ms</span>
+				<span class="w-12 text-right tabular-nums" title="Time to highlight (the first run also loads the grammar)">{terminal.ms.toFixed(terminal.ms >= 10 ? 0 : 1)} ms</span>
 			{/snippet}
 			{@render header(icon('shell'), 'terminal', command, themeSwitch)}
 			<!-- a terminal always looks dark, regardless of the page mode, so the
