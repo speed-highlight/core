@@ -90,12 +90,9 @@ test('a rule takes the whole token', () => {
 		['css', 'a{b:-moz-calc(1px)}', ['func', '-moz-calc']],
 		['yaml', '_key: 1', ['var', '_key']],
 		['lua', 'function M:in_1_bang()', ['func', 'in_1_bang']],
+		['regex', '/[[]a]/', ['num', '[[]']],
 	])
 		deepStrictEqual(collect(src, grammars[lang]).find(([, str]) => str === token[1]), token, `${lang}: ${src}`);
-});
-
-test('a regex class may hold a literal [', () => {
-	deepStrictEqual(collect('/[[]a]/', grammars.regex).find(([type]) => type === 'num'), ['num', '[[]']);
 });
 
 test('a long line takes linear time in every language', async () => {
