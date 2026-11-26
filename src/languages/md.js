@@ -26,7 +26,8 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 			type: 'kwd',
 			sub: [
 				{
-					match: /\n[^]*(?=^`{3,}[ \t]*$)/gm,
+					// the block matched from fence to fence, the code is every line between
+					match: /\n[^]*\n/g,
 					sub: code.match(/^`+[ \t]*([^ \t\r\n`]+)/)?.[1] || detectLanguage(code)
 				}
 			]
