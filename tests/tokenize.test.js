@@ -90,6 +90,10 @@ test('a name rule takes the whole name', () => {
 		deepStrictEqual(collect(src, lang).find(([, str]) => str === token[1]), token, src);
 });
 
+test('a regex class may hold a literal [', () => {
+	deepStrictEqual(collect('/[[]a]/', grammars.regex).find(([type]) => type === 'num'), ['num', '[[]']);
+});
+
 test('a long line takes linear time in every language', async () => {
 	// a rule that may start inside a word is retried at every position of it,
 	// so a minified line or a base64 blob took seconds

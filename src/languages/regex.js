@@ -12,7 +12,7 @@ export default /** @satisfies {import('../index.js').ShjLanguageData} */ ({
 	},
 	{
 		type: 'num',
-		match: /\[([^\\[\]]|\\.)*\]/g
+		match: /\[([^\\\]]|\\.)*\]?/g
 	},
 	{
 		type: 'kwd',
