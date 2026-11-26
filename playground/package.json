@@ -17,7 +17,7 @@
 		"@fontsource-variable/dm-sans": "^5.3.0",
 		"@fontsource/fira-code": "^5.3.0",
 		"@sveltejs/adapter-static": "^4.0.1",
-		"@sveltejs/kit": "^3.0.0",
+		"@sveltejs/kit": "^3.4.1",
 		"@sveltejs/vite-plugin-svelte": "^7.3.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"svelte": "^5.57.1",

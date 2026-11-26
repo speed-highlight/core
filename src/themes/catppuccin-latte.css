@@ -1,0 +1,26 @@
+@import 'default.css';
+
+/* official Catppuccin Latte palette, mapped by the code editor style guide
+   https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md */
+[class*="shj-lang-"] {
+	color: #4c4f69;
+	background: #eff1f5
+}
+
+.shj-syn-deleted,
+.shj-syn-err {color: #d20f39}
+.shj-syn-kwd {color: #8839ef}
+.shj-syn-type,
+.shj-syn-class {color: #df8e1d}
+.shj-syn-cmnt {color: #7c7f93}
+.shj-numbers {color: #8c8fa1}
+.shj-syn-insert,
+.shj-syn-str {color: #40a02b}
+.shj-syn-section,
+.shj-syn-num,
+.shj-syn-bool {color: #fe640b}
+.shj-syn-oper {color: #04a5e5}
+.shj-syn-var,
+.shj-syn-func {color: #1e66f5}
+[class*="shj-lang-"]::selection,
+[class*="shj-lang-"] ::selection {background: #7c7f9340}
