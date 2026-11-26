@@ -1,5 +1,6 @@
 /**
  * @name TypeScript
+ * @alias typescript
  * @support js syntax, ts keyword, types
  */
 

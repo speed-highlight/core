@@ -1,5 +1,6 @@
 /**
  * @name Python
+ * @alias python
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{

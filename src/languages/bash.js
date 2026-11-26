@@ -1,5 +1,6 @@
 /**
  * @name Bash
+ * @alias sh, shell
  */
 
 /** @type {import('../index.js').ShjRule} */

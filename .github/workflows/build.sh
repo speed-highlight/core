@@ -31,6 +31,9 @@ minify_js () {
 
 rm -rf $out_dir
 
+# src/aliases.js is bundled into the core, it must be current before esbuild
+node scripts/generate-aliases.js
+
 for file in $(find $in_dir \( -name "*.ts" -or -name "*.js" \) -type f); do
 	minify_js $file &
 done

@@ -1,5 +1,6 @@
 /**
  * @name Markdown
+ * @alias markdown
  */
 
 import { detectLanguage } from '../detect.js';

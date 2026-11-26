@@ -1,5 +1,6 @@
 /**
  * @name Rust
+ * @alias rust
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{
