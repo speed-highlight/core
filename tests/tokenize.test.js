@@ -85,9 +85,13 @@ test('html takes the attribute names framework templates write', () => {
 			attribute);
 });
 
-test('a name rule takes the whole name', () => {
-	for (let [src, lang, token] of [['a{b:-moz-calc(1px)}', css, ['func', '-moz-calc']], ['_key: 1', grammars.yaml, ['var', '_key']]])
-		deepStrictEqual(collect(src, lang).find(([, str]) => str === token[1]), token, src);
+test('a rule takes the whole token', () => {
+	for (let [lang, src, token] of [
+		['css', 'a{b:-moz-calc(1px)}', ['func', '-moz-calc']],
+		['yaml', '_key: 1', ['var', '_key']],
+		['lua', 'function M:in_1_bang()', ['func', 'in_1_bang']],
+	])
+		deepStrictEqual(collect(src, grammars[lang]).find(([, str]) => str === token[1]), token, `${lang}: ${src}`);
 });
 
 test('a regex class may hold a literal [', () => {
@@ -95,8 +99,8 @@ test('a regex class may hold a literal [', () => {
 });
 
 test('a long line takes linear time in every language', async () => {
-	// a rule that may start inside a word is retried at every position of it,
-	// so a minified line or a base64 blob took seconds
+	// a rule retried at every position of a long run took seconds, a minified
+	// line or a base64 blob was enough
 	let slow = [];
 	for (let [name, lang] of Object.entries(grammars))
 		for (let unit of ['a', '1', ' ', '[', '<', '*', '&']) {
