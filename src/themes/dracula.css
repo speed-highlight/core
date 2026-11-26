@@ -22,3 +22,5 @@
 .shj-syn-num,
 .shj-syn-bool {color: #ffb86c}
 .shj-syn-str {color: #f1fa8c}
+[class*="shj-lang-"]::selection,
+[class*="shj-lang-"] ::selection {background: #44475a}

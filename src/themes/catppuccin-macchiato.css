@@ -22,3 +22,5 @@
 .shj-syn-oper {color: #91d7e3}
 .shj-syn-var,
 .shj-syn-func {color: #8aadf4}
+[class*="shj-lang-"]::selection,
+[class*="shj-lang-"] ::selection {background: #939ab740}
