@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Keep the fixtures and their snapshots byte for byte, they are compared as is
+examples/languages/** -text
+tests/snapshots/** -text
