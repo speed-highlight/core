@@ -1,0 +1,24 @@
+@import 'default.css';
+
+/* official Catppuccin Frappé palette, mapped by the code editor style guide
+   https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md */
+[class*="shj-lang-"] {
+	color: #c6d0f5;
+	background: #303446
+}
+
+.shj-syn-deleted,
+.shj-syn-err {color: #e78284}
+.shj-syn-kwd {color: #ca9ee6}
+.shj-syn-type,
+.shj-syn-class {color: #e5c890}
+.shj-syn-cmnt {color: #949cbb}
+.shj-numbers {color: #838ba7}
+.shj-syn-insert,
+.shj-syn-str {color: #a6d189}
+.shj-syn-section,
+.shj-syn-num,
+.shj-syn-bool {color: #ef9f76}
+.shj-syn-oper {color: #99d1db}
+.shj-syn-var,
+.shj-syn-func {color: #8caaee}

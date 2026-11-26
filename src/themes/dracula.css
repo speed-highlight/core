@@ -1,0 +1,24 @@
+@import 'default.css';
+
+/* official Dracula palette, mapped by the specification
+   https://draculatheme.com/spec */
+[class*="shj-lang-"] {
+	color: #f8f8f2;
+	background: #282a36
+}
+
+.shj-syn-deleted,
+.shj-syn-err {color: #ff5555}
+.shj-syn-oper,
+.shj-syn-kwd {color: #ff79c6}
+.shj-syn-section {color: #bd93f9}
+.shj-syn-var,
+.shj-syn-type,
+.shj-syn-class {color: #8be9fd}
+.shj-numbers,
+.shj-syn-cmnt {color: #6272a4}
+.shj-syn-insert,
+.shj-syn-func {color: #50fa7b}
+.shj-syn-num,
+.shj-syn-bool {color: #ffb86c}
+.shj-syn-str {color: #f1fa8c}
