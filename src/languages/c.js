@@ -43,7 +43,7 @@ export default [
 	},
 	{
 		type: 'func',
-		match: /[a-zA-Z_][\w_]*(?=\s*\()/g
+		match: /\b[a-zA-Z_][\w_]*(?=\s*\()/g
 	},
 	{
 		type: 'class',

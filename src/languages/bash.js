@@ -28,7 +28,7 @@ export default [
 	{
 		// command
 		type: 'func',
-		match: /(?<=(^|\||\&\&|\;)\s*)[a-z_.-]+(?=\s|$)/gmi
+		match: /(?=[a-z_.-])(?<=(^|\||\&\&|\;)\s*)[a-z_.-]+(?=\s|$)/gmi
 	},
 	{
 		type: 'bool',

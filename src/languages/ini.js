@@ -5,7 +5,7 @@ export default [
 	},
 	{
 		type: 'var',
-		match: /.*(?==)/g
+		match: /^.*(?==)/gm
 	},
 	{
 		type: 'section',
