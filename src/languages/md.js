@@ -50,7 +50,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		// the type is not dead: with an array sub the tokenizer keeps the whole
 		// rule as data, so this colors what the sub leaves over (the url part)
 		type: 'func',
-		match: /\[[^\]]*]\([^)]*\)|<[^>]*>/g,
+		match: /\[[^[\]]*]\([^)]*\)|<[^<>]*>/g,
 		sub: [
 			{
 				type: 'oper',

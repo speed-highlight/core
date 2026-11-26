@@ -90,6 +90,7 @@ test('a rule takes the whole token', () => {
 		['css', 'a{b:-moz-calc(1px)}', ['func', '-moz-calc']],
 		['yaml', '_key: 1', ['var', '_key']],
 		['lua', 'function M:in_1_bang()', ['func', 'in_1_bang']],
+		['regex', '/[[]a]/', ['num', '[[]']],
 	])
 		deepStrictEqual(collect(src, grammars[lang]).find(([, str]) => str === token[1]), token, `${lang}: ${src}`);
 });
@@ -99,7 +100,7 @@ test('a long line takes linear time in every language', async () => {
 	// line or a base64 blob was enough
 	let slow = [];
 	for (let [name, lang] of Object.entries(grammars))
-		for (let unit of ['a', '1', ' ']) {
+		for (let unit of ['a', '1', ' ', '[', '<', '*', '&']) {
 			let start = performance.now();
 			await collectAsync(unit.repeat(30000), lang);
 			let ms = performance.now() - start;
