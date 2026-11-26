@@ -9,7 +9,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'var',
-		match: /.*(?==)/g
+		match: /^.*(?==)/gm
 	},
 	{
 		type: 'section',

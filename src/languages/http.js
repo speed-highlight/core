@@ -26,7 +26,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'var',
-		match: /[a-zA-Z][\w-]*(?=:)/g
+		match: /(?<![\w-])[a-zA-Z][\w-]*(?=:)/g
 	},
 	{
 		match: /\n\n[^]*/g,

@@ -1,7 +1,8 @@
-import { deepStrictEqual } from 'node:assert';
+import { deepStrictEqual, ok } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { tokenize as tokenizeAsync } from '../src/index.js';
+import * as grammars from '../src/languages/index.js';
 import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -82,4 +83,16 @@ test('html takes the attribute names framework templates write', () => {
 			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
 			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
 			attribute);
+});
+
+test('a long line takes linear time in every language', async () => {
+	// a rule that may start inside a word is retried at every position of it,
+	// so a minified line or a base64 blob took seconds
+	for (let [name, lang] of Object.entries(grammars))
+		for (let unit of ['a', '1', ' ']) {
+			let start = performance.now();
+			await collectAsync(unit.repeat(30000), lang);
+			let ms = performance.now() - start;
+			ok(ms < 500, `${name}, ${JSON.stringify(unit)} x 30000: ${ms.toFixed(0)} ms`);
+		}
 });

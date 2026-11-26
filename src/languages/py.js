@@ -44,7 +44,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'func',
-		match: /[a-z_]\w*(?=\s*\()/gi
+		match: /\b[a-z_]\w*(?=\s*\()/gi
 	},
 	{
 		type: 'oper',
