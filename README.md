@@ -270,7 +270,12 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | --- | --- | --- |
 | `default` | ✅ [`174 B`](src/themes/default.js) | ✅ [`603 B`](src/themes/default.css) |
 | `atom-dark` | ✅ [`174 B`](src/themes/atom-dark.js) | ✅ [`699 B`](src/themes/atom-dark.css) |
+| `catppuccin-frappe` | ❌ | ✅ [`694 B`](src/themes/catppuccin-frappe.css) |
+| `catppuccin-latte` | ❌ | ✅ [`695 B`](src/themes/catppuccin-latte.css) |
+| `catppuccin-macchiato` | ❌ | ✅ [`694 B`](src/themes/catppuccin-macchiato.css) |
+| `catppuccin-mocha` | ❌ | ✅ [`691 B`](src/themes/catppuccin-mocha.css) |
 | `dark` | ❌ | ✅ [`695 B`](src/themes/dark.css) |
+| `dracula` | ❌ | ✅ [`690 B`](src/themes/dracula.css) |
 | `github-dark` | ❌ | ✅ [`691 B`](src/themes/github-dark.css) |
 | `github-dim` | ❌ | ✅ [`700 B`](src/themes/github-dim.css) |
 | `github-light` | ❌ | ✅ [`672 B`](src/themes/github-light.css) |
