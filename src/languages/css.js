@@ -3,6 +3,7 @@
  * @support comment, str, selector, units, function, ...
  */
 
+/** @type {import('../index.js').ShjRule} */
 const comment = {
 	match: /\/\*((?!\*\/)[^])*(\*\/)?/g,
 	type: 'cmnt',
@@ -11,16 +12,19 @@ const comment = {
 
 // a name before a colon is a property, and a custom property is one anywhere,
 // so both win over a selector, which a nested block would take them for
+/** @type {import('../index.js').ShjRule} */
 const property = {
 	type: 'var',
 	match: /--[\w-]+|(?<![\w-])[\w-]+(?=\s*:)/g
 };
 
+/** @type {import('../index.js').ShjRule} */
 const keyword = {
 	type: 'kwd',
 	match: /@[\w-]+\b|!important\b|\b(and|not|only|or)\b/g
 };
 
+/** @type {import('../index.js').ShjGrammar} */
 const values = [
 	{
 		type: 'num',
