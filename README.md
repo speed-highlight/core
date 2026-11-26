@@ -119,15 +119,17 @@ import { highlightElement } from '@speed-highlight/core';
 await highlightElement(element, 'js', { showLineNumbers: true });
 ```
 
-HTML rendered from markdown marks blocks as `<pre><code class="language-js">`. Highlight them with `highlightElement`, skipping the blocks other tools render, and map the fence names that differ from the file names:
+Markdown renders code blocks as `<pre><code class="language-js">`. To highlight them:
 
 ```js
 import { defaultLoader, highlightElement, setLoader } from '@speed-highlight/core';
 
+// markdown says javascript, the grammar is js
 setLoader(name => defaultLoader({ javascript: 'js', python: 'py', sh: 'bash', yml: 'yaml' }[name] ?? name));
 
 for (const code of document.querySelectorAll('pre > code[class*="language-"]')) {
 	const lang = code.className.match(/language-(\S+)/)[1];
+	// skip the blocks another tool draws
 	if (lang !== 'mermaid') highlightElement(code, lang, { block: true });
 }
 ```
