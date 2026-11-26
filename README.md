@@ -271,9 +271,9 @@ The main entry covers most apps; reach for `/tokenize` when you want the raw tok
 | `default` | ✅ [`174 B`](src/themes/default.js) | ✅ [`606 B`](src/themes/default.css) |
 | `atom-dark` | ✅ [`174 B`](src/themes/atom-dark.js) | ✅ [`702 B`](src/themes/atom-dark.css) |
 | `catppuccin-frappe` | ❌ | ✅ [`698 B`](src/themes/catppuccin-frappe.css) |
-| `catppuccin-latte` | ❌ | ✅ [`699 B`](src/themes/catppuccin-latte.css) |
-| `catppuccin-macchiato` | ❌ | ✅ [`698 B`](src/themes/catppuccin-macchiato.css) |
-| `catppuccin-mocha` | ❌ | ✅ [`696 B`](src/themes/catppuccin-mocha.css) |
+| `catppuccin-latte` | ❌ | ✅ [`698 B`](src/themes/catppuccin-latte.css) |
+| `catppuccin-macchiato` | ❌ | ✅ [`697 B`](src/themes/catppuccin-macchiato.css) |
+| `catppuccin-mocha` | ❌ | ✅ [`694 B`](src/themes/catppuccin-mocha.css) |
 | `dark` | ❌ | ✅ [`697 B`](src/themes/dark.css) |
 | `dracula` | ❌ | ✅ [`692 B`](src/themes/dracula.css) |
 | `github-dark` | ❌ | ✅ [`695 B`](src/themes/github-dark.css) |
