@@ -72,7 +72,7 @@ The tokenizer runs a language's regex rules and emits typed tokens (`kwd`, `str`
 
 ## Comparison
 
-Highlighters trade size for fidelity: TextMate engines are the most faithful and the heaviest, mature regex engines sit in the middle, lightweight regex tokenizers are the smallest and approximate exotic syntax.
+Highlighters trade size for fidelity: TextMate engines (Shiki, starry-night) are the most faithful and the heaviest, mature regex engines (highlight.js, Prism) sit in the middle, lightweight regex tokenizers (speed-highlight, sugar-high) are the smallest and approximate exotic syntax.
 
 | | Core (gzip) | Per language (gzip) | Languages | Grammar model | Terminal | Status | Choose it for |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -85,7 +85,7 @@ Highlighters trade size for fidelity: TextMate engines are the most faithful and
 
 - Sizes: min+gzip of the installed packages at the versions shown; per-language is the range over the benchmark corpus; starry-night from its README.
 - Wrappers inherit their engine's numbers: lowlight/refractor (highlight.js/Prism, virtual DOM), rehype-pretty-code and bright (Shiki), [emphasize](https://github.com/wooorm/emphasize) and [cli-highlight](https://github.com/felixfbecker/cli-highlight) (highlight.js to ANSI). Editors (CodeMirror, Monaco, tree-sitter) are a different category.
-- Build-time highlighting where bytes do not matter: use Shiki. At runtime, all 34 grammars bundled weigh 9.0 kB gzip, about highlight.js's core alone.
+- Build-time highlighting where bytes do not matter: use Shiki. At runtime, speed-highlight with all 34 of its grammars bundled in one file weighs 9.0 kB gzip, about the size of highlight.js's core without any grammar.
 
 ## Web usage
 
@@ -109,12 +109,13 @@ Mark code blocks with a `shj-lang-*` class and call `highlightAll` once:
 
 Blocks are a `<div>`, not `<pre><code>`, so the line-number gutter fits inside. The `shj-lang-` prefix avoids clashing with Prism's `language-*` during a migration.
 
-`highlightElement` highlights one element: `code` renders inline, anything else as a block (override with `block`). It sets `data-lang`, for a theme header with `content: attr(data-lang)`:
+`highlightElement` highlights one element. A `code` element renders inline, anything else as a block; the `block` option overrides that. It also sets `data-lang`, which a theme can show as a header with `content: attr(data-lang)`:
 
 ```js
 import { highlightElement } from '@speed-highlight/core';
 
-await highlightElement(element, 'js', { showLineNumbers: true });
+// block: true renders it as a block even if it is a <code>
+await highlightElement(element, 'js', { block: true, showLineNumbers: true });
 ```
 
 ### Detect the language
@@ -170,7 +171,7 @@ tokenizeWith(code, html, (str, type) => { /* ... */ }, { languages: { css, js, j
 
 ## Terminal usage
 
-`highlightANSI` returns a printable string. The theme is required (`themes/*.js`):
+`highlightANSI` returns a string ready to print. It takes a theme: a bundled one from `themes/*.js`, or your own (below):
 
 ```js
 import { highlightANSI } from '@speed-highlight/core';
@@ -179,15 +180,16 @@ import theme from '@speed-highlight/core/themes/atom-dark.js';
 console.log(await highlightANSI(code, 'js', theme));
 ```
 
-A terminal theme is a token-to-escape map, built with the `termcolor` helpers or raw escapes:
+A terminal theme maps token names to ANSI escapes, from the `termcolor` helpers or written raw:
 
 ```js
-import * as col from '@speed-highlight/core/themes/termcolor.js';
+import { red, green, gray } from '@speed-highlight/core/themes/termcolor.js';
 
 export default {
-	kwd: col.red,
-	str: col.green,
-	cmnt: col.gray,
+	kwd: red,
+	str: green,
+	cmnt: gray,
+	num: '\x1b[33m', // a raw escape: yellow
 };
 ```
 
@@ -202,7 +204,13 @@ console.log(await highlightANSI('console.log("hello")', 'js', theme));
 
 ## API
 
-The main entry covers most apps. `/tokenize` gives the raw token stream and full control over bundling. TypeScript types included.
+The main entry covers most apps. `/tokenize` gives the raw token stream and full control over bundling. Every entry ships its TypeScript declarations.
+
+| You have | Use | Why |
+| --- | --- | --- |
+| a language name (`'js'`) | `highlightHTML`, `highlightANSI` (async) | the grammar loads the first time it is used |
+| the grammars, imported yourself | `tokenizeWith` (sync) | nothing to load, the bundler keeps only what you import |
+| elements on a page | `highlightAll`, `highlightElement` | the language comes from the `shj-lang-*` class |
 
 | Entry | Export | Description |
 | --- | --- | --- |
@@ -293,7 +301,7 @@ export default [
 - `{ expand }` reuses a shared pattern: `'num'`, `'str'`, or `'strDouble'`
 - `{ match, sub }` re-tokenizes the matched region with another language: a name (loaded through the loader), an inline grammar array, or a function `code => name | grammar` deciding per match
 
-Export `{ type, sub }` instead of an array to set a default token for unmatched text (see [`http.js`](src/languages/http.js)). Pass a grammar as `lang`, or register a name with `setLoader`. To extend a language, spread it after your rules:
+Use a custom language by passing its grammar as `lang`, or give it a name by wrapping the loader: `setLoader(name => customs[name] ?? defaultLoader(name))` (see [Control loading and bundling](#control-loading-and-bundling)). Export `{ type, sub }` instead of an array to set a default token for unmatched text (see [`http.js`](src/languages/http.js)). To extend a language, spread it after your rules:
 
 ```js
 import js from '@speed-highlight/core/languages/js.js';
