@@ -2,40 +2,29 @@
  * @name CSS
  * @support comment, str, selector, units, function, ...
  */
-export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
-	{
-		match: /\/\*((?!\*\/)[^])*(\*\/)?/g,
-		type: 'cmnt',
-		sub: 'todo'
-	},
-	{
-		expand: 'str'
-	},
-	{
-		type: 'var',
-		// a name before a colon is a property, and a custom property is one
-		// anywhere, so both win over the selector guessed below, which a
-		// nested block would otherwise take them for
-		match: /--[\w-]+|(?<![\w-])[\w-]+(?=\s*:)/g
-	},
-	{
-		type: 'kwd',
-		// (?=([a-z-]+))\2 fakes an atomic group (JS has none), avoiding
-		// catastrophic backtracking a plain [a-z-]+ would have here
-		match: /@[\w-]+\b|!important\b|\b(and|not|only|or)\b|\b(?=([a-z-]+))\2(?=[^{}]*{)/g
-	},
-	{
-		type: 'var',
-		// (?!\d) keeps a number that opens a value (.3s) out of the class selectors
-		match: /(::?|\.)(?!\d)[\w-]+(?=[^{}]*{)/g
-	},
-	{
-		type: 'func',
-		match: /#[\w-]+(?=[^{}]*{)/g
-	},
+
+const comment = {
+	match: /\/\*((?!\*\/)[^])*(\*\/)?/g,
+	type: 'cmnt',
+	sub: 'todo'
+};
+
+// a name before a colon is a property, and a custom property is one anywhere,
+// so both win over a selector, which a nested block would take them for
+const property = {
+	type: 'var',
+	match: /--[\w-]+|(?<![\w-])[\w-]+(?=\s*:)/g
+};
+
+const keyword = {
+	type: 'kwd',
+	match: /@[\w-]+\b|!important\b|\b(and|not|only|or)\b/g
+};
+
+const values = [
 	{
 		type: 'num',
-		match:  /#[\da-f]{3,8}/gi
+		match: /#[\da-f]{3,8}/gi
 	},
 	{
 		type: 'num',
@@ -69,4 +58,37 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		type: 'num',
 		match: /\b[a-z-]+\b/g
 	}
+];
+
+export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
+	{
+		// what comes before a `{` is a selector or an at-rule prelude; it starts
+		// only after `{`, `}` or `;`, so every character is read once
+		match: /(?<![^{};])[^{};]*{/g,
+		sub: [
+			comment,
+			{ expand: 'str' },
+			property,
+			keyword,
+			{
+				type: 'kwd',
+				match: /\b[a-z-]+/g
+			},
+			{
+				type: 'var',
+				// (?!\d) keeps a number that opens a value (.3s) out of the class selectors
+				match: /(::?|\.)(?!\d)[\w-]+/g
+			},
+			{
+				type: 'func',
+				match: /#[\w-]+/g
+			},
+			...values
+		]
+	},
+	comment,
+	{ expand: 'str' },
+	property,
+	keyword,
+	...values
 ]);

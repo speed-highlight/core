@@ -94,12 +94,17 @@ test('a regex class may hold a literal [', () => {
 	deepStrictEqual(collect('/[[]a]/', grammars.regex).find(([type]) => type === 'num'), ['num', '[[]']);
 });
 
+test('a css value before a nested block stays a value', () => {
+	let tokens = collect('.a { b: repeat(2, c); &:hover { d: e } }', css);
+	deepStrictEqual([['func', 'repeat'], ['num', 'c']].filter(token => tokens.some(([type, str]) => type === token[0] && str === token[1])).length, 2);
+});
+
 test('a long line takes linear time in every language', async () => {
 	// a rule that may start inside a word is retried at every position of it,
 	// so a minified line or a base64 blob took seconds
 	let slow = [];
 	for (let [name, lang] of Object.entries(grammars))
-		for (let unit of ['a', '1', ' ', '[', '<', '*', '&']) {
+		for (let unit of ['a', '1', ' ', '[', '<', '*', '&', '.a', 'a-']) {
 			let start = performance.now();
 			await collectAsync(unit.repeat(30000), lang);
 			let ms = performance.now() - start;
