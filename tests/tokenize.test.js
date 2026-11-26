@@ -97,6 +97,16 @@ test('numbers keep the sign of their exponent', () => {
 });
 
 
+test('Bash single quotes have no escapes and can span lines', () => {
+	deepStrictEqual(collect("'C:\\' x 'a\nb'", bash), [
+		[undefined, ''],
+		['str', "'C:\\'"],
+		[undefined, ' x '],
+		['str', "'a\nb'"],
+		[undefined, '']
+	]);
+});
+
 test('Bash variables remain literal in single-quoted strings', () => {
 	deepStrictEqual(collect("'$HOME' \"$HOME\"", bash), [
 		[undefined, ''],
