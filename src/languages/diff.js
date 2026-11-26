@@ -3,6 +3,10 @@
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{
+		type: 'section',
+		match: /^@@.*@@$|^\d.*|^\*\*\*.*|^--- (?:a\/[^\r\n]+|\/dev\/null|[^\r\n]*\t[^\r\n]+|\S+)$|^\+\+\+ (?:b\/[^\r\n]+|\/dev\/null|[^\r\n]*\t[^\r\n]+|\S+)$/gm
+	},
+	{
 		type: 'deleted',
 		match: /^[-<].*/gm
 	},
@@ -12,10 +16,6 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'kwd',
-		match: /!.*/gm
-	},
-	{
-		type: 'section',
-		match: /^@@.*@@$|^\d.*|^([*+-])\1\1.*/gm
+		match: /^!.*/gm
 	}
 ]);
