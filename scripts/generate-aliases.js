@@ -30,6 +30,9 @@ export const collectAliases = tags => {
 			// a taken name would silently load one of the two languages
 			if (aliases.has(alias) || tags.some(([name]) => name === alias))
 				throw new Error(`the @alias "${alias}" of src/languages/${file}.js is already a language or an alias`);
+			// names are looked up lowercased, an alias in another case is never found
+			if (alias !== alias.toLowerCase())
+				throw new Error(`the @alias "${alias}" of src/languages/${file}.js must be lowercase`);
 			aliases.set(alias, file);
 		}
 	return [...aliases].sort(([a], [b]) => a < b ? -1 : 1);
@@ -37,7 +40,10 @@ export const collectAliases = tags => {
 
 /** @param {[string, string][]} aliases */
 export const aliasesModule = aliases => `// generated from the @alias tags of src/languages/*.js by scripts/generate-aliases.js
-export default /** @type {Record<string, string>} */ ({ __proto__: null, ${aliases.map(([alias, file]) => `${JSON.stringify(alias)}: ${JSON.stringify(file)}`).join(', ')} });
+export default /** @type {Record<string, string>} */ ({
+	__proto__: null,
+${aliases.map(([alias, file]) => `\t${/^[a-z_$][\w$]*$/.test(alias) ? alias : JSON.stringify(alias)}: '${file}',`).join('\n')}
+});
 `;
 
 if (import.meta.main)

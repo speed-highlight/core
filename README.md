@@ -125,13 +125,13 @@ Markdown renderers such as marked and markdown-it output each code block as `<pr
 import { highlightElement } from '@speed-highlight/core';
 
 for (const code of document.querySelectorAll('pre > code[class*="language-"]')) {
-	const lang = code.className.match(/language-(\S+)/)[1].toLowerCase();
+	const lang = code.className.match(/language-(\S+)/)[1];
 	// skip the blocks another tool draws
 	if (lang !== 'mermaid') highlightElement(code, lang, { block: true });
 }
 ```
 
-Fence names like `javascript` and `python` work as is, the [languages table](#languages) lists them.
+Fence names like `javascript` and `Python` work as is, in any case, the [languages table](#languages) lists them.
 
 ### Detect the language
 
