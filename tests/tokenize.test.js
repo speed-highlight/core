@@ -76,9 +76,9 @@ test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
 });
 
-test('the terminal output keeps no control character of the code', async () => {
-	deepStrictEqual(await highlightANSI('a\x1b]0;title\x07\x1b[2Jb\r\n\tc\x9b', 'plain', {}), 'a]0;title[2Jb\n\tc');
-	deepStrictEqual(await highlightANSI('a\rb\r\nc', 'plain', {}), 'a\nb\nc');
+test('the terminal output shows the control characters of the code', async () => {
+	deepStrictEqual(await highlightANSI('a\x1b]0;title\x07\x1b[2Jb\r\n\tc\f\x7f\x9b', 'plain', {}), 'a␛]0;title␇␛[2Jb\n\tc␌\ufffd\ufffd');
+	deepStrictEqual(await highlightANSI('a\rb\r\nc', 'plain', {}), 'a␍b\nc');
 });
 
 test('html takes the attribute names framework templates write', () => {

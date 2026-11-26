@@ -165,8 +165,10 @@ export async function highlightAll(opt) {
 export async function highlightANSI(src, lang, theme) {
 	let res = '';
 
-	// drop control characters (\r becomes \n): they could retitle or clear the terminal
-	src = src.replace(/\r\n?/g, '\n').replace(/[\0-\b\v-\x1f\x7f-\x9f]/g, '');
+	// show control characters (␛, ␍...) instead of letting them retitle or clear the terminal
+	src = src.replace(/\r\n/g, '\n')
+		.replace(/[\0-\b\v-\x1f]/g, c => String.fromCharCode(0x2400 + c.charCodeAt()))
+		.replace(/[\x7f-\x9f]/g, '\ufffd');
 	await tokenize(src, lang, (str, token) => res += token ? `${theme[token] ?? ''}${str}\x1b[0m` : str);
 
 	return res;
