@@ -11,8 +11,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		expand: 'str'
 	},
 	{
-		type: 'num',
-		match: /-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+-]?\d+)?\b/g
+		expand: 'num'
 	},
 	{
 		type: 'num',

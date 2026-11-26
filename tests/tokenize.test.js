@@ -85,14 +85,15 @@ test('html takes the attribute names framework templates write', () => {
 			attribute);
 });
 
-test('JSON numbers retain exponent signs and negative prefixes', () => {
-	deepStrictEqual(collect('1e+3 -1', json), [
-		[undefined, ''],
-		['num', '1e+3'],
-		[undefined, ' '],
-		['num', '-1'],
-		[undefined, '']
-	]);
+test('numbers keep the sign of their exponent', () => {
+	for (let lang of [json, js])
+		deepStrictEqual(collect('1e+3 2E-3', lang), [
+			[undefined, ''],
+			['num', '1e+3'],
+			[undefined, ' '],
+			['num', '2E-3'],
+			[undefined, '']
+		]);
 });
 
 
