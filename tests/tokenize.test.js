@@ -95,7 +95,7 @@ test('a long line takes linear time in every language', async () => {
 	// so a minified line or a base64 blob took seconds
 	let slow = [];
 	for (let [name, lang] of Object.entries(grammars))
-		for (let unit of ['a', '1', ' ']) {
+		for (let unit of ['a', '1', ' ', '[', '<', '*', '&']) {
 			let start = performance.now();
 			await collectAsync(unit.repeat(30000), lang);
 			let ms = performance.now() - start;
