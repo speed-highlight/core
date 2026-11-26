@@ -29,6 +29,7 @@
 
 	// what the command prints, timed; only for the terminal targets
 	async function runCommand(source, language, themeName) {
+		await highlightANSI(source, language, terminalThemeMaps[themeName]); // loads the grammars, untimed
 		const start = performance.now();
 		const ansi = await highlightANSI(source, language, terminalThemeMaps[themeName]);
 		return { html: ansiToHtml(ansi), ms: performance.now() - start };
