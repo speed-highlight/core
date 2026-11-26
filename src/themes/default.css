@@ -45,8 +45,6 @@
    empty one must take no room at all */
 .shj-numbers:empty {display: none}
 .shj-numbers div::before {
-	/* the gutter's color, which each theme sets on .shj-numbers */
-	color: inherit;
 	display: block;
 	content: counter(line);
 	opacity: .5;
