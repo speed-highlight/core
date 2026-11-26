@@ -165,10 +165,9 @@ export async function highlightAll(opt) {
 export async function highlightANSI(src, lang, theme) {
 	let res = '';
 
-	// the control characters of the code (but tab and newline, a lone \r
-	// becomes one) are dropped, an escape in a file could otherwise retitle
-	// or clear the terminal
-	await tokenize(src.replace(/\r\n?/g, '\n').replace(/[\0-\b\v-\x1f\x7f-\x9f]/g, ''), lang, (str, token) => res += token ? `${theme[token] ?? ''}${str}\x1b[0m` : str);
+	// drop control characters (\r becomes \n): they could retitle or clear the terminal
+	src = src.replace(/\r\n?/g, '\n').replace(/[\0-\b\v-\x1f\x7f-\x9f]/g, '');
+	await tokenize(src, lang, (str, token) => res += token ? `${theme[token] ?? ''}${str}\x1b[0m` : str);
 
 	return res;
 }
