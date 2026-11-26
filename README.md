@@ -38,7 +38,7 @@ A tiny, fast, simple syntax highlighter for the web and the terminal in JavaScri
 npm i @speed-highlight/core
 ```
 
-Terminal:
+In a terminal:
 
 ```js
 import { highlightANSI } from '@speed-highlight/core';
@@ -84,14 +84,14 @@ Highlighters trade size for fidelity: TextMate engines (Shiki, starry-night) are
 | [starry-night](https://github.com/wooorm/starry-night) | 185 kB incl. WASM | 3–25 kB | 600+ | TextMate (GitHub) | ❌ | ✅ active | GitHub-identical rendering in Node |
 
 - Sizes: min+gzip of the installed packages at the versions shown; per-language is the range over the benchmark corpus; starry-night from its README.
-- Wrappers inherit their engine's numbers: lowlight/refractor (highlight.js/Prism, virtual DOM), rehype-pretty-code and bright (Shiki), [emphasize](https://github.com/wooorm/emphasize) and [cli-highlight](https://github.com/felixfbecker/cli-highlight) (highlight.js to ANSI). Editors (CodeMirror, Monaco, tree-sitter) are a different category.
+- Wrappers reuse an engine and its numbers: lowlight and refractor (highlight.js, Prism), rehype-pretty-code and bright (Shiki), [emphasize](https://github.com/wooorm/emphasize) and [cli-highlight](https://github.com/felixfbecker/cli-highlight) (highlight.js to ANSI).
 - Build-time highlighting where bytes do not matter: use Shiki. At runtime, speed-highlight with all 34 of its grammars bundled in one file weighs 9.0 kB gzip, about the size of highlight.js's core without any grammar.
 
 ## Web usage
 
 ### In a component
 
-Highlight the *string* and render it, as in the [quick start](#quick-start). Do not call `highlightElement` on a node the framework renders: its next render undoes it. The output is HTML-escaped (`&`, `<`, `>`), safe even for untrusted code. The `shj-lang-*` and `shj-block` classes apply the theme. Same pattern in Vue, Svelte and Angular: see [examples](examples).
+Render the string `highlightHTML` returns, as in the [quick start](#quick-start); `highlightElement` on a node the framework owns is undone by its next render. The output is HTML-escaped, safe for untrusted code. Components for Vue, Svelte and Angular: [examples](examples).
 
 ### On a plain page
 
@@ -107,14 +107,13 @@ Mark code blocks with a `shj-lang-*` class and call `highlightAll` once:
 </script>
 ```
 
-Blocks are a `<div>`, not `<pre><code>`, so the line-number gutter fits inside. The `shj-lang-` prefix avoids clashing with Prism's `language-*` during a migration.
+Blocks are a `<div>`, so the line-number gutter fits inside.
 
-`highlightElement` highlights one element. A `code` element renders inline, anything else as a block; the `block` option overrides that. It also sets `data-lang`, which a theme can show as a header with `content: attr(data-lang)`:
+`highlightElement` highlights one element: a `code` inline, anything else as a block, unless `block` says otherwise. It sets `data-lang` for a theme header (`content: attr(data-lang)`):
 
 ```js
 import { highlightElement } from '@speed-highlight/core';
 
-// block: true renders it as a block even if it is a <code>
 await highlightElement(element, 'js', { block: true, showLineNumbers: true });
 ```
 
@@ -132,7 +131,7 @@ await highlightElement(element, detectLanguage(code));
 
 ### Control loading and bundling
 
-Languages load lazily through a loader. `setLoader` replaces it, to add languages or limit what the bundler includes. An unresolved name renders as plain text:
+Languages load on first use through a loader. `setLoader` replaces it, to add languages or limit what the bundler includes; an unknown name renders as plain text:
 
 ```js
 import { setLoader, defaultLoader } from '@speed-highlight/core';
@@ -147,7 +146,7 @@ setLoader(name => ({
 })[name]?.());
 ```
 
-Full tree-shaking: `tokenizeWith` skips the loader and takes every language from the caller. Pass the sub-languages a grammar embeds (`html` uses `css`, `js`; `js` uses `jsdoc`, `todo`, `regex`). If a sub is missing, its text keeps the rule's type without inner highlighting:
+For full tree-shaking, `tokenizeWith` takes every language from the caller, the sub-languages too (`html` uses `css` and `js`, `js` uses `jsdoc`, `todo` and `regex`). A missing one is left without inner highlighting:
 
 ```js
 import { tokenizeWith } from '@speed-highlight/core/tokenize';
@@ -203,24 +202,18 @@ console.log(await highlightANSI('console.log("hello")', 'js', theme));
 
 ## API
 
-The main entry covers most apps. `/tokenize` gives the raw token stream and full control over bundling. Every entry ships its TypeScript declarations.
-
-| You have | Use | Why |
-| --- | --- | --- |
-| a language name (`'js'`) | `highlightHTML`, `highlightANSI` (async) | the grammar loads the first time it is used |
-| the grammars, imported yourself | `tokenizeWith` (sync) | nothing to load, the bundler keeps only what you import |
-| elements on a page | `highlightAll`, `highlightElement` | the language comes from the `shj-lang-*` class |
+Give a language name and the main entry loads its grammar, so its functions are async. Import the grammars yourself and `tokenizeWith` from `/tokenize` runs synchronously, and the bundler keeps only what you import. Every entry ships its TypeScript declarations.
 
 | Entry | Export | Description |
 | --- | --- | --- |
 | [`@speed-highlight/core`](src/index.js) | `highlightAll(opt?)` | Highlight every element with a `shj-lang-*` class |
-| | `highlightElement(elm, lang?, opt?)` | Highlight one element (language read from its class by default) |
+| | `highlightElement(elm, lang?, opt?)` | Highlight one element, language from its class by default |
 | | `highlightHTML(src, lang, opt?)` | Highlight a string, resolves to an HTML string |
 | | `highlightANSI(src, lang, theme)` | Highlight a string, resolves to an ANSI string for terminals |
 | | `tokenize(src, lang, onToken)` | Loader-based tokenizer, calls `onToken(text, type)` |
 | | `setLoader(loader)` / `defaultLoader` | Replace or compose how language names are resolved |
 | [`.../detect`](src/detect.js) | `detectLanguage(code)` | Guess the language, `'plain'` when unsure |
-| [`.../tokenize`](src/tokenize.js) | `tokenizeWith(src, lang, onToken, opt?)`, `tokenizer` | Registry-free synchronous tokenizer (and the underlying generator), languages passed by the caller |
+| [`.../tokenize`](src/tokenize.js) | `tokenizeWith(src, lang, onToken, opt?)`, `tokenizer` | Synchronous tokenizer (and its generator), languages given by the caller |
 | [`.../languages`](src/languages/) | one named export per language | Grammars, import only what you need |
 | [`.../themes/*.css`](src/themes/) | | Web themes |
 | [`.../themes/*.js`](src/themes/) | | Terminal themes, plus `termcolor.js` helpers |
@@ -303,9 +296,9 @@ export default [
 
 - `{ match, type }` tags what the regex matches with a token type
 - `{ expand }` reuses a shared pattern: `'num'`, `'str'`, or `'strDouble'`
-- `{ match, sub }` re-tokenizes the matched region with another language: a name (loaded through the loader), an inline grammar array, or a function `code => name | grammar` deciding per match
+- `{ match, sub }` highlights the match with another language: a name, a grammar, or a function `code => name | grammar`
 
-Use a custom language by passing its grammar as `lang`, or give it a name by wrapping the loader: `setLoader(name => customs[name] ?? defaultLoader(name))` (see [Control loading and bundling](#control-loading-and-bundling)). Export `{ type, sub }` instead of an array to set a default token for unmatched text (see [`http.js`](src/languages/http.js)). To extend a language, spread it after your rules:
+Pass the grammar as `lang`, or name it by wrapping the loader: `setLoader(name => customs[name] ?? defaultLoader(name))`. Export `{ type, sub }` instead of an array to give unmatched text a token (see [`http.js`](src/languages/http.js)). To extend a language, spread it after your rules:
 
 ```js
 import js from '@speed-highlight/core/languages/js.js';
