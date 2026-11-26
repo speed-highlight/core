@@ -15,7 +15,7 @@
 
 	// the code theme that goes with each page mode
 	const modeTheme = { light: 'default', dark: 'atom-dark' };
-	const defaultTarget = 'node';
+	const defaultTarget = 'html';
 
 	// the page is prerendered in its default state, and the browser hydrates
 	// that html as is: the state a link or the device asks for is applied
