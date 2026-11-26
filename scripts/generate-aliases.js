@@ -41,7 +41,6 @@ export const collectAliases = tags => {
 /** @param {[string, string][]} aliases */
 export const aliasesModule = aliases => `// generated from the @alias tags of src/languages/*.js by scripts/generate-aliases.js
 export default /** @type {Record<string, string>} */ ({
-	__proto__: null,
 ${aliases.map(([alias, file]) => `\t${/^[a-z_$][\w$]*$/.test(alias) ? alias : JSON.stringify(alias)}: '${file}',`).join('\n')}
 });
 `;
