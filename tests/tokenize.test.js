@@ -93,6 +93,6 @@ test('a long line takes linear time in every language', async () => {
 			let start = performance.now();
 			await collectAsync(unit.repeat(30000), lang);
 			let ms = performance.now() - start;
-			ok(ms < 500, `${name}, ${JSON.stringify(unit)} x 30000: ${ms.toFixed(0)} ms`);
+			ok(ms < 100, `${name}, ${JSON.stringify(unit)} x 30000: ${ms.toFixed(0)} ms`);
 		}
 });
