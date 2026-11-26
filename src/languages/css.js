@@ -63,7 +63,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'func',
-		match: /(?<![\w-])[a-zA-Z][\w-]*(?=\s*\()/g
+		match: /(?<![\w-])-?[a-zA-Z][\w-]*(?=\s*\()/g
 	},
 	{
 		type: 'num',

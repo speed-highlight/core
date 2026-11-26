@@ -1,12 +1,12 @@
-import { deepStrictEqual, ok } from 'node:assert';
+import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { tokenize as tokenizeAsync } from '../src/index.js';
 import * as grammars from '../src/languages/index.js';
-import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
-let fixtures = new URL('../examples/languages/', import.meta.url),
+let { css, html, js, jsdoc, json, regex, todo } = grammars,
+	fixtures = new URL('../examples/languages/', import.meta.url),
 	languages = { css, html, js, jsdoc, json, regex, todo },
 	read = file => readFileSync(new URL(file, fixtures), 'utf8'),
 	collect = (src, lang, opt) => {
@@ -85,14 +85,22 @@ test('html takes the attribute names framework templates write', () => {
 			attribute);
 });
 
+test('a name rule takes the whole name', () => {
+	for (let [src, lang, token] of [['a{b:-moz-calc(1px)}', css, ['func', '-moz-calc']], ['_key: 1', grammars.yaml, ['var', '_key']]])
+		deepStrictEqual(collect(src, lang).find(([, str]) => str === token[1]), token, src);
+});
+
 test('a long line takes linear time in every language', async () => {
 	// a rule that may start inside a word is retried at every position of it,
 	// so a minified line or a base64 blob took seconds
+	let slow = [];
 	for (let [name, lang] of Object.entries(grammars))
 		for (let unit of ['a', '1', ' ']) {
 			let start = performance.now();
 			await collectAsync(unit.repeat(30000), lang);
 			let ms = performance.now() - start;
-			ok(ms < 100, `${name}, ${JSON.stringify(unit)} x 30000: ${ms.toFixed(0)} ms`);
+			if (ms > 100)
+				slow.push(`${name} ${JSON.stringify(unit)}: ${ms.toFixed(0)} ms`);
 		}
+	deepStrictEqual(slow, []);
 });
