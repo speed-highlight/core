@@ -69,7 +69,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		// what comes before a `{` is a selector or an at-rule prelude. It starts
 		// only after `{`, `}`, `;` or a comment, and stops at the next of them, at
 		// a comment, or at a string holding one, so every character is read once
-		match: /(?<=^|[{};]|\*\/)([^{};/*"']|\/(?!\*)|\*(?!\/)|"[^"{};]*"|'[^'{};]*')*{/g,
+		match: /(?<=^|[{};]|\*\/)((?!\/\*|\*\/)[^{};"']|"[^"{};]*"|'[^'{};]*')*{/g,
 		sub: [
 			comment,
 			{ expand: 'str' },

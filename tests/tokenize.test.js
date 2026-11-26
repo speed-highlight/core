@@ -91,17 +91,10 @@ test('a rule takes the whole token', () => {
 		['yaml', '_key: 1', ['var', '_key']],
 		['lua', 'function M:in_1_bang()', ['func', 'in_1_bang']],
 		['regex', '/[[]a]/', ['num', '[[]']],
+		['css', '.a { b: repeat(2); &:hover { c: d } }', ['func', 'repeat']],
+		['css', 'a {}\n/* .old { b: c } */\n.d {}', ['cmnt', '/* .old { b: c } */']],
 	])
 		deepStrictEqual(collect(src, grammars[lang]).find(([, str]) => str === token[1]), token, `${lang}: ${src}`);
-});
-
-test('a css value before a nested block stays a value', () => {
-	let tokens = collect('.a { b: repeat(2, c); &:hover { d: e } }', css);
-	deepStrictEqual([['func', 'repeat'], ['num', 'c']].filter(token => tokens.some(([type, str]) => type === token[0] && str === token[1])).length, 2);
-});
-
-test('a css comment stays whole, even holding a rule', () => {
-	deepStrictEqual(collect('a {}\n/* .old { b: c } */\n.d {}', css).filter(([type]) => type === 'cmnt').map(([, str]) => str).join(''), '/* .old { b: c } */');
 });
 
 test('a long line takes linear time in every language', async () => {
