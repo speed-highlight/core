@@ -9,9 +9,7 @@ permissions:
   contents: read # for checkout
 
 # two merges close together must not race to push dist and publish
-concurrency:
-  group: release
-  cancel-in-progress: false
+concurrency: release
 
 jobs:
   release:
