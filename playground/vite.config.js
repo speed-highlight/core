@@ -16,7 +16,7 @@ const library = {
 	description: pkg.description,
 	dependencies: Object.keys(pkg.dependencies ?? {}).length,
 	languageNames: Object.fromEntries(readdirSync(new URL('../src/languages/', import.meta.url))
-		.filter(file => file !== 'index.js')
+		.filter(file => file !== 'index.js' && /@name\s/.test(read(`src/languages/${file}`)))
 		.map(file => [file.replace(/\.js$/, ''), String(read(`src/languages/${file}`)).match(/@name\s+(.+)/)[1].trim()])),
 };
 
