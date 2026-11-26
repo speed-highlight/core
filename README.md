@@ -180,16 +180,15 @@ import theme from '@speed-highlight/core/themes/atom-dark.js';
 console.log(await highlightANSI(code, 'js', theme));
 ```
 
-A terminal theme maps token names to ANSI escapes, from the `termcolor` helpers or written raw:
+A terminal theme maps token names to ANSI escapes, from the `termcolor` helpers or raw escapes:
 
 ```js
-import { red, green, gray } from '@speed-highlight/core/themes/termcolor.js';
+import * as col from '@speed-highlight/core/themes/termcolor.js';
 
 export default {
-	kwd: red,
-	str: green,
-	cmnt: gray,
-	num: '\x1b[33m', // a raw escape: yellow
+	kwd: col.red,
+	str: col.green,
+	cmnt: col.gray,
 };
 ```
 
