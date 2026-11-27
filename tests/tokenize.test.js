@@ -85,13 +85,15 @@ test('html takes the attribute names framework templates write', () => {
 			attribute);
 });
 
-test('numbers keep the sign of their exponent', () => {
+test('numbers keep the sign of their exponent, in any case', () => {
 	for (let lang of [json, js])
-		deepStrictEqual(collect('1e+3 2E-3', lang), [
+		deepStrictEqual(collect('1e+3 2E-3 0X1F', lang), [
 			[undefined, ''],
 			['num', '1e+3'],
 			[undefined, ' '],
 			['num', '2E-3'],
+			[undefined, ' '],
+			['num', '0X1F'],
 			[undefined, '']
 		]);
 });
