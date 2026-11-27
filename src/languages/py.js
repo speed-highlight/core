@@ -12,31 +12,14 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		match: /f("""|''')(\\[^]|(?!\1)[^])*\1?|f("|')(\\[^]|(?!\3).)*\3?/gi,
 		sub: [
 			{
+				// {{ and }} are literal braces, starting before any field they touch
+				type: 'str',
+				match: /{{|}}/g
+			},
+			{
+				// one level of nested braces, as in a format spec {x:{width}}
 				type: 'var',
-				match: new class {
-					exec(src) {
-						let start, depth = 0,
-							strings = /("""|'''|"|')(\\[^]|(?!\1)[^])*\1?/gy;
-						for (let i = this.lastIndex; i < src.length; i++) {
-							if (!depth && src[i] == '{' && src[i + 1] == '{') i++;
-							else if (depth && (src[i] == '"' || src[i] == "'")) {
-								strings.lastIndex = i;
-								strings.exec(src);
-								i = strings.lastIndex - 1;
-							}
-							else if (src[i] == '{') {
-								if (!depth) start = i;
-								depth++;
-							}
-							else if (src[i] == '}' && depth && !--depth) {
-								this.lastIndex = i + 1;
-								return { index: start, 0: src.slice(start, i + 1) };
-							}
-						}
-						return null;
-					}
-				}(),
-				sub: [
+				match: /{([^{}]|{[^{}]*})*}/g,				sub: [
 					{
 						match: /(?!^{)[^]*(?=}$)/g,
 						sub: 'py'
