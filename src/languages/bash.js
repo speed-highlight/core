@@ -17,7 +17,12 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'str',
-		match: /(["'])((?!\1)[^\r\n\\]|\\[^])*\1?/g,
+		// no escapes in single quotes, and they can span lines
+		match: /'[^']*'?/g
+	},
+	{
+		type: 'str',
+		match: /"([^"\r\n\\]|\\[^])*"?/g,
 		sub: [ variable ]
 	},
 	{
