@@ -1,5 +1,6 @@
 /**
  * @name JavaScript
+ * @alias javascript
  * @support basic syntax, regex, jsdoc, json, template literals
  * @detect ⛔ reported as TypeScript
  */

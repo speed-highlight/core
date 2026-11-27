@@ -1,5 +1,6 @@
 /**
  * @name Perl
+ * @alias perl
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{

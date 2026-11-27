@@ -1,5 +1,6 @@
 /**
  * @name YAML
+ * @alias yml
  * @support comment, numbers, variable, string, bool
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([

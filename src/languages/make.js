@@ -1,5 +1,6 @@
 /**
  * @name Makefile
+ * @alias makefile
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{

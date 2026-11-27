@@ -10,6 +10,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import zlib from 'node:zlib';
 
+import aliases from '../src/aliases.js';
 import { readReadme, replaceMarkedSection, writeReadme } from './readme.js';
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -70,17 +71,18 @@ const buildLanguagesTable = () => {
 	const rows = files.map(file => {
 		const { name, support, detect } = parseLanguageMeta(file);
 		const cssClass = `\`shj-lang-${file}\``;
+		const alias = Object.keys(aliases).filter(alias => aliases[alias] === file).map(alias => `\`${alias}\``).join(', ');
 		// an explicit @detect wins, remove it if the language gets a real
 		// entry in detect.js
 		const detection = detect ?? (detected.has(file) ? '✅' : '❌');
 		const size = sizeCell(`dist/languages/${file}.js`, `src/languages/${file}.js`);
-		return `| ${name} | ${cssClass} | ${support} | ${detection} | ${size} |`;
+		return `| ${name} | ${cssClass} | ${alias} | ${support} | ${detection} | ${size} |`;
 	});
 	const total = files.reduce((sum, file) => sum + (gzipSizeOf(`dist/languages/${file}.js`) ?? 0), 0);
 
 	return [
-		`| Name | [CSS Class](#web-usage) | Support | Detection | Size (gzip, ${formatSize(total)} total) |`,
-		'| --- | --- | --- | --- | --- |',
+		`| Name | [CSS Class](#web-usage) | Also as | Support | Detection | Size (gzip, ${formatSize(total)} total) |`,
+		'| --- | --- | --- | --- | --- | --- |',
 		...rows
 	].join('\n');
 };

@@ -1,5 +1,6 @@
 /**
  * @name Dockerfile
+ * @alias dockerfile
  */
 
 import bash from "./bash.js";

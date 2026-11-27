@@ -44,15 +44,16 @@
  * lines, in a gutter laid out inside the block
  */
 
+import aliases from './aliases.js';
 import { tokenizer } from './tokenize.js';
 
 /**
- * Loader of the bundled languages, can be called
- * by a custom loader as its fallback
+ * Loader of the bundled languages, by file name or `@alias` in any case
+ * (JavaScript loads js), can be called by a custom loader as its fallback
  *
  * @type {ShjLanguageLoader}
  */
-export const defaultLoader = name => import(`./languages/${name}.js`);
+export const defaultLoader = name => import(`./languages/${aliases[name = name.toLowerCase()] ?? name}.js`);
 
 let loader = defaultLoader;
 
