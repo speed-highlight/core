@@ -19,7 +19,8 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 			{
 				// one level of nested braces, as in a format spec {x:{width}}
 				type: 'var',
-				match: /{([^{}]|{[^{}]*})*}/g,				sub: [
+				match: /{([^{}]|{[^{}]*})*}/g,
+				sub: [
 					{
 						match: /(?!^{)[^]*(?=}$)/g,
 						sub: 'py'
