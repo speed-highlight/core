@@ -12,8 +12,14 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		match: /f("""|''')(\\[^]|(?!\1)[^])*\1?|f("|')(\\[^]|(?!\3).)*\3?/gi,
 		sub: [
 			{
+				// {{ and }} are literal braces, starting before any field they touch
+				type: 'str',
+				match: /{{|}}/g
+			},
+			{
+				// one level of nested braces, as in a format spec {x:{width}}
 				type: 'var',
-				match: /{[^{}]*}/g,
+				match: /{([^{}]|{[^{}]*})*}/g,
 				sub: [
 					{
 						match: /(?!^{)[^]*(?=}$)/g,
