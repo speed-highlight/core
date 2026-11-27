@@ -227,13 +227,13 @@ Give a language name and the main entry loads its grammar, so its functions are 
 | Name | [CSS Class](#web-usage) | Support | Detection | Size (gzip, 14.5 kB total) |
 | --- | --- | --- | --- | --- |
 | Assembly | `shj-lang-asm` |  | ✅ | [`194 B`](src/languages/asm.js) |
-| Bash | `shj-lang-bash` |  | ✅ | [`430 B`](src/languages/bash.js) |
+| Bash | `shj-lang-bash` |  | ✅ | [`431 B`](src/languages/bash.js) |
 | Brainfuck | `shj-lang-bf` | increment, operator, print, comment | ❌ | [`137 B`](src/languages/bf.js) |
 | C | `shj-lang-c` |  | ✅ | [`429 B`](src/languages/c.js) |
 | CSS | `shj-lang-css` | comment, str, selector, units, function, ... | ✅ | [`332 B`](src/languages/css.js) |
 | CSV | `shj-lang-csv` | punctuation, ... | ❌ | [`96 B`](src/languages/csv.js) |
 | Diff | `shj-lang-diff` |  | ✅ | [`144 B`](src/languages/diff.js) |
-| Dockerfile | `shj-lang-docker` |  | ✅ | [`566 B`](src/languages/docker.js) |
+| Dockerfile | `shj-lang-docker` |  | ✅ | [`567 B`](src/languages/docker.js) |
 | Git | `shj-lang-git` | comment, insert, deleted, string, ... | ❌ | [`222 B`](src/languages/git.js) |
 | Go | `shj-lang-go` |  | ✅ | [`329 B`](src/languages/go.js) |
 | HTML | `shj-lang-html` | inline style and event handlers | ✅ | [`769 B`](src/languages/html.js) |
@@ -250,7 +250,7 @@ Give a language name and the main entry loads its grammar, so its functions are 
 | Markdown | `shj-lang-md` |  | ✅ | [`1.1 kB`](src/languages/md.js) |
 | Perl | `shj-lang-pl` |  | ✅ | [`329 B`](src/languages/pl.js) |
 | Plain text | `shj-lang-plain` |  | ❌ | [`71 B`](src/languages/plain.js) |
-| Python | `shj-lang-py` |  | ✅ | [`416 B`](src/languages/py.js) |
+| Python | `shj-lang-py` |  | ✅ | [`429 B`](src/languages/py.js) |
 | Regex | `shj-lang-regex` | count, set, ... | ❌ | [`176 B`](src/languages/regex.js) |
 | Rust | `shj-lang-rs` |  | ✅ | [`414 B`](src/languages/rs.js) |
 | SQL | `shj-lang-sql` | number, string, function, ... | ✅ | [`1.7 kB`](src/languages/sql.js) |
