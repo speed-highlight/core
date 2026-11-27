@@ -45,7 +45,6 @@
    empty one must take no room at all */
 .shj-numbers:empty {display: none}
 .shj-numbers div::before {
-	color: #999;
 	display: block;
 	content: counter(line);
 	opacity: .5;
