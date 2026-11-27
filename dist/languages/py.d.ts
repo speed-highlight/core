@@ -6,14 +6,18 @@ declare const _default: ({
 } | {
     type: "str";
     match: RegExp;
-    sub: {
+    sub: ({
+        type: "str";
+        match: RegExp;
+        sub?: undefined;
+    } | {
         type: "var";
         match: RegExp;
         sub: {
             match: RegExp;
             sub: string;
         }[];
-    }[];
+    })[];
     expand?: undefined;
 } | {
     expand: "str";

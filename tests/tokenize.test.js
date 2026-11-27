@@ -1,12 +1,13 @@
 import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
+import { performance } from 'node:perf_hooks';
 import { test } from 'node:test';
 import { highlightANSI, tokenize as tokenizeAsync } from '../src/index.js';
-import { css, html, js, jsdoc, json, regex, todo } from '../src/languages/index.js';
+import { bash, css, html, js, jsdoc, json, md, py, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
 let fixtures = new URL('../examples/languages/', import.meta.url),
-	languages = { css, html, js, jsdoc, json, regex, todo },
+	languages = { bash, css, html, js, jsdoc, json, md, py, regex, todo },
 	read = file => readFileSync(new URL(file, fixtures), 'utf8'),
 	collect = (src, lang, opt) => {
 		let tokens = [];
@@ -87,4 +88,96 @@ test('html takes the attribute names framework templates write', () => {
 			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
 			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
 			attribute);
+});
+
+test('numbers keep the sign of their exponent, in any case', () => {
+	for (let lang of [json, js])
+		deepStrictEqual(collect('1e+3 2E-3 0X1F', lang), [
+			[undefined, ''],
+			['num', '1e+3'],
+			[undefined, ' '],
+			['num', '2E-3'],
+			[undefined, ' '],
+			['num', '0X1F'],
+			[undefined, '']
+		]);
+});
+
+
+test('Bash single quotes have no escapes and can span lines', () => {
+	deepStrictEqual(collect("'C:\\' x 'a\nb'", bash), [
+		[undefined, ''],
+		['str', "'C:\\'"],
+		[undefined, ' x '],
+		['str', "'a\nb'"],
+		[undefined, '']
+	]);
+});
+
+test('Bash variables remain literal in single-quoted strings', () => {
+	deepStrictEqual(collect("'$HOME' \"$HOME\"", bash), [
+		[undefined, ''],
+		['str', "'$HOME'"],
+		[undefined, ' '],
+		['str', '"'],
+		['var', '$HOME'],
+		['str', '"'],
+		[undefined, '']
+	]);
+});
+
+
+test('Markdown fenced JavaScript blocks retain bare and attributed language labels', () => {
+	for (let [fence, label] of [ [ '```', 'js' ], [ '```', 'js title=foo' ], [ '````', 'js title=foo' ] ]) {
+		deepStrictEqual(collect(`${fence}${label}\nconst x = 1;\n${fence}`, md, { languages: { js } }), [
+			[undefined, ''],
+			['kwd', `${fence}${label}`],
+			[undefined, '\n'],
+			['kwd', 'const'],
+			[undefined, ' x '],
+			['oper', '='],
+			[undefined, ' '],
+			['num', '1'],
+			[undefined, ';\n'],
+			['kwd', fence],
+			[undefined, '']
+		]);
+	}
+});
+
+
+test('Python f-strings keep doubled braces literal and nested braces in a field', () => {
+	let merged = src => {
+		let tokens = [];
+		tokenizeWith(src, py, (str, token) => {
+			let last = tokens.at(-1);
+			if (!str) return;
+			if (last?.[0] === token) last[1] += str;
+			else tokens.push([token, str]);
+		}, { languages: { py } });
+		return tokens;
+	};
+	for (let [src, tokens] of [
+		['f"{{user}} {name}"', [['str', 'f"{{user}} '], ['var', '{'], [undefined, 'name'], ['var', '}'], ['str', '"']]],
+		['f"{{{name}}}"', [['str', 'f"{{'], ['var', '{'], [undefined, 'name'], ['var', '}'], ['str', '}}"']]],
+		['f"{a}{{b}}{c}"', [['str', 'f"'], ['var', '{'], [undefined, 'a'], ['var', '}'], ['str', '{{b}}'], ['var', '{'], [undefined, 'c'], ['var', '}'], ['str', '"']]],
+		['f"{{{{x}}}}"', [['str', 'f"{{{{x}}}}"']]],
+		["f\"{d['k']}\"", [['str', 'f"'], ['var', '{'], [undefined, 'd['], ['str', "'k'"], [undefined, ']'], ['var', '}'], ['str', '"']]],
+		['f"{b:{w}}"', [['str', 'f"'], ['var', '{'], [undefined, 'b:{w}'], ['var', '}'], ['str', '"']]],
+		["f\"{ {'a':1}['a'] }\"", [['str', 'f"'], ['var', '{'], [undefined, ' {'], ['str', "'a'"], [undefined, ':'], ['num', '1'], [undefined, '}['], ['str', "'a'"], [undefined, '] '], ['var', '}'], ['str', '"']]],
+		["f\"{f'{name}'}\"", [['str', 'f"'], ['var', '{'], ['str', "f'"], ['var', '{'], [undefined, 'name'], ['var', '}'], ['str', "'"], ['var', '}'], ['str', '"']]],
+	])
+		deepStrictEqual(merged(src), tokens, src);
+});
+
+test('Python f-string brace scanning scales linearly on unmatched opening braces', () => {
+	for (let prefix of [ '', '{a' ]) {
+		let duration = count => {
+			let start = performance.now();
+			tokenizeWith('f"' + prefix + '{'.repeat(count) + '"', py, () => {});
+			return performance.now() - start;
+		};
+		let short = duration(8000), long = duration(32000);
+		deepStrictEqual(long < short * 8 + 80, true, `f-string braces: ${short}ms vs ${long}ms`);
+	}
 });
