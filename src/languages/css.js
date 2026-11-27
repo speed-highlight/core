@@ -16,7 +16,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 		// a name before a colon is a property, and a custom property is one
 		// anywhere, so both win over the selector guessed below, which a
 		// nested block would otherwise take them for
-		match: /--[\w-]+|\b[\w-]+(?=\s*:)/g
+		match: /--[\w-]+|(?<![\w-])[\w-]+(?=\s*:)/g
 	},
 	{
 		type: 'kwd',
@@ -63,7 +63,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'func',
-		match: /\b[a-zA-Z][\w-]*(?=\s*\()/g
+		match: /(?<![\w-])-?[a-zA-Z][\w-]*(?=\s*\()/g
 	},
 	{
 		type: 'num',

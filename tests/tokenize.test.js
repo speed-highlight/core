@@ -3,10 +3,11 @@ import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { test } from 'node:test';
 import { tokenize as tokenizeAsync } from '../src/index.js';
-import { bash, css, html, js, jsdoc, json, md, py, regex, todo } from '../src/languages/index.js';
+import * as grammars from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
-let fixtures = new URL('../examples/languages/', import.meta.url),
+let { bash, css, html, js, jsdoc, json, md, py, regex, todo } = grammars,
+	fixtures = new URL('../examples/languages/', import.meta.url),
 	languages = { bash, css, html, js, jsdoc, json, md, py, regex, todo },
 	read = file => readFileSync(new URL(file, fixtures), 'utf8'),
 	collect = (src, lang, opt) => {
@@ -83,6 +84,30 @@ test('html takes the attribute names framework templates write', () => {
 			collect(`<a ${attribute}>`, html, { languages }).filter(([type, str]) => type && str),
 			[['oper', '<'], ['var', 'a'], ['class', attribute], ['oper', '>']],
 			attribute);
+});
+
+test('a rule takes the whole token', () => {
+	for (let [lang, src, token] of [
+		['css', 'a{b:-moz-calc(1px)}', ['func', '-moz-calc']],
+		['yaml', '_key: 1', ['var', '_key']],
+		['lua', 'function M:in_1_bang()', ['func', 'in_1_bang']],
+	])
+		deepStrictEqual(collect(src, grammars[lang]).find(([, str]) => str === token[1]), token, `${lang}: ${src}`);
+});
+
+test('a long line takes linear time in every language', async () => {
+	// a rule retried at every position of a long run took seconds, a minified
+	// line or a base64 blob was enough
+	let slow = [];
+	for (let [name, lang] of Object.entries(grammars))
+		for (let unit of ['a', '1', ' ']) {
+			let start = performance.now();
+			await collectAsync(unit.repeat(30000), lang);
+			let ms = performance.now() - start;
+			if (ms > 100)
+				slow.push(`${name} ${JSON.stringify(unit)}: ${ms.toFixed(0)} ms`);
+		}
+	deepStrictEqual(slow, []);
 });
 
 test('numbers keep the sign of their exponent, in any case', () => {

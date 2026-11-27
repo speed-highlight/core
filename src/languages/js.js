@@ -5,7 +5,7 @@
  */
 export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	{ // js objects
-		match: /(("|')((?!\2)[^\r\n\\]|\\[^])*\2|[a-zA-Z]\w*)(?=\s*:)/g
+		match: /(("|')((?!\2)[^\r\n\\]|\\[^])*\2|\b[a-zA-Z_]\w*)(?=\s*:)/g
 	},
 	{ // jsdoc comments
 		match: /\/\*\*((?!\*\/)[^])*(\*\/)?/g,
@@ -95,6 +95,6 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 	},
 	{
 		type: 'func',
-		match: /[a-zA-Z$_][\w$_]*(?=\s*((\?\.)?\s*\(|=\s*(\(?[\w,{}\[\])]+\)? =>|function\b)))/g
+		match: /(?<![\w$])[a-zA-Z$_][\w$]*(?=\s*((\?\.)?\s*\(|=\s*(\(?[\w,{}\[\])]+\)? =>|function\b)))/g
 	}
 ]);
