@@ -28,7 +28,7 @@ export default /** @satisfies {import('../index.js').ShjGrammar} */ ([
 				{
 					// the block matched from fence to fence, the code is every line between
 					match: /\n[^]*\n/g,
-					sub: code.match(/^`+[ \t]*([^ \t\r\n`]+)/)?.[1] || detectLanguage(code)
+					sub: code.match(/^`+[ \t]*([^\s`]+)/)?.[1] || detectLanguage(code)
 				}
 			]
 		})
