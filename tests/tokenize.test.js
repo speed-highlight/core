@@ -2,7 +2,7 @@ import { deepStrictEqual } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import { test } from 'node:test';
-import { tokenize as tokenizeAsync } from '../src/index.js';
+import { highlightANSI, tokenize as tokenizeAsync } from '../src/index.js';
 import { bash, css, html, js, jsdoc, json, md, py, regex, todo } from '../src/languages/index.js';
 import { tokenizeWith } from '../src/tokenize.js';
 
@@ -75,6 +75,11 @@ test('a sub that is not given keeps the type of its rule', () => {
 
 test('a language that is not given is emitted as plain text', () => {
 	deepStrictEqual(collect('{}', 'json'), [[undefined, '{}']]);
+});
+
+test('the terminal output shows the control characters of the code', async () => {
+	deepStrictEqual(await highlightANSI('a\x1b]0;title\x07\x1b[2Jb\r\n\tc\f\x7f\x9b', 'plain', {}), 'a␛]0;title␇␛[2Jb\n\tc␌\ufffd\ufffd');
+	deepStrictEqual(await highlightANSI('a\rb\r\nc', 'plain', {}), 'a␍b\nc');
 });
 
 test('html takes the attribute names framework templates write', () => {
